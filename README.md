@@ -1,1 +1,1 @@
-pagina de <codeAwesome />
+pagina de &lt;codeAwesome /&gt;
