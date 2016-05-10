@@ -381,11 +381,6 @@ h6 {
   margin: 0;
 }
 
-.bx-wrapper img {
-  opacity: 0.8;
-  filter: alpha(opacity=80);
-}
-
 .bx-wrapper {
   background-color: #161616;
 }
