@@ -67,19 +67,21 @@
 }
 /*---------- end header ----------*/
 
-/*---------- services section ----------*/
+/*---------- whoAreWe section ----------*/
 
 section {
 	margin-top: 15px;
 }
 
 #whoAreWe {
-	margin-top: 40px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	margin: 0px;
 }
 
-#question {
-	width: 80px;
-	height: auto;
+.img-title {
+	height: 80px;
+	width: auto;
 	vertical-align: top;
 }
 
@@ -90,6 +92,7 @@ section {
 }
 
 .section-desciption {
+	margin-top: 30px;
 	text-indent: 3em;
 	font-size: 1.5em;
 	line-height: 28px;
@@ -97,8 +100,61 @@ section {
 	text-align: justify;
 }
 
+.photo-developer {
+	margin-top: 20px;
+	max-width: 200px;
+	text-align: center;
+}
+
 .photo-developer img {
 	max-width: 200px;
+	text-align: center;
+}
+
+/*---------- end whoAreWe section ----------*/
+
+/*---------- services section ----------*/
+
+#services {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: coral;
+	margin: 0px;
+}
+
+.service-item {
+	text-align: center;
+}
+
+.service-item > p {
+	text-align: justify;
+}
+
+.services-body {
+	margin-top: 30px;
 }
 
 /*---------- end services section ----------*/
+
+/*---------- contactUs section ----------*/
+
+#contactUs {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	margin: 0px;
+}
+
+/*---------- end contactUs section ----------*/
+
+/*---------- footer ----------*/
+
+footer {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	margin: 0px;
+	background-color: #2e3031;
+	color: #fff;
+	text-align: center;
+}
+
+/*---------- end footer ----------*/

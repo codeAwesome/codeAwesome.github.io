@@ -7,18 +7,20 @@
 		$('.nav-pills > li > a').focus(function(){
 			$(this).blur();
 		});
-	});
-	
-	$('#whoAreWe').load('partials/whoAreWe.tpl.html', function(){
 		
 	});
 	
-	$('#services').load('partials/services.tpl.html', function(){
-		
-	});
+	$('#whoAreWe').load('partials/whoAreWe.tpl.html');
+
+	$('#services').load('partials/services.tpl.html');
+
+	$('#contactUs').load('partials/contactUs.tpl.html');
+
+	$('footer').load('partials/footer.tpl.html');
 
 	$(function(){
 		
+		/*----- slide scroll href -----*/
 		$('a[href*="#"]').click(function() {
 
 			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
@@ -40,4 +42,5 @@
 			   }
 		});
 	});
+
 })($);
