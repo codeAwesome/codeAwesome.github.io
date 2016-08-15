@@ -1,0 +1,104 @@
+/* codeAwesome.com styles by codeAwesome */
+
+/*---------- header ----------*/
+.main-container {
+	width: 100%;
+	background-color: #1e6f63;
+	height: 100px;
+}
+
+#logo {
+	width: 300px;
+	margin-top: 10px;
+}
+
+.logo-box {
+	display: inline-block;
+	width: 350px;
+	height: 100px;
+	background-color: #fff;
+	text-align: center;
+	
+	-webkit-box-shadow: 0px 5px 8px 3px rgba(56,52,56,0.9);
+	-moz-box-shadow: 0px 5px 8px 3px rgba(56,52,56,0.9);
+	box-shadow: 0px 5px 8px 3px rgba(56,52,56,0.9);
+}
+
+.nav-box {
+	display: inline-block;
+	margin-left: 120px;
+	vertical-align: top;
+}
+
+.nav-pills > li{
+	padding-left: 2px;
+}
+
+.nav-pills > li > a {
+	border-radius: 0px;
+	color: #fff;
+	margin: 0px;
+	font-size: 24px;
+	padding: 33px;
+}
+
+.nav-pills > li > a:hover{
+	background: #fff;
+	color: black;
+	-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.8);
+	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.8);
+	
+/*
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	
+	-webkit-animation-name: bounce;
+	animation-name: bounce;
+*/
+}
+
+#jumbotron {
+	width: 1920px;
+	min-width: 800px;
+}
+/*---------- end header ----------*/
+
+/*---------- services section ----------*/
+
+section {
+	margin-top: 15px;
+}
+
+#whoAreWe {
+	margin-top: 40px;
+}
+
+#question {
+	width: 80px;
+	height: auto;
+	vertical-align: top;
+}
+
+.section-title {
+	font-size:4em;
+	margin-top: 10px;
+	vertical-align: top;
+}
+
+.section-desciption {
+	text-indent: 3em;
+	font-size: 1.5em;
+	line-height: 28px;
+	color: #838383;
+	text-align: justify;
+}
+
+.photo-developer img {
+	max-width: 200px;
+}
+
+/*---------- end services section ----------*/
