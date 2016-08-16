@@ -67,9 +67,21 @@
                 })
             });
             if(validate){
-                console.log("correo")
-            }else{
-                console.log("no correo")
+                alert("lol")
+                $.ajax({
+                    url: "https://formspree.io/codeawesomepro@gmail.com",
+                    method: "POST",
+                    data:{
+                        message: $("#message").val(),
+                        _replyto: $("#correo").val(),
+                        name: $("#name").val(),
+                        _subject:"correo de usuario de codeawesome.com.ve"
+                    },
+                    datatype:"json",
+                    done:function(res){
+                        console.log(res)
+                    }
+                });
             }
         }
 
