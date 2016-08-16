@@ -238,12 +238,17 @@ section {
 /*---------- footer ----------*/
 
 footer {
-	padding-top: 40px;
-	padding-bottom: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 	margin: 0px;
 	background-color: #2e3031;
 	color: #fff;
 	text-align: center;
+}
+
+footer p {
+	margin: 0px;
+	font-size: 14px;
 }
 
 /*---------- end footer ----------*/
