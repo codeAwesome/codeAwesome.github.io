@@ -210,6 +210,7 @@ section {
 	padding-top: 40px;
 	padding-bottom: 40px;
 	margin: 0px;
+    background-color: #f1f1fa;
 }
 
 .contact {
@@ -247,6 +248,94 @@ section {
     margin-left: 20px;
 }
 
+.services-body .form-control{
+    border-radius: 0px;
+    font-size: 1.3em;
+    font-style: italic;
+    border:none;
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+    padding: 15px;
+    border-bottom: solid 3px #95999a;
+}
+
+.services-body .form-control.active{
+    outline: 0px;
+    border-bottom: solid 4px #09589b;
+}
+
+.services-body .form-control.error{
+    outline: 0px;
+    border-bottom: solid 4px #b41313;
+}
+.services-body textarea.form-control{
+    height: 150px;
+}
+
+.contact-method {
+    background-color: white;
+    padding-top: 30px;
+    -webkit-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+    -moz-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+    box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+}
+
+.services-body a.button{
+    font-size: 1em;
+    font-weight: 600;
+    border: solid 2px #09589b;
+    line-height: 1em;
+    padding: 9px 14px;
+    color: #09589b;
+    background: transparent;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    cursor: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.services-body a.button:hover{
+    color: white;
+    background-color: #09589b;
+}
+
+.services-body .group-input {
+    margin-top:20px;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.group-input label{
+    color: #09589b;
+    font-size: 1.5em;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    margin-left: 16px;
+    line-height: 16px;
+    -web-kit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.group-input label.active{
+    color: #95999a;
+    top: -30px;
+    font-size: 1.3em;
+}
+
+.group-input label.error{
+    color: #b41313;
+    top: -10px;
+    font-size: 1.5em;
+}
+
+.group-input label.error-email{
+    color: #b41313;
+    top: -30px;
+    font-size: 1.3em;
+}
 /*---------- end contactUs section ----------*/
 
 /*---------- footer ----------*/
@@ -267,3 +356,10 @@ footer p {
 
 /*---------- end footer ----------*/
 
+.height-contact-method2 {
+    height: 500px;
+}
+
+.height-contact-method1 {
+    height: 300px;
+}

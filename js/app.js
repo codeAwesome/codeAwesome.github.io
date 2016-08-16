@@ -45,6 +45,44 @@
 					}
 			   }
 		});
+        
+        var validarEmail=function(email){
+            expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return expr.test(email)
+        }
+        
+        var validarInput=function(object){
+            if(object.val().trim()==""){
+                object.removeClass("active")
+                $(object[0].labels[0]).removeClass("active");
+                object.addClass("error")
+                $(object[0].labels[0]).addClass("error");
+            } else{
+                if(object.attr("type")=="email"){
+                    if (!validarEmail(object.val())){
+                        object.addClass("error")
+                        $(object[0].labels[0]).addClass("error-email");
+                    }
+                }
+            }
+        }
+        
+        $(".form-control").focusin(function(){
+            $(this).addClass("active")
+            $($(this)[0].labels[0]).addClass("active");
+            $(this).removeClass("error");
+            $($(this)[0].labels[0]).removeClass("error");
+            $($(this)[0].labels[0]).removeClass("error-email");
+        });
+        
+        $(".form-control").focusout(function(){
+            validarInput($(this));
+        });
+        
+        $(".button").click(function(){
+            console.log("hola")
+        });
+        
 	});
 
 })(jQuery, window);
