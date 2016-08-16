@@ -1,9 +1,10 @@
-(function($){
+(function($, window){
 	
-	console.log('stoy en app.js');
+	/*----- loading tamplates into index -----*/
 	
-	$('#main-wrapper header').load('partials/header.tpl.html', function(){
+	$('header').load('partials/header.tpl.html', function(){
 		
+		/*----- remove the focus to the tags "a" -----*/
 		$('.nav-pills > li > a').focus(function(){
 			$(this).blur();
 		});
@@ -18,6 +19,9 @@
 
 	$('footer').load('partials/footer.tpl.html');
 
+	/*----- end loading tamplates into index -----*/
+
+	/*----- document ready function -----*/
 	$(function(){
 		
 		/*----- slide scroll href -----*/
@@ -43,4 +47,4 @@
 		});
 	});
 
-})($);
+})(jQuery, window);
