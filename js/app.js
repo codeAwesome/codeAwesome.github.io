@@ -27,25 +27,52 @@
 		/*----- slide scroll href -----*/
 		$('a[href*="#"]').click(function() {
 
-			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-				&& location.hostname == this.hostname) {
+            if($(this).attr("href")=="#envio"){
+                enviarEmail();
+            }else{
 
-					var $target = $(this.hash);
+                if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+                    && location.hostname == this.hostname) {
 
-					$target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+                        var $target = $(this.hash);
 
-					if ($target.length) {
+                        $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
 
-						var targetOffset = $target.offset().top;
+                        if ($target.length) {
 
-						$('html,body').animate({scrollTop: targetOffset}, 500);
+                            var targetOffset = $target.offset().top;
 
-						return false;
+                            $('html,body').animate({scrollTop: targetOffset}, 500);
 
-					}
-			   }
+                            return false;
+
+                        }
+                   }
+            }
 		});
         
+        var enviarEmail=function(){
+            validate=true
+            inputs=$("input.form-control, textarea.form-control")
+            inputs.each(function(key, value){
+                validarInput($(value));
+            });
+            inputs.each(function(key, value){
+                //console.log($(value)[0].classList);
+                clases=$(value)[0].classList;
+                $.each(clases, function(k, v){
+                    if(v=="error" || v=="error-email"){
+                        validate=false;
+                    }
+                })
+            });
+            if(validate){
+                console.log("correo")
+            }else{
+                console.log("no correo")
+            }
+        }
+
         var validarEmail=function(email){
             expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return expr.test(email)
@@ -78,11 +105,7 @@
         $(".form-control").focusout(function(){
             validarInput($(this));
         });
-        
-        $(".button").click(function(){
-            console.log("hola")
-        });
-        
+
 	});
 
 })(jQuery, window);
