@@ -87,6 +87,7 @@ section {
 	line-height: 28px;
 	color: #838383;
 	text-align: justify;
+    margin-bottom: 20px;
 }
 
 .photo-developer {
@@ -98,6 +99,84 @@ section {
 .photo-developer img {
 	max-width: 200px;
 	text-align: center;
+}
+
+
+.container-description {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.width-block-description {
+    width: 80%;
+    margin-bottom: 50px;
+}
+
+.width-img-description {
+    width: 10%;
+}
+
+.img-subtitle {
+    height: 100px;
+    width: 100px;
+}
+
+.section-subtitle {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.sub-description {
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.section-subdesciption {
+    text-indent: 3em;
+	font-size: 1.5em;
+	line-height: 28px;
+	color: #e6e6e6;
+	text-align: justify;
+}
+.left .block-description{
+    border-left-color: #a5dbdd;
+    border-left-width: 7px;
+    -webkit-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59);
+    -moz-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59);
+    box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59);
+}
+
+.right .block-description{
+    border-right-color: #a5dbdd;
+    border-right-width: 7px;
+    border-right-style: solid;
+    -webkit-box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
+    -moz-box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
+    box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
+}
+
+.right.width-img-description{
+    margin-right: 100px;
+}
+
+.block-description {
+    font-style: italic;
+    text-indent: 1em;
+	font-size: 1.5em;
+	line-height: 28px;
+    height: 100px;
+    background-color: #f2f2f2;
+    padding-top: 20px;
+    text-align: justify;
 }
 
 /*---------- end whoAreWe section ----------*/
