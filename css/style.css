@@ -212,6 +212,27 @@ section {
 	margin: 0px;
 }
 
+.contact {
+    list-style: none;
+    font-size: 1.5em;
+}
+
+.contact li a{
+    cursor: default;
+    text-decoration: none;
+    color: #000;
+}
+
+.contact li i{
+    font-size: 50px;
+    color: #09589b;
+    
+}
+
+.text-contact {
+    margin-left: 20px;
+}
+
 /*---------- end contactUs section ----------*/
 
 /*---------- footer ----------*/
@@ -226,3 +247,4 @@ footer {
 }
 
 /*---------- end footer ----------*/
+
