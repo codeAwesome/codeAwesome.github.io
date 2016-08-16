@@ -221,6 +221,20 @@ section {
     cursor: default;
     text-decoration: none;
     color: #000;
+    height: 50px;
+}
+
+.contact li{
+    margin-bottom: 30px;
+}
+
+.contact li strong{
+    position: absolute;
+    margin-top: 13px;
+}
+
+.contact li i.fa-envelope-o{
+    margin-left: -10px;
 }
 
 .contact li i{
