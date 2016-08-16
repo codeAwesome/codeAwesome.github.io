@@ -186,7 +186,7 @@ section {
 #services {
 	padding-top: 40px;
 	padding-bottom: 40px;
-	background-color: coral;
+	background-color: #FFA042;
 	margin: 0px;
 }
 
@@ -194,12 +194,38 @@ section {
 	text-align: center;
 }
 
+.first {
+	height: auto;
+	width: 150px;
+}
+
+.second {
+	height: 100px;
+	width: auto;
+	margin-top: 50px;
+}
+
+.third {
+	height: auto;
+	width: 150px;
+}
+
+.service-item > h3 {
+	font-weight: bold;
+	color: #e24500;
+}
+
 .service-item > p {
+	margin-top: 20px;
+	text-indent: 3em;
 	text-align: justify;
+	line-height: 28px;
+	font-size: 18px;
+	color: black;
 }
 
 .services-body {
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 /*---------- end services section ----------*/
