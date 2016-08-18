@@ -19,9 +19,9 @@
 	background-color: #fff;
 	text-align: center;
 	
-	-webkit-box-shadow: 0px 5px 8px 3px rgba(56,52,56,0.9);
-	-moz-box-shadow: 0px 5px 8px 3px rgba(56,52,56,0.9);
-	box-shadow: 0px 5px 8px 3px rgba(56,52,56,0.9);
+	-webkit-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 }
 
 .nav-box {
@@ -45,9 +45,20 @@
 .nav-pills > li > a:hover{
 	background: #fff;
 	color: black;
-	-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.8);
-	-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.8);
-	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+}
+
+.nav-pills > li > a:hover > span{
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
 }
 
 #jumbotron {
@@ -253,37 +264,50 @@ section {
     font-size: 1.5em;
 }
 
-.contact li a{
+.contact li {
+    margin-bottom: 30px;
+}
+
+.contact li a {
     cursor: default;
     text-decoration: none;
     color: #000;
     height: 50px;
 }
 
-.contact li{
-    margin-bottom: 30px;
-}
-
-.contact li strong{
+.contact li strong {
     position: absolute;
     margin-top: 13px;
 }
 
-.contact li i.fa-envelope-o{
+.contact li i {
+    font-size: 50px;
+    color: #09589b;
+}
+
+.contact li i.fa-envelope-o {
     margin-left: -10px;
 }
 
-.contact li i{
-    font-size: 50px;
-    color: #09589b;
-    
-}
-
-.text-contact {
+.contact .text-contact {
     margin-left: 20px;
 }
 
-.services-body .form-control{
+.contact-method {
+    background-color: white;
+    padding-top: 30px;
+    -webkit-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+    -moz-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+    box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+}
+
+.contact-method .group-input {
+    margin-top:20px;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.contact-method .form-control {
     border-radius: 0px;
     font-size: 1.3em;
     font-style: italic;
@@ -295,28 +319,52 @@ section {
     border-bottom: solid 3px #95999a;
 }
 
-.services-body .form-control.active{
+.contact-method .form-control.active {
     outline: 0px;
     border-bottom: solid 4px #09589b;
 }
 
-.services-body .form-control.error{
-    outline: 0px;
-    border-bottom: solid 4px #b41313;
+.contact-method .form-control.error {
+    border-color: #b41313;
 }
-.services-body textarea.form-control{
+
+.contact-method .form-control.valid {
+    border-color: #20811c;
+}
+
+.contact-method textarea {
     height: 150px;
 }
 
-.contact-method {
-    background-color: white;
-    padding-top: 30px;
-    -webkit-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
-    -moz-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
-    box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+.group-input label {
+    color: #09589b;
+    font-size: 1.5em;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    margin-left: 16px;
+    line-height: 16px;
+    -web-kit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
 }
 
-.services-body a.button{
+.group-input label.active {
+    color: #95999a;
+    top: -30px;
+    font-size: 1.3em;
+}
+
+.group-input label.empty, .group-input label.invalid {
+    color: #b41313;
+}
+
+.group-input label.valid {
+    color: #20811c;
+}
+
+#send {
+	width: 100%;
     font-size: 1em;
     font-weight: 600;
     border: solid 2px #09589b;
@@ -331,46 +379,28 @@ section {
     transition: all 0.3s ease-in-out;
 }
 
-.services-body a.button:hover{
+#send:hover {
+	cursor: pointer;
     color: white;
     background-color: #09589b;
 }
 
-.services-body .group-input {
-    margin-top:20px;
-    position: relative;
-    margin-bottom: 60px;
+#send:disabled {
+	cursor: not-allowed;
+	filter: alpha(opacity=65);
+	-webkit-box-shadow: none;
+		  box-shadow: none;
+	opacity: .65;
 }
 
-.group-input label{
-    color: #09589b;
-    font-size: 1.5em;
-    position: absolute;
-    top: -10px;
-    left: 0;
-    margin-left: 16px;
-    line-height: 16px;
-    -web-kit-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-}
-.group-input label.active{
-    color: #95999a;
-    top: -30px;
-    font-size: 1.3em;
+.height-contact-data {
+    height: 300px;
 }
 
-.group-input label.error{
-    color: #b41313;
-    top: -10px;
-    font-size: 1.5em;
+.height-contact-form {
+    height: 500px;
 }
 
-.group-input label.error-email{
-    color: #b41313;
-    top: -30px;
-    font-size: 1.3em;
-}
 /*---------- end contactUs section ----------*/
 
 /*---------- footer ----------*/
@@ -390,11 +420,3 @@ footer p {
 }
 
 /*---------- end footer ----------*/
-
-.height-contact-method2 {
-    height: 500px;
-}
-
-.height-contact-method1 {
-    height: 300px;
-}
