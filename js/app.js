@@ -60,6 +60,10 @@
         });
         
         $(".form-control").keyup(validarInput);
+        
+        function prueba(){
+            alert("todo mola")
+        }
 
         function enviarEmail(){
 
@@ -81,9 +85,30 @@
                         name: $("#name").val(),
                         _subject: "correo de usuario de codeawesome.com.ve"
                     },
-                    datatype: "json",
-                    done: function(){
-						console.log("correo enviado");
+                    dataType: "json",
+                    beforeSend:function(){
+                        swal({
+                            title:"Enviando...",
+                            text:"Espere mientras se envia su mensaje",
+                            imageUrl: "../pic/cargando.gif",
+                            showConfirmButton: false
+                        });
+                    },
+                    success: function(){
+						swal({
+                            title:"Excelente!",
+                            text:"Su correo ha sido enviado con éxito, nos esforzaremos por responder en la máxima brevedad posible",
+                            type: "success",
+                            timer:7000
+                        });
+                    },
+                    error: function(){
+                        swal({
+                            title:"Error!",
+                            text:"Algo salió mal, por favor verifique su conexión de internet",
+                            type:"error",
+                            timer:7000
+                        });
                     }
                 });
 
