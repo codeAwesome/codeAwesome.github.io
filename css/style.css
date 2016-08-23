@@ -47,11 +47,9 @@
 }
 
 .nav-pills > li > a:hover{
-/*	background: #fff;*/
 	background-color: #1b675c;
 	animation-duration: .5s;
 	animation-name: pillhover;
-/*	color: black;*/
 	-webkit-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	-moz-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
@@ -72,19 +70,6 @@
 	box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	}
 }
-
-/*
-.nav-pills > li > a:hover > span{
-  -webkit-animation-duration: 1.5s;
-  animation-duration: 1.5s;
-
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-}
-*/
 
 #jumbotron {
 	width: 1920px;
@@ -560,6 +545,7 @@ footer p {
 /*------- end scroll-bar ----------*/
 
 /*----------opacity----------------*/
+
 .whoAreWe, .vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel, #contactUs .text-left, .contact-method{
 	opacity: 0;
 }
