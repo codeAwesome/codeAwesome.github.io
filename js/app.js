@@ -190,10 +190,10 @@
 	
 	function animationIn(element, animation, offset){
         $(element).waypoint(function(){
-            $(element).toggleClass(animation + ' animated');
+            $(element).toggleClass('animated ' + animation);
             this.destroy();
         }, {
-            offset:offset,
+            offset: offset,
             triggerOnce: true
         });
     }
