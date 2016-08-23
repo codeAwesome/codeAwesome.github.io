@@ -1,11 +1,12 @@
 (function($, window){
 		
-	/*----- remove the focus to the tags "a" -----*/
+	/*----- header -----*/
+	/* remove the focus to the tags "a" */
 	$('.nav-pills > li > a').focus(function(){
 		$(this).blur();
 	});
 
-	/*----- slide scroll href -----*/
+	/* slide scroll href */
 	$('a[href*="#"]').click(function() {
 
 		if ( location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
@@ -27,8 +28,10 @@
 		}
 	});
 
+	/*----- services -----*/
 	$('.flip-img').flipcarousel();
 
+	/*----- contactUS -----*/
 	$('#send').prop('disabled', true);
 
 	$('#send').click(enviarEmail);
@@ -154,7 +157,7 @@
 
 (function($, window){
 
-	/* quienes somos */
+	/* whoAreWe */
 	animationIn('.whoAreWe', 'zoomIn', '75%');
 	animationIn('.vision', 'slideInLeft', '30%');
 	animationIn('.mision', 'slideInRight', '50%');
@@ -164,14 +167,14 @@
 	animationIn('.our-developers .img-description:eq(0)', 'flipInX', '80%');
 	animationIn('.our-developers .img-description:eq(1)', 'flipInX', '80%');
 
-	/* servicios */
+	/* services */
 	animationIn('.title-services', 'bounceInLeft', '85%');
 	animationIn('.service-item:eq(0)', 'bounceInLeft', '75%');
 	animationIn('.service-item:eq(1)', 'zoomInUp', '75%');
 	animationIn('.service-item:eq(2)', 'lightSpeedIn', '75%');
 	animationIn('#flip-carousel', 'flipInY', '80%');
 
-	/* contactenos */
+	/* contactUs */
 	animationIn('#contactUs .text-left', 'slideInUp', '75%');
     animationIn('.contact-method:eq(0)', 'rollIn', '80%');
     animationIn('.contact-method:eq(1)', 'rollIn', '80%');
