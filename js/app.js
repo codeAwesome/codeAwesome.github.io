@@ -29,13 +29,31 @@
 
 				}
 			}
-		});
-
+		});	
+	});
+	
+	$('.orbit').load('partials/orbit.tpl.html', function(){
+		$(document).foundation();
 	});
 
-	$('#whoAreWe').load('partials/whoAreWe.tpl.html');
+	$('#whoAreWe').load('partials/whoAreWe.tpl.html', function(){
+        animationIn('.whoAreWe', 'zoomIn', '75%');
+        animationIn('.vision', 'slideInLeft', '30%');
+        animationIn('.mision', 'slideInRight', '50%');
+        animationIn('.our-developers .section-subtitle', 'fadeInDown', '60%');
+        animationIn('.our-developers .img-circle:eq(0)', 'flip', '60%');
+        animationIn('.our-developers .img-circle:eq(1)', 'flip', '60%');
+        animationIn('.our-developers .img-description:eq(0)', 'flipInX', '80%');
+        animationIn('.our-developers .img-description:eq(1)', 'flipInX', '80%');
+    });
 
-	$('#services').load('partials/services.tpl.html');
+	$('#services').load('partials/services.tpl.html', function(){
+		$('.flip-img').flipcarousel();
+
+        animationIn('.title-services', 'bounceInLeft', '85%');
+        animationIn('.service-item:eq(0)', 'bounceInLeft', '75%');
+        animationIn('.service-item:eq(2)', 'lightSpeedIn', '75%');
+	});
 
 	$('#contactUs').load('partials/contactUs.tpl.html', function(){
 
@@ -59,11 +77,7 @@
 			}
         });
         
-        $(".form-control").keyup(validarInput);
-        
-        function prueba(){
-            alert("todo mola")
-        }
+        $(".form-control").on('keyup change', validarInput);
 
         function enviarEmail(){
 
@@ -167,5 +181,15 @@
 	$('footer').load('partials/footer.tpl.html');
 
 	/*----- end loading tamplates into index -----*/
+	
+	function animationIn(element, animation, offset){
+        $(element).waypoint(function(){
+            $(element).toggleClass(animation + ' animated');
+            this.destroy();
+        }, {
+            offset:offset,
+            triggerOnce: true
+        });
+    }
 
 })(jQuery, window);

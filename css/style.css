@@ -99,6 +99,7 @@ section {
 }
 
 #whoAreWe {
+	background: #fff;
 	padding-top: 40px;
 	padding-bottom: 40px;
 	margin: 0px;
@@ -254,7 +255,7 @@ section {
     box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
 }
 
-.service-item > h3 {
+.service-item > h3, .flip-title {
 	margin-top: 40px;
 	font-weight: bold;
 	color: #a33200;
@@ -271,6 +272,48 @@ section {
 
 .services-body {
 	margin-top: 40px;
+}
+
+.flip-title {
+	text-align: center;
+	font-size: 30px;
+}
+
+.flip-carousel {
+	border: solid 10px black;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 5px;
+	height: 200px;
+	width: auto;
+	padding: 5px;
+}
+
+.flip-carousel .controls .arrow {
+	top: 60px;
+}
+
+.flip-carousel .controls .arrow:after {
+	top: 19px;
+}
+
+.flip-carousel > ul {
+	height: 170px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.flip-carousel > ul > li {
+	height: 150px;
+	width: 30%;
+}
+
+.flip-carousel .face, .card {
+	height: 150px;
+}
+
+.flip-img img {
+	max-height: 150px;
+	width: auto;
 }
 
 /*---------- end services section ----------*/
@@ -436,12 +479,88 @@ footer {
 	margin: 0px;
 	background-color: #2e3031;
 	color: #fff;
-	text-align: center;
+	text-align: left;
 }
 
 footer p {
-	margin: 0px;
-	font-size: 14px;
+	margin: 0px 0px 0px 30px;
+	font-size: 16px;
+    display: inline;
+    position: absolute;
+    padding-top:15px;
+}
+
+
+.list-icon {
+    list-style: none;
+    display: inline;
+}
+
+.list-icon .icon {
+    float: right;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.list-icon .icon .social-icon {
+    width:50px;
+    height: 50px;
+}
+
+.code-word {
+    color: #00848a;
+}
+
+.awesome-word {
+    color: #f0903c;
 }
 
 /*---------- end footer ----------*/
+
+
+/*---------- scroll-bar ----------*/
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFA042;
+  border: 1px solid #666666;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f9f9f9;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #ffffff;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/*------- end scroll-bar ----------*/
+
+/*----------opacity----------------*/
+.whoAreWe, .vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item{
+	opacity: 0;
+}
+.animated{
+    opacity: 1 !important;
+}
+
+/*----------end opacity ---------*/
