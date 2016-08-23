@@ -52,7 +52,9 @@
 
         animationIn('.title-services', 'bounceInLeft', '85%');
         animationIn('.service-item:eq(0)', 'bounceInLeft', '75%');
+        animationIn('.service-item:eq(1)', 'zoomInUp', '75%');
         animationIn('.service-item:eq(2)', 'lightSpeedIn', '75%');
+        animationIn('#flip-carousel', 'flipInY', '80%');
 	});
 
 	$('#contactUs').load('partials/contactUs.tpl.html', function(){
