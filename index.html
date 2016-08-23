@@ -6,10 +6,12 @@
 	
 	<link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
 
+	<!-- lib icons -->
+	<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+
 	<!-- lib styles -->
 	<link rel="stylesheet" href="lib/foundation/css/foundation.css" />
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="lib/sweetalert/sweetalert.css" />
 	<link rel="stylesheet" href="lib/flip-carousel/flip-carousel.css" />
@@ -20,26 +22,265 @@
 	
 </head>
 <body>	
-	<header></header>
-	
-	<div class="orbit" role="region" data-orbit></div>
+	<header>
+		<div class="main-container">
+			<div class="logo-box">
+				<img id="logo" src="pic/logo.png" alt="">
+			</div>
 
-	<section id="whoAreWe"></section>
+			<div class="nav-box">
+				<ul class="nav nav-pills">
+					<li>
+						<a href="#whoAreWe"><span>Quienes somos</span></a>
+					</li>
+					<li>
+						<a href="#services"><span>Nuestros servicios</span></a>
+					</li>
+					<li>
+						<a href="#contactUs"><span>Contáctenos</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
 
-	<section id="services"></section>
+		<div class="orbit" role="region" data-orbit>
+			<ul class="orbit-container">
+				<button class="orbit-previous"><span class="show-for-sr">anterior</span>&#9664;&#xFE0E;</button>
+				<button class="orbit-next"><span class="show-for-sr">siguiente</span>&#9654;&#xFE0E;</button>
 
-	<section id="contactUs"></section>
+				<li class="is-active orbit-slide">
+				  <img class="orbit-image" src="pic/jumbotron.jpg" alt="Space">
+				  <figcaption class="orbit-caption">imagen 1</figcaption>
+				</li>
 
-	<footer></footer>
+				<li class="orbit-slide">
+				  <img class="orbit-image" src="pic/pic1.jpg" alt="Space">
+				  <figcaption class="orbit-caption">imagen 2</figcaption>
+				</li>
+
+				<li class="orbit-slide">
+				  <img class="orbit-image" src="pic/pic2.jpg" alt="Space">
+				  <figcaption class="orbit-caption">imagen 3</figcaption>
+				</li>
+			</ul>
+
+			<nav class="orbit-bullets">
+				<button class="is-active" data-slide="0">
+					<span class="show-for-sr">imagen 1</span>
+					<span class="show-for-sr">nose que es</span>
+				</button>
+				<button data-slide="1"><span class="show-for-sr">imagen 2</span></button>
+				<button data-slide="2"><span class="show-for-sr">imagen 3</span></button>
+			</nav>
+		</div>
+	</header>
+
+	<section id="whoAreWe">
+		<div class="container">
+			<div class="row">
+				<div class="whoAreWe">
+					<div class="col-md-12">
+						<span class="section-title">Quienes somos</span><img class="img-title" src="pic/question.png" alt="">
+					</div>
+					<div class="col-md-12">
+						<p class="section-desciption">Somos un grupo de desarrolladores emprendedores. Cada día nos esforzamos por mantenernos a la vanguardia con las ultimas tecnologías del mercado, brindando así el mejor servicio a nuestros clientes. Garantizamos la funcionalidad, estabilidad y seguridad de nuestros proyectos y cumplimos en todo momento con las espicificaciones tecnicas que nos exigen. Nuestro objetivo es la satisfaccion del cliente.</p>
+					</div>
+
+				</div>
+
+
+				<div class="vision">
+					<div class="col-md-12 text-center">
+						<span class="section-subtitle">Visión</span>
+					</div>
+					<div class="clearfix"></div>
+					<div class="sub-description">
+						<div class="container-description width-img-description left">
+							<img class="img-subtitle" src="pic/vision.png" />
+						</div>
+						<div class="container-description width-block-description left">
+							<blockquote class="block-description">Contribuir a facilitar la vida de nuestros clientes, por medio de soluciones tecnológicas que automaticen sus tareas y así ser la elección preferida para el desarrollo de software.</blockquote>
+						</div>
+					</div>
+				</div>
+
+				<div class="mision">
+					<div class="col-md-12 text-center">
+						<span class="section-subtitle">Misión</span>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="sub-description">
+						<div class="container-description width-img-description right">
+							<img class="img-subtitle" src="pic/mision.png" />
+						</div>
+						<div class="container-description width-block-description right">
+							<blockquote class="block-description">Desarrollar software de calidad con el propósito de solucionar muchas de las necesidades tecnológicas que presenta la sociedad actual.</blockquote>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row our-developers">
+
+				<div class="col-md-12 text-center">
+					<span class="section-subtitle">Nuestros Desarrolladores</span>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div class="col-md-3 col-md-offset-3">
+					<div class="photo-developer center-block">
+						<img class="img-circle " src="pic/otniel.jpg" alt="">
+						<div class="img-description">
+							<h3>Otniel Acevedo</h3>
+							<p>Front-End developer</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-3">
+					<div class="photo-developer center-block">
+						<img class="img-circle" src="pic/jose.jpg">
+						<div class="img-description">
+							<h3 class="text-center">José Parra</h3>
+							<p>Back-End developer</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-right title-services">
+					<span class="section-title ws2">Nuestros servicios</span><img class="img-title" src="../pic/servicios.png" alt="">
+				</div>
+			</div>
+
+			<div class="row services-body">
+
+				<div class="col-md-4 col-sm-4">
+					<div class="service-item">
+						<img class="first" src="pic/service-first.png" alt="">
+						<h3>Dise&ntilde;o de paginas adaptables</h3>
+						<p>Un diseño fluido y adaptable a múltiples pantallas brinda la oportunidad a los usuarios de acceder al web site desde cualquier dispositivo, lo que es muy importante debido a la gran cantidad de personas que acceden desde dispotivos moviles.</p>
+					</div>
+				</div>
+
+				<div class="col-md-4 col-sm-4">
+					<div class="service-item">
+						<img class="animated infinite bounce  second" src="pic/service-second.png" alt="">
+						<h3>Paginas web animadas</h3>
+						<p>Nuestros dise&ntilde;os alegres con divertidas animaciones ofrecen una mejor experiencia a los usuarios que visiten su pagina. Hacemos uso de CSS3 y JavaScript para realizar dichas animaciones, de esta forma obtenemos paginas divertidas con un buen rendimiento.</p>
+					</div>
+				</div>
+
+				<div class="col-md-4 col-sm-4">
+					<div class="service-item">
+						<img class="third" src="pic/service-third.png" alt="">
+						<h3>Aplicaciones web empresariales</h3>
+						<p>Nuestros sistemas administrativos desarrollados con tecnologias web permiten a los usuarios realizar tareas mas eficientemente, mejoran la transmicion de informacion entre departamentos y el respaldo de la misma, permiten imprimir y descargar resportes de la informacion deseada, Ademas son mas faciles de administrar y realizar mantenimiento fecuente.</p>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div id="flip-carousel">
+					<p class="flip-title">Lenguajes y FrameWorks que utilizamos</p>
+
+					<div class="flip-img"><img src="pic/languages/html5.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/css3.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/JavaScript.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/php.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/python.png" alt=""></div>
+
+					<div class="flip-img"><img src="pic/languages/jquery.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/angularjs.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/bootstrap.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/laravel.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/django.png" alt=""></div>
+
+					<div class="flip-img"><img src="pic/languages/mysql.png" alt=""></div>
+					<div class="flip-img"><img src="pic/languages/postgre.png" alt=""></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contactUs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<span class="section-title">Contáctenos</span><img class="img-title" src="pic/contacto.png" alt="">
+				</div>
+			</div>
+
+			<div class="row services-body">
+				<div class="col-md-5 col-md-offset-1 contact-method height-contact-data">
+					<ul class="contact">
+						<li>
+							<a href="tel:+584125097261"><i class="fa fa-mobile"></i><strong class="text-contact">+58-412-509-7261</strong></a>
+						</li>
+						<li>
+							<a href="tel:+584160560620"><i class="fa fa-mobile"></i><strong class="text-contact">+58-416-056-0620</strong></a>
+						</li>
+						<li>
+							<i class="fa fa-envelope-o"></i><strong class="text-contact">codeawesomepro@gmail.com</strong>
+						</li>
+					</ul>
+				</div>
+
+				<form class="col-md-5 col-md-offset-1 contact-method height-contact-form" autocomplete="off">
+					<div class="group-input">
+						<label for="name">Nombre</label>
+						<input id="name" type="text" class="form-control" />
+					</div>
+
+					<div class="group-input">
+						<label for="correo">Correo</label>
+						<input id="correo" type="email" class="form-control" />
+					</div>
+
+					<div class="group-input">
+						<label for="message">Mensaje</label>
+						<textarea id="message" class="form-control"></textarea>
+					</div>
+
+					<button id="send">Enviar</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="container-fluid">
+			<div class="row">
+				<p>&#60;<span class="code-word">code</span><span class="awesome-word">Awesome</span>/&#62; developers, Venezuela, Carabobo, Puerto Cabello. </p>
+				<ul class="list-icon">
+					<li class="icon"><a href="https://www.facebook.com/codeawesomegroup" target="_blank"><img src="../pic/facebook.png" class="social-icon" /></a></li>
+					<li class="icon"><a href="https://twitter.com/codeawesome_pro" target="_blank"><img src="../pic/Twitter.png" class="social-icon" /></a></li>
+					<li class="icon"><a href="https://plus.google.com/111983470848815593808" target="_blank"><img src="../pic/googleplus.png" class="social-icon" /></a></li>
+					<li class="icon"><a href="https://github.com/codeAwesome" target="_blank"><img src="../pic/github.png" class="social-icon" /></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
 	
 	<!-- libs to this page -->
 	<script type="text/javascript" src="lib/jquery.js"></script>
-	<script type="text/javascript" src="lib/foundation/js/foundation.js"></script>
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript" src="lib/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.waypoints.min.js"></script>
 	<script type="text/javascript" src="lib/flip-carousel/flip-carousel.js"></script>
 	
+	<script type="text/javascript" src="lib/foundation/js/foundation.js"></script>
+	<script type="text/javascript">$(document).foundation();</script>
+
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
