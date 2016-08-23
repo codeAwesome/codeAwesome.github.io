@@ -556,7 +556,7 @@ footer p {
 /*------- end scroll-bar ----------*/
 
 /*----------opacity----------------*/
-.whoAreWe, .vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel{
+.whoAreWe, .vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel, #contactUs .text-left, .contact-method{
 	opacity: 0;
 }
 .animated{

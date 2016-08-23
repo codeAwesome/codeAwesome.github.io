@@ -177,6 +177,10 @@
 
 			return true;
         }
+        
+        animationIn('#contactUs .text-left', 'slideInUp', '75%');
+        animationIn('.contact-method:eq(0)', 'rollIn', '80%');
+        animationIn('.contact-method:eq(1)', 'rollIn', '80%');
 
 	});
 
