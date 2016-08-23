@@ -307,12 +307,16 @@ section {
 	width: 30%;
 }
 
-.flip-carousel .face, .card {
+.flip-carousel .face, .flip-carousel .card {
 	height: 150px;
 }
 
+.flip-img {
+	line-height: 148px;
+}
+
 .flip-img img {
-	max-height: 150px;
+	max-height: 150px;s
 	width: auto;
 }
 

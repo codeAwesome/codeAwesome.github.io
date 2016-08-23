@@ -205,24 +205,6 @@
 
 /* General and article-specific styles */
 
-html, body{
-	margin:0;
-	padding:0;
-	width:100%;
-	height:100%;
-}
-body{
-	background: #606c88;
-	background: -moz-radial-gradient(center, ellipse cover,  #606c88 0%, #3f4c6b 100%);
-	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#606c88), color-stop(100%,#3f4c6b));
-	background: -webkit-radial-gradient(center, ellipse cover,  #606c88 0%,#3f4c6b 100%);
-	background: -o-radial-gradient(center, ellipse cover,  #606c88 0%,#3f4c6b 100%);
-	background: -ms-radial-gradient(center, ellipse cover,  #606c88 0%,#3f4c6b 100%);
-	background: radial-gradient(ellipse at center,  #606c88 0%,#3f4c6b 100%);
-	font-family: arial, sans-serif;
-}
-
-
 article {
 	height: 260px;
 	text-align:center;
