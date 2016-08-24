@@ -19,8 +19,8 @@
 	<!-- own styles -->
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/style-responsive.css" />
-	
 </head>
+
 <body>	
 	<header>
 		<div class="main-container">
@@ -43,26 +43,27 @@
 			</div>
 		</div>
 
-		<div class="orbit-load" role="region" data-orbit>
-			<ul class="orbit-container" style="display:none;">
+		<div class="orbit" role="region" data-orbit>
+			<ul class="orbit-container">
 				<button class="orbit-previous"><span class="show-for-sr">anterior</span>&#9664;&#xFE0E;</button>
 				<button class="orbit-next"><span class="show-for-sr">siguiente</span>&#9654;&#xFE0E;</button>
 
-				<li class="is-active orbit-slide">
+				<li class="orbit-slide is-active">
 				  <img class="orbit-image" src="pic/jumbotron.jpg" alt="slide1">
 				  <figcaption class="orbit-caption">imagen 1</figcaption>
 				</li>
 
-				<li class="orbit-slide">
+				<li class="orbit-slide" style="display:none;">
 				  <img class="orbit-image" src="pic/pic1.jpg" alt="slide2">
 				  <figcaption class="orbit-caption">imagen 2</figcaption>
 				</li>
 
-				<li class="orbit-slide">
+				<li class="orbit-slide" style="display:none;">
 				  <img class="orbit-image" src="pic/pic2.jpg" alt="slide3">
 				  <figcaption class="orbit-caption">imagen 3</figcaption>
 				</li>
 			</ul>
+
 			<!-- Bullets -->
 			<nav class="orbit-bullets">
 			  <button class="is-active" data-slide="0">
@@ -295,7 +296,12 @@
 
 	<!-- own scripts -->
 	<script type="text/javascript">
-		var orbit = new Foundation.Orbit( $('div[data-orbit]') );
+		var orbit = new Foundation.Orbit( $('div[data-orbit]'), {
+									animation: 'slide',
+									timer_speed: 1000,
+									pause_on_hover: true,
+									animation_speed: 500,
+								});
 	</script>
 	<script type="text/javascript" src="js/app.js"></script>
 </body>

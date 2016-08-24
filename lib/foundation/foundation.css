@@ -1694,11 +1694,12 @@ select {
 }
 
 .orbit-container {
-  height: auto !important;
-  position: relative;
-  margin: 0;
-  overflow: hidden;
-  list-style: none; }
+	height: auto !important;
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+	list-style: none;
+}
 
 .orbit-slide {
   width: 100%;

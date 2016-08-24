@@ -6,13 +6,6 @@
 		$(this).blur();
 	});
 
-	$(document).ready(function(){
-		$('div[data-orbit]')
-			.removeClass('orbit-load')
-			.addClass('orbit')
-			.children(':eq(0)').removeAttr('style');
-	});
-
 	/* slide scroll href */
 	$('a[href*="#"]').click(function() {
 
