@@ -1,16 +1,19 @@
 (function($, window){
 		
 	/*----- header -----*/
+
+	$(function(){
+		$('html,body').animate({scrollTop: 0});
+		$('.camera_wrap').camera({
+			height: '40%',
+			loader: 'pie',
+			thumbnails: true
+		})
+	})
+
 	/* remove the focus to the tags "a" */
 	$('.nav-pills > li > a').focus(function(){
 		$(this).blur();
-	});
-
-	$(document).ready(function(){
-		$('div[data-orbit]')
-			.removeClass('orbit-load')
-			.addClass('orbit')
-			.children(':eq(0)').removeAttr('style');
 	});
 
 	/* slide scroll href */
@@ -165,7 +168,6 @@
 (function($, window){
 
 	/* whoAreWe */
-	animationIn('.whoAreWe', 'zoomIn', '75%');
 	animationIn('.vision', 'slideInLeft', '30%');
 	animationIn('.mision', 'slideInRight', '50%');
 	animationIn('.our-developers .section-subtitle', 'fadeInDown', '60%');
