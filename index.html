@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
 
 	<!-- lib styles -->
-	<link rel="stylesheet" href="lib/foundation/foundation.css" />
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="lib/camera/css/camera.css" />
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="lib/sweetalert/sweetalert.css" />
 	<link rel="stylesheet" href="lib/flip-carousel/flip-carousel.css" />
@@ -43,43 +43,10 @@
 			</div>
 		</div>
 
-		<div class="orbit" role="region" data-orbit>
-			<ul class="orbit-container">
-				<button class="orbit-previous"><span class="show-for-sr">anterior</span>&#9664;&#xFE0E;</button>
-				<button class="orbit-next"><span class="show-for-sr">siguiente</span>&#9654;&#xFE0E;</button>
-
-				<li class="orbit-slide is-active">
-				  <img class="orbit-image" src="pic/jumbotron.jpg" alt="slide1">
-				  <figcaption class="orbit-caption">imagen 1</figcaption>
-				</li>
-
-				<li class="orbit-slide" style="display:none;">
-				  <img class="orbit-image" src="pic/pic1.jpg" alt="slide2">
-				  <figcaption class="orbit-caption">imagen 2</figcaption>
-				</li>
-
-				<li class="orbit-slide" style="display:none;">
-				  <img class="orbit-image" src="pic/pic2.jpg" alt="slide3">
-				  <figcaption class="orbit-caption">imagen 3</figcaption>
-				</li>
-			</ul>
-
-			<!-- timer -->
-			<div class="orbit-timer paused"><span></span><div class="orbit-progress" style="width: 16.26%;"></div></div>
-
-			<!-- Bullets -->
-			<nav class="orbit-bullets">
-			  <button class="is-active" data-slide="0">
-			  	<span class="show-for-sr">First slide details.</span>
-			  	<span class="show-for-sr">Current Slide</span>
-			  </button>
-			  <button data-slide="1">
-			  	<span class="show-for-sr">Second slide details.</span>
-			  </button>
-			  <button data-slide="2">
-			  	<span class="show-for-sr">Third slide details.</span>
-			  </button>
-			</nav>
+		<div class="camera_wrap">
+			<div data-src="pic/jumbotron.jpg" alt=""></div>
+			<div data-src="pic/pic1.jpg" alt=""></div>
+			<div data-src="pic/pic2.jpg" alt=""></div>
 		</div>
 	</header>
 
@@ -282,8 +249,9 @@
 	<script type="text/javascript" src="lib/jquery.js"></script>
 
 	<!-- main carousel -->
-	<script type="text/javascript" src="lib/foundation/foundation.js"></script>
-	<script type="text/javascript" src="lib/foundation/foundation.orbit.js"></script>
+	<script type="text/javascript" src="lib/camera/jquery.easing.js"></script>
+	<script type="text/javascript" src="lib/camera/jquery.mobile.customized.min.js"></script>
+	<script type="text/javascript" src="lib/camera/camera.js"></script>
 
 	<!-- services Carousel -->
 	<script type="text/javascript" src="lib/flip-carousel/flip-carousel.js"></script>
@@ -297,12 +265,6 @@
 	<!-- scroll animations -->
 	<script type="text/javascript" src="lib/jquery.waypoints.min.js"></script>
 
-	<!-- own scripts -->
-	<script type="text/javascript">
-		var orbit = new Foundation.Orbit( $('div[data-orbit]'), {
-			  timerDelay: 1000,
-		  });
-	</script>
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
