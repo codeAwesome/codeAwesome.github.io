@@ -9,6 +9,7 @@
 	width: 100%;
 	background-color: #1e6f63;
 	height: 100px;
+    display: inline-block;
 }
 
 #logo {
@@ -29,9 +30,9 @@
 }
 
 .nav-box {
-	display: inline-block;
-	margin-left: 120px;
+    float: right;
 	vertical-align: top;
+    margin-right: 5%;
 }
 
 .nav-pills > li{

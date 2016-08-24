@@ -1,1 +1,48 @@
 /* media querys */
+@media (max-width: 1280px){
+    .nav-box{
+        margin-right:3%;
+    }
+}
+
+@media (max-width:1150px) and (min-width:851px){
+    .nav-box .nav.nav-pills li a{
+        font-size: 20px;
+    }
+}
+
+@media (max-width:1050px){
+    .nav-box .nav.nav-pills li a{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    @media (min-width:993px){
+        .logo-box{
+            width: 310px;
+        }
+    }
+}
+
+@media (max-width:992px){
+    #logo{
+        width: 230px;
+        margin-top: 20px;
+    }
+    .logo-box{
+        width: 240px;
+    }
+}
+
+@media (max-width:850px) and (min-width:810px){
+    .nav-box .nav.nav-pills li a{
+        font-size: 18px;
+        padding-top: 38px;
+    }
+}
+
+@media (max-width:809px){
+    .nav-box .nav.nav-pills li a{
+        font-size: 16px;
+        padding-top: 40px;
+    }
+}
