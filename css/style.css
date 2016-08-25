@@ -561,3 +561,7 @@ footer p {
 }
 
 /*----------end opacity ---------*/
+
+.text-left {
+    padding-left: 30px;
+}
