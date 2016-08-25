@@ -50,6 +50,49 @@
     .logo-box{
         width: 240px;
     }
+    
+    @media (min-width:768px){
+        .width-img-description{
+            width: 100%;
+            float: none;
+            text-indent: 0px;
+            margin-bottom: 20px;
+        }
+        .right.width-img-description{
+            margin-right: 0px;
+        }
+        .sub-description{
+            margin-left: 0px;
+        }
+        .width-block-description{
+            width: 100%;
+        }
+        .block-description{
+            text-indent: 0px;
+            height: 400px;
+            border-left: none;
+            border-right: none !important;
+            border-top: solid 7px #a5dbdd;
+            border-bottom: solid 7px #a5dbdd;
+            -webkit-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
+            -moz-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
+            box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
+            padding: 20px !important;
+            padding-top: 0px !important;
+        }
+        .img-subtitle{
+            width: 50%;
+            margin-left: 25%;
+        }
+        .section-subtitle{
+            text-indent: 0px;
+            font-style: normal;
+            font-size: 22px;
+        }
+        .block-description .text-center{
+            margin-bottom: 15px;
+        }
+    }
 }
 
 @media (max-width:850px) and (min-width:810px){
