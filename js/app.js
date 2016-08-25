@@ -4,8 +4,9 @@
 
 	$(function(){
 		$('html,body').animate({scrollTop: 0});
+
 		$('.camera_wrap').camera({
-			height: '35%',
+			height: '40%',
 			loader: 'pie',
 			thumbnails: true
 		})
