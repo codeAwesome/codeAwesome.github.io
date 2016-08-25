@@ -147,11 +147,12 @@ section {
 
 .width-img-description {
     width: 10%;
+    padding-top: 12px;
 }
 
 .img-subtitle {
-    height: 100px;
-    width: 100px;
+    height: auto;
+    width: 100%;
 }
 
 .section-subtitle {
