@@ -1,6 +1,7 @@
 (function($, window){
-		
+    
 	/*----- header -----*/
+    
 	$('.camera_wrap').camera({
 		height: '40%',
 		loader: 'pie',
@@ -193,5 +194,4 @@
             triggerOnce: true
         });
     }
-
 })(jQuery, window);

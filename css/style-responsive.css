@@ -8,6 +8,7 @@
 @media (max-width:1150px) and (min-width:851px){
     .nav-box .nav.nav-pills li a{
         font-size: 20px;
+        padding-top: 38px;
     }
 }
 
@@ -17,9 +18,13 @@
     }
 }
 
-@media (max-width:1100px) and (min-width:992px){
+@media (max-width:1099px) and (min-width:992px){
     .text-contact{
         font-size: 18px;
+    }
+    
+    .right blockquote{
+        padding-top: 10px;
     }
 }
 
@@ -50,13 +55,13 @@
 @media (max-width:850px) and (min-width:810px){
     .nav-box .nav.nav-pills li a{
         font-size: 18px;
-        padding-top: 38px;
+        padding-top: 41px;
     }
 }
 
 @media (max-width:809px){
     .nav-box .nav.nav-pills li a{
         font-size: 16px;
-        padding-top: 40px;
+        padding-top: 44px;
     }
 }
