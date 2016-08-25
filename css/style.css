@@ -271,7 +271,7 @@ section {
 	background-color: rgba(0, 0, 0, 0.8);
 	border-radius: 5px;
 	height: 200px;
-	width: auto;
+	width: 100%;
 	padding: 5px;
 }
 
@@ -303,8 +303,8 @@ section {
 }
 
 .flip-img img {
-	max-height: 150px;s
-	width: auto;
+	max-height: 150px;
+	max-width: 100%!important;
 }
 
 /*---------- end services section ----------*/
