@@ -5,7 +5,7 @@
 	$(function(){
 		$('html,body').animate({scrollTop: 0});
 		$('.camera_wrap').camera({
-			height: '40%',
+			height: '35%',
 			loader: 'pie',
 			thumbnails: true
 		})
@@ -161,33 +161,34 @@
 		return true;
 	}
 
-
-
 })(jQuery, window);
 
 (function($, window){
 
-	/* whoAreWe */
-	animationIn('.vision', 'slideInLeft', '30%');
-	animationIn('.mision', 'slideInRight', '50%');
-	animationIn('.our-developers .section-subtitle', 'fadeInDown', '60%');
-	animationIn('.our-developers .img-circle:eq(0)', 'flip', '60%');
-	animationIn('.our-developers .img-circle:eq(1)', 'flip', '60%');
-	animationIn('.our-developers .img-description:eq(0)', 'flipInX', '80%');
-	animationIn('.our-developers .img-description:eq(1)', 'flipInX', '80%');
+	$(document).ready(function(){
+		setTimeout(function(){
+			/* whoAreWe */
+			animationIn('.vision', 'slideInLeft', '50%');
+			animationIn('.mision', 'slideInRight', '60%');
+			animationIn('.our-developers .section-subtitle', 'fadeInDown', '60%');
+			animationIn('.our-developers .img-circle:eq(0)', 'flip', '60%');
+			animationIn('.our-developers .img-circle:eq(1)', 'flip', '60%');
+			animationIn('.our-developers .img-description:eq(0)', 'flipInX', '80%');
+			animationIn('.our-developers .img-description:eq(1)', 'flipInX', '80%');
 
-	/* services */
-	animationIn('.title-services', 'bounceInLeft', '85%');
-	animationIn('.service-item:eq(0)', 'bounceInLeft', '75%');
-	animationIn('.service-item:eq(1)', 'zoomInUp', '75%');
-	animationIn('.service-item:eq(2)', 'lightSpeedIn', '75%');
-	animationIn('#flip-carousel', 'flipInY', '80%');
+			/* services */
+			animationIn('.title-services', 'bounceInLeft', '85%');
+			animationIn('.service-item:eq(0)', 'bounceInLeft', '75%');
+			animationIn('.service-item:eq(1)', 'zoomInUp', '75%');
+			animationIn('.service-item:eq(2)', 'lightSpeedIn', '75%');
+			animationIn('#flip-carousel', 'flipInY', '80%');
 
-	/* contactUs */
-	animationIn('#contactUs .text-left', 'slideInUp', '75%');
-    animationIn('.contact-method:eq(0)', 'rollIn', '80%');
-    animationIn('.contact-method:eq(1)', 'rollIn', '80%');
-
+			/* contactUs */
+			animationIn('#contactUs .text-left', 'slideInUp', '75%');
+			animationIn('.contact-method:eq(0)', 'rollIn', '80%');
+			animationIn('.contact-method:eq(1)', 'rollIn', '80%');
+		}, 2000);
+	});
 	
 	function animationIn(element, animation, offset){
         $(element).waypoint(function(){
