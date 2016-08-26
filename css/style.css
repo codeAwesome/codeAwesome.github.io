@@ -22,13 +22,10 @@ header {
     display: inline-block;
 }
 
-#logo {
-	width: 300px;
-	margin-top: 10px;
-}
-
 .logo-box {
 	display: inline-block;
+	line-height: 100px;
+	vertical-align: middle;
 	width: 350px;
 	height: 100px;
 	background-color: #fff;
@@ -37,6 +34,11 @@ header {
 	-webkit-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	-moz-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+}
+
+#logo {
+	width: 300px;
+	height: auto;
 }
 
 .nav-box {
@@ -481,8 +483,7 @@ section {
 /*---------- footer ----------*/
 
 footer {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 20px 0px;
 	margin: 0px;
 	background-color: #2e3031;
 	color: #fff;

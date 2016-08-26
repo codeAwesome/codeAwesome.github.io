@@ -2,11 +2,15 @@
     
 	/*----- header -----*/
     
+	var cameraH = '40%';
+
+	if(window.innerWidth < 768){ cameraH = '100%'; }
+
 	$('.camera_wrap').camera({
-		height: '40%',
+		height: cameraH,
 		loader: 'pie',
 		thumbnails: true
-	})
+	});
 
 	/* remove the focus to the tags "a" */
 	$('.nav-pills > li > a').focus(function(){ $(this).blur(); });

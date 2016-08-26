@@ -45,7 +45,6 @@
 @media (max-width:991px){
     #logo{
         width: 230px;
-        margin-top: 20px;
     }
     .logo-box{
         width: 240px;
@@ -126,3 +125,60 @@
         padding-top: 44px;
     }
 }
+
+@media (max-width:767px){
+	.main-container {
+		height: 70px;
+	}
+
+	#logo {
+		width: 150px;
+	}
+
+	.logo-box {
+		line-height: 70px;
+		width: 180px;
+		height: 70px;
+	}
+
+	footer {
+	}
+
+	footer p {
+		position: relative;
+		width: 100%;
+		display: block;
+		margin: 0px;
+		padding: 0px 0px 10px 0px;
+		text-align: center;
+		font-size: 14px;
+	}
+
+	#we {
+		display: block;
+		width: 100%;
+	}
+
+	.list-icon {
+		position: relative;
+		list-style: none;
+		width: 100%;
+		text-align: center;
+		padding: 5px 0px;
+		margin: 0px;
+		display: inline-block;
+	}
+
+	.list-icon .icon {
+		float: none;
+		margin: 0px;
+		padding: 0px 10px;
+	}
+
+	.list-icon .icon .social-icon {
+		height: 30px;
+		width: auto;
+	}
+}
+
+
