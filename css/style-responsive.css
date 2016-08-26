@@ -52,6 +52,7 @@
     }
     
     @media (min-width:768px){
+ /*------- responsive sm whoAreWe ----------*/
         .width-img-description{
             width: 100%;
             float: none;
@@ -91,6 +92,23 @@
         }
         .block-description .text-center{
             margin-bottom: 15px;
+        }
+/*--------- responsive sm services ----------*/
+        .service-item img{
+            width: 100% !important;
+            height: auto !important;
+        }
+        
+        .service-item .col-sm-8{
+            text-align:justify;
+        }
+        
+        .service-item img.first{
+            width: 80% !important;
+        }
+        
+        .service-item img.third{
+            margin-top: 50px;
         }
     }
 }

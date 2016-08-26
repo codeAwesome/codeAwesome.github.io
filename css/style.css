@@ -258,13 +258,13 @@ section {
     box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
 }
 
-.service-item > h3, .flip-title {
+.service-item > div > h3, .flip-title {
 	margin-top: 40px;
 	font-weight: bold;
 	color: #a33200;
 }
 
-.service-item > p {
+.service-item > div > p {
 	margin-top: 20px;
 	text-indent: 3em;
 	text-align: justify;
