@@ -589,7 +589,7 @@ box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.7);
 
 /*----------opacity----------------*/
 
-.vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel, #contactUs .text-left, .contact-method{
+.vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel, #contactUs .text-left, .contact-method, .backTop{
 	opacity: 0;
 }
 .animated{
