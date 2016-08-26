@@ -109,6 +109,24 @@
         .service-item img.third{
             margin-top: 50px;
         }
+/*--------- responsive sm footer ----------*/
+        
+        footer p{
+            text-align: center;
+            display: block;
+            position: inherit;
+        }
+        
+        footer ul.list-icon{
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            margin-bottom: 0px;
+        }
+        
+        footer li.icon{
+            float: none !important;
+        }
     }
 }
 

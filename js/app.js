@@ -171,6 +171,15 @@
 
 	$(document).ready(function(){
 		setTimeout(function(){
+            /* backTop */
+            $('header .main-container').waypoint(function(){
+                $('.backTop').toggleClass('animated fadeInUp');
+            },{
+                offset:function(){
+                    return -$('header .main-container').height();
+                }
+            });
+            
 			/* whoAreWe */
 			animationIn('.vision', 'slideInLeft', '50%');
 			animationIn('.mision', 'slideInRight', '60%');
