@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="lib/sweetalert/sweetalert.css" />
 	<link rel="stylesheet" href="lib/flip-carousel/flip-carousel.css" />
+	<link rel="stylesheet" href="lib/fullpage/jquery.fullpage.css" />
 		
 	<!-- own styles -->
 	<link rel="stylesheet" href="css/style.css" />
@@ -23,242 +24,244 @@
 </head>
 
 <body>	
-	<header>
-		<div class="main-container">
-			<div class="logo-box">
-				<img id="logo" src="pic/logo.png" alt="">
-			</div>
+	<div id="main-wrapper" class="hidden-xs">
 
-			<div class="nav-box">
-				<ul class="nav nav-pills">
-					<li>
-						<a href="#whoAreWe"><span>Quienes somos</span></a>
-					</li>
-					<li>
-						<a href="#services"><span>Nuestros servicios</span></a>
-					</li>
-					<li>
-						<a href="#contactUs"><span>Contáctenos</span></a>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="camera_wrap">
-			<div data-src="pic/jumbotron.jpg" alt=""></div>
-			<div data-src="pic/pic1.jpg" alt=""></div>
-			<div data-src="pic/pic2.jpg" alt=""></div>
-		</div>
-	</header>
-    
-	<section id="whoAreWe" class="hidden-xs">
-		<div class="container">
-			<div class="row">
-				<div class="whoAreWe">
-					<div class="col-md-12">
-						<span class="section-title">Quienes somos</span><img class="img-title" src="pic/question.png" alt="">
-					</div>
-					<div class="col-md-12">
-						<p class="section-desciption">Somos un grupo de desarrolladores emprendedores. Cada día nos esforzamos por mantenernos a la vanguardia con las ultimas tecnologías del mercado, brindando así el mejor servicio a nuestros clientes. Garantizamos la funcionalidad, estabilidad y seguridad de nuestros proyectos y cumplimos en todo momento con las espicificaciones tecnicas que nos exigen. Nuestro objetivo es la satisfaccion del cliente.</p>
-					</div>
-
+		<header>
+			<div class="main-container">
+				<div class="logo-box">
+					<img id="logo" src="pic/logo.png" alt="">
 				</div>
 
-
-				<div class="col-sm-6 col-md-12 vision">
-					<div class="hidden-sm col-md-12 col-sm-12 text-center">
-						<span class="section-subtitle">Visión</span>
-					</div>
-					<div class="clearfix"></div>
-					<div class="sub-description">
-						<div class="hidden-sm container-description width-img-description left">
-							<img class="img-subtitle" src="pic/vision.png" />
-						</div>
-						<div class="container-description width-block-description left">
-							<blockquote class="block-description">
-                                <div class="visible-sm container-description width-img-description left">
-                                    <img class="img-subtitle" src="pic/vision.png" />
-                                </div>
-                                <div class="visible-sm col-sm-12 text-center">
-                                    <span class="section-subtitle">Visión</span>
-                                </div>
-                                Contribuir a facilitar la vida de nuestros clientes, por medio de soluciones tecnológicas que automaticen sus tareas y así ser la elección preferida para el desarrollo de software.</blockquote>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-12 mision">
-					<div class="hidden-sm col-md-12 col-sm-12 text-center">
-						<span class="section-subtitle">Misión</span>
-					</div>
-
-					<div class="clearfix"></div>
-
-					<div class="sub-description">
-						<div class="hidden-sm container-description width-img-description right">
-							<img class="img-subtitle" src="pic/mision.png" />
-						</div>
-						<div class="container-description width-block-description right">
-							<blockquote class="block-description">
-                                <div class="visible-sm container-description width-img-description right">
-                                    <img class="img-subtitle" src="pic/mision.png" />
-                                </div>
-                                <div class="visible-sm col-md-12 col-sm-12 text-center">
-                                    <span class="section-subtitle">Misión</span>
-                                </div>
-							    Desarrollar software de calidad con el propósito de solucionar muchas de las necesidades tecnológicas que presenta la sociedad actual.</blockquote>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row our-developers">
-
-				<div class="col-md-12 text-center">
-					<span class="section-subtitle">Nuestros Desarrolladores</span>
-				</div>
-
-				<div class="clearfix"></div>
-
-				<div class="col-md-3 col-md-offset-3 col-sm-5 col-sm-offset-1">
-					<div class="photo-developer center-block">
-						<img class="img-circle " src="pic/otniel.jpg" alt="">
-						<div class="img-description">
-							<h3>Otniel Acevedo</h3>
-							<p>Front-End developer</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3 col-sm-5">
-					<div class="photo-developer center-block">
-						<img class="img-circle" src="pic/jose.jpg">
-						<div class="img-description">
-							<h3 class="text-center">José Parra</h3>
-							<p>Back-End developer</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="services" class="hidden-xs">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-right title-services">
-					<span class="section-title ws2">Nuestros servicios</span><img class="img-title" src="../pic/servicios.png" alt="">
-				</div>
-			</div>
-
-			<div class="row services-body">
-
-				<div class="col-md-4 col-sm-12">
-					<div class="service-item row container-fluid">
-                        <div class="col-md-12 col-sm-4">
-                            <img class="first" src="pic/service-first.png" alt="">
-                        </div>
-                        <div class="col-md-12 col-sm-8">
-                            <h3>Dise&ntilde;o de paginas adaptables</h3>
-                            <p>Un diseño fluido y adaptable a múltiples pantallas brinda la oportunidad a los usuarios de acceder al web site desde cualquier dispositivo, lo que es muy importante debido a la gran cantidad de personas que acceden desde dispotivos moviles.</p>
-                        </div>
-					</div>
-				</div>
-
-				<div class="col-md-4 col-sm-12">
-					<div class="service-item row container-fluid">
-						<div class="col-md-12 col-sm-4">
-						    <img class="animated infinite bounce  second" src="pic/service-second.png" alt="">
-						</div>
-						<div class="col-md-12 col-sm-8">
-                            <h3>Paginas web animadas</h3>
-                            <p>Nuestros dise&ntilde;os alegres con divertidas animaciones ofrecen una mejor experiencia a los usuarios que visiten su pagina. Hacemos uso de CSS3 y JavaScript para realizar dichas animaciones, de esta forma obtenemos paginas divertidas con un buen rendimiento.</p>
-                        </div>
-					</div>
-				</div>
-
-				<div class="col-md-4 col-sm-12">
-					<div class="service-item row container-fluid">
-                        <div class="col-md-12 col-sm-4">
-                            <img class="third" src="pic/service-third.png" alt="">
-                        </div>
-                        <div class="col-md-12 col-sm-8">
-                            <h3>Aplicaciones web empresariales</h3>
-                            <p>Nuestros sistemas administrativos desarrollados con tecnologias web permiten a los usuarios realizar tareas mas eficientemente, mejoran la transmicion de informacion entre departamentos y el respaldo de la misma, permiten imprimir y descargar resportes de la informacion deseada, Ademas son mas faciles de administrar y realizar mantenimiento fecuente.</p>
-                        </div>
-					</div>
-				</div>
-
-				<div class="clearfix"></div>
-
-				<div id="flip-carousel">
-					<p class="flip-title">Lenguajes y FrameWorks que utilizamos</p>
-
-					<div class="flip-img"><img src="pic/languages/html5.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/css3.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/JavaScript.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/php.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/python.png" alt=""></div>
-
-					<div class="flip-img"><img src="pic/languages/jquery.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/angularjs.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/bootstrap.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/laravel.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/django.png" alt=""></div>
-
-					<div class="flip-img"><img src="pic/languages/mysql.png" alt=""></div>
-					<div class="flip-img"><img src="pic/languages/postgre.png" alt=""></div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="contactUs" class="hidden-xs">
-        <div class="container">
-			<div class="row">
-				<div class="col-md-12 text-left">
-					<span class="section-title">Contáctenos</span><img class="img-title" src="pic/contacto.png" alt="">
-				</div>
-			</div>
-
-			<div class="row services-body">
-				<div class="col-md-5 contact-method height-contact-data">
-					<ul class="contact">
+				<div class="nav-box">
+					<ul class="nav nav-pills">
 						<li>
-							<a href="tel:+584125097261"><i class="fa fa-mobile"></i><strong class="text-contact">+58-412-509-7261</strong></a>
+							<a href="#whoAreWe"><span>Quienes somos</span></a>
 						</li>
 						<li>
-							<a href="tel:+584160560620"><i class="fa fa-mobile"></i><strong class="text-contact">+58-416-056-0620</strong></a>
+							<a href="#services"><span>Nuestros servicios</span></a>
 						</li>
 						<li>
-                            <a href="mailto:codeawesomepro@gmail.com"><i class="fa fa-envelope-o"></i><strong class="text-contact">codeawesomepro@gmail.com</strong></a>
+							<a href="#contactUs"><span>Contáctenos</span></a>
 						</li>
 					</ul>
 				</div>
-
-				<form class="col-md-5 col-md-offset-2 contact-method height-contact-form" autocomplete="off">
-					<div class="group-input">
-						<label for="name">Nombre</label>
-						<input id="name" type="text" class="form-control" />
-					</div>
-
-					<div class="group-input">
-						<label for="correo">Correo</label>
-						<input id="correo" type="email" class="form-control" />
-					</div>
-
-					<div class="group-input">
-						<label for="message">Mensaje</label>
-						<textarea id="message" class="form-control"></textarea>
-					</div>
-
-					<button id="send">Enviar</button>
-				</form>
 			</div>
-        </div>
-	</section>
 
-	<footer>
+			<div class="camera_wrap">
+				<div data-src="pic/jumbotron.jpg" alt=""></div>
+				<div data-src="pic/pic1.jpg" alt=""></div>
+				<div data-src="pic/pic2.jpg" alt=""></div>
+			</div>
+		</header>
+
+		<section id="whoAreWe">
+			<div class="container">
+				<div class="row">
+					<div class="whoAreWe">
+						<div class="col-md-12">
+							<span class="section-title">Quienes somos</span><img class="img-title" src="pic/question.png" alt="">
+						</div>
+						<div class="col-md-12">
+							<p class="section-desciption">Somos un grupo de desarrolladores emprendedores. Cada día nos esforzamos por mantenernos a la vanguardia con las ultimas tecnologías del mercado, brindando así el mejor servicio a nuestros clientes. Garantizamos la funcionalidad, estabilidad y seguridad de nuestros proyectos y cumplimos en todo momento con las espicificaciones tecnicas que nos exigen. Nuestro objetivo es la satisfaccion del cliente.</p>
+						</div>
+
+					</div>
+
+
+					<div class="col-sm-6 col-md-12 vision">
+						<div class="hidden-sm col-md-12 col-sm-12 text-center">
+							<span class="section-subtitle">Visión</span>
+						</div>
+						<div class="clearfix"></div>
+						<div class="sub-description">
+							<div class="hidden-sm container-description width-img-description left">
+								<img class="img-subtitle" src="pic/vision.png" />
+							</div>
+							<div class="container-description width-block-description left">
+								<blockquote class="block-description">
+									<div class="visible-sm container-description width-img-description left">
+										<img class="img-subtitle" src="pic/vision.png" />
+									</div>
+									<div class="visible-sm col-sm-12 text-center">
+										<span class="section-subtitle">Visión</span>
+									</div>
+									Contribuir a facilitar la vida de nuestros clientes, por medio de soluciones tecnológicas que automaticen sus tareas y así ser la elección preferida para el desarrollo de software.</blockquote>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6 col-md-12 mision">
+						<div class="hidden-sm col-md-12 col-sm-12 text-center">
+							<span class="section-subtitle">Misión</span>
+						</div>
+
+						<div class="clearfix"></div>
+
+						<div class="sub-description">
+							<div class="hidden-sm container-description width-img-description right">
+								<img class="img-subtitle" src="pic/mision.png" />
+							</div>
+							<div class="container-description width-block-description right">
+								<blockquote class="block-description">
+									<div class="visible-sm container-description width-img-description right">
+										<img class="img-subtitle" src="pic/mision.png" />
+									</div>
+									<div class="visible-sm col-md-12 col-sm-12 text-center">
+										<span class="section-subtitle">Misión</span>
+									</div>
+									Desarrollar software de calidad con el propósito de solucionar muchas de las necesidades tecnológicas que presenta la sociedad actual.</blockquote>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row our-developers">
+
+					<div class="col-md-12 text-center">
+						<span class="section-subtitle">Nuestros Desarrolladores</span>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="col-md-3 col-md-offset-3 col-sm-5 col-sm-offset-1">
+						<div class="photo-developer center-block">
+							<img class="img-circle " src="pic/otniel.jpg" alt="">
+							<div class="img-description">
+								<h3>Otniel Acevedo</h3>
+								<p>Front-End developer</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-5">
+						<div class="photo-developer center-block">
+							<img class="img-circle" src="pic/jose.jpg">
+							<div class="img-description">
+								<h3 class="text-center">José Parra</h3>
+								<p>Back-End developer</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="services">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-right title-services">
+						<span class="section-title ws2">Nuestros servicios</span><img class="img-title" src="../pic/servicios.png" alt="">
+					</div>
+				</div>
+
+				<div class="row services-body">
+
+					<div class="col-md-4 col-sm-12">
+						<div class="service-item row container-fluid">
+							<div class="col-md-12 col-sm-4">
+								<img class="first" src="pic/service-first.png" alt="">
+							</div>
+							<div class="col-md-12 col-sm-8">
+								<h3>Dise&ntilde;o de paginas adaptables</h3>
+								<p>Un diseño fluido y adaptable a múltiples pantallas brinda la oportunidad a los usuarios de acceder al web site desde cualquier dispositivo, lo que es muy importante debido a la gran cantidad de personas que acceden desde dispotivos moviles.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-12">
+						<div class="service-item row container-fluid">
+							<div class="col-md-12 col-sm-4">
+								<img class="animated infinite bounce  second" src="pic/service-second.png" alt="">
+							</div>
+							<div class="col-md-12 col-sm-8">
+								<h3>Paginas web animadas</h3>
+								<p>Nuestros dise&ntilde;os alegres con divertidas animaciones ofrecen una mejor experiencia a los usuarios que visiten su pagina. Hacemos uso de CSS3 y JavaScript para realizar dichas animaciones, de esta forma obtenemos paginas divertidas con un buen rendimiento.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-12">
+						<div class="service-item row container-fluid">
+							<div class="col-md-12 col-sm-4">
+								<img class="third" src="pic/service-third.png" alt="">
+							</div>
+							<div class="col-md-12 col-sm-8">
+								<h3>Aplicaciones web empresariales</h3>
+								<p>Nuestros sistemas administrativos desarrollados con tecnologias web permiten a los usuarios realizar tareas mas eficientemente, mejoran la transmicion de informacion entre departamentos y el respaldo de la misma, permiten imprimir y descargar resportes de la informacion deseada, Ademas son mas faciles de administrar y realizar mantenimiento fecuente.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div id="flip-carousel">
+						<p class="flip-title">Lenguajes y FrameWorks que utilizamos</p>
+
+						<div class="flip-img"><img src="pic/languages/html5.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/css3.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/JavaScript.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/php.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/python.png" alt=""></div>
+
+						<div class="flip-img"><img src="pic/languages/jquery.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/angularjs.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/bootstrap.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/laravel.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/django.png" alt=""></div>
+
+						<div class="flip-img"><img src="pic/languages/mysql.png" alt=""></div>
+						<div class="flip-img"><img src="pic/languages/postgre.png" alt=""></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contactUs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-left">
+						<span class="section-title">Contáctenos</span><img class="img-title" src="pic/contacto.png" alt="">
+					</div>
+				</div>
+
+				<div class="row services-body">
+					<div class="col-md-5 contact-method height-contact-data">
+						<ul class="contact">
+							<li>
+								<a href="tel:+584125097261"><i class="fa fa-mobile"></i><strong class="text-contact">+58-412-509-7261</strong></a>
+							</li>
+							<li>
+								<a href="tel:+584160560620"><i class="fa fa-mobile"></i><strong class="text-contact">+58-416-056-0620</strong></a>
+							</li>
+							<li>
+								<a href="mailto:codeawesomepro@gmail.com"><i class="fa fa-envelope-o"></i><strong class="text-contact">codeawesomepro@gmail.com</strong></a>
+							</li>
+						</ul>
+					</div>
+
+					<form class="col-md-5 col-md-offset-2 contact-method height-contact-form" autocomplete="off">
+						<div class="group-input">
+							<label for="name">Nombre</label>
+							<input id="name" type="text" class="form-control" />
+						</div>
+
+						<div class="group-input">
+							<label for="correo">Correo</label>
+							<input id="correo" type="email" class="form-control" />
+						</div>
+
+						<div class="group-input">
+							<label for="message">Mensaje</label>
+							<textarea id="message" class="form-control"></textarea>
+						</div>
+
+						<button id="send">Enviar</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<footer>
 		<div class="container-fluid">
 			<div class="row">
 				<p><span id="we">&#60;<span class="code-word">code</span><span class="awesome-word">Awesome</span>/&#62;</span> developers, Venezuela, Carabobo, Puerto Cabello. </p>
@@ -272,7 +275,72 @@
 		</div>
 	</footer>
 	
+	</div>
+
 	<div class="backTop hidden-xs"><i class="fa fa-chevron-up fa-2x"></i></div>
+
+
+	<!-- fullpage template xs -->
+	<div id="fullpage">
+		<div class="section " id="section0">
+			<div id="header-xs"></div>
+			<h1>Seccion 1</h1>
+		</div>
+
+		<div class="section active" id="section1">
+			<div class="container">
+				<div class="slide">
+					<div class="row">
+						<div class="whoAreWe">
+							<div class="col-xs-12">
+								<span class="section-title">Quienes somos</span><img class="img-title" src="pic/question.png" alt="">
+							</div>
+							<div class="col-xs-12">
+								<p class="section-desciption">Somos un grupo de desarrolladores emprendedores. Cada día nos esforzamos por mantenernos a la vanguardia con las ultimas tecnologías del mercado, brindando así el mejor servicio a nuestros clientes. Garantizamos la funcionalidad, estabilidad y seguridad de nuestros proyectos y cumplimos en todo momento con las espicificaciones tecnicas que nos exigen. Nuestro objetivo es la satisfaccion del cliente.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="slide">
+					<div class="col-xs-12">
+						<div class="sub-description">
+							<div class="container-description width-block-description left">
+								<blockquote class="block-description">
+									<div class="container-description width-img-description left">
+										<img class="img-subtitle" src="pic/vision.png" />
+									</div>
+									<div class="col-xs-12 text-center">
+										<span class="section-subtitle">Visión</span>
+									</div>
+									Contribuir a facilitar la vida de nuestros clientes, por medio de soluciones tecnológicas que automaticen sus tareas y así ser la elección preferida para el desarrollo de software.
+								</blockquote>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="slide">
+					<div class="intro">
+						<h1>Seccion 2.3</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section" id="section2">
+			<div class="intro">
+				<h1>Seccion 3</h1>
+			</div>
+		</div>
+
+		<div class="section" id="section3">
+			<div class="intro">
+				<h1>Seccion 4</h1>
+			</div>
+		</div>
+	</div>
+
 
 	<!-- jquery v2.2.2 -->
 	<script type="text/javascript" src="lib/jquery.js"></script>
@@ -284,6 +352,10 @@
 
 	<!-- services Carousel -->
 	<script type="text/javascript" src="lib/flip-carousel/flip-carousel.js"></script>
+
+	<!-- fullpage -->
+	<script type="text/javascript" src="lib/fullpage/scrolloverflow.min.js"></script>
+	<script type="text/javascript" src="lib/fullpage/jquery.fullpage.js"></script>
 
 	<!-- bootstrap -->
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>

@@ -213,3 +213,23 @@
         });
     }
 })(jQuery, window);
+
+
+/****** fullpage xs format ******/
+(function($, window){
+
+	if(window.innerWidth < 768){
+		$('#header-xs').html( $('.main-container').clone() );
+
+		$(function(){
+			$('#fullpage').fullpage({
+				sectionsColor: ['#1bbc9b', '#FFF', '#7BAABE', 'whitesmoke', '#ccddff'],
+				scrollingSpeed: 1000,
+				navigation: true,
+				navigationPosition: 'right',
+
+			});
+		});
+	}
+
+})(jQuery, window);
