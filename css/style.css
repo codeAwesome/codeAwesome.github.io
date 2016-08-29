@@ -309,7 +309,7 @@ section {
 
 .flip-carousel > ul > li {
 	height: 150px;
-	width: 30%;
+	width: 28%;
 }
 
 .flip-carousel .face, .flip-carousel .card {
@@ -543,6 +543,50 @@ box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.7);
 	right: 11px;
 
 }
+
+.ripple-effect {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255, 0.4);
+}
+
+.ripple-container.ripple-effect-animation .ripple-effect{
+  -webkit-animation: ripple .4s ease-in;
+  animation: ripple .4s ease-in;
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    padding-bottom: 200%;
+    width: 200%;
+  }
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    padding-bottom: 200%;
+    width: 200%;
+  }
+}
 /*---------- end footer ----------*/
 
 
@@ -598,3 +642,44 @@ box-shadow:         0px 2px 2px 0px rgba(50, 50, 50, 0.7);
 }
 
 /*----------end opacity ---------*/
+
+/*---------- re-write fullpage styles ----------*/
+
+.fp-controlArrow.fp-next {
+    right: 30%;
+    border-width: 15px 0 15px 15px;
+    border-color: transparent transparent transparent #555454;
+}
+
+.fp-controlArrow.fp-prev {
+    left: 30%;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #555454 transparent transparent;
+}
+
+.fp-controlArrow {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    position: absolute;
+    z-index: 4;
+    top: 99%;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    margin-top: -38px;
+    -webkit-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+#fp-nav.right {
+    right: 5px;
+}
+
+.fp-tableCell {
+	display: block;
+	vertical-align: top;
+}

@@ -28,7 +28,6 @@
     }
 }
 
-
 @media (max-width:1050px){
     .nav-box .nav.nav-pills li a{
         padding-left: 20px;
@@ -102,12 +101,21 @@
             text-align:justify;
         }
         
-        .service-item img.first{
-            width: 80% !important;
+        .service-item .col-sm-4{
+            margin-top: 30px;
+        }
+
+        .service-item > div > p{
+            font-size: 14px;
+            line-height: 1.42857143;
         }
         
-        .service-item img.third{
-            margin-top: 50px;
+        .service-item img.first {
+	        width: 80% !important;
+        }
+
+        .service-item img.third {
+	        margin-top: 50px;
         }
 /*--------- responsive sm footer ----------*/
         
@@ -146,7 +154,7 @@
 
 @media (max-width:767px){
 
-	/* header */
+	/*---------- header ----------*/
 	#header-xs, .main-container {
 		position: fixed;
 		top: 0px;
@@ -169,79 +177,86 @@
 		height: 70px;
 	}
 
-	/* whoAreWe */
+	/*---------- whoAreWe ----------*/
+
+	.container {
+		padding: 15px 12% 55px 12%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.xs-title {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+
+	.whoAreWe {
+		height: 50px;
+		line-height: 50px;
+	}
+
 	.section-title {
-		font-size: 2em;
-		margin-top: 10px;
-		vertical-align: middle;
+		font-size: 25px;
+		font-weight: bold;
 	}
 
 	.img-title {
-		height: 60px;
+		height: 50px;
 		width: auto;
 		vertical-align: top;
 	}
 
-	.fp-controlArrow.fp-prev {
-		border-color: transparent #000 transparent transparent;
-	}
-
-	.fp-controlArrow.fp-next {
-		border-color: transparent transparent transparent #000;
+	.xs-body {
+		width: 100%;
+		margin-top: 10px;
 	}
 
 	.section-desciption {
-		font-size: 1.2em;
+		line-height: 1.5;
+		font-size: 16px;
 		text-align: justify;
+		height: 100%;
+		margin: 0px;
 	}
 
- /*------- responsive sm whoAreWe ----------*/
-        .width-img-description{
-            width: 100%;
-            float: none;
-            text-indent: 0px;
-            margin-bottom: 20px;
-        }
-        .right.width-img-description{
-            margin-right: 0px;
-        }
-        .sub-description{
-            margin-left: 0px;
-        }
-        .width-block-description{
-            width: 100%;
-        }
-        .block-description{
-            text-indent: 0px;
-            height: 400px;
-            border-left: none;
-            border-right: none !important;
-            border-top: solid 7px #a5dbdd;
-            border-bottom: solid 7px #a5dbdd;
-            -webkit-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
-            -moz-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
-            box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
-            padding: 20px !important;
-            padding-top: 0px !important;
-			font-size: 1.2em;
-        }
-        .img-subtitle{
-            width: 50%;
-            margin-left: 25%;
-        }
-        .section-subtitle{
-            text-indent: 0px;
-            font-style: 22px;
-        }
-        .block-description .text-center{
-            margin-bottom: 15px;
-        }
+	.visMis-img {
+		width: 100%;
+		height: 150px;
+	}
 
+	.visMis-title {
+		display: block;
+		font-size: 25px;
+		font-weight: bold;
+		padding-top: 20px;
+	}
+
+	.visMis-img img {
+		height: 100%;
+		width: auto;
+	}
+
+	.photo-developer {
+		margin-top: 20px;
+		max-width: 100%;
+		height: 85%;
+		overflow: hidden;
+	}
+
+	.photo-developer img {
+		max-width: 100px;
+		max-height: 100px;
+	}
+
+	@media (min-height: 640px){
 		.photo-developer img {
-			max-width: 50px;
+			max-width: 150px;
+			max-height: 150px;
 		}
+	}
 
-	/* footer */
+	/*---------- footer ----------*/
 
 	footer p {
 		position: relative;
@@ -277,6 +292,58 @@
 	.list-icon .icon .social-icon {
 		height: 30px;
 		width: auto;
+	}
+
+	/** flip carousel styles **/
+	.carousel-title {
+		font-size: 18px;
+	}
+
+	.flip-carousel {
+		position: relative;
+		display: block;
+		border: none;
+		background-color: #adadad;
+		height: 75vh;
+		width: 100%;
+		padding: 0px;
+	}
+
+	.flip-carousel .controls .arrow {
+		top: 60px;
+	}
+
+	.flip-carousel .controls .arrow:after {
+		top: 19px;
+	}
+
+	.flip-carousel > ul {
+		height: 80%;
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.flip-carousel > ul > li {
+		float: none;
+		margin: 0px;
+		padding: 0px;
+		display: block;
+		height: 100%;
+		width: 100%;
+	}
+
+	.flip-carousel .face, .flip-carousel .card {
+		height: 100%;
+	}
+
+	.flip-img-xs {
+		line-height: 100%;
+		padding-top: 5%;
+	}
+
+	.flip-img-xs img {
+		max-height: 90%;
+		max-width: 100%!important;
 	}
 }
 
