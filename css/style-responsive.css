@@ -304,6 +304,66 @@
 		}
 	}
 
+/*--------------- contactUS ---------------*/
+	.contact {
+		list-style: none;
+		font-size: 20px;
+		padding: 0px;
+		width: 100%;
+	}
+
+	.contact li {
+		width: 100%;
+		margin-bottom: 0px;
+	}
+
+	.contact li a {
+		cursor: default;
+		text-decoration: none;
+		color: #000;
+		height: 30px;
+	}
+
+	.contact li strong {
+		display: inline-block;
+		position: relative;
+		margin-top: 0px;
+	}
+
+	.contact li i {
+		display: inline-block;
+		font-size: 40px;
+		color: #09589b;
+	}
+
+	.contact li.email i.fa-envelope-o {
+		width: 100%;
+		margin-left: 0px;
+		text-align: center;
+	}
+	.contact .text-contact {
+		margin-left: 20px;
+		height: 40px;
+		line-height: 40px;
+		vertical-align: top;
+	}
+
+	.email .text-contact {
+		width: 100%;
+		text-align: center;
+		margin: 0px;
+		font-size: 14px;
+	}
+
+	.contact-form {
+		margin-top: 15px;
+	}
+
+	.group-input {
+		position: relative;
+		margin: 10px 0px;
+	}
+
 /*---------------- footer ----------------*/
 
 	footer p {
@@ -351,18 +411,24 @@
 		position: relative;
 		display: block;
 		border: none;
-		background-color: #adadad;
+		background-color: rgba(0, 0, 0, 0.8);
 		height: 75vh;
 		width: 100%;
 		padding: 0px;
 	}
 
-	.flip-carousel .controls .arrow {
-		top: 60px;
+	.flip-carousel .controls .arrow:after {
+		top: 0px;
 	}
 
-	.flip-carousel .controls .arrow:after {
-		top: 19px;
+	.flip-carousel .controls .arrow {
+		opacity: 1;
+		cursor: pointer;
+		top: 90%;
+		position: absolute;
+		width: 40px;
+		height: 10%;
+		background: transparent;
 	}
 
 	.flip-carousel > ul {
@@ -378,6 +444,7 @@
 		display: block;
 		height: 100%;
 		width: 100%;
+		padding: 5%;
 	}
 
 	.flip-carousel .face, .flip-carousel .card {
@@ -385,13 +452,15 @@
 	}
 
 	.flip-img-xs {
-		line-height: 100%;
-		padding-top: 5%;
+		max-height: 260px;
+		line-height: 260px;
+		overflow: hidden;
+		vertical-align: middle;
 	}
 
 	.flip-img-xs img {
-		max-height: 90%;
-		max-width: 100%!important;
+		max-height: 255px;
+		max-width: 100%;
 	}
 }
 
