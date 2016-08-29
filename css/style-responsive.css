@@ -50,7 +50,7 @@
     }
     
     @media (min-width:768px){
- /*------- responsive sm whoAreWe ----------*/
+/*------- responsive sm whoAreWe ----------*/
         .width-img-description{
             width: 100%;
             float: none;
@@ -117,6 +117,55 @@
         .service-item img.third {
 	        margin-top: 50px;
         }
+
+/*--------- responsive sm contactUs --------*/
+        .contact-method {
+	        background: transparent;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            height: auto;
+            padding-top: 10px;
+        }
+
+        .contact-method .form-control {
+            border: solid 1px;
+            background: #fff;
+        }
+
+        .contact-method .form-control.active {
+            outline: 0px;
+            border: solid 1px #09589b;
+        }
+
+        .contact-method .form-control.error {
+            border-color: #b41313;
+        }
+
+        .contact-method .form-control.valid {
+            border-color: #20811c;
+        }
+
+        .contact-method .group-input {
+	        margin-top:0px;
+            margin-bottom: 20px;
+        }
+
+        .contact .text-contact{
+            margin-left: 5px;
+        }
+
+        .contact{
+            font-size: 16px;
+        }
+
+        .contact li{
+            margin-bottom: 0px;
+        }
+
+        .contact li i{
+            font-size: 46px;
+        }
 /*--------- responsive sm footer ----------*/
         
         footer p{
@@ -154,7 +203,7 @@
 
 @media (max-width:767px){
 
-	/*---------- header ----------*/
+/*--------------- header ---------------*/
 	#header-xs, .main-container {
 		position: fixed;
 		top: 0px;
@@ -177,8 +226,7 @@
 		height: 70px;
 	}
 
-	/*---------- whoAreWe ----------*/
-
+/*--------------- whoAreWe ---------------*/
 	.container {
 		padding: 15px 12% 55px 12%;
 		height: 100%;
@@ -256,7 +304,7 @@
 		}
 	}
 
-	/*---------- footer ----------*/
+/*---------------- footer ----------------*/
 
 	footer p {
 		position: relative;
@@ -294,7 +342,7 @@
 		width: auto;
 	}
 
-	/** flip carousel styles **/
+/*----------- flip carousel styles -----------*/
 	.carousel-title {
 		font-size: 18px;
 	}
