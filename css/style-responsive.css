@@ -117,6 +117,55 @@
         .service-item img.third {
 	        margin-top: 50px;
         }
+        
+/*--------- responsive sm contactUs --------*/
+        .contact-method {
+	        background: transparent;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            height: auto;
+            padding-top: 10px;
+        }
+        
+        .contact-method .form-control {
+            border: solid 1px;
+            background: #fff;
+        }
+        
+        .contact-method .form-control.active {
+            outline: 0px;
+            border: solid 1px #09589b;
+        }
+
+        .contact-method .form-control.error {
+            border-color: #b41313;
+        }
+
+        .contact-method .form-control.valid {
+            border-color: #20811c;
+        }
+        
+        .contact-method .group-input {
+	        margin-top:0px;
+            margin-bottom: 20px;
+        }
+        
+        .contact .text-contact{
+            margin-left: 5px;
+        }
+        
+        .contact{
+            font-size: 16px;
+        }
+        
+        .contact li{
+            margin-bottom: 0px;
+        }
+        
+        .contact li i{
+            font-size: 46px;
+        }
 /*--------- responsive sm footer ----------*/
         
         footer p{

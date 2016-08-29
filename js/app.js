@@ -37,6 +37,10 @@
 	$('.flip-img').flipcarousel();
 
 	/*----- contactUS -----*/
+    $(document).ready(contactUsInSm);
+	
+	$(window).resize(contactUsInSm);
+    
 	$('#send').prop('disabled', true);
 
 	$('#send').click(enviarEmail);
@@ -58,6 +62,20 @@
 	});
 
 	$(".form-control").on('keyup change', validarInput);
+    
+    function contactUsInSm(){
+        if(window.innerWidth >= 768 && window.innerWidth<992){
+            $('.contact-method .form-control:eq(0)').attr('placeholder', 'Nombre');
+            $('.contact-method .form-control:eq(1)').attr('placeholder', 'Correo');
+            $('.contact-method .form-control:eq(2)').attr('placeholder', 'Mensaje');
+            $('.contact-method ul.contact').addClass('row');
+            $('.contact-method ul.contact li').addClass('col-sm-3');
+        }else{
+            $('.contact-method .form-control').attr('placeholder', '');
+            $('.contact-method ul.contact').removeClass('row');
+            $('.contact-method ul.contact li').removeClass();
+        }
+    }
 
 	function enviarEmail(){
 
