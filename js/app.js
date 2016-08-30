@@ -264,17 +264,17 @@
 
 			$('#fullpage').load('../xs.html', function(){
 				$(this).fullpage({
-					sectionsColor: ['#FFA042', 'whitesmoke'],
+					sectionsColor: ['#fff', '#FFA042', 'whitesmoke'],
 					scrollingSpeed: 1000,
 					navigation: true,
 					navigationPosition: 'right',
 					continuousVertical: false,
 				});
 
-//				$('.flip-img').flipcarousel.destroy();
-//				$('.flip-img-xs').flipcarousel({
-//					itemsperpage: 1,
-//				});
+				$('.flip-img').flipcarousel.destroy();
+				$('.flip-img-xs').flipcarousel({
+					itemsperpage: 1,
+				});
 
 				$('input, textarea' ,'#contact-form').focusin(function(){
 					$('#contact-form')
