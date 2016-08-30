@@ -304,105 +304,52 @@
 		}
 	}
 
-/*--------------- contactUS ---------------*/
-	.contact {
-		list-style: none;
-		font-size: 20px;
-		padding: 0px;
+/*----------- services -----------*/
+	.service-img {
+		height: 30vh;
 		width: 100%;
+		line-height: 30vh;
 	}
 
-	.contact li {
-		width: 100%;
-		margin-bottom: 0px;
+	.th-heihgt {
+		height: 20vh;
+		line-height: 20vh;
+		margin-bottom: 10px;
 	}
 
-	.contact li a {
-		cursor: default;
-		text-decoration: none;
-		color: #000;
-		height: 30px;
+	.service-img img {
+		max-height: 100%;
+		max-width: 100%;
 	}
 
-	.contact li strong {
-		display: inline-block;
-		position: relative;
+	.third {
+		height: auto;
+		width: auto;
 		margin-top: 0px;
 	}
 
-	.contact li i {
-		display: inline-block;
-		font-size: 40px;
-		color: #09589b;
+	.service-title {
+		font-size: 16px;
 	}
 
-	.contact li.email i.fa-envelope-o {
-		width: 100%;
-		margin-left: 0px;
-		text-align: center;
-	}
-	.contact .text-contact {
-		margin-left: 20px;
-		height: 40px;
-		line-height: 40px;
-		vertical-align: top;
+	.service-title, .carousel-title {
+		font-weight: bold;
+		color: #a33200;
 	}
 
-	.email .text-contact {
-		width: 100%;
-		text-align: center;
-		margin: 0px;
-		font-size: 14px;
+	.service-des {
+		color: #000;
+		font-size: 16px;
 	}
 
-	.contact-form {
-		margin-top: 15px;
+	.th-font {
+		word-wrap: break-word;
+		color: #000;
+		font-size: 15px;
 	}
 
-	.group-input {
-		position: relative;
-		margin: 10px 0px;
-	}
+	/*----- flip carousel styles -----*/
 
-/*---------------- footer ----------------*/
-
-	footer p {
-		position: relative;
-		width: 100%;
-		display: block;
-		margin: 0px;
-		padding: 0px 0px 10px 0px;
-		text-align: center;
-		font-size: 14px;
-	}
-
-	#we {
-		display: block;
-		width: 100%;
-	}
-
-	.list-icon {
-		position: relative;
-		list-style: none;
-		width: 100%;
-		text-align: center;
-		padding: 5px 0px;
-		margin: 0px;
-		display: inline-block;
-	}
-
-	.list-icon .icon {
-		float: none;
-		margin: 0px;
-		padding: 0px 10px;
-	}
-
-	.list-icon .icon .social-icon {
-		height: 30px;
-		width: auto;
-	}
-
-/*----------- flip carousel styles -----------*/
 	.carousel-title {
 		font-size: 18px;
 	}
@@ -461,6 +408,129 @@
 	.flip-img-xs img {
 		max-height: 255px;
 		max-width: 100%;
+	}
+
+/*--------------- contactUS ---------------*/
+	.contact {
+		list-style: none;
+		font-size: 20px;
+		padding: 0px;
+		width: 100%;
+	}
+
+	.contact li {
+		width: 100%;
+		margin-bottom: 0px;
+	}
+
+	.contact li a {
+		cursor: default;
+		text-decoration: none;
+		color: #000;
+		height: 30px;
+	}
+
+	.contact li strong {
+		display: inline-block;
+		position: relative;
+		margin-top: 0px;
+	}
+
+	.contact li i {
+		display: inline-block;
+		font-size: 40px;
+		color: #09589b;
+	}
+
+	.contact li.email i.fa-envelope-o {
+		width: 100%;
+		margin-left: 0px;
+		text-align: center;
+	}
+	.contact .text-contact {
+		margin-left: 20px;
+		height: 40px;
+		line-height: 40px;
+		vertical-align: top;
+	}
+
+	.email .text-contact {
+		width: 100%;
+		text-align: center;
+		margin: 0px;
+		font-size: 14px;
+	}
+
+	.contact-form {
+		margin-top: 15px;
+	}
+
+	.contact-form-focus {
+		display: block;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		height: 100vh;
+		width: 100%;
+		z-index: 0;
+		background-color: rgba(0, 0, 0, 0.8);
+		margin: 0px;
+		padding: 15px 12%;
+	}
+
+	.contact-form-focus h4 {
+		color: #fff;
+	}
+
+	.contact-form-focus textarea {
+		height: 40vh;
+	}
+
+	.contact-form-focus #send {
+		background-color: #fff;
+	}
+
+	.group-input {
+		position: relative;
+		margin: 10px 0px;
+	}
+
+/*---------------- footer ----------------*/
+
+	footer p {
+		position: relative;
+		width: 100%;
+		display: block;
+		margin: 0px;
+		padding: 0px 0px 10px 0px;
+		text-align: center;
+		font-size: 14px;
+	}
+
+	#we {
+		display: block;
+		width: 100%;
+	}
+
+	.list-icon {
+		position: relative;
+		list-style: none;
+		width: 100%;
+		text-align: center;
+		padding: 5px 0px;
+		margin: 0px;
+		display: inline-block;
+	}
+
+	.list-icon .icon {
+		float: none;
+		margin: 0px;
+		padding: 0px 10px;
+	}
+
+	.list-icon .icon .social-icon {
+		height: 30px;
+		width: auto;
 	}
 }
 
