@@ -264,17 +264,31 @@
 
 			$('#fullpage').load('../xs.html', function(){
 				$(this).fullpage({
-					sectionsColor: ['#FFF', '#FFA042', 'whitesmoke'],
+					sectionsColor: ['#FFA042', 'whitesmoke'],
 					scrollingSpeed: 1000,
 					navigation: true,
 					navigationPosition: 'right',
 					continuousVertical: false,
 				});
 
-				$('.flip-img').flipcarousel.destroy();
-				$('.flip-img-xs').flipcarousel({
-					itemsperpage: 1,
+//				$('.flip-img').flipcarousel.destroy();
+//				$('.flip-img-xs').flipcarousel({
+//					itemsperpage: 1,
+//				});
+
+				$('input, textarea' ,'#contact-form').focusin(function(){
+					$('#contact-form')
+						.removeClass('contact-form')
+						.addClass('contact-form-focus');
 				});
+
+				$('input, textarea' ,'#contact-form').focusout(function(){
+					$('#contact-form')
+						.removeClass('contact-form-focus')
+						.addClass('contact-form');
+				});
+
+
 			});
 
 		} else if( window.innerWidth >= 768 && $('body').attr('class') ) {
