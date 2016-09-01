@@ -227,9 +227,9 @@
 				url: "https://formspree.io/codeawesomepro@gmail.com",
 				method: "POST",
 				data: {
-					message: $("#message").val(),
-					_replyto: $("#correo").val(),
-					name: $("#name").val(),
+					message: $("#message", $form).val(),
+					_replyto: $("#correo", $form).val(),
+					name: $("#name", $form).val(),
 					_subject: "correo de usuario de codeawesome.com.ve"
 				},
 				dataType: "json",
