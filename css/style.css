@@ -632,7 +632,7 @@ footer p {
 
 /*------- end scroll-bar ----------*/
 
-/*----------opacity----------------*/
+/*---------- opacity --------------*/
 
 .vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel, #contactUs .text-left, .contact-method, .backTop{
 	opacity: 0;
@@ -641,10 +641,24 @@ footer p {
     opacity: 1 !important;
 }
 
-/*----------end opacity ---------*/
+/*--------- end opacity -----------*/
 
 /*---------- re-write fullpage styles ----------*/
 
+#fp-nav.right {
+    right: 5px;
+}
+
+.fp-slidesNav.bottom {
+    bottom: 5px;
+}
+
+.fp-tableCell {
+	display: block;
+	vertical-align: top;
+}
+
+/*
 .fp-controlArrow.fp-next {
     right: 30%;
     border-width: 15px 0 15px 15px;
@@ -674,12 +688,4 @@ footer p {
     -ms-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
 }
-
-#fp-nav.right {
-    right: 5px;
-}
-
-.fp-tableCell {
-	display: block;
-	vertical-align: top;
-}
+*/
