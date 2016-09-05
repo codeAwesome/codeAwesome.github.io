@@ -289,7 +289,13 @@
 			focusIn: "contact-form-focus",
 			hide: "hidden"
 		}
-
+        
+        $('.fa-times').touchend(function(){
+            $('.instruccions')
+                .removeClass('fadeInLeft')
+                .addClass('fadeOutLeft');
+        });
+        
 		/*-- fullpage instance & config --*/
 		$(this).fullpage({
 			//
@@ -300,6 +306,11 @@
 			continuousVertical: false,
 			slidesNavigation: true,
 			controlArrows: false,
+            onLeave: function(index, nextIndex, direction){
+                if (nextIndex==2 && direction=='down' && $(".instruccions").hasClass('fadeInLeft')){
+                   return false;
+                }
+            }
 		});
 
 		/*-- flipCarousel instance XS & config --*/
@@ -345,6 +356,20 @@
 
 			return false;
 		}
+        
+        /*-- animation of instruccions --*/
+        setTimeout(function(){
+            $('.in-move').addClass('in-move-up-down');
+            setTimeout(function(){
+                $('.text-indication').html("Desplacece horizontalmente para moverse dentro de un área");
+                $('.text-indication').toggleClass('animated fadeIn');
+                $('.in-move').css('width', '0');
+                $('.in-move').css('height', '50vh');
+                $('.in-move')
+                    .removeClass('in-move-up-down')
+                    .addClass('in-move-left-right');
+            }, 7000);
+        }, 2000);
 	}
 
 	function viewXs(){
