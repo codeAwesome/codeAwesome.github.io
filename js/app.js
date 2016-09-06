@@ -279,8 +279,30 @@
             $('.contact-method ul.contact li').removeClass();
         }
     }
-
-	function templateXs() {
+    
+	function templateXs(){
+		var $form = '#contact-form';
+		var $elements = '.form-control';
+		var $classes = {
+			focusOut: "contact-form",
+			focusIn: "contact-form-focus",
+			hide: "hidden"
+		}
+        
+        $('.fa-times').touchend(function(){
+            $('.instruccions')
+                .removeClass('fadeInLeft')
+                .addClass('fadeOutLeft');
+            $('#menu-xs').removeClass('hidden');
+            $('#fp-nav').show();
+        });
+        
+        $('.close-instruccions').touchend(function(){
+            setTimeout(function(){
+                $('.fa-times').touchend();
+            },200);
+        })
+        
 		/*-- fullpage instance & config --*/
 		$(this).fullpage({
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
@@ -289,8 +311,15 @@
 			navigationPosition: 'right',
 			continuousVertical: false,
 			slidesNavigation: true,
-			controlArrows: false
+			controlArrows: false,
+            onLeave: function(index, nextIndex, direction){
+                if (direction=='down' && $(".instruccions").hasClass('fadeInLeft')){
+                   return false;
+                }
+            }
 		});
+        
+        $('#fp-nav').hide();
 
 		/*-- flipCarousel instance XS & config --*/
 		$('.flip-img').flipcarousel.destroy();
@@ -335,6 +364,86 @@
 
 			return false;
 		}
+        
+        /*-- animation of instruccions --*/
+        function instruccions(){
+            $('.fa-hand-pointer-o')
+                .removeClass('hidden')
+                .addClass('hand-down-up');
+            setTimeout(function(){
+                $('.in-move')
+                    .addClass('in-move-up-down');
+                setTimeout(function(){
+                    $('.fa-hand-pointer-o').css('bottom', '67vh');
+                    $('.fa-hand-pointer-o')
+                        .removeClass('hand-down-up')
+                        .addClass('hand-up-down');
+                },4000);
+            }, 700);
+            setTimeout(function(){
+                $('.text-indication').html("Desplacece horizontalmente para moverse dentro de un área");
+                $('.text-indication').toggleClass('animated fadeIn');
+                $('.fa-hand-pointer-o').css({
+                    'bottom': '40vh',
+                    'right': '40vh'
+                });
+                $('.fa-hand-pointer-o')
+                    .removeClass('hand-up-down')
+                    .addClass('hand-left-right'); 
+                setTimeout(function(){
+                    $('.in-move').css('width', '0');
+                    $('.in-move').css('height', '50vh');
+                    $('.in-move')
+                        .removeClass('in-move-up-down')
+                        .addClass('in-move-left-right');
+                    setTimeout(function(){
+                        $('.fa-hand-pointer-o').css('right', '10vh');
+                        $('.fa-hand-pointer-o')
+                            .removeClass('hand-left-right')
+                            .addClass('hand-right-left');
+                        setTimeout(function(){
+                            $('.text-indication')
+                                .removeClass('fadeIn')
+                                .addClass('fadeOutUp');
+                            setTimeout(function(){
+                                $('.text-indication').hide();
+                                $('.animation').toggleClass('animated fadeOutUp');
+                                $('.animation').hide();
+                                $('.container-button').removeClass('hidden');
+                            }, 500)
+                        },4000)
+                    }, 4000);
+                }, 700);
+            }, 8500);
+        }
+        setTimeout(function(){
+            instruccions();
+        }, 2000);
+
+        $('.review-instruccions').touchend(function(){
+            $('.container-button').addClass('hidden');
+            $('.text-indication')
+                .html("Desplacese verticalmente para cambiar de área")
+                .removeClass('animated fadeOutUp')
+                .show();
+            $('.animation')
+                .removeClass('animated fadeOutUp')
+                .show();
+            $('.in-move')
+                .css({
+                    'width':'100%',
+                    'height':'0vh'
+                })
+                .removeClass('in-move-left-right');
+            $('.fa-hand-pointer-o')
+                .css({
+                    'bottom':'30vh',
+                    'right':'10vh'
+                })
+                .addClass('hidden')
+                .removeClass('hand-right-left');
+            instruccions();
+        })
 
 		/*-- move to slide --*/
 		$('li', '#menu-xs').click(function () {
