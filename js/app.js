@@ -366,7 +366,7 @@
 		}
         
         /*-- animation of instruccions --*/
-        setTimeout(function(){
+        function instruccions(){
             $('.fa-hand-pointer-o')
                 .removeClass('hidden')
                 .addClass('hand-down-up');
@@ -407,12 +407,43 @@
                                 .addClass('fadeOutUp');
                             setTimeout(function(){
                                 $('.text-indication').hide();
+                                $('.animation').toggleClass('animated fadeOutUp');
+                                $('.animation').hide();
+                                $('.container-button').removeClass('hidden');
                             }, 500)
                         },4000)
                     }, 4000);
                 }, 700);
             }, 8500);
+        }
+        setTimeout(function(){
+            instruccions();
         }, 2000);
+
+        $('.review-instruccions').touchend(function(){
+            $('.container-button').addClass('hidden');
+            $('.text-indication')
+                .html("Desplacese verticalmente para cambiar de área")
+                .removeClass('animated fadeOutUp')
+                .show();
+            $('.animation')
+                .removeClass('animated fadeOutUp')
+                .show();
+            $('.in-move')
+                .css({
+                    'width':'100%',
+                    'height':'0vh'
+                })
+                .removeClass('in-move-left-right');
+            $('.fa-hand-pointer-o')
+                .css({
+                    'bottom':'30vh',
+                    'right':'10vh'
+                })
+                .addClass('hidden')
+                .removeClass('hand-right-left');
+            instruccions();
+        })
 
 		/*-- move to slide --*/
 		$('li', '#menu-xs').click(function () {
