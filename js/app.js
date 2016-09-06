@@ -304,8 +304,8 @@
 		/*-- to active form --*/
 		$(FORM_CONTROL, FORM_XS).focusin(function () {
 			$(FORM_XS)
-				.removeClass(FORM_FOCUSIN)
-				.addClass(FORM_FOCUSOUT)
+				.removeClass(FORM_FOCUSOUT)
+				.addClass(FORM_FOCUSIN)
 				.find('.' + FORM_HIDE)
 					.removeClass(FORM_HIDE);
 
