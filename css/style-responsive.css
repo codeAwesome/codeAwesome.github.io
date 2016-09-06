@@ -1,4 +1,24 @@
-/* media querys */
+/** codeAwesome.com.ve responsive styles by codeAwesome
+*	v1.0
+*/
+
+/*---------- re-write fullpage styles ----------*/
+
+#fp-nav.right {
+    right: 5px;
+}
+
+.fp-slidesNav.bottom {
+    bottom: 5px;
+}
+
+.fp-tableCell {
+	display: block;
+	vertical-align: top;
+}
+
+/*---------------- media querys ----------------*/
+
 @media (max-width: 1280px){
     .nav-box{
         margin-right:3%;
@@ -215,8 +235,8 @@
 		top: 0px;
 		left: 0px;
 		width: 100%;
-		height: 30%;
-		line-height: 30vh;
+		height: 15%;
+		line-height: 15vh;
 		background-color: #fff;
 	}
 
@@ -226,7 +246,51 @@
 	}
 
 	#header .xs-title {
-		margin-top: 30vh;
+		margin-top: 15vh;
+	}
+
+	.tutorial {
+		position: relative;
+		display: block;
+		height: 46vh;
+		background-color: brown;
+		width: 100%;
+	}
+
+	.tutorial h4{
+		font-size: 14px;
+	}
+
+	#menu-xs {
+		display: block;
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		height: 22vh;
+		width: 100%;
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	#menu-xs li {
+		display: inline-block;
+		width: 45%;
+		height: 40px;
+		line-height: 40px;
+		vertical-align: middle;
+
+		border: 1px solid #777777;
+		border-radius: 5px;
+		margin: 0px 3px 10px 3px;
+
+		background-color: rgba(57, 56, 55, 0.8);
+		color: #fff;
+		font-size: 16px;
+
+		-webkit-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+		-moz-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
+		box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	}
     
 /*-----------instruccions-------------*/
@@ -244,6 +308,13 @@
     .instruccions .fa-times{
         position: absolute;
         right: 1vh;
+    }
+    
+    .instruccions .fa-hand-pointer-o{
+        position: absolute;
+        bottom: 30vh;
+        right: 10vh;
+        transform: rotate(-25deg);
     }
     
     .instruccions h2{
@@ -265,12 +336,89 @@
         height: 0vh;
     }
     
+    
     .in-move-up-down{
-        animation: up-down 7s both;
+        animation: up-down 8s both;
     }
     
     .in-move-left-right{
-        animation: left-right 7s both;
+        animation: left-right 8s both;
+    }
+    
+    .hand-down-up{
+        animation: hand-down-up 1s both;
+    }
+    
+    .hand-up-down{
+        animation: hand-up-down 1s both;
+    }
+    
+    .hand-left-right{
+        animation: hand-left-right 1s both;
+    }
+    
+    .hand-right-left{
+        animation: hand-right-left 1s both;
+    }
+    
+    .close-instruccions{
+        background: transparent;
+        border: 3px solid #fff;
+        height: 15vh;
+        width: 100%;
+        margin-top: 3vh;
+    }
+    
+    @keyframes hand-down-up{
+        0%{
+            bottom: 30vh;
+        }
+        99%{
+            bottom: 45vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+    
+    @keyframes hand-up-down{
+        0%{
+            bottom: 67vh;
+        }
+        99%{
+            bottom: 52vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+    
+    @keyframes hand-left-right{
+        0%{
+            right: 40vh
+        }
+        99%{
+            right: 25vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+    
+    @keyframes hand-right-left{
+        0%{
+            right:9vh;
+        }
+        99%{
+            right: 24vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
     }
     
     @keyframes up-down{
@@ -554,6 +702,7 @@
 		margin: 0px;
 		padding: 15px 12%;
 		overflow: scroll;
+		overflow-x: hidden;
 	}
 
 	.contact-form-focus h4 {

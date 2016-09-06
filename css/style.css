@@ -1,13 +1,68 @@
-/* codeAwesome.com styles by codeAwesome */
+/** codeAwesome.com.ve styles by codeAwesome
+*	v1.0
+*/
 
 /*---------- global styles ----------*/
 html, body{
     overflow-x: hidden;
 }
+
 .text-left {
     padding-left: 30px;
 }
+
+.vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel, #contactUs .text-left, .contact-method, .backTop{
+	opacity: 0;
+}
+
+.animated{
+    opacity: 1 !important;
+}
+
 /*---------- end global styles ----------*/
+
+/*---------- scroll-bar ----------*/
+
+::-webkit-scrollbar {
+	scroll-top: 0;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+}
+::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+::-webkit-scrollbar-thumb {
+	background: #FFA042;
+	border: 1px solid #666666;
+	border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #f9f9f9;
+}
+::-webkit-scrollbar-thumb:active {
+	background: #ffffff;
+}
+::-webkit-scrollbar-track {
+	background: #666666;
+	border: 0px none #ffffff;
+	border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+	background: #666666;
+}
+::-webkit-scrollbar-track:active {
+	background: #333333;
+}
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+/*------- end scroll-bar ----------*/
+
 
 /*---------- header ----------*/
 
@@ -432,7 +487,7 @@ section {
     font-size: 1.3em;
 }
 
-.group-input label.empty, .group-input label.invalid {
+.group-input label.invalid {
     color: #b41313;
 }
 
@@ -590,104 +645,3 @@ footer p {
 	}
 }
 /*---------- end footer ----------*/
-
-
-/*---------- scroll-bar ----------*/
-
-::-webkit-scrollbar {
-	scroll-top: 0;
-}
-
-::-webkit-scrollbar {
-	width: 7px;
-	height: 7px;
-}
-::-webkit-scrollbar-button {
-	width: 0px;
-	height: 0px;
-}
-::-webkit-scrollbar-thumb {
-	background: #FFA042;
-	border: 1px solid #666666;
-	border-radius: 0px;
-}
-::-webkit-scrollbar-thumb:hover {
-	background: #f9f9f9;
-}
-::-webkit-scrollbar-thumb:active {
-	background: #ffffff;
-}
-::-webkit-scrollbar-track {
-	background: #666666;
-	border: 0px none #ffffff;
-	border-radius: 0px;
-}
-::-webkit-scrollbar-track:hover {
-	background: #666666;
-}
-::-webkit-scrollbar-track:active {
-	background: #333333;
-}
-::-webkit-scrollbar-corner {
-	background: transparent;
-}
-
-/*------- end scroll-bar ----------*/
-
-/*---------- opacity --------------*/
-
-.vision, .mision, .our-developers .section-subtitle, .our-developers .img-circle, .our-developers .img-description, .title-services, .service-item, #flip-carousel, #contactUs .text-left, .contact-method, .backTop{
-	opacity: 0;
-}
-.animated{
-    opacity: 1 !important;
-}
-
-/*--------- end opacity -----------*/
-
-/*---------- re-write fullpage styles ----------*/
-
-#fp-nav.right {
-    right: 5px;
-}
-
-.fp-slidesNav.bottom {
-    bottom: 5px;
-}
-
-.fp-tableCell {
-	display: block;
-	vertical-align: top;
-}
-
-/*
-.fp-controlArrow.fp-next {
-    right: 30%;
-    border-width: 15px 0 15px 15px;
-    border-color: transparent transparent transparent #555454;
-}
-
-.fp-controlArrow.fp-prev {
-    left: 30%;
-    border-width: 15px 15px 15px 0;
-    border-color: transparent #555454 transparent transparent;
-}
-
-.fp-controlArrow {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-    position: absolute;
-    z-index: 4;
-    top: 99%;
-    cursor: pointer;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    margin-top: -38px;
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-}
-*/
