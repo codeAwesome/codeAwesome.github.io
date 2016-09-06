@@ -280,28 +280,151 @@
         }
     }
     
-	function templateXs(){
-		var $form = '#contact-form';
-		var $elements = '.form-control';
-		var $classes = {
-			focusOut: "contact-form",
-			focusIn: "contact-form-focus",
-			hide: "hidden"
-		}
-        
-        $('.fa-times').touchend(function(){
+	function runIntructions() {
+		/**	observaciones
+		*	usaremos comillas sencillas '' solo para selectores, palabras clave y asignacion de valores, de lo contratrio se usaran comillas dobles "" para todo lo demas mayormente para identificar cadenas, urls y clases y cosas asi;
+		*	debes usar constantes en los valores que se repiten y no van a variar a lo largo del programa para no estar escribiendo lo mismo a cada rato, eso mantiene mas ordenado el codigo y lo hace mas seguro;
+		*	los selectores jQuery no deben duplicarse, puedes aplicar varias instrucciones a un mismo selector como ej:
+			$(selector)
+				.instrucion1
+				.instruccion2
+		si no puedes usar ese metodo agregas el selector a una variable para luego reutilizarlo, las variables con objetos jQuery van presedidas por un $ ej:
+			var $miVariable = $(miSelector);
+			$miVariable.instruccion1;
+		*	cuando una intruccion es muy larga la almacenas en una funcion y luego se lo pasas como callback al evento donde la necesitas ej:
+			$(selector).click(miFunc);
+
+			function myFunc() {
+				instruccion larga
+			}
+		donde sea que puedas agregar una funcion anonima tambien puedes enviar una funcion declarada como callback, la idea es minimizar el uso de funciones anonimas y mas si van a estar anidadas
+		*	si un objeto no tiene mas de 3 key y cabe horizontalmente aprovecha el espacio horizontal y escribelo asi ej:
+			$('.fa-hand-pointer-o').css({'bottom': '40vh', 'right': '40vh'});
+		*	por ultimo siempre que vayas a escribir un codigo que se dedique a algo en especifico escribelo en una funcion, eso le permite crear su propio ambito y no tener coliciones con otra pieza de codigo, luego ejecutas la funcion donde lo necesites como lo hice en este caso
+		*/
+
+        $('.fa-times').touchend(function () {
             $('.instruccions')
-                .removeClass('fadeInLeft')
-                .addClass('fadeOutLeft');
-            $('#menu-xs').removeClass('hidden');
+                .removeClass("fadeInLeft")
+                .addClass("fadeOutLeft");
+
+            $('#menu-xs').removeClass(FORM_HIDE);
             $('#fp-nav').show();
         });
         
-        $('.close-instruccions').touchend(function(){
-            setTimeout(function(){
+        $('.close-instruccions').touchend(function () {
+            setTimeout(function () {
                 $('.fa-times').touchend();
-            },200);
-        })
+            }, 200);
+        });
+
+		setTimeout(animation, 2000);
+
+        $('.review-instruccions').touchend(function () {
+
+            $('.container-button').addClass(FORM_HIDE);
+
+            $('.text-indication')
+                .html("Desplacese verticalmente para cambiar de área")
+                .removeClass("animated fadeOutUp")
+                .show();
+
+            $('.animation')
+                .removeClass("animated fadeOutUp")
+                .show();
+
+            $('.in-move')
+                .css({'width': '100%', 'height': '0vh'})
+                .removeClass("in-move-left-right");
+
+            $('.fa-hand-pointer-o')
+                .css({'bottom': '30vh', 'right': '10vh'})
+                .addClass(FORM_HIDE)
+                .removeClass("hand-right-left");
+
+            animation();
+        });
+
+		$('#fp-nav').hide();
+
+        /*-- create animation --*/
+        function animation() {
+
+            $('.fa-hand-pointer-o')
+                .removeClass(FORM_HIDE)
+                .addClass("hand-down-up");
+
+            setTimeout(function(){
+                $('.in-move')
+                    .addClass("in-move-up-down");
+
+                setTimeout(function(){
+                    $('.fa-hand-pointer-o').css('bottom', '67vh');
+
+                    $('.fa-hand-pointer-o')
+                        .removeClass("hand-down-up")
+                        .addClass("hand-up-down");
+
+                },4000);
+            }, 700);
+
+            setTimeout(function(){
+                $('.text-indication').html("Desplacece horizontalmente para moverse dentro de un área");
+
+                $('.text-indication').toggleClass('animated fadeIn');
+
+                $('.fa-hand-pointer-o').css({'bottom': '40vh', 'right': '40vh'});
+
+                $('.fa-hand-pointer-o')
+                    .removeClass("hand-up-down")
+                    .addClass("hand-left-right");
+
+                setTimeout(function(){
+					//esto debes unirlo como en los de arriba
+                    $('.in-move').css('width', '0');
+                    $('.in-move').css('height', '50vh');
+					//---------------------------------
+
+                    $('.in-move')
+                        .removeClass("in-move-up-down")
+                        .addClass("in-move-left-right");
+
+                    setTimeout(function(){
+                        $('.fa-hand-pointer-o').css('right', '10vh');
+                        $('.fa-hand-pointer-o')
+                            .removeClass("hand-left-right")
+                            .addClass("hand-right-left");
+
+                        setTimeout(function(){
+                            $('.text-indication')
+                                .removeClass("fadeIn")
+                                .addClass("fadeOutUp");
+
+                            setTimeout(function(){
+                                $('.text-indication').hide();
+                                $('.animation').toggleClass("animated fadeOutUp");
+                                $('.animation').hide();
+                                $('.container-button').removeClass(FORM_HIDE);
+                            }, 500)
+                        },4000)
+                    }, 4000);
+                }, 700);
+            }, 8500);
+        }
+
+	}
+
+	function templateXs(){
+
+		/*-- to execute "intructions" animation --*/
+		runIntructions();
+
+		/*-- header nav for move to slide --*/
+		$('li', '#menu-xs').click(function () {
+			var index = $(this).index() + 2;
+
+			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
+		});
         
 		/*-- fullpage instance & config --*/
 		$(this).fullpage({
@@ -312,14 +435,11 @@
 			continuousVertical: false,
 			slidesNavigation: true,
 			controlArrows: false,
-            onLeave: function(index, nextIndex, direction){
-                if (direction=='down' && $(".instruccions").hasClass('fadeInLeft')){
-                   return false;
-                }
+            onLeave: function (index, nextIndex, direction) {
+                if (direction === "down" && $('.instruccions').hasClass("fadeInLeft"))
+                	return false;
             }
 		});
-        
-        $('#fp-nav').hide();
 
 		/*-- flipCarousel instance XS & config --*/
 		$('.flip-img').flipcarousel.destroy();
@@ -364,93 +484,7 @@
 
 			return false;
 		}
-        
-        /*-- animation of instruccions --*/
-        function instruccions(){
-            $('.fa-hand-pointer-o')
-                .removeClass('hidden')
-                .addClass('hand-down-up');
-            setTimeout(function(){
-                $('.in-move')
-                    .addClass('in-move-up-down');
-                setTimeout(function(){
-                    $('.fa-hand-pointer-o').css('bottom', '67vh');
-                    $('.fa-hand-pointer-o')
-                        .removeClass('hand-down-up')
-                        .addClass('hand-up-down');
-                },4000);
-            }, 700);
-            setTimeout(function(){
-                $('.text-indication').html("Desplacece horizontalmente para moverse dentro de un área");
-                $('.text-indication').toggleClass('animated fadeIn');
-                $('.fa-hand-pointer-o').css({
-                    'bottom': '40vh',
-                    'right': '40vh'
-                });
-                $('.fa-hand-pointer-o')
-                    .removeClass('hand-up-down')
-                    .addClass('hand-left-right'); 
-                setTimeout(function(){
-                    $('.in-move').css('width', '0');
-                    $('.in-move').css('height', '50vh');
-                    $('.in-move')
-                        .removeClass('in-move-up-down')
-                        .addClass('in-move-left-right');
-                    setTimeout(function(){
-                        $('.fa-hand-pointer-o').css('right', '10vh');
-                        $('.fa-hand-pointer-o')
-                            .removeClass('hand-left-right')
-                            .addClass('hand-right-left');
-                        setTimeout(function(){
-                            $('.text-indication')
-                                .removeClass('fadeIn')
-                                .addClass('fadeOutUp');
-                            setTimeout(function(){
-                                $('.text-indication').hide();
-                                $('.animation').toggleClass('animated fadeOutUp');
-                                $('.animation').hide();
-                                $('.container-button').removeClass('hidden');
-                            }, 500)
-                        },4000)
-                    }, 4000);
-                }, 700);
-            }, 8500);
-        }
-        setTimeout(function(){
-            instruccions();
-        }, 2000);
 
-        $('.review-instruccions').touchend(function(){
-            $('.container-button').addClass('hidden');
-            $('.text-indication')
-                .html("Desplacese verticalmente para cambiar de área")
-                .removeClass('animated fadeOutUp')
-                .show();
-            $('.animation')
-                .removeClass('animated fadeOutUp')
-                .show();
-            $('.in-move')
-                .css({
-                    'width':'100%',
-                    'height':'0vh'
-                })
-                .removeClass('in-move-left-right');
-            $('.fa-hand-pointer-o')
-                .css({
-                    'bottom':'30vh',
-                    'right':'10vh'
-                })
-                .addClass('hidden')
-                .removeClass('hand-right-left');
-            instruccions();
-        })
-
-		/*-- move to slide --*/
-		$('li', '#menu-xs').click(function () {
-			var index = $(this).index() + 2;
-
-			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
-		});
 	}
 
 	function viewXs() {
