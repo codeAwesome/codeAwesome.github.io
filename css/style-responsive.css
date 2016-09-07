@@ -304,15 +304,10 @@
         padding-left: 10%;
         padding-right: 10%;
     }
-    
-    .instruccions .fa-times{
-        position: absolute;
-        right: 1vh;
-    }
-    
+
     .instruccions .fa-hand-pointer-o{
         position: absolute;
-        bottom: 30vh;
+        bottom: 40vh;
         right: 10vh;
         transform: rotate(-25deg);
     }
@@ -323,9 +318,36 @@
     
     .instruccions .animation{
         height: 50vh;
-        background-color: cadetblue;
+        background-color: white;
         width: 100%;
         position: relative;
+        overflow: hidden;
+    }
+
+    .instruccions .animation .description{
+        display: table;
+        height: 50vh;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        position: absolute;
+    }
+
+    .instruccions .animation > .description > h3.text-indication.animated{
+        color: black;
+    }
+
+    .instruccions .animation .description.text-1-2{
+        margin-left: 80%;
+    }
+
+    .instruccions .animation h3.text-indication{
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .catedblue{
+        background-color: cadetblue !important;
     }
     
     .instruccions .animation .in-move{
@@ -335,16 +357,6 @@
         width: 100%;
         height: 0vh;
         overflow: hidden;
-    }
-
-    .instruccions .animation .in-move .line{
-        height: 4vh;
-        width: 90%;
-        background-color: darkgray;
-    }
-
-    .instruccions .animation p{
-        position: absolute;
     }
 
     .margin-micro-elements{
@@ -357,11 +369,7 @@
     .in-move-up-down{
         animation: up-down 8s both;
     }
-    
-    .in-move-left-right{
-        animation: left-right 8s both;
-    }
-    
+
     .hand-down-up{
         animation: hand-down-up 1s both;
     }
@@ -378,14 +386,29 @@
         animation: hand-right-left 1s both;
     }
     
+    .text-right-left{
+        animation: text-right-left 8s both;
+    }
+
+    .text-right-left-2{
+        animation: text-right-left-2 8s both;
+    }
+
     .button-instruccions{
         background: transparent;
         border: 3px solid #fff;
         height: 15vh;
-        width: 43%;
         margin-top: 3vh;
     }
     
+    .button-ingore-instruccions{
+        width: 100%;
+    }
+
+    .width-button-instruccions{
+        width: 43%;
+    }
+
     .close-instruccions{
         margin-left: 10%;
     }
@@ -396,10 +419,10 @@
 
     @keyframes hand-down-up{
         0%{
-            bottom: 30vh;
+            bottom: 40vh;
         }
         99%{
-            bottom: 45vh;
+            bottom: 55vh;
             opacity: 1;
         }
         100%{
@@ -461,20 +484,36 @@
         }
     }
     
-    @keyframes left-right{
-        0%{
-            width:0%;
+    @keyframes text-right-left{
+        0{
+            margin-left: 0%;
         }
         40%{
-            width:100%;
+            margin-left: -80%;
         }
         60%{
-            width:100%;
+            margin-left: -80%;
         }
         100%{
-            width:0%;
+            margin-left: 0%;
         }
     }
+
+    @keyframes text-right-left-2{
+        0{
+            margin-left: 80%;
+        }
+        40%{
+            margin-left: 0%;
+        }
+        60%{
+            margin-left: 0%;
+        }
+        100%{
+            margin-left: 80%;
+        }
+    }
+
 
 /*--------------- whoAreWe ---------------*/
 	.container {

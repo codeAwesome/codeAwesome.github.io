@@ -302,122 +302,147 @@
 			$('.fa-hand-pointer-o').css({'bottom': '40vh', 'right': '40vh'});
 		*	por ultimo siempre que vayas a escribir un codigo que se dedique a algo en especifico escribelo en una funcion, eso le permite crear su propio ambito y no tener coliciones con otra pieza de codigo, luego ejecutas la funcion donde lo necesites como lo hice en este caso
 		*/
-
-        $('.fa-times').touchend(function () {
-            $('.instruccions')
-                .removeClass("fadeInLeft")
-                .addClass("fadeOutLeft");
-
-            $('#menu-xs').removeClass(FORM_HIDE);
-            $('#fp-nav').show();
-        });
         
-        $('.close-instruccions').touchend(function () {
+        var nav=$('#fp-nav'),
+            containerButton=$('.container-button'),
+            buttonIgnore=$('.button-ingore-instruccions'),
+            inMove=$('.in-move'),
+            firstTextIndication=$('.animation > .description > .text-indication.animated'),
+            firstDescription=$('.animation > .description:eq(0)'),
+            seccondDescription=$('.animation > .description:eq(1)'),
+            divAnimation=$('.animation'),
+            hand=$('i.fa-hand-pointer-o:eq(0)'),
+            MOVE_UP_DOWN="in-move-up-down",
+            ANIMATION_TEXT_RIGHT_LEFT="text-right-left",
+            ANIMATION_TEXT_RIGHT_LEFT_2="text-right-left-2",
+            CATEDBLUE_COLOR="catedblue",
+            ANIMATION_HAND_LEFT_RIGHT="hand-left-right",
+            ANIMATION_FADE_OUT="fadeOut",
+            ANIMATION_FADE_IN="fadeIn",
+            ANIMATION_HAND_DOWN_UP="hand-down-up",
+            ANIMATION_HAND_UP_DOWN="hand-up-down",
+            ANIMATION_HAND_RIGHT_LEFT="hand-right-left"
+
+        nav.hide();
+
+        $('.close-instruccions, .button-ingore-instruccions').touchend(function () {
             setTimeout(function () {
-                $('.fa-times').touchend();
+                $('.instruccions').addClass(ANIMATION_FADE_OUT);
+                $('#menu-xs').removeClass(FORM_HIDE);
+                nav.show();
             }, 200);
         });
 
-		setTimeout(animation, 2000);
+		setTimeout(animation, 3300);
 
         $('.review-instruccions').touchend(function () {
 
-            $('.container-button').addClass(FORM_HIDE);
+            setTimeout(function(){
+                containerButton.addClass(FORM_HIDE);
 
-            $('.text-indication')
-                .html("Desplacese verticalmente para cambiar de área")
-                .removeClass("animated fadeOutUp")
-                .show();
+                buttonIgnore.show();
 
-            $('.animation')
-                .removeClass("animated fadeOutUp")
-                .show();
+                inMove
+                    .css({'width': '100%', 'height': '0vh'})
+                    .removeClass(MOVE_UP_DOWN);
 
-            $('.in-move')
-                .css({'width': '100%', 'height': '0vh'})
-                .removeClass("in-move-left-right");
+                firstTextIndication
+                    .html("Deslice verticalmente para cambiar de sección")
+                    .css('color', 'black');
 
-            $('.fa-hand-pointer-o')
-                .css({'bottom': '30vh', 'right': '10vh'})
-                .addClass(FORM_HIDE)
-                .removeClass("hand-right-left");
+                firstDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT);
+                seccondDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT_2);
 
-            animation();
+                divAnimation
+                    .removeClass(CATEDBLUE_COLOR)
+                    .show();
+
+                hand
+                    .css({'bottom': '40vh', 'right': '10vh'})
+                    .addClass(FORM_HIDE)
+                    .removeClass(ANIMATION_HAND_LEFT_RIGHT);
+
+                setTimeout(animation, 3300);
+            }, 200);
         });
 
-		$('#fp-nav').hide();
+        function changeTextIndication(){
+            firstTextIndication
+                .removeClass(ANIMATION_FADE_OUT)
+                .css('color', 'white')
+                .html("Sección 1.1");
+        }
+
 
         /*-- create animation --*/
         function animation() {
-
-            $('.fa-hand-pointer-o')
-                .removeClass(FORM_HIDE)
-                .addClass("hand-down-up");
-
-            setTimeout(function(){
-                $('.in-move')
-                    .addClass("in-move-up-down");
-
-                setTimeout(function(){
-                    $('.fa-hand-pointer-o').css('bottom', '67vh');
-
-                    $('.fa-hand-pointer-o')
-                        .removeClass("hand-down-up")
-                        .addClass("hand-up-down");
-
-                },4000);
-            }, 700);
+            firstTextIndication
+                .removeClass(ANIMATION_FADE_IN)
+                .addClass(ANIMATION_FADE_OUT);
 
             setTimeout(function(){
-                $('.text-indication').html("Desplacece horizontalmente para moverse dentro de un área");
+                changeTextIndication();
 
-                $('.text-indication').toggleClass('animated fadeIn');
-
-                $('.fa-hand-pointer-o').css({'bottom': '40vh', 'right': '40vh'});
-
-                $('.fa-hand-pointer-o')
-                    .removeClass("hand-up-down")
-                    .addClass("hand-left-right");
-
+                divAnimation.addClass(CATEDBLUE_COLOR);
+                hand
+                    .removeClass(FORM_HIDE)
+                    .addClass(ANIMATION_HAND_DOWN_UP);
                 setTimeout(function(){
-					//esto debes unirlo como en los de arriba
-                    $('.in-move').css('width', '0');
-                    $('.in-move').css('height', '50vh');
-					//---------------------------------
-
-                    $('.in-move')
-                        .removeClass("in-move-up-down")
-                        .addClass("in-move-left-right");
+                    inMove
+                        .addClass(MOVE_UP_DOWN);
 
                     setTimeout(function(){
-                        $('.fa-hand-pointer-o').css('right', '10vh');
-                        $('.fa-hand-pointer-o')
-                            .removeClass("hand-left-right")
-                            .addClass("hand-right-left");
-
+                        hand
+                            .css('bottom', '67vh')
+                            .removeClass(ANIMATION_HAND_DOWN_UP)
+                            .addClass(ANIMATION_HAND_UP_DOWN);
                         setTimeout(function(){
-                            $('.text-indication')
-                                .removeClass("fadeIn")
-                                .addClass("fadeOutUp");
-
+                            divAnimation.removeClass(CATEDBLUE_COLOR);
+                            firstTextIndication
+                                .css('color', 'black')
+                                .addClass(ANIMATION_FADE_IN)
+                                .html("Deslice horizontalmente para moverse dentro de una sección");
                             setTimeout(function(){
-                                $('.text-indication').hide();
-                                $('.animation').toggleClass("animated fadeOutUp");
-                                $('.animation').hide();
-                                $('.container-button').removeClass(FORM_HIDE);
-                            }, 500)
-                        },4000)
-                    }, 4000);
-                }, 700);
-            }, 8500);
-        }
+                                firstTextIndication
+                                    .removeClass(ANIMATION_FADE_IN)
+                                    .addClass(ANIMATION_FADE_OUT);
+                                setTimeout(function(){
+                                    changeTextIndication();
+                                    divAnimation.addClass(CATEDBLUE_COLOR);
+                                    hand
+                                        .css({'bottom': '40vh', 'right': '10vh'})
+                                        .removeClass(ANIMATION_HAND_UP_DOWN)
+                                        .addClass(ANIMATION_HAND_RIGHT_LEFT);
 
+                                    setTimeout(function(){
+
+                                        firstDescription.addClass(ANIMATION_TEXT_RIGHT_LEFT);
+                                        seccondDescription.addClass(ANIMATION_TEXT_RIGHT_LEFT_2);
+
+                                        setTimeout(function(){
+                                            hand
+                                                .css('right', '40vh')
+                                                .removeClass(ANIMATION_HAND_RIGHT_LEFT)
+                                                .addClass(ANIMATION_HAND_LEFT_RIGHT);
+
+                                            setTimeout(function(){
+                                                divAnimation.hide();
+                                                containerButton.removeClass(FORM_HIDE);
+                                                buttonIgnore.hide();
+
+                                            },4000);
+                                        }, 4000);
+                                    }, 700);
+                                }, 1400);
+                            }, 2300);
+                        }, 5000);
+                    },4000);
+                }, 700);
+            }, 1700);
+        }
 	}
 
 	function templateXs(){
-
-		/*-- to execute "intructions" animation --*/
-		runIntructions();
 
 		/*-- header nav for move to slide --*/
 		$('li', '#menu-xs').click(function () {
@@ -436,10 +461,13 @@
 			slidesNavigation: true,
 			controlArrows: false,
             onLeave: function (index, nextIndex, direction) {
-                if (direction === "down" && $('.instruccions').hasClass("fadeInLeft"))
+                if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
                 	return false;
             }
 		});
+
+        /*-- to execute "intructions" animation --*/
+        runIntructions();
 
 		/*-- flipCarousel instance XS & config --*/
 		$('.flip-img').flipcarousel.destroy();
