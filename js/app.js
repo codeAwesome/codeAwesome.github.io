@@ -414,10 +414,47 @@
 
 	}
 
+    function createEllipsis(selector) {
+        var $container = $(selector),
+            containerHeight = "",
+            $text = "";
+
+        function replaceText() {
+            if ($text.length > 0) {
+                console.log($text)
+                while ($text[0].scrollHeight > containerHeight) {
+                    $text.text(function (index, text) {
+                        return text.replace(/\W*\s(\S)*$/, '...');
+                    });
+                }
+            }
+        }
+
+        if ($container.length > 1){
+            $container.each(function () {
+                var $this = $(this);
+                containerHeight = $this.height();
+                $text = $this.find("p");
+
+                replaceText();
+            });
+
+        } else {
+            containerHeight = $container.height();
+            $text = $container.find("p");
+
+            replaceText();
+        }
+
+    }
+
 	function templateXs(){
 
 		/*-- to execute "intructions" animation --*/
 		runIntructions();
+
+        /*-- short longe text and ramplace whit ellipsis --*/
+        createEllipsis('.xs-body');
 
 		/*-- header nav for move to slide --*/
 		$('li', '#menu-xs').click(function () {
