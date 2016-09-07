@@ -617,11 +617,24 @@
 		margin-top: 0px;
 	}
 
+    .s-main-title {
+        display: table-cell;
+        width: 100vw;
+        height: 100vh;
+        text-align: center;
+	    font-size: 25px;
+        vertical-align: middle;
+    }
+
+    .s-main-title img {
+	    max-width: 100%;
+    }
+
 	.service-title {
 		font-size: 16px;
 	}
 
-	.service-title, .carousel-title {
+	.service-title, .carousel-title, .s-main-title {
 		font-weight: bold;
 		color: #a33200;
 	}
@@ -632,9 +645,8 @@
 	}
 
 	.th-font {
-		word-wrap: break-word;
 		color: #000;
-		font-size: 15px;
+		font-size: 16px;
 	}
 
 	/*----- flip carousel xs styles -----*/
@@ -823,7 +835,6 @@
 	}
 
 	#footer .section-title {
-		font: 'times new roman';
 		font-size: 18px;
 	}
 
