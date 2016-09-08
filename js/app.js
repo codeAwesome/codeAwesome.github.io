@@ -235,7 +235,7 @@
 				beforeSend: function () {
 					swal({
 						title: "Enviando...",
-						text: "Espere mientras se envia su mensaje",
+						text: "Espere mientras se envía su mensaje",
 						imageUrl: "pic/cargando.gif",
 						showConfirmButton: false
 					});
