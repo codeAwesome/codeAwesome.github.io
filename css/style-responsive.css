@@ -103,10 +103,11 @@
             width: 50%;
             margin-left: 25%;
         }
-        .section-subtitle{
+        h3.section-subtitle{
             text-indent: 0px;
             font-style: normal;
             font-size: 22px;
+            display: inline;
         }
         .block-description .text-center{
             margin-bottom: 15px;
@@ -528,6 +529,11 @@
 		text-align: center;
 	}
 
+    .xs-title .section-title{
+        margin-bottom: 0;
+        line-height: 1.42857143;
+    }
+
 	.whoAreWe {
 		height: 50px;
 		line-height: 50px;
@@ -567,6 +573,8 @@
 		font-size: 25px;
 		font-weight: bold;
 		padding-top: 20px;
+        margin-top: 0px;
+        margin-bottom: 0px;
 	}
 
 	.visMis-img img {
@@ -634,10 +642,21 @@
 		font-size: 16px;
 	}
 
+    h3.service-title{
+        display: inline;
+        line-height: 1.42857143;
+    }
+
 	.service-title, .carousel-title, .s-main-title {
 		font-weight: bold;
 		color: #a33200;
 	}
+
+    .s-main-title h2{
+        display: inline;
+        font-size: 25px;
+        font-weight: bold;
+    }
 
 	.service-des {
 		color: #000;
@@ -874,4 +893,8 @@
 		font-size: 8vh;
 		color: #fff;
 	}
+
+    #footer h2{
+        font-size: 36px;
+    }
 }
