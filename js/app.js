@@ -38,7 +38,6 @@
 	/*-- camera instance & config --*/
 	$('.camera_wrap').camera({
 		height: '40%',
-		loader: 'pie',
 		thumbnails: true
 	});
 
@@ -281,47 +280,25 @@
     }
     
 	function runIntructions() {
-		/**	observaciones
-		*	usaremos comillas sencillas '' solo para selectores, palabras clave y asignacion de valores, de lo contratrio se usaran comillas dobles "" para todo lo demas mayormente para identificar cadenas, urls y clases y cosas asi;
-		*	debes usar constantes en los valores que se repiten y no van a variar a lo largo del programa para no estar escribiendo lo mismo a cada rato, eso mantiene mas ordenado el codigo y lo hace mas seguro;
-		*	los selectores jQuery no deben duplicarse, puedes aplicar varias instrucciones a un mismo selector como ej:
-			$(selector)
-				.instrucion1
-				.instruccion2
-		si no puedes usar ese metodo agregas el selector a una variable para luego reutilizarlo, las variables con objetos jQuery van presedidas por un $ ej:
-			var $miVariable = $(miSelector);
-			$miVariable.instruccion1;
-		*	cuando una intruccion es muy larga la almacenas en una funcion y luego se lo pasas como callback al evento donde la necesitas ej:
-			$(selector).click(miFunc);
-
-			function myFunc() {
-				instruccion larga
-			}
-		donde sea que puedas agregar una funcion anonima tambien puedes enviar una funcion declarada como callback, la idea es minimizar el uso de funciones anonimas y mas si van a estar anidadas
-		*	si un objeto no tiene mas de 3 key y cabe horizontalmente aprovecha el espacio horizontal y escribelo asi ej:
-			$('.fa-hand-pointer-o').css({'bottom': '40vh', 'right': '40vh'});
-		*	por ultimo siempre que vayas a escribir un codigo que se dedique a algo en especifico escribelo en una funcion, eso le permite crear su propio ambito y no tener coliciones con otra pieza de codigo, luego ejecutas la funcion donde lo necesites como lo hice en este caso
-		*/
-        
-        var nav=$('#fp-nav'),
-            containerButton=$('.container-button'),
-            buttonIgnore=$('.button-ingore-instruccions'),
-            inMove=$('.in-move'),
-            firstTextIndication=$('.animation > .description > .text-indication.animated'),
-            firstDescription=$('.animation > .description:eq(0)'),
-            seccondDescription=$('.animation > .description:eq(1)'),
-            divAnimation=$('.animation'),
-            hand=$('i.fa-hand-pointer-o:eq(0)'),
-            MOVE_UP_DOWN="in-move-up-down",
-            ANIMATION_TEXT_RIGHT_LEFT="text-right-left",
-            ANIMATION_TEXT_RIGHT_LEFT_2="text-right-left-2",
-            CATEDBLUE_COLOR="catedblue",
-            ANIMATION_HAND_LEFT_RIGHT="hand-left-right",
-            ANIMATION_FADE_OUT="fadeOut",
-            ANIMATION_FADE_IN="fadeIn",
-            ANIMATION_HAND_DOWN_UP="hand-down-up",
-            ANIMATION_HAND_UP_DOWN="hand-up-down",
-            ANIMATION_HAND_RIGHT_LEFT="hand-right-left"
+        var nav = $('#fp-nav'),
+            containerButton = $('.container-button'),
+            buttonIgnore = $('.button-ingore-instruccions'),
+            inMove = $('.in-move'),
+            firstTextIndication = $('.animation > .description > .text-indication.animated'),
+            firstDescription = $('.animation > .description:eq(0)'),
+            seccondDescription = $('.animation > .description:eq(1)'),
+            divAnimation = $('.animation'),
+            hand = $('i.fa-hand-pointer-o:eq(0)'),
+            MOVE_UP_DOWN = "in-move-up-down",
+            ANIMATION_TEXT_RIGHT_LEFT = "text-right-left",
+            ANIMATION_TEXT_RIGHT_LEFT_2 = "text-right-left-2",
+            CATEDBLUE_COLOR = "catedblue",
+            ANIMATION_HAND_LEFT_RIGHT = "hand-left-right",
+            ANIMATION_FADE_OUT = "fadeOut",
+            ANIMATION_FADE_IN = "fadeIn",
+            ANIMATION_HAND_DOWN_UP = "hand-down-up",
+            ANIMATION_HAND_UP_DOWN = "hand-up-down",
+            ANIMATION_HAND_RIGHT_LEFT = "hand-right-left";
 
         nav.hide();
 
@@ -329,7 +306,7 @@
             setTimeout(function () {
                 $('.instruccions').addClass(ANIMATION_FADE_OUT);
                 $('#menu-xs').removeClass(FORM_HIDE);
-                nav.show();
+//                nav.show();
             }, 200);
         });
 
@@ -337,7 +314,7 @@
 
         $('.review-instruccions').touchend(function () {
 
-            setTimeout(function(){
+            setTimeout(function () {
                 containerButton.addClass(FORM_HIDE);
 
                 buttonIgnore.show();
@@ -366,13 +343,12 @@
             }, 200);
         });
 
-        function changeTextIndication(){
+        function changeTextIndication() {
             firstTextIndication
                 .removeClass(ANIMATION_FADE_OUT)
                 .css('color', 'white')
                 .html("Sección 1.1");
         }
-
 
         /*-- create animation --*/
         function animation() {
@@ -380,33 +356,33 @@
                 .removeClass(ANIMATION_FADE_IN)
                 .addClass(ANIMATION_FADE_OUT);
 
-            setTimeout(function(){
+            setTimeout(function () {
                 changeTextIndication();
 
                 divAnimation.addClass(CATEDBLUE_COLOR);
                 hand
                     .removeClass(FORM_HIDE)
                     .addClass(ANIMATION_HAND_DOWN_UP);
-                setTimeout(function(){
+                setTimeout(function () {
                     inMove
                         .addClass(MOVE_UP_DOWN);
 
-                    setTimeout(function(){
+                    setTimeout(function () {
                         hand
                             .css('bottom', '67vh')
                             .removeClass(ANIMATION_HAND_DOWN_UP)
                             .addClass(ANIMATION_HAND_UP_DOWN);
-                        setTimeout(function(){
+                        setTimeout(function () {
                             divAnimation.removeClass(CATEDBLUE_COLOR);
                             firstTextIndication
                                 .css('color', 'black')
                                 .addClass(ANIMATION_FADE_IN)
                                 .html("Deslice horizontalmente para moverse dentro de una sección");
-                            setTimeout(function(){
+                            setTimeout(function () {
                                 firstTextIndication
                                     .removeClass(ANIMATION_FADE_IN)
                                     .addClass(ANIMATION_FADE_OUT);
-                                setTimeout(function(){
+                                setTimeout(function () {
                                     changeTextIndication();
                                     divAnimation.addClass(CATEDBLUE_COLOR);
                                     hand
@@ -414,120 +390,98 @@
                                         .removeClass(ANIMATION_HAND_UP_DOWN)
                                         .addClass(ANIMATION_HAND_RIGHT_LEFT);
 
-                                    setTimeout(function(){
+                                    setTimeout(function () {
 
                                         firstDescription.addClass(ANIMATION_TEXT_RIGHT_LEFT);
                                         seccondDescription.addClass(ANIMATION_TEXT_RIGHT_LEFT_2);
 
-                                        setTimeout(function(){
+                                        setTimeout(function () {
                                             hand
                                                 .css('right', '40vh')
                                                 .removeClass(ANIMATION_HAND_RIGHT_LEFT)
                                                 .addClass(ANIMATION_HAND_LEFT_RIGHT);
 
-                                            setTimeout(function(){
+                                            setTimeout(function () {
                                                 divAnimation.hide();
                                                 containerButton.removeClass(FORM_HIDE);
                                                 buttonIgnore.hide();
 
-                                            },4000);
+                                            }, 4000);
                                         }, 4000);
                                     }, 700);
                                 }, 1400);
                             }, 2300);
                         }, 5000);
-                    },4000);
+                    }, 4000);
                 }, 700);
             }, 1700);
         }
 	}
 
-    function createEllipsis(selector) {
-        var $container = $(selector),
-            containerHeight = "",
-            $text = "";
+    function createEllipsis(container) {
+        var $container = $(container),
+            $text = "",
+            containerHeight = 0,
+			text = "",
+			newText = "";
 
-        function replaceText() {
+        function replaceText($parent) {
             if ($text.length > 0) {
-                console.log($text)
+				text = $text.text();
+
                 while ($text[0].scrollHeight > containerHeight) {
                     $text.text(function (index, text) {
-                        return text.replace(/\W*\s(\S)*$/, '...');
+                        return text.replace(/\W*\s(\S)*$/, "...");
                     });
                 }
+
+				newText = $text.text();
+
+				if (text.length > newText.length ) {
+					text = text.substring(newText.length-3);
+					$parent.parent().parent().after(
+						'<div class="slide">\
+							<div class="container">\
+								<div class="xs-body">\
+									<p class="section-desciption">' + text + '</p>\
+								</div>\
+							</div>\
+						</div>'
+					);
+				}
             }
         }
 
-        if ($container.length > 1){
+        if ($container.length > 1) {
             $container.each(function () {
                 var $this = $(this);
                 containerHeight = $this.height();
                 $text = $this.find("p");
 
-                replaceText();
+                replaceText($this);
             });
 
         } else {
             containerHeight = $container.height();
             $text = $container.find("p");
 
-            replaceText();
+            replaceText($container);
         }
 
     }
 
-    function createEllipsis(selector) {
-        var $container = $(selector),
-            containerHeight = "",
-            $text = "";
+	function templateXs() {
 
-        function replaceText() {
-            if ($text.length > 0) {
-                console.log($text)
-                while ($text[0].scrollHeight > containerHeight) {
-                    $text.text(function (index, text) {
-                        return text.replace(/\W*\s(\S)*$/, '...');
-                    });
-                }
-            }
-        }
+		$('#fullpage').fullpage();
 
-        if ($container.length > 1){
-            $container.each(function () {
-                var $this = $(this);
-                containerHeight = $this.height();
-                $text = $this.find("p");
+		/*-- short longe text and replace whit ellipsis --*/
+        createEllipsis('.service-body');
+		$.fn.fullpage.destroy('all');
 
-                replaceText();
-            });
-
-        } else {
-            containerHeight = $container.height();
-            $text = $container.find("p");
-
-            replaceText();
-        }
-
-    }
-
-	function templateXs(){
-
-        /*-- short longe text and ramplace whit ellipsis --*/
-        createEllipsis('.xs-body');
-
-        /*-- short longe text and ramplace whit ellipsis --*/
-        createEllipsis('.xs-body');
-
-		/*-- header nav for move to slide --*/
-		$('li', '#menu-xs').click(function () {
-			var index = $(this).index() + 2;
-
-			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
-		});
-        
 		/*-- fullpage instance & config --*/
-		$(this).fullpage({
-			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
+		$('#fullpage').fullpage({
+//			'#1e6f63', '#fff',
+			sectionsColor: ['#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
 			navigationPosition: 'right',
@@ -535,19 +489,33 @@
 			slidesNavigation: true,
 			controlArrows: false,
             onLeave: function (index, nextIndex, direction) {
-                if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
-                	return false;
-            }
+//                if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
+//					return false;
+            },
+			afterLoad: function (k, index) {
+//				var $nav = $('#fp-nav');
+//
+//				if (index === 1) $nav.hide();
+//				else $nav.show();
+			}
 		});
 
-        /*-- to execute "intructions" animation --*/
-        runIntructions();
+		/*-- camnera instace xs && config --*/
+//		$('#camera-xs').camera({height: '40%'});
+
+		/*-- to execute "intructions" animation --*/
+//        runIntructions();
+
+		/*-- header nav for move to slide --*/
+		$('li', '#menu-xs').click(function () {
+			var index = $(this).index() + 2;
+
+			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
+		});
 
 		/*-- flipCarousel instance XS & config --*/
 		$('.flip-img').flipcarousel.destroy();
-		$('.flip-img-xs').flipcarousel({
-			itemsperpage: 1
-		});
+		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
 
 		/*-- to disabled #send button --*/
 		$(BTN_SEND, FORM_XS).prop('disabled', true);

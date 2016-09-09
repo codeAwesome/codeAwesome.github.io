@@ -38,7 +38,7 @@
     }
 }
 
-@media (min-width: 992px) and (max-width:1099px){
+@media (min-width: 992px) and (max-width: 1099px){
     .text-contact{
         font-size: 18px;
     }
@@ -223,8 +223,43 @@
 
 @media (max-width: 767px){
 
-/*--------------- header ---------------*/
-	#header{
+/*--------------- global styles ---------------*/
+	p, span, div {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.container {
+		display: block;
+		height: 100%;
+		width: 100%;
+		padding: 15px 12% 12% 12%;
+		overflow: hidden;
+	}
+
+	.xs-title {
+		text-align: center;
+	}
+
+	.xs-body {
+		text-align: justify;
+	}
+
+	.section-title {
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	.section-desciption {
+		font-size: 16px;
+		line-height: 1.5;
+		text-indent: 3em;
+		color: #838383;
+		height: 100%;
+	}
+
+/*----------------- header -----------------*/
+	#header {
 		color: #fff;
 		text-align: center;
 	}
@@ -246,15 +281,16 @@
 	}
 
 	#header .xs-title {
-		margin-top: 15vh;
+		margin-top: 13vh;
+		margin-bottom: 1vh;
 	}
 
 	.tutorial {
-		position: relative;
+		position: absolute;
 		display: block;
 		height: 46vh;
-		background-color: brown;
 		width: 100%;
+		left: 0px;
 	}
 
 	.tutorial h4{
@@ -292,269 +328,18 @@
 		-moz-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 		box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	}
-    
-/*-----------instruccions-------------*/
-    .instruccions{
-        background-color:rgba(0, 0, 0, 0.7);
-        height: 100vh;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-
-    .instruccions .fa-hand-pointer-o{
-        position: absolute;
-        bottom: 40vh;
-        right: 10vh;
-        transform: rotate(-25deg);
-    }
-    
-    .instruccions h2{
-        margin-top: 30px;
-    }
-    
-    .instruccions .animation{
-        height: 50vh;
-        background-color: white;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .instruccions .animation .description{
-        display: table;
-        height: 50vh;
-        width: 100%;
-        padding-left: 5%;
-        padding-right: 5%;
-        position: absolute;
-    }
-
-    .instruccions .animation > .description > h3.text-indication.animated{
-        color: black;
-    }
-
-    .instruccions .animation .description.text-1-2{
-        margin-left: 80%;
-    }
-
-    .instruccions .animation h3.text-indication{
-        display: table-cell;
-        vertical-align: middle;
-    }
-
-    .catedblue{
-        background-color: cadetblue !important;
-    }
-    
-    .instruccions .animation .in-move{
-        position: absolute;
-        bottom: 0;
-        background-color: crimson;
-        width: 100%;
-        height: 0vh;
-        overflow: hidden;
-    }
-
-    .margin-micro-elements{
-        margin-top: 5vh;
-        margin-right: 5%;
-        margin-left: 5%;
-    }
-    
-    
-    .in-move-up-down{
-        animation: up-down 8s both;
-    }
-
-    .hand-down-up{
-        animation: hand-down-up 1s both;
-    }
-    
-    .hand-up-down{
-        animation: hand-up-down 1s both;
-    }
-    
-    .hand-left-right{
-        animation: hand-left-right 1s both;
-    }
-    
-    .hand-right-left{
-        animation: hand-right-left 1s both;
-    }
-    
-    .text-right-left{
-        animation: text-right-left 8s both;
-    }
-
-    .text-right-left-2{
-        animation: text-right-left-2 8s both;
-    }
-
-    .button-instruccions{
-        background: transparent;
-        border: 3px solid #fff;
-        height: 15vh;
-        margin-top: 3vh;
-    }
-    
-    .button-ingore-instruccions{
-        width: 100%;
-    }
-
-    .width-button-instruccions{
-        width: 43%;
-    }
-
-    .close-instruccions{
-        margin-left: 10%;
-    }
-
-    .container-button{
-        margin-top: 30vh;
-    }
-
-    @keyframes hand-down-up{
-        0%{
-            bottom: 40vh;
-        }
-        99%{
-            bottom: 55vh;
-            opacity: 1;
-        }
-        100%{
-            opacity: 0;
-        }
-    }
-    
-    @keyframes hand-up-down{
-        0%{
-            bottom: 67vh;
-        }
-        99%{
-            bottom: 52vh;
-            opacity: 1;
-        }
-        100%{
-            opacity: 0;
-        }
-    }
-    
-    @keyframes hand-left-right{
-        0%{
-            right: 40vh
-        }
-        99%{
-            right: 25vh;
-            opacity: 1;
-        }
-        100%{
-            opacity: 0;
-        }
-    }
-    
-    @keyframes hand-right-left{
-        0%{
-            right:9vh;
-        }
-        99%{
-            right: 24vh;
-            opacity: 1;
-        }
-        100%{
-            opacity: 0;
-        }
-    }
-    
-    @keyframes up-down{
-        0%{
-            height:0vh;
-        }
-        40%{
-            height:50vh;
-        }
-        60%{
-            height:50vh;
-        }
-        100%{
-            height:0vh;
-        }
-    }
-    
-    @keyframes text-right-left{
-        0{
-            margin-left: 0%;
-        }
-        40%{
-            margin-left: -80%;
-        }
-        60%{
-            margin-left: -80%;
-        }
-        100%{
-            margin-left: 0%;
-        }
-    }
-
-    @keyframes text-right-left-2{
-        0{
-            margin-left: 80%;
-        }
-        40%{
-            margin-left: 0%;
-        }
-        60%{
-            margin-left: 0%;
-        }
-        100%{
-            margin-left: 80%;
-        }
-    }
-
 
 /*--------------- whoAreWe ---------------*/
-	.container {
-		padding: 15px 12% 55px 12%;
-		height: 100%;
-		overflow: hidden;
-	}
-
-	.xs-title {
-		display: block;
-		width: 100%;
-		text-align: center;
-	}
 
 	.whoAreWe {
 		height: 50px;
 		line-height: 50px;
 	}
 
-	.section-title {
-		font-size: 25px;
-		font-weight: bold;
-	}
-
 	.img-title {
 		height: 50px;
 		width: auto;
 		vertical-align: top;
-	}
-
-	.xs-body {
-		width: 100%;
-		margin-top: 10px;
-	}
-
-	.section-desciption {
-		line-height: 1.5;
-		font-size: 16px;
-		text-align: justify;
-		height: 100%;
-		margin: 0px;
 	}
 
 	.visMis-img {
@@ -593,30 +378,7 @@
 		}
 	}
 
-/*----------- services -----------*/
-	.service-img {
-		height: 30vh;
-		width: 100%;
-		line-height: 30vh;
-	}
-
-	.th-heihgt {
-		height: 20vh;
-		line-height: 20vh;
-		margin-bottom: 10px;
-	}
-
-	.service-img img {
-		max-height: 100%;
-		max-width: 100%;
-	}
-
-	.third {
-		height: auto;
-		width: auto;
-		margin-top: 0px;
-	}
-
+/*--------------- services ---------------*/
     .s-main-title {
         display: table-cell;
         width: 100vw;
@@ -631,7 +393,16 @@
     }
 
 	.service-title {
+		height: 40%;
 		font-size: 16px;
+	}
+
+	.service-body {
+		height: 60%;
+	}
+
+	.service-body p {
+		height: auto;
 	}
 
 	.service-title, .carousel-title, .s-main-title {
@@ -639,12 +410,24 @@
 		color: #a33200;
 	}
 
-	.service-des {
-		color: #000;
-		font-size: 16px;
+	.service-img {
+		height: 80%;
+		width: 100%;
+		line-height: 8;
 	}
 
-	.th-font {
+	.service-img img {
+		max-height: 100%;
+		max-width: 100%;
+	}
+
+	.service-title span {
+		display: block;
+		height: 20%;
+		padding: 5px 0px;
+	}
+
+	.service-des {
 		color: #000;
 		font-size: 16px;
 	}
@@ -874,4 +657,225 @@
 		font-size: 8vh;
 		color: #fff;
 	}
+
+/*------------- instruccions -------------*/
+    .instruccions{
+        background-color:rgba(0, 0, 0, 0.7);
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .instruccions .fa-hand-pointer-o{
+        position: absolute;
+        bottom: 40vh;
+        right: 10vh;
+        transform: rotate(-25deg);
+    }
+
+    .instruccions h2{
+        margin-top: 30px;
+    }
+
+    .instruccions .animation{
+        height: 50vh;
+        background-color: white;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .instruccions .animation .description{
+        display: table;
+        height: 50vh;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        position: absolute;
+    }
+
+    .instruccions .animation > .description > h3.text-indication.animated{
+        color: black;
+    }
+
+    .instruccions .animation .description.text-1-2{
+        margin-left: 80%;
+    }
+
+    .instruccions .animation h3.text-indication{
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .catedblue{
+        background-color: cadetblue !important;
+    }
+
+    .instruccions .animation .in-move{
+        position: absolute;
+        bottom: 0;
+        background-color: crimson;
+        width: 100%;
+        height: 0vh;
+        overflow: hidden;
+    }
+
+    .margin-micro-elements{
+        margin-top: 5vh;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+
+
+    .in-move-up-down{
+        animation: up-down 8s both;
+    }
+
+    .hand-down-up{
+        animation: hand-down-up 1s both;
+    }
+
+    .hand-up-down{
+        animation: hand-up-down 1s both;
+    }
+
+    .hand-left-right{
+        animation: hand-left-right 1s both;
+    }
+
+    .hand-right-left{
+        animation: hand-right-left 1s both;
+    }
+
+    .text-right-left{
+        animation: text-right-left 8s both;
+    }
+
+    .text-right-left-2{
+        animation: text-right-left-2 8s both;
+    }
+
+    .button-instruccions{
+        background: transparent;
+        border: 3px solid #fff;
+        height: 15vh;
+        margin-top: 3vh;
+    }
+
+    .button-ingore-instruccions{
+        width: 100%;
+    }
+
+    .width-button-instruccions{
+        width: 43%;
+    }
+
+    .close-instruccions{
+        margin-left: 10%;
+    }
+
+    .container-button{
+        margin-top: 30vh;
+    }
+
+    @keyframes hand-down-up{
+        0%{
+            bottom: 40vh;
+        }
+        99%{
+            bottom: 55vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+
+    @keyframes hand-up-down{
+        0%{
+            bottom: 67vh;
+        }
+        99%{
+            bottom: 52vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+
+    @keyframes hand-left-right{
+        0%{
+            right: 40vh
+        }
+        99%{
+            right: 25vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+
+    @keyframes hand-right-left{
+        0%{
+            right:9vh;
+        }
+        99%{
+            right: 24vh;
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+
+    @keyframes up-down{
+        0%{
+            height:0vh;
+        }
+        40%{
+            height:50vh;
+        }
+        60%{
+            height:50vh;
+        }
+        100%{
+            height:0vh;
+        }
+    }
+
+    @keyframes text-right-left{
+        0{
+            margin-left: 0%;
+        }
+        40%{
+            margin-left: -80%;
+        }
+        60%{
+            margin-left: -80%;
+        }
+        100%{
+            margin-left: 0%;
+        }
+    }
+
+    @keyframes text-right-left-2{
+        0{
+            margin-left: 80%;
+        }
+        40%{
+            margin-left: 0%;
+        }
+        60%{
+            margin-left: 0%;
+        }
+        100%{
+            margin-left: 80%;
+        }
+    }
 }
