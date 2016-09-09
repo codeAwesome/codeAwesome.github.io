@@ -103,10 +103,11 @@
             width: 50%;
             margin-left: 25%;
         }
-        .section-subtitle{
+        h3.section-subtitle{
             text-indent: 0px;
             font-style: normal;
             font-size: 22px;
+            display: inline;
         }
         .block-description .text-center{
             margin-bottom: 15px;
@@ -331,6 +332,11 @@
 
 /*--------------- whoAreWe ---------------*/
 
+    .xs-title .section-title{
+        margin-bottom: 0;
+        line-height: 1.42857143;
+    }
+
 	.whoAreWe {
 		height: 50px;
 		line-height: 50px;
@@ -352,6 +358,8 @@
 		font-size: 25px;
 		font-weight: bold;
 		padding-top: 20px;
+        margin-top: 0px;
+        margin-bottom: 0px;
 	}
 
 	.visMis-img img {
@@ -405,20 +413,25 @@
 		height: auto;
 	}
 
+    h3.service-title{
+        display: inline;
+        line-height: 1.42857143;
+    }
+
 	.service-title, .carousel-title, .s-main-title {
 		font-weight: bold;
 		color: #a33200;
 	}
 
-	.service-img {
-		height: 80%;
-		width: 100%;
-		line-height: 8;
-	}
+    .s-main-title h2 {
+        display: inline;
+        font-size: 25px;
+        font-weight: bold;
+    }
 
-	.service-img img {
-		max-height: 100%;
-		max-width: 100%;
+	.service-des {
+		color: #000;
+		font-size: 16px;
 	}
 
 	.service-title span {
@@ -658,6 +671,10 @@
 		color: #fff;
 	}
 
+	#footer h2{
+        font-size: 36px;
+    }
+
 /*------------- instruccions -------------*/
     .instruccions{
         background-color:rgba(0, 0, 0, 0.7);
@@ -729,7 +746,6 @@
         margin-right: 5%;
         margin-left: 5%;
     }
-
 
     .in-move-up-down{
         animation: up-down 8s both;
@@ -877,5 +893,5 @@
         100%{
             margin-left: 80%;
         }
-    }
+	}
 }
