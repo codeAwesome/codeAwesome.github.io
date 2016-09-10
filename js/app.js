@@ -17,6 +17,7 @@
 		FORM_HIDE = "hidden",
 		$htmlBody = $('html, body');
 
+
 /*---- document ready & window resize ----*/
 
 	$(document).ready(function () {
@@ -24,6 +25,7 @@
 		loadingView(window.innerWidth);
 		setTimeout(activeAnimations, 2000);
 		contactUsInSm();
+        Hyphenator.run();
 
 	});
 
@@ -31,6 +33,7 @@
 
 		loadingView(window.innerWidth);
 		contactUsInSm();
+        Hyphenator.run();
 
 	});
 
@@ -644,7 +647,6 @@
 			$(MAIN).load("partials/desktop.html", templateTabAndDesktop);
 
 		}
-
 
 	}
 
