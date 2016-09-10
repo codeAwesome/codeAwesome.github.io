@@ -251,12 +251,23 @@
 		font-weight: bold;
 	}
 
-	.section-desciption {
-		font-size: 16px;
+	p {
+		font-size: 1.2em;
 		line-height: 1.5;
-		text-indent: 3em;
-		color: #838383;
-		height: 100%;
+		text-indent: 2em;
+/*		color: #838383;*/
+		color: #000;
+		padding-top: 10px;
+	}
+
+	span {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+
+	.next-text {
+		text-indent: 0px;
 	}
 
 /*----------------- header -----------------*/
@@ -332,72 +343,125 @@
 
 /*--------------- whoAreWe ---------------*/
 
-    .xs-title .section-title{
-        margin-bottom: 0;
-        line-height: 1.42857143;
+    .waw-main-title, .waw-dev-title {
+		position: relative;
+        height: 15%;
     }
 
-	.whoAreWe {
-		height: 50px;
-		line-height: 50px;
+	.waw-main-title > span {
+		display: flex;
+		height: 100%;
+		width: 80%;
+		align-items: center;
+		font-size: 26px;
+		font-weight: bold;
 	}
 
 	.img-title {
-		height: 50px;
-		width: auto;
-		vertical-align: top;
-	}
-
-	.visMis-img {
-		width: 100%;
-		height: 150px;
-	}
-
-	.visMis-title {
-		display: block;
-		font-size: 25px;
-		font-weight: bold;
-		padding-top: 20px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-	}
-
-	.visMis-img img {
+		position: absolute;
+		top: 0px;
+		right: 0px;
 		height: 100%;
 		width: auto;
 	}
 
-	.photo-developer {
-		margin-top: 20px;
-		max-width: 100%;
+	.waw-main-body, .waw-dev-body {
 		height: 85%;
-		overflow: hidden;
 	}
 
-	.photo-developer img {
-		max-width: 100px;
-		max-height: 100px;
+	.waw-title {
+		height: 50%;
 	}
 
-	@media (min-height: 640px){
-		.photo-developer img {
-			max-width: 150px;
-			max-height: 150px;
+	.waw-body, waw-dev-body {
+		height: 50%;
+	}
+
+	.waw-img {
+		display: flex;
+		height: 80%;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.waw-img > img {
+		max-height: 100%;
+		max-height: 100%;
+	}
+
+	.waw-title > span {
+		display: flex;
+		height: 20%;
+		align-items: center;
+		justify-content: center;
+		font-size: 26px;
+		font-weight: bold;
+	}
+
+	.waw-dev-title > span {
+		display: flex;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		font-size: 30px;
+		font-weight: bold;
+		line-height: 1;
+	}
+
+	.waw-dev-ficha {
+		height: 50%;
+	}
+
+	.waw-dev-ficha > img {
+		display: block;
+		height: 70%;
+		width: auto;
+		margin: 0 auto;
+	}
+
+	.waw-dev-ficha > :nth-child(2) {
+		font-size: 26px;
+		font-weight: bold;
+	}
+
+	.waw-dev-ficha > :nth-child(3) {
+		font-size: 16px;
+	}
+
+	@media(max-height: 480px) {
+		.waw-main-title > span {
+			font-size: 24px;
+		}
+
+		.waw-dev-title > span {
+			font-size: 24px;
+		}
+		.waw-dev-ficha > :nth-child(2) {
+			font-size: 20px;
+		}
+
+		.waw-dev-ficha > :nth-child(3) {
+			font-size: 14px;
 		}
 	}
 
 /*--------------- services ---------------*/
     .s-main-title {
-        display: table-cell;
-        width: 100vw;
-        height: 100vh;
-        text-align: center;
-	    font-size: 25px;
-        vertical-align: middle;
+        display: flex;
+        height: 100%;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
     }
 
     .s-main-title img {
 	    max-width: 100%;
+		max-height: 100%;
+    }
+
+	.s-main-title span {
+        font-size: 25px;
+        font-weight: bold;
     }
 
 	.service-title {
@@ -405,87 +469,102 @@
 		font-size: 16px;
 	}
 
+	.flex-img {
+		display: flex;
+		height: 80%;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.flex-img > img {
+		max-height: 100%;
+		max-width: 100%;
+	}
+
+	img.animated, img.s-app-emp {
+		width: 100%;
+	}
+
+	img.s-first {
+		height: 100%;
+	}
+
+	.service-title > span, .s-carousel-title {
+		display: flex;
+		height: 20%;
+		justify-content: center;
+		align-items: center;
+		line-height: 100%;
+	}
+
 	.service-body {
 		height: 60%;
 	}
 
-	.service-body p {
-		height: auto;
-	}
-
-    h3.service-title{
-        display: inline;
-        line-height: 1.42857143;
-    }
-
-	.service-title, .carousel-title, .s-main-title {
+	.service-title, .s-carousel-title, .s-main-title {
 		font-weight: bold;
 		color: #a33200;
 	}
 
-    .s-main-title h2 {
-        display: inline;
-        font-size: 25px;
-        font-weight: bold;
-    }
-
-	.service-des {
-		color: #000;
-		font-size: 16px;
-	}
-
-	.service-title span {
-		display: block;
-		height: 20%;
-		padding: 5px 0px;
-	}
-
-	.service-des {
-		color: #000;
-		font-size: 16px;
+	.s-app-emp {
+	    -webkit-box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
+		-moz-box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
+		box-shadow: -5px 6px 26px 0px rgba(0,0,0,0.59);
 	}
 
 	/*----- flip carousel xs styles -----*/
 
-	.carousel-title {
-		font-size: 18px;
+	.s-carousel-title {
+		font-size: 20px;
+	}
+
+	.s-carousel-body {
+		height: 80%;
+	}
+
+	#flip-carousel-xs {
+		height: 100%;
 	}
 
 	.flip-carousel {
-		position: relative;
-		display: block;
 		border: none;
-		background-color: rgba(0, 0, 0, 0.8);
-		height: 75vh;
-		width: 100%;
+		height: 100%;
 		padding: 0px;
-	}
-
-	.flip-carousel .controls .arrow:after {
-		top: 0px;
 	}
 
 	.flip-carousel .controls .arrow {
-		opacity: 1;
-		cursor: pointer;
-		top: 90%;
 		position: absolute;
-		width: 40px;
-		height: 10%;
-		background: transparent;
+		top: 4%;
+		width: 50px;
+		height: 50px;
+		background: rgba(119, 67, 35, 0.72);
+		border-radius: 50%;
+		border: solid 1px #000;
+	}
+
+	.flip-carousel .controls .arrow:after {
+		top: 14px;
+		left: 16px;
+	}
+
+	.flip-carousel .controls .arrow.right:after {
+		right: 16px;
+		top: 14px;
 	}
 
 	.flip-carousel > ul {
-		height: 80%;
+		position: absolute;
+		top: 50%;
+		left: 0px;
+		margin: -54% 0 0 0;
+		height: 60%;
 		width: 100%;
-		margin: 0 auto;
 	}
 
 	.flip-carousel > ul > li {
+		display: block;
 		float: none;
 		margin: 0px;
-		padding: 0px;
-		display: block;
 		height: 100%;
 		width: 100%;
 		padding: 5%;
@@ -496,70 +575,131 @@
 	}
 
 	.flip-img-xs {
-		max-height: 260px;
-		line-height: 260px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
 		overflow: hidden;
-		vertical-align: middle;
 	}
 
 	.flip-img-xs img {
-		max-height: 255px;
+		max-height: 100%;
 		max-width: 100%;
 	}
 
+	@media(max-height: 480px) {
+		.flip-carousel .controls .arrow {
+			width: 40px;
+			height: 40px;
+		}
+
+		.flip-carousel .controls .arrow:after {
+			top: 9px;
+			left: 12px;
+		}
+
+		.flip-carousel .controls .arrow.right:after {
+			right: 12px;
+			top: 9px;
+		}
+
+		.flip-carousel > ul {
+			margin: -40% 0 0 0;
+		}
+	}
+
+	@media(min-height: 481px and max-height: 767px) {
+		.service-title {
+			font-size: 18px;
+		}
+
+		.s-carousel-title {
+			font-size: 22px;
+		}
+	}
+
 /*--------------- contactUS ---------------*/
-	.contact {
+	#contactUs-xs {
+		background-image: url("../pic/contacto.png");
+		background-repeat: no-repeat;
+		background-position: center 80%;
+		background-size: contain;
+	}
+
+	.contact-title {
+		height: 15%;
+	}
+
+	.contact-title > span {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	.contact-body {
+		height: 85%;
+	}
+
+	.contact-data {
+		height: 50%;
 		list-style: none;
 		font-size: 20px;
 		padding: 0px;
+		margin: 0px;
 		width: 100%;
 	}
 
-	.contact li {
-		width: 100%;
-		margin-bottom: 0px;
+	.contact-data > li {
+		display: flex;
+		height: 30%;
+		align-items: center;
+		justify-content: center;
 	}
 
-	.contact li a {
-		cursor: default;
+	.contact-data > li.email {
+		height: 40%;
+	}
+
+	.contact-data > li > a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 80%;
+		width: 100%;
 		text-decoration: none;
 		color: #000;
 		height: 30px;
+		font-size: 20px;
 	}
 
-	.contact li strong {
-		display: inline-block;
-		position: relative;
-		margin-top: 0px;
+	.contact-data > li.email > a {
+		height: 100%;
+		flex-direction: column;
+		font-size: 16px;
 	}
 
-	.contact li i {
-		display: inline-block;
+	.contact-data > li i {
 		font-size: 40px;
+		padding-right: 10px;
 		color: #09589b;
 	}
 
-	.contact li.email i.fa-envelope-o {
-		width: 100%;
-		margin-left: 0px;
-		text-align: center;
-	}
-	.contact .text-contact {
-		margin-left: 20px;
-		height: 40px;
-		line-height: 40px;
-		vertical-align: top;
-	}
-
-	.email .text-contact {
-		width: 100%;
-		text-align: center;
-		margin: 0px;
-		font-size: 14px;
-	}
-
+/*	------------*/
 	.contact-form {
-		margin-top: 15px;
+		height: 50%;
+		margin: 0px;
+	}
+
+	.contact-form > span {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.group-input {
+		margin: 10px 0px;
 	}
 
 	.contact-form-focus {
@@ -577,7 +717,9 @@
 		overflow-x: hidden;
 	}
 
-	.contact-form-focus h4 {
+	.contact-form-focus > span {
+		font-size: 20px;
+		font-weight: bold;
 		color: #fff;
 	}
 
@@ -585,19 +727,9 @@
 		height: 40vh;
 	}
 
-	#send {
-		color: #fff;
-    	background-color: #09589b;
-	}
-
 	.contact-form-focus #send {
 		color: #09589b;
 		background-color: #fff;
-	}
-
-	.group-input {
-		position: relative;
-		margin: 10px 0px;
 	}
 
 	.contact-form .form-control.error,
@@ -630,50 +762,57 @@
 		color: #fff;
 	}
 
-	#footer .section-title {
+	.ft-title {
+		height: 20%;
+	}
+
+	.ft-title > :nth-child(1) {
+		font-size: 40px;
+		font-weight: bold;
+	}
+
+	.ft-title > :nth-child(2) {
 		font-size: 18px;
 	}
 
-	#footer p {
-		position: absolute;
-		bottom: 5px;
-		left: 0px;
-		width: 100%;
-		display: block;
-		text-align: center;
-		font-size: 14px;
+	.ft-body {
+		position: relative;
+		height: 80%;
 	}
 
-	#we {
-		display: block;
-		width: 100%;
-	}
 
-	img.social-icon {
-		max-height: 100%;
-		width: auto;
-	}
-
-	#footer a {
+	.ft-body a {
 		display: block;
 		width: 100%;
 		height: 10vh;
 		text-align: center;
-		margin: 20px 0px;
+		margin: 15px 0px;
 		padding: 1vh 0px;
 		border: solid 1px #fff;
 		border-radius: 5px;
 		background-color: #373b3c;
 	}
 
-	#footer a > i {
+	.ft-body a > i {
 		font-size: 8vh;
 		color: #fff;
 	}
 
-	#footer h2{
-        font-size: 36px;
-    }
+	.ft-body p {
+		position: absolute;
+		display: block;
+		bottom: 5px;
+		left: 0px;
+		font-size: 14px;
+		text-indent: 0px;
+		color: #fff;
+	}
+
+	img.social-icon {
+		max-height: 100%;
+		width: auto;
+		text-align: left;
+	}
 
 /*------------- instruccions -------------*/
     .instruccions{

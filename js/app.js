@@ -8,6 +8,7 @@
 /*---- global variables & constants ----*/
 	var FORM_CONTROL = '.form-control',
 		BTN_SEND = '#send',
+		MAIN = '#main-wrapper',
 		REGEX_NAME = /^[a-zA-Z0-9 ñáéíóú]*$/,
 		REGEX_MAIL = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
 		FORM_XS = '#contact-form',
@@ -20,73 +21,20 @@
 
 	$(document).ready(function () {
 
+		loadingView(window.innerWidth);
 		setTimeout(activeAnimations, 2000);
 		contactUsInSm();
-		viewXs();
 
 	});
 
 	$(window).resize(function () {
 
+		loadingView(window.innerWidth);
 		contactUsInSm();
-		viewXs();
 
 	});
-    
-/*---------- header controller ----------*/
-
-	/*-- camera instance & config --*/
-	$('.camera_wrap').camera({
-		height: '40%',
-		thumbnails: true
-	});
-
-	/*-- remove the focus to the tags "a" --*/
-	$('.nav-pills > li > a').focus(function () { $(this).blur(); });
-
-	/*-- slide scroll to href --*/
-	$('a[href*="#"]').click(slideScrollAnimation);
-
-
-/*--------- services controller ---------*/
-
-	/*-- flipCarousel instance & config --*/
-	$('.flip-img').flipcarousel();
-
-/*--------- contactUS controller --------*/
-
-	/*-- disabled #send button --*/
-	$(BTN_SEND).prop('disabled', true);
-
-	/* send mail onclick event */
-	$(BTN_SEND).click(sendEmail);
-
-	/*-- input animation onfocusIn event --*/
-	$(FORM_CONTROL).focusin(function () {
-		var $this = $(this);
-
-		$this.addClass("active");
-		$this.siblings('label').addClass("active");
-	});
-
-	/*-- input animation onfocusOut event --*/
-	$(FORM_CONTROL).focusout(function () {
-		var $this = $(this);
-
-		if (!$this.val().trim()) {
-			$this.removeClass("active");
-			$this.siblings('label').removeClass("active");
-		}
-	});
-
-	/*-- input validation onkeyUp event --*/
-	$(FORM_CONTROL).on('keyup change', validateInput);
-
-/*----- button.backTop onclick event -----*/
-	$('.backTop').click(function () { $htmlBody.animate({ scrollTop: 0 }); });
 
 /*-------------- functions ---------------*/
-
 	function slideScrollAnimation() {
 
 		if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") &&
@@ -491,6 +439,7 @@
         function replaceText($parent) {
             if ($text.length > 0) {
 				text = $text.text();
+				console.log($text)
 
                 while ($text[0].scrollHeight > containerHeight) {
                     $text.text(function (index, text) {
@@ -505,8 +454,8 @@
 					$parent.parent().parent().after(
 						'<div class="slide">\
 							<div class="container">\
-								<div class="xs-body">\
-									<p class="section-desciption">' + text + '</p>\
+								<div class="xs-body service-body">\
+									<p class="next-text">' + text + '</p>\
 								</div>\
 							</div>\
 						</div>'
@@ -533,17 +482,17 @@
 
     }
 
+/*-------------- templates ---------------*/
 	function templateXs() {
 
-		$('#fullpage').fullpage();
+		$(MAIN).fullpage();
 
 		/*-- short longe text and replace whit ellipsis --*/
-        createEllipsis('.service-body');
+        createEllipsis('.waw-main-body');
 		$.fn.fullpage.destroy('all');
 
 		/*-- fullpage instance & config --*/
-		$('#fullpage').fullpage({
-//			'#1e6f63', '#fff',
+		$(MAIN).fullpage({
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
@@ -555,12 +504,12 @@
                 if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
 					return false;
             },
-//			afterLoad: function (k, index) {
-//				var $nav = $('#fp-nav');
-//
-//				if (index === 1) $nav.hide();
-//				else $nav.show();
-//			}
+			afterLoad: function (k, index) {
+				var $nav = $('#fp-nav');
+
+				if (index === 1) $nav.hide();
+				else $nav.show();
+			}
 		});
 
 		/*-- camnera instace xs && config --*/
@@ -577,7 +526,6 @@
 		});
 
 		/*-- flipCarousel instance XS & config --*/
-		$('.flip-img').flipcarousel.destroy();
 		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
 
 		/*-- to disabled #send button --*/
@@ -620,22 +568,84 @@
 
 	}
 
-	function viewXs() {
-		if (window.innerWidth < 768 && !$('body').attr('class')) {
+	function templateTabAndDesktop() {
+	/*---------- header controller ----------*/
 
-			$('#fullpage').load("xs.html", templateXs);
+		/*-- camera instance & config --*/
+		$('.camera_wrap').camera({
+			height: '40%',
+			thumbnails: true
+		});
 
-		} else if (window.innerWidth >= 768 && $('body').attr('class')) {
-			$('#fullpage').children().detach();
+		/*-- remove the focus to the tags "a" --*/
+		$('.nav-pills > li > a').focus(function () { $(this).blur(); });
+
+		/*-- slide scroll to href --*/
+		$('a[href*="#"]').click(slideScrollAnimation);
+
+
+	/*--------- services controller ---------*/
+
+		/*-- flipCarousel instance & config --*/
+		$('.flip-img').flipcarousel();
+
+	/*--------- contactUS controller --------*/
+
+		/*-- disabled #send button --*/
+		$(BTN_SEND).prop('disabled', true);
+
+		/* send mail onclick event */
+		$(BTN_SEND).click(sendEmail);
+
+		/*-- input animation onfocusIn event --*/
+		$(FORM_CONTROL).focusin(function () {
+			var $this = $(this);
+
+			$this.addClass("active");
+			$this.siblings('label').addClass("active");
+		});
+
+		/*-- input animation onfocusOut event --*/
+		$(FORM_CONTROL).focusout(function () {
+			var $this = $(this);
+
+			if (!$this.val().trim()) {
+				$this.removeClass("active");
+				$this.siblings('label').removeClass("active");
+			}
+		});
+
+		/*-- input validation onkeyUp event --*/
+		$(FORM_CONTROL).on('keyup change', validateInput);
+
+	/*----- button.backTop onclick event -----*/
+		$('.backTop').click(function () { $htmlBody.animate({ scrollTop: 0 }); });
+	}
+
+/*------------- constructor --------------*/
+	function loadingView(vw) {
+		if (vw < 768 && !$('body').attr('class')) {
+			$(MAIN).load("partials/mobile.html", templateXs);
+		}
+
+		if (vw < 768 && $('body').attr('class')) {
+			$.fn.fullpage.reBuild();
+		}
+
+		if (vw >= 768 && !$('body').attr('class')) {
+			$(MAIN).load("partials/desktop.html", templateTabAndDesktop);
+		}
+
+		if (vw >= 768 && $('body').attr('class')) {
+			$(MAIN).html("");
 			$.fn.fullpage.destroy("all");
 			$('body').removeAttr('class');
 
-			$('.flip-img-xs').flipcarousel.destroy();
-			$('.flip-img').flipcarousel();
+			$(MAIN).load("partials/desktop.html", templateTabAndDesktop);
 
-		} else if (window.innerWidth < 768 && $('body').attr('class')) {
-			$.fn.fullpage.reBuild();
 		}
+
+
 	}
 
 })(jQuery, window);
