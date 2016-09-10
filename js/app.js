@@ -488,7 +488,7 @@
 		$(MAIN).fullpage();
 
 		/*-- short longe text and replace whit ellipsis --*/
-        createEllipsis('.waw-main-body');
+        createEllipsis('.xs-body');
 		$.fn.fullpage.destroy('all');
 
 		/*-- fullpage instance & config --*/
