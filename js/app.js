@@ -6,16 +6,18 @@
 	'use strict';
 
 /*---- global variables & constants ----*/
-	var FORM_CONTROL = '.form-control',
-		BTN_SEND = '#send',
-		MAIN = '#main-wrapper',
-		REGEX_NAME = /^[a-zA-Z0-9 ñáéíóú]*$/,
-		REGEX_MAIL = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-		FORM_XS = '#contact-form',
+	var REGEX_NAME    = /^[a-zA-Z0-9 ñáéíóú]*$/,
+		REGEX_MAIL    = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+		FORM_CONTROL  = '.form-control',
+		BTN_SEND      = '#send',
+		MAIN          = '#main-wrapper',
+		MOBILE_TITLE  = '.xs-title',
+		MOBILE_BODY   = '.xs-body',
+		FORM_XS       = '#contact-form',
 		FORM_FOCUSOUT = "contact-form",
-		FORM_FOCUSIN = "contact-form-focus",
-		FORM_HIDE = "hidden",
-		$htmlBody = $('html, body');
+		FORM_FOCUSIN  = "contact-form-focus",
+		FORM_HIDE     = "hidden",
+		$htmlBody     = $('html, body');
 
 
 /*---- document ready & window resize ----*/
@@ -25,7 +27,6 @@
 		loadingView(window.innerWidth);
 		setTimeout(activeAnimations, 2000);
 		contactUsInSm();
-        Hyphenator.run();
 
 	});
 
@@ -33,7 +34,6 @@
 
 		loadingView(window.innerWidth);
 		contactUsInSm();
-        Hyphenator.run();
 
 	});
 
@@ -442,7 +442,6 @@
         function replaceText($parent) {
             if ($text.length > 0) {
 				text = $text.text();
-				console.log($text)
 
                 while ($text[0].scrollHeight > containerHeight) {
                     $text.text(function (index, text) {
@@ -490,8 +489,13 @@
 
 		$(MAIN).fullpage();
 
+		$(MOBILE_BODY).find('p').addClass("hyphenate");
+
+		/*-- hyphenate words --*/
+		Hyphenator.run();
+
 		/*-- short longe text and replace whit ellipsis --*/
-        createEllipsis('.xs-body');
+        createEllipsis(MOBILE_BODY);
 		$.fn.fullpage.destroy('all');
 
 		/*-- fullpage instance & config --*/
