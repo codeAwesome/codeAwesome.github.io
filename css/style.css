@@ -111,7 +111,6 @@ header {
 .nav-pills > li > a {
 	border-radius: 0px;
 	color: #fff;
-	margin: 0px;
 	font-size: 24px;
 	padding: 33px;
 }
@@ -155,7 +154,6 @@ section {
 }
 
 #whoAreWe {
-	background: #fff;
 	padding-top: 40px;
 	padding-bottom: 40px;
 	margin: 0px;
@@ -175,19 +173,19 @@ section {
 .section-title {
 	font-size: 4em;
 	margin-top: 10px;
-	vertical-align: top;
     font-weight: bold;
     display: inline-block;
+    vertical-align: top;
 }
 
 .section-desciption {
 	margin-top: 30px;
 	text-indent: 3em;
-	font-size: 1.5em;
 	line-height: 28px;
 	color: #838383;
 	text-align: justify;
     margin-bottom: 20px;
+    font-size: 1.5em;
 }
 
 .photo-developer {
