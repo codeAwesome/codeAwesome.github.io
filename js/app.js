@@ -5,39 +5,60 @@
 (function ($, window) {
 	'use strict';
 
-/*---- global variables & constants ----*/
-	var REGEX_NAME    = /^[a-zA-Z0-9 ñáéíóú]*$/,
-		REGEX_MAIL    = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-		FORM_CONTROL  = '.form-control',
-		BTN_SEND      = '#send',
-		MAIN          = '#main-wrapper',
-		MOBILE_TITLE  = '.xs-title',
-		MOBILE_BODY   = '.xs-body',
-		FORM_XS       = '#contact-form',
-		FORM_FOCUSOUT = "contact-form",
-		FORM_FOCUSIN  = "contact-form-focus",
-		FORM_HIDE     = "hidden",
-		$htmlBody     = $('html, body');
+/*----------- global constants -----------*/
+	var REGEX_NAME     = /^[a-zA-Z0-9 ñáéíóú]*$/,
+		REGEX_MAIL     = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+		FORM_CONTROL   = '.form-control',
+		BTN_SEND       = '#send',
+		MAIN           = '#main-wrapper',
+		MOBILE_TITLE   = '.xs-title',
+		MOBILE_BODY    = '.xs-body',
+		FORM_XS        = '#contact-form',
+		FORM_FOCUSOUT  = "contact-form",
+		FORM_FOCUSIN   = "contact-form-focus",
+		FORM_HIDE      = "hidden",
+		URL_DESKTOP    = "partials/desktop.html",
+		URL_MOBILE     = "partials/mobile.html",
+		$htmlBody      = $('html, body'),
+		$main          = $(MAIN),
+		fullpageConfig = {
+			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
+			scrollingSpeed: 1000,
+			navigation: true,
+			navigationPosition: 'right',
+			continuousVertical: false,
+			slidesNavigation: true,
+			controlArrows: false,
+			onLeave: function (index, nextIndex, direction) {
+				if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
+					return false;
+			},
+			afterLoad: function (k, index) {
+				var $nav = $('#fp-nav');
 
+				if (index === 1)
+					$nav.hide();
+				else
+					$nav.show();
+			}
+		};
 
 /*---- document ready & window resize ----*/
 
 	$(document).ready(function () {
+		/*-- hyphenate words --*/
+		Hyphenator.run();
 
+		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
-		setTimeout(activeAnimations, 2000);
-		contactUsInSm();
-
 	});
 
 	$(window).resize(function () {
-
+		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
-		contactUsInSm();
-
 	});
 
-/*-------------- functions ---------------*/
+/*-------------- functions ----------------*/
 	function slideScrollAnimation() {
 
 		if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") &&
@@ -69,7 +90,7 @@
         });
     }
 
-	function activeAnimations() {
+	function activateAnimations() {
 
 		/*-- backTop --*/
 		$('header .main-container').waypoint(function (direction) {
@@ -122,7 +143,28 @@
 		animationIn('.contact-method:eq(1)', "rollIn", '80%');
 	}
 
-	function formValid(form) {
+	function activateSmForm(vw) {
+		var contactWrapper = '.contact-method',
+			pleaceholder = $(FORM_CONTROL, contactWrapper).attr('placeholder');
+
+		if ((vw >= 768 && vw <= 991) && typeof pleaceholder === 'undefined') {
+
+            $(FORM_CONTROL, contactWrapper).eq(0).attr('placeholder', "Nombre");
+            $(FORM_CONTROL, contactWrapper).eq(1).attr('placeholder', "Correo");
+            $(FORM_CONTROL, contactWrapper).eq(2).attr('placeholder', "Mensaje");
+            $('ul.contact', contactWrapper).addClass("row");
+            $('ul.contact li', contactWrapper).addClass("col-sm-3");
+
+        } else if (vw > 991 && typeof pleaceholder !== 'undefined') {
+
+            $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
+            $('ul.contact', contactWrapper).removeClass("row");
+            $('ul.contact li', contactWrapper).removeClass();
+
+		}
+	}
+
+	function validateForm(form) {
 		var valid = true;
 
 		$(FORM_CONTROL, form).each(function () {
@@ -154,7 +196,7 @@
 		$nodo.addClass("valid");
 		$label.addClass("valid");
 
-		if (formValid(form))
+		if (validateForm(form))
 			$(BTN_SEND, form).prop('disabled', false);
 
 		return true;
@@ -170,7 +212,7 @@
 			$(nodo).blur();
 		});
 
-		if (valid && formValid(form)) {
+		if (valid && validateForm(form)) {
 
 			$.ajax({
 				url: "https://formspree.io/codeawesomepro@gmail.com",
@@ -215,43 +257,29 @@
 
 		return false;
 	}
-	
-	function contactUsInSm() {
-        if (window.innerWidth >= 768 && window.innerWidth < 992) {
-            $('.contact-method .form-control:eq(0)').attr('placeholder', "Nombre");
-            $('.contact-method .form-control:eq(1)').attr('placeholder', "Correo");
-            $('.contact-method .form-control:eq(2)').attr('placeholder', "Mensaje");
-            $('.contact-method ul.contact').addClass("row");
-            $('.contact-method ul.contact li').addClass("col-sm-3");
-        } else {
-            $('.contact-method .form-control').attr('placeholder', "");
-            $('.contact-method ul.contact').removeClass("row");
-            $('.contact-method ul.contact li').removeClass();
-        }
-    }
-    
+
 	function runIntructions() {
         /** elements of DOM **/
-        var $nav=$('#fp-nav'),
-            $containerButton=$('.container-button'),
-            $buttonIgnore=$('.button-ingore-instruccions'),
-            $inMove=$('.in-move'),
-            $firstTextIndication=$('.animation > .description > .text-indication.animated'),
-            $firstDescription=$('.animation > .description:eq(0)'),
-            $seccondDescription=$('.animation > .description:eq(1)'),
-            $divAnimation=$('.animation'),
-            $hand=$('i.fa-hand-pointer-o:eq(0)'),
+        var $nav = $('#fp-nav'),
+            $containerButton = $('.container-button'),
+            $buttonIgnore = $('.button-ingore-instruccions'),
+            $inMove = $('.in-move'),
+            $firstTextIndication = $('.animation > .description > .text-indication.animated'),
+            $firstDescription = $('.animation > .description:eq(0)'),
+            $seccondDescription = $('.animation > .description:eq(1)'),
+            $divAnimation = $('.animation'),
+            $hand = $('i.fa-hand-pointer-o:eq(0)'),
         /** class of animations**/
-            MOVE_UP_DOWN="in-move-up-down",
-            ANIMATION_TEXT_RIGHT_LEFT="text-right-left",
-            ANIMATION_TEXT_RIGHT_LEFT_2="text-right-left-2",
-            CATEDBLUE_COLOR="catedblue",
-            ANIMATION_HAND_LEFT_RIGHT="hand-left-right",
-            ANIMATION_FADE_OUT="fadeOut",
-            ANIMATION_FADE_IN="fadeIn",
-            ANIMATION_HAND_DOWN_UP="hand-down-up",
-            ANIMATION_HAND_UP_DOWN="hand-up-down",
-            ANIMATION_HAND_RIGHT_LEFT="hand-right-left"
+            MOVE_UP_DOWN = "in-move-up-down",
+            ANIMATION_TEXT_RIGHT_LEFT = "text-right-left",
+            ANIMATION_TEXT_RIGHT_LEFT_2 = "text-right-left-2",
+            CATEDBLUE_COLOR = "catedblue",
+            ANIMATION_HAND_LEFT_RIGHT = "hand-left-right",
+            ANIMATION_FADE_OUT = "fadeOut",
+            ANIMATION_FADE_IN = "fadeIn",
+            ANIMATION_HAND_DOWN_UP = "hand-down-up",
+            ANIMATION_HAND_UP_DOWN = "hand-up-down",
+            ANIMATION_HAND_RIGHT_LEFT = "hand-right-left";
 
         $nav.hide();
 
@@ -451,8 +479,8 @@
 
 				newText = $text.text();
 
-				if (text.length > newText.length ) {
-					text = text.substring(newText.length-3);
+				if (text.length > newText.length) {
+					text = text.substring(newText.length - 3);
 					$parent.parent().parent().after(
 						'<div class="slide">\
 							<div class="container">\
@@ -484,61 +512,34 @@
 
     }
 
-/*-------------- templates ---------------*/
-	function templateXs() {
+/*--------- Controller templates ----------*/
+	function mobileCtrl() {
+		/*-- initialize fullpage --*/
+		$(MAIN).fullpage(fullpageConfig);
 
-		$(MAIN).fullpage();
-
+		/*-- asign the class "hyphenate" to all elements "p" into the ".xs-body" elements --*/
 		$(MOBILE_BODY).find('p').addClass("hyphenate");
-
-		/*-- hyphenate words --*/
-		Hyphenator.run();
-
-		/*-- short longe text and replace whit ellipsis --*/
-        createEllipsis(MOBILE_BODY);
-		$.fn.fullpage.destroy('all');
-
-		/*-- fullpage instance & config --*/
-		$(MAIN).fullpage({
-			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
-			scrollingSpeed: 1000,
-			navigation: true,
-			navigationPosition: 'right',
-			continuousVertical: false,
-			slidesNavigation: true,
-			controlArrows: false,
-            onLeave: function (index, nextIndex, direction) {
-                if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
-					return false;
-            },
-			afterLoad: function (k, index) {
-				var $nav = $('#fp-nav');
-
-				if (index === 1) $nav.hide();
-				else $nav.show();
-			}
-		});
 
 		/*-- camnera instace xs && config --*/
 		$('#camera-xs').camera({height: '40%'});
 
-		/*-- to execute "intructions" animation --*/
+		/*-- execute "intructions" animation --*/
         runIntructions();
 
-		/*-- header nav for move to slide --*/
+		/*-- move to slide selected onclick header nav tag --*/
 		$('li', '#menu-xs').click(function () {
 			var index = $(this).index() + 2;
 
 			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
 		});
 
-		/*-- flipCarousel instance XS & config --*/
+		/*-- flipCarousel instance & config --*/
 		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
 
-		/*-- to disabled #send button --*/
+		/*-- disable #send button --*/
 		$(BTN_SEND, FORM_XS).prop('disabled', true);
 
-		/*-- to active form --*/
+		/*-- activate form --*/
 		$(FORM_CONTROL, FORM_XS).focusin(function () {
 			$(FORM_XS)
 				.removeClass(FORM_FOCUSOUT)
@@ -549,16 +550,16 @@
 			$.fn.fullpage.setAllowScrolling(false);
 		});
 
-		/*-- to unactive form --*/
+		/*-- deactivate form --*/
 		$(FORM_CONTROL, FORM_XS).focusout(onFocusOut);
 
-		/*-- to validate form --*/
+		/*-- validate form --*/
 		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
 
 		/*-- send form --*/
 		$(BTN_SEND, FORM_XS).touchend(sendEmail);
 
-		/*-- unactive form function --*/
+		/*-- deactivate form function --*/
 		function onFocusOut() {
 			$(FORM_XS)
 				.removeClass(FORM_FOCUSIN)
@@ -575,7 +576,13 @@
 
 	}
 
-	function templateTabAndDesktop() {
+	function tabAndDesktopCtrl() {
+	/*--------- activate animations ---------*/
+		setTimeout(activateAnimations, 2000);
+
+	/*-- activate tablet styles for contactUS --*/
+		activateSmForm(window.innerWidth);
+
 	/*---------- header controller ----------*/
 
 		/*-- camera instance & config --*/
@@ -584,12 +591,11 @@
 			thumbnails: true
 		});
 
-		/*-- remove the focus to the tags "a" --*/
+		/*-- remove the focus to the "a" tags --*/
 		$('.nav-pills > li > a').focus(function () { $(this).blur(); });
 
-		/*-- slide scroll to href --*/
+		/*-- slide scroll toward workshop selected --*/
 		$('a[href*="#"]').click(slideScrollAnimation);
-
 
 	/*--------- services controller ---------*/
 
@@ -598,13 +604,13 @@
 
 	/*--------- contactUS controller --------*/
 
-		/*-- disabled #send button --*/
+		/*-- disable #send button --*/
 		$(BTN_SEND).prop('disabled', true);
 
 		/* send mail onclick event */
 		$(BTN_SEND).click(sendEmail);
 
-		/*-- input animation onfocusIn event --*/
+		/*-- activate input animation onfocusIn event --*/
 		$(FORM_CONTROL).focusin(function () {
 			var $this = $(this);
 
@@ -612,7 +618,7 @@
 			$this.siblings('label').addClass("active");
 		});
 
-		/*-- input animation onfocusOut event --*/
+		/*-- activate input animation onfocusOut event --*/
 		$(FORM_CONTROL).focusout(function () {
 			var $this = $(this);
 
@@ -622,36 +628,53 @@
 			}
 		});
 
-		/*-- input validation onkeyUp event --*/
+		/*-- validate inputs onkeyUp event --*/
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
 	/*----- button.backTop onclick event -----*/
 		$('.backTop').click(function () { $htmlBody.animate({ scrollTop: 0 }); });
 	}
 
-/*------------- constructor --------------*/
+/*--------------- builder -----------------*/
 	function loadingView(vw) {
-		if (vw < 768 && !$('body').attr('class')) {
-			$(MAIN).load("partials/mobile.html", templateXs);
+		var hasClass = $htmlBody.attr('class');
+
+		/*-- loading mobile template & controller --*/
+		if (vw < 768 && !hasClass) {
+			window.onload = function () {
+				/*-- short longe text and replace whit ellipsis --*/
+				createEllipsis(MOBILE_BODY);
+
+				/*-- destroy fullpage instance --*/
+				$.fn.fullpage.destroy('all');
+
+				/*-- crate a new fullpage instance & config --*/
+				$(MAIN).fullpage(fullpageConfig);
+			};
+
+			$main.load(URL_MOBILE, mobileCtrl);
 		}
 
-		if (vw < 768 && $('body').attr('class')) {
+		/*-- re-build fullpage onWindowResize event --*/
+		if (vw < 768 && hasClass) {
 			$.fn.fullpage.reBuild();
 		}
 
-		if (vw >= 768 && !$('body').attr('class')) {
-			$(MAIN).load("partials/desktop.html", templateTabAndDesktop);
+		/*-- loading tabAndDesktop template & controller --*/
+		if (vw >= 768 && !hasClass && !$main.html()) {
+			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
 		}
 
-		if (vw >= 768 && $('body').attr('class')) {
-			$(MAIN).html("");
+		/*-- destroy mobile tamplate and loading tabAndDesktop template onWindowResize event --*/
+		if (vw >= 768 && hasClass) {
+			$main.html("");
 			$.fn.fullpage.destroy("all");
-			$('body').removeAttr('class');
-
-			$(MAIN).load("partials/desktop.html", templateTabAndDesktop);
-
+			$htmlBody.removeAttr('style class');
+			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
 		}
 
+		/*-- activate tablet styles for contactUS --*/
+		activateSmForm(vw);
 	}
 
 })(jQuery, window);
