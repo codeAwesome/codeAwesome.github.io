@@ -72,8 +72,7 @@
 			if ($target.length) {
 
 				targetOffset = $target.offset().top;
-
-				$htmlBody.animate({scrollTop: targetOffset}, 1000);
+				$htmlBody.animate({scrollTop: targetOffset}, targetOffset*1.63);
 
 				return false;
 			}
@@ -577,6 +576,10 @@
 	}
 
 	function tabAndDesktopCtrl() {
+        
+    /*-- asign the class "hyphenate" to all elements "p" --*/
+		$('p').addClass("hyphenate");
+        
 	/*--------- activate animations ---------*/
 		setTimeout(activateAnimations, 2000);
 
@@ -632,7 +635,7 @@
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
 	/*----- button.backTop onclick event -----*/
-		$('.backTop').click(function () { $htmlBody.animate({ scrollTop: 0 }); });
+		$('.backTop').click(function () {$htmlBody.animate({ scrollTop: 0 }, $(this).offset().top*0.97); });
 	}
 
 /*--------------- builder -----------------*/
