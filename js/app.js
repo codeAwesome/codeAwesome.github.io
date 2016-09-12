@@ -22,6 +22,7 @@
 		$htmlBody      = $('html, body'),
 		$main          = $(MAIN),
 		fullpageConfig = {
+			//
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
