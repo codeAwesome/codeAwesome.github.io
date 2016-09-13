@@ -275,6 +275,10 @@
 	#header {
 		color: #fff;
 		text-align: center;
+        background-image: url('../pic/building.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
 	}
 
 	.header-title {
@@ -298,17 +302,52 @@
 		margin-bottom: 1vh;
 	}
 
-	.tutorial {
-		position: absolute;
-		display: block;
-		height: 46vh;
-		width: 100%;
-		left: 0px;
-	}
+    .slides-pagination a {
+        width: 15px;
+        height: 15px;
+        margin: 5px 2px;
+        border-color: white;
+        -webkit-box-shadow: 0 1px 2px black;
+        -moz-box-shadow: 0 1px 2px black;
+        box-shadow: 0 1px 1px black;
+    }
 
-	.tutorial h4 {
-		font-size: 14px;
-	}
+    .slides-pagination a.current {
+        background-color: white;
+    }
+
+
+    .slides-container > li > div.container{
+        padding: 5px 20px;
+    }
+
+
+    .slides-container > li > div.container > h1, .slides-container > li > div.container > .contrast > p {
+        text-align: left;
+        color: white;
+    }
+
+    .slides-container > li > div.container > h1{
+        font-size: 36px;
+        margin-top: 15vh;
+        font-weight: 300;
+    }
+
+    .slides-container > li > div.container > .contrast{
+        margin-top: 3vh;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1px 10px;
+        -webkit-box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
+        border-radius: 3px;
+    }
+
+    .slides-container > li > div.container > .contrast > p{
+        text-shadow: 0 1px 1px #555;
+        text-indent: 0;
+        font-size: 18px;
+    }
 
 	#menu-xs {
 		display: block;
@@ -320,6 +359,7 @@
 		list-style: none;
 		padding: 0px;
 		margin: 0px;
+        z-index: 3;
 	}
 
 	#menu-xs li {
@@ -812,6 +852,7 @@
         left: 0;
         padding-left: 10%;
         padding-right: 10%;
+        z-index: 3;
     }
 
     .instruccions .fa-hand-pointer-o{

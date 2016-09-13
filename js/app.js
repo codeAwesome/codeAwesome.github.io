@@ -286,6 +286,7 @@
                 $('.instruccions').addClass(ANIMATION_FADE_OUT);
                 $('#menu-xs').removeClass(FORM_HIDE);
                 $nav.show();
+                $('#slides').superslides({'play':7000});
             }, 200);
         });
 
