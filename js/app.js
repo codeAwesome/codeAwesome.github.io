@@ -649,6 +649,8 @@
 				/*-- short longe text and replace whit ellipsis --*/
 				createEllipsis(MOBILE_BODY);
 
+                alert("hola")
+
 				/*-- destroy fullpage instance --*/
 				$.fn.fullpage.destroy('all');
 
