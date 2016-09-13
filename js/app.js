@@ -48,7 +48,7 @@
 
 	$(document).ready(function () {
 		/*-- hyphenate words --*/
-		Hyphenator.run();
+		//Hyphenator.run();
 
 		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
@@ -579,7 +579,7 @@
 	function tabAndDesktopCtrl() {
         
     /*-- asign the class "hyphenate" to all elements "p" --*/
-		$('p').addClass("hyphenate");
+		$('p').hyphenate('es');
         
 	/*--------- activate animations ---------*/
 		setTimeout(activateAnimations, 2000);
