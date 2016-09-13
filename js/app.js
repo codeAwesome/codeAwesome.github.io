@@ -47,9 +47,6 @@
 /*---- document ready & window resize ----*/
 
 	$(document).ready(function () {
-		/*-- hyphenate words --*/
-		//Hyphenator.run();
-
 		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
 	});
@@ -518,10 +515,15 @@
 		$(MAIN).fullpage(fullpageConfig);
 
 		/*-- asign the class "hyphenate" to all elements "p" into the ".xs-body" elements --*/
-		$(MOBILE_BODY).find('p').addClass("hyphenate");
+        $(MOBILE_BODY).find('p').hyphenate('es');
 
-		/*-- camnera instace xs && config --*/
-		$('#camera-xs').camera({height: '40%'});
+		createEllipsis(MOBILE_BODY);
+
+        /*-- destroy fullpage instance --*/
+        $.fn.fullpage.destroy('all');
+
+        /*-- crate a new fullpage instance & config --*/
+        $(MAIN).fullpage(fullpageConfig);
 
 		/*-- execute "intructions" animation --*/
         runIntructions();
@@ -645,19 +647,6 @@
 
 		/*-- loading mobile template & controller --*/
 		if (vw < 768 && !hasClass) {
-			window.onload = function () {
-				/*-- short longe text and replace whit ellipsis --*/
-				createEllipsis(MOBILE_BODY);
-
-                alert("hola")
-
-				/*-- destroy fullpage instance --*/
-				$.fn.fullpage.destroy('all');
-
-				/*-- crate a new fullpage instance & config --*/
-				$(MAIN).fullpage(fullpageConfig);
-			};
-
 			$main.load(URL_MOBILE, mobileCtrl);
 		}
 
