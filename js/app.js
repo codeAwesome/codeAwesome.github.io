@@ -594,7 +594,8 @@
 		/*-- camera instance & config --*/
 		$('.camera_wrap').camera({
 			height: '40%',
-			thumbnails: true
+			thumbnails: true,
+            fx: 'simpleFade'
 		});
 
 		/*-- remove the focus to the "a" tags --*/
