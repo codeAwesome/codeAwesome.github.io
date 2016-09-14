@@ -290,40 +290,40 @@
             }, 200);
         });
 
-		setTimeout(animation, 3300);
+		setTimeout(animation, 5000);
 
 
         /** Evento para repetir las instrucciones**/
         $('.review-instruccions').touchend(function () {
-            setTimeout(function () {
-                /* inicializacion de los elementos a como estaban antes de ejecutarse la animacion*/
-                $containerButton.addClass(FORM_HIDE);
-
-                $buttonIgnore.show();
-
-                $inMove
-                    .css({'width': '100%', 'height': '0vh'})
-                    .removeClass(MOVE_UP_DOWN);
-
-                $firstTextIndication
-                    .html("Deslice verticalmente para cambiar de sección")
-                    .css('color', 'black');
-
-                $firstDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT);
-                $seccondDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT_2);
-
-                $divAnimation
-                    .removeClass(CATEDBLUE_COLOR)
-                    .show();
-
-                $hand
-                    .css({'bottom': '40vh', 'right': '10vh'})
-                    .addClass(FORM_HIDE)
-                    .removeClass(ANIMATION_HAND_LEFT_RIGHT);
-
-                /** se llama nuevamente a la animacion **/
-                setTimeout(animation, 3300);
-            }, 200);
+//            setTimeout(function () {
+//                /* inicializacion de los elementos a como estaban antes de ejecutarse la animacion*/
+//                $containerButton.addClass(FORM_HIDE);
+//
+//                $buttonIgnore.show();
+//
+//                $inMove
+//                    .css({'width': '100%', 'height': '0vh'})
+//                    .removeClass(MOVE_UP_DOWN);
+//
+//                $firstTextIndication
+//                    .html("Deslice verticalmente para cambiar de sección")
+//                    .css('color', 'black');
+//
+//                $firstDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT);
+//                $seccondDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT_2);
+//
+//                $divAnimation
+//                    .removeClass(CATEDBLUE_COLOR)
+//                    .show();
+//
+//                $hand
+//                    .css({'bottom': '40vh', 'right': '10vh'})
+//                    .addClass(FORM_HIDE)
+//                    .removeClass(ANIMATION_HAND_LEFT_RIGHT);
+//
+//                /** se llama nuevamente a la animacion **/
+//                setTimeout(animation, 3300);
+//            }, 200);
         });
 
         /** cambia propiedades del texto q se muestra al inicio de la animacion **/
@@ -336,125 +336,18 @@
 
         /*-- create animation --*/
         function animation() {
-            /** muestra el texto inicial con animacion de entrada y salida **/
-            $firstTextIndication
-                .removeClass(ANIMATION_FADE_IN)
-                .addClass(ANIMATION_FADE_OUT);
-
-            /** setTimeout de 1700ms para darle tiempo de que termine la animacion del texto**/
-            setTimeout(function () {
-
-                /** cambia propiedades del texto inicial **/
-                changeTextIndication();
-
-                /** cambia el background del div .animation**/
-                $divAnimation.addClass(CATEDBLUE_COLOR);
-
-                /** activa animacion de la mano de abajo hacia arriba**/
-                $hand
-                    .removeClass(FORM_HIDE)
-                    .addClass(ANIMATION_HAND_DOWN_UP);
-
-                /** setTimeout de 700ms para darle tiempo de que termine la animacion de la mano**/
-                setTimeout(function () {
-
-                    /** activa animacion del div .in-move que esta dentro del div .animation:
-                        * el div .in-move tiene bottom 0
-                        * en la animacion se va aumentando su height hasta que el div padre .animation ya no es visible
-                        *una vez que esta en su altura maxima se detiene un momento
-                        *luego vuelve a tener de altura 0vh haciendo invisible otra vez y haciendose visible nuevamente su div padre .animation
-                    **/
-                    $inMove
-                        .addClass(MOVE_UP_DOWN);
-
-                    /** setTimeout de 4000ms para darle tiempo de que la animacion del .in-move vaya por la mitad justo cuando .in-move alcanza su altura maxima **/
-                    setTimeout(function () {
-
-                        /** activa animacion de la mano de arriba hacia abajo se ejecuta a mitad de animacion .in-move**/
-                        $hand
-                            .css('bottom', '67vh')
-                            .removeClass(ANIMATION_HAND_DOWN_UP)
-                            .addClass(ANIMATION_HAND_UP_DOWN);
-
-                        /** setTimeout de 5000ms para darle tiempo de que la animacion del .in-move haya finalizado **/
-                        setTimeout(function () {
-
-                            /** cambio de background de .animation pasa de catedblue a white **/
-                            $divAnimation.removeClass(CATEDBLUE_COLOR);
-
-                            /** cambio de propiedades del texto inicial y activacion de animacion de entrada **/
-                            $firstTextIndication
-                                .css('color', 'black')
-                                .addClass(ANIMATION_FADE_IN)
-                                .html("Deslice horizontalmente para moverse dentro de una sección");
-
-                            /** setTimeout de 2300ms para darle tiempo de que el usuario note la animacion de entrada y lea la indicacion**/
-                            setTimeout(function () {
-
-                                /** activacion de animacion de salida para texto inicial **/
-                                $firstTextIndication
-                                    .removeClass(ANIMATION_FADE_IN)
-                                    .addClass(ANIMATION_FADE_OUT);
-
-                                /** setTimeout de 1400ms para darle tiempo de que termine la animacion de salida del texto**/
-                                setTimeout(function () {
-                                    /** Cambia propiedades del texto inicial**/
-                                    changeTextIndication();
-
-                                    /** cambio del background del div .animation pada de blanco a catedblue **/
-                                    $divAnimation.addClass(CATEDBLUE_COLOR);
-
-                                    /** activa animacion de movimiento de mano de derecha a izquierda **/
-                                    $hand
-                                        .css({'bottom': '40vh', 'right': '10vh'})
-                                        .removeClass(ANIMATION_HAND_UP_DOWN)
-                                        .addClass(ANIMATION_HAND_RIGHT_LEFT);
-
-                                    /** setTimeout de 700ms para darle tiempo de que termine la animacion de la mano**/
-                                    setTimeout(function () {
-
-                                        /** activa animacion de los dos div .description:
-										*	dentro del div .animation hay dos div .description que son hijos directos, estos div tienen textos de indicaciones.
-										*	ambos tienen posicion absoluta para que solo se mostrara uno de ellos, al segundo inicialmente se le asigna un margin-left de 80% puesto que .animation tiene overflow hidden $seccondDescription hasta el momento permanece oculto
-										*	$firstDescription que es el primer div .description es el que tiene el texto 'Sección 1.1' y $seccondDescription tiene el texto 'Sección 1.2'
-										*	al agregar la clase de animacion a $firstDescription este pasa de estar visible con un margin-left de 0% a estar invisible con un margin-left de -80% desplazandose asi de derecha a izquierda.
-										*	al agregar la clase de animacion a $seccondDescription este pasa de estar invisible con un margin-left de 80% a estar visible con un margin-left de 0% desplazandose asi de derecha a izquierda.
-										*	ambas animaciones ocurren simultaneamente
-										*	una vez que las animaciones van por la mitad ya cuando $firstDescription tiene un margin-left de -80% y $seccondDescription uno de 0% ambos se detienen un momento corto
-										*	luego ambos vuelven a sus estados iniciales es decir $firstDescription llega a tener margin-left de 0% y $seccondDescription margin-left de 80% haciendo asi un desplazamiento de izquierda a derecha
-                                        */
-                                        $firstDescription.addClass(ANIMATION_TEXT_RIGHT_LEFT);
-                                        $seccondDescription.addClass(ANIMATION_TEXT_RIGHT_LEFT_2);
-                                        /** setTimeout de 4000ms para darle tiempo de que la animacion de los .description vaya por la mitad**/
-                                        setTimeout(function () {
-
-                                            /** activa animacion de la mano de izquierda a derecha justo cuando la animacion de los .description va por la mitad es decir cuando $firstDescription tiene un margin-left de -80% y $seccondDescription un margin-left de 0%**/
-                                            $hand
-                                                .css('right', '40vh')
-                                                .removeClass(ANIMATION_HAND_RIGHT_LEFT)
-                                                .addClass(ANIMATION_HAND_LEFT_RIGHT);
-
-                                            /** setTimeout de 4000ms para darle tiempo de que la animacion de los .description termine**/
-                                            setTimeout(function () {
-
-                                                /** oculta el div .animation **/
-                                                $divAnimation.hide();
-
-                                                /** muestra los botones repetir y continuar **/
-                                                $containerButton.removeClass(FORM_HIDE);
-
-                                                /** oculta boton de saltar animacion **/
-                                                $buttonIgnore.hide();
-
-                                            }, 4000);
-                                        }, 4000);
-                                    }, 700);
-                                }, 1400);
-                            }, 2300);
-                        }, 5000);
-                    }, 4000);
-                }, 700);
-            }, 1700);
+            $('.animation, .instruccions h2').animate({'opacity' : 0}, 1000, function(){
+                $('.animation').addClass('horizontal');
+                $('.instruccions h2').html("Delice horizontalmente para moverse dentro de una sección");
+                $('.animation, .instruccions h2').animate({'opacity': 1}, 1000, function(){
+                    setTimeout(function(){
+                        $('.animation').addClass('hidden');
+                        $('.button-ingore-instruccions').addClass('hidden');
+                        $('.instruccions h2').addClass('hidden');
+                        $('.container-button').removeClass('hidden');
+                    }, 5000);
+                });
+            });
         }
 	}
 
