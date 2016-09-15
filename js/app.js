@@ -28,7 +28,9 @@
 			slidesNavigation: true,
 			controlArrows: false,
 			onLeave: function (index, nextIndex, direction) {
-				if (direction === "down" && !$('.instruccions').hasClass("fadeOut")) {
+                var a=123
+				if ($('.instruccions').css('display') != 'none') {
+                    alert("hola")
 					return false;
 				}
 
@@ -74,7 +76,6 @@
 				targetOffset = "";
 
 			$target = ($target.length && $target) || $('[name=' + this.hash.slice(1) + ']');
-            console.log($target);
 			if ($target.length) {
 				targetOffset = $target.offset().top;
                 $('#'+$target[0].id).velocity('scroll', {
@@ -282,9 +283,9 @@
         /** Evento llamado para cerrar las instrucciones **/
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
             setTimeout(function () {
-                $('.instruccions')
-                    .addClass('fadeOut')
-                    .css('display', 'none');
+                $('.instruccions').velocity('transition.fadeOut', {complete : function() {
+                    $(this).css('display', 'none');
+                }});
                 $('#menu-xs').removeClass(FORM_HIDE);
                 $nav.show();
                 /*-- superslides --*/
@@ -298,18 +299,20 @@
             setTimeout(function() {
                 if(!$divAnimation.hasClass(HORIZONTAL_CLASS)) {
                     $buttonIgnoreSeccond.html('Anterior');
-                    $elementsAnimated.animate({'opacity' : 0}, 1000, function(){
-                        $divAnimation.addClass(HORIZONTAL_CLASS);
-                        $description.html("Delice horizontalmente para moverse dentro de una sección");
-                        $elementsAnimated.animate({'opacity': 1}, 1000);
-                    });
+                    $elementsAnimated
+                        .velocity('transition.fadeOut', {complete : function() {
+                            $divAnimation.addClass(HORIZONTAL_CLASS);
+                            $description.html("Delice horizontalmente para moverse dentro de una sección");
+                        }})
+                        .velocity('transition.fadeIn');
                 } else {
                     $buttonIgnoreSeccond.html('Siguiente');
-                    $elementsAnimated.animate({'opacity' : 0}, 1000, function() {
-                        $divAnimation.removeClass(HORIZONTAL_CLASS);
-                        $description.html("Deslice verticalmente para cambiar de sección");
-                        $elementsAnimated.animate({'opacity': 1}, 1000);
-                    });
+                    $elementsAnimated
+                        .velocity('transition.fadeOut', {complete : function() {
+                            $divAnimation.removeClass(HORIZONTAL_CLASS);
+                            $description.html("Deslice verticalmente para cambiar de sección");
+                        }})
+                        .velocity('transition.fadeIn');
                 }
             }, 200);
         });
