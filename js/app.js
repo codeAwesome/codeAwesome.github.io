@@ -74,25 +74,32 @@
 				targetOffset = "";
 
 			$target = ($target.length && $target) || $('[name=' + this.hash.slice(1) + ']');
-
+            console.log($target);
 			if ($target.length) {
-
 				targetOffset = $target.offset().top;
-				$htmlBody.animate({scrollTop: targetOffset}, targetOffset*1.63);
-
-				return false;
-			}
+                $('#'+$target[0].id).velocity('scroll', {
+                    container : $("body"),
+                    duration : targetOffset*1.63});
+			} else {
+                return false;
+            }
 		}
 	}
 
 	function animationIn(element, animation, offset) {
         $(element).waypoint(function () {
-            $(element).toggleClass("animated " + animation);
+            $(element).velocity(animation, {duration:1000});
             this.destroy();
         }, {
             offset: offset,
             triggerOnce: true
         });
+    }
+    
+    function infiniteAnimation(animation, element, duration) {
+        $(element).velocity(animation, {duration : duration, complete : function(){
+            infiniteAnimation(animation, element, duration);
+        }});
     }
 
 	function activateAnimations() {
@@ -100,11 +107,9 @@
 		/*-- backTop --*/
 		$('header .main-container').waypoint(function (direction) {
 			if (direction === "down") {
-				$('.backTop').removeClass("fadeOutDown");
-				$('.backTop').addClass("animated").addClass("fadeInUp");
+                $('.backTop').velocity('transition.slideUpIn');
 			} else {
-				$('.backTop').removeClass("fadeInUp").removeClass("slideInDown");
-				$('.backTop').addClass("animated").addClass("fadeOutDown");
+                $('.backTop').velocity('transition.slideDownOut');
 			}
 		}, {
 			offset: function () {
@@ -115,37 +120,36 @@
 		$('footer:eq(0)').waypoint(function (direction) {
 			if (direction === "down") {
 				$('.backTop').css('bottom', $('footer').outerHeight() + 5);
-                $('.backTop').removeClass("slideInDown").removeClass("fadeInUp");
-                $('.backTop').addClass("slideInUp");
+                $('.backTop').velocity('transition.slideDownIn');
 			} else {
                 $('.backTop').css('bottom', '15px');
-				$('.backTop').removeClass("slideInUp");
-                $('.backTop').addClass("slideInDown");
+				$('.backTop').velocity('transition.slideDownIn');
 			}
 		}, {
 			offset: '95%'
 		});
 
 		/* whoAreWe */
-		animationIn('.vision', "slideInLeft", '60%');
-		animationIn('.mision', "slideInRight", '60%');
-		animationIn('.our-developers .section-subtitle', "fadeInDown", '60%');
-		animationIn('.our-developers .img-circle:eq(0)', "flip", '60%');
-		animationIn('.our-developers .img-circle:eq(1)', "flip", '60%');
-		animationIn('.our-developers .img-description:eq(0)', "flipInX", '80%');
-		animationIn('.our-developers .img-description:eq(1)', "flipInX", '80%');
+		animationIn('.vision', "transition.slideLeftBigIn", '60%');
+		animationIn('.mision', "transition.slideRightBigIn", '60%');
+		animationIn('.our-developers .section-subtitle', "transition.fadeIn", '60%');
+		animationIn('.our-developers .img-circle:eq(0)', "transition.whirlIn", '60%');
+		animationIn('.our-developers .img-circle:eq(1)', "transition.whirlIn", '60%');
+		animationIn('.our-developers .img-description:eq(0)', "transition.flipXIn", '80%');
+		animationIn('.our-developers .img-description:eq(1)', "transition.flipXIn", '80%');
 
 		/* services */
-		animationIn('.title-services', "bounceInLeft", '85%');
-		animationIn('.service-item:eq(0)', "bounceInLeft", '75%');
-		animationIn('.service-item:eq(1)', "zoomInUp", '75%');
-		animationIn('.service-item:eq(2)', "lightSpeedIn", '75%');
-		animationIn('#flip-carousel', "flipInY", '80%');
+		animationIn('.title-services', "transition.bounceLeftIn", '85%');
+		animationIn('.service-item:eq(0)', "transition.bounceLeftIn", '40%');
+		animationIn('.service-item:eq(1)', "transition.expandIn", '40%');
+		animationIn('.service-item:eq(2)', "transition.bounceRightIn", '40%');
+		animationIn('#flip-carousel', "fadeIn", '70%');
+        infiniteAnimation('callout.bounce', '.service-item img.second', 1000);
 
 		/* contactUs */
-		animationIn('#contactUs .text-left', "slideInUp", '75%');
-		animationIn('.contact-method:eq(0)', "rollIn", '80%');
-		animationIn('.contact-method:eq(1)', "rollIn", '80%');
+		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
+		animationIn('.contact-method:eq(0)', "transition.slideLeftBigIn", '80%');
+		animationIn('.contact-method:eq(1)', "transition.slideRightBigIn", '80%');
 	}
 
 	function activateSmForm(vw) {
@@ -266,25 +270,12 @@
 	function runIntructions() {
         /** elements of DOM **/
         var $nav = $('#fp-nav'),
-            $containerButton = $('.container-button'),
-            $buttonIgnore = $('.button-ingore-instruccions'),
-            $inMove = $('.in-move'),
-            $firstTextIndication = $('.animation > .description > .text-indication.animated'),
-            $firstDescription = $('.animation > .description:eq(0)'),
-            $seccondDescription = $('.animation > .description:eq(1)'),
+            $buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
+            $description = $('.instruccions h2'),
             $divAnimation = $('.animation'),
-            $hand = $('i.fa-hand-pointer-o:eq(0)'),
-        /** class of animations**/
-            MOVE_UP_DOWN = "in-move-up-down",
-            ANIMATION_TEXT_RIGHT_LEFT = "text-right-left",
-            ANIMATION_TEXT_RIGHT_LEFT_2 = "text-right-left-2",
-            CATEDBLUE_COLOR = "catedblue",
-            ANIMATION_HAND_LEFT_RIGHT = "hand-left-right",
-            ANIMATION_FADE_OUT = "fadeOut",
-            ANIMATION_FADE_IN = "fadeIn",
-            ANIMATION_HAND_DOWN_UP = "hand-down-up",
-            ANIMATION_HAND_UP_DOWN = "hand-up-down",
-            ANIMATION_HAND_RIGHT_LEFT = "hand-right-left";
+            $elementsAnimated = $('.animation, .instruccions h2'),
+        /** class **/
+            HORIZONTAL_CLASS="horizontal"
 
         $nav.hide();
 
@@ -292,74 +283,36 @@
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
             setTimeout(function () {
                 $('.instruccions')
-                    .addClass(ANIMATION_FADE_OUT)
-                    .css('z-index', '0');
+                    .addClass('fadeOut')
+                    .css('display', 'none');
                 $('#menu-xs').removeClass(FORM_HIDE);
                 $nav.show();
                 /*-- superslides --*/
 		        $('#slides').superslides({'play': 6000});
             }, 200);
         });
-
-		setTimeout(animation, 5000);
-
-
-        /** Evento para repetir las instrucciones**/
-        $('.review-instruccions').touchend(function () {
-//            setTimeout(function () {
-//                /* inicializacion de los elementos a como estaban antes de ejecutarse la animacion*/
-//                $containerButton.addClass(FORM_HIDE);
-//
-//                $buttonIgnore.show();
-//
-//                $inMove
-//                    .css({'width': '100%', 'height': '0vh'})
-//                    .removeClass(MOVE_UP_DOWN);
-//
-//                $firstTextIndication
-//                    .html("Deslice verticalmente para cambiar de sección")
-//                    .css('color', 'black');
-//
-//                $firstDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT);
-//                $seccondDescription.removeClass(ANIMATION_TEXT_RIGHT_LEFT_2);
-//
-//                $divAnimation
-//                    .removeClass(CATEDBLUE_COLOR)
-//                    .show();
-//
-//                $hand
-//                    .css({'bottom': '40vh', 'right': '10vh'})
-//                    .addClass(FORM_HIDE)
-//                    .removeClass(ANIMATION_HAND_LEFT_RIGHT);
-//
-//                /** se llama nuevamente a la animacion **/
-//                setTimeout(animation, 3300);
-//            }, 200);
+        
+        
+        /** cambio de instrucciones **/
+        $buttonIgnoreSeccond.touchend(function() {
+            setTimeout(function() {
+                if(!$divAnimation.hasClass(HORIZONTAL_CLASS)) {
+                    $buttonIgnoreSeccond.html('Anterior');
+                    $elementsAnimated.animate({'opacity' : 0}, 1000, function(){
+                        $divAnimation.addClass(HORIZONTAL_CLASS);
+                        $description.html("Delice horizontalmente para moverse dentro de una sección");
+                        $elementsAnimated.animate({'opacity': 1}, 1000);
+                    });
+                } else {
+                    $buttonIgnoreSeccond.html('Siguiente');
+                    $elementsAnimated.animate({'opacity' : 0}, 1000, function() {
+                        $divAnimation.removeClass(HORIZONTAL_CLASS);
+                        $description.html("Deslice verticalmente para cambiar de sección");
+                        $elementsAnimated.animate({'opacity': 1}, 1000);
+                    });
+                }
+            }, 200);
         });
-
-        /** cambia propiedades del texto q se muestra al inicio de la animacion **/
-        function changeTextIndication() {
-            $firstTextIndication
-                .removeClass(ANIMATION_FADE_OUT)
-                .css('color', 'white')
-                .html("Sección 1.1");
-        }
-
-        /*-- create animation --*/
-        function animation() {
-            $('.animation, .instruccions h2').animate({'opacity' : 0}, 1000, function(){
-                $('.animation').addClass('horizontal');
-                $('.instruccions h2').html("Delice horizontalmente para moverse dentro de una sección");
-                $('.animation, .instruccions h2').animate({'opacity': 1}, 1000, function(){
-                    setTimeout(function(){
-                        $('.animation').addClass('hidden');
-                        $('.button-ingore-instruccions').addClass('hidden');
-                        $('.instruccions h2').addClass('hidden');
-                        $('.container-button').removeClass('hidden');
-                    }, 5000);
-                });
-            });
-        }
 	}
 
     function createEllipsis(container) {
@@ -562,7 +515,9 @@
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
 	/*----- button.backTop onclick event -----*/
-		$('.backTop').click(function () { $htmlBody.animate({ scrollTop: 0 }, $(this).offset().top*0.97); });
+		$('.backTop').click(function () {
+            $htmlBody.velocity('scroll',{ offset : 0, duration : $(this).offset().top*0.97});
+        });
 	}
 
 /*--------------- builder -----------------*/
