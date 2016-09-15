@@ -20,7 +20,6 @@
 		URL_DESKTOP     = "partials/desktop.html",
 		URL_MOBILE      = "partials/mobile.html",
 		FULLPAGE_CONFIG = {
-			//
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
@@ -29,16 +28,26 @@
 			slidesNavigation: true,
 			controlArrows: false,
 			onLeave: function (index, nextIndex, direction) {
-//				if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
-//					return false;
+				if (direction === "down" && !$('.instruccions').hasClass("fadeOut")) {
+					return false;
+				}
+
+				if (index === 1) {
+					$('#slides').superslides('stop');
+				}
+
+				if (nextIndex === 1) {
+					$('#slides').superslides('start');
+				}
 			},
 			afterLoad: function (k, index) {
 				var $nav = $('#fp-nav');
 
-				if (index === 1)
+				if (index === 1) {
 					$nav.hide();
-				else
+				} else {
 					$nav.show();
+				}
 			}
 		},
 		$htmlBody = $('html, body'),
@@ -52,7 +61,6 @@
 	});
 
 	$(window).resize(function () {
-		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
 	});
 
@@ -405,6 +413,11 @@
 
 /*--------- Controller templates ----------*/
 	function mobileCtrl() {
+
+//		$(window).on("orientationchange", function(event) {
+//			console.log(event.orientation)
+//		});
+
 		/*-- initialize fullpage --*/
 		$(MAIN).fullpage(FULLPAGE_CONFIG);
 
@@ -420,8 +433,8 @@
         /*-- crate a new fullpage instance with the new slides --*/
         $(MAIN).fullpage(FULLPAGE_CONFIG);
 
-		/*-- execute "intructions" animation --*/
-//        runIntructions();
+		/*-- execute intructions --*/
+        runIntructions();
 
 		/*-- superslides --*/
 		$('#slides').superslides({'play': 3000});
