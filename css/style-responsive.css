@@ -2,21 +2,6 @@
 *	v1.0
 */
 
-/*---------- re-write fullpage styles ----------*/
-
-#fp-nav.right {
-    right: 5px;
-}
-
-.fp-slidesNav.bottom {
-    bottom: 5px;
-}
-
-.fp-tableCell {
-	display: block;
-	vertical-align: top;
-}
-
 /*---------------- media querys ----------------*/
 
 @media (max-width: 1280px){
@@ -224,6 +209,31 @@
 
 @media (max-width: 767px){
 
+/*---------- re-write styles ----------*/
+	/*----- fullpage -----*/
+	#fp-nav.right {
+		right: 5px;
+	}
+
+	.fp-slidesNav.bottom {
+		bottom: 5px;
+	}
+
+	.fp-tableCell {
+		display: block;
+		vertical-align: top;
+	}
+
+	/*----- superslides -----*/
+	#slides {
+		z-index: 1;
+	}
+
+	.slides-pagination {
+		top: 5px;
+		left: 0px;
+	}
+
 /*--------------- global styles ---------------*/
 	span, div, h1, h3, h4 {
 		margin: 0px;
@@ -279,27 +289,7 @@
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-	}
-
-	.header-title {
-		position: absolute;
-		display: block;
-		top: 0px;
-		left: 0px;
-		width: 100%;
-		height: 15%;
-		line-height: 15vh;
-		background-color: #fff;
-	}
-
-	.header-title img {
-		max-width: 100%;
-		max-height: 100%;
-	}
-
-	#header .xs-title {
-		margin-top: 13vh;
-		margin-bottom: 1vh;
+		overflow: hidden;
 	}
 
     .slides-pagination a {
@@ -315,7 +305,6 @@
     .slides-pagination a.current {
         background-color: white;
     }
-
 
     .slides-container > li > div.container{
         padding: 5px 20px;
@@ -386,7 +375,7 @@
 
     .waw-main-title, .waw-dev-title {
 		position: relative;
-        height: 15%;
+        height: 10%;
     }
 
 	.waw-main-title {
@@ -404,7 +393,7 @@
 	}
 
 	.waw-main-body, .waw-dev-body {
-		height: 85%;
+		height: 90%;
 	}
 
 	.waw-title {
@@ -473,13 +462,10 @@
 	}
 
 	@media(max-height: 480px) {
-		.waw-main-title > h3 {
-			font-size: 24px;
+		.waw-dev-title > h3 {
+			font-size: 22px;
 		}
 
-		.waw-dev-title > h3 {
-			font-size: 24px;
-		}
 		.waw-dev-ficha > :nth-child(2) {
 			font-size: 20px;
 		}
@@ -865,63 +851,62 @@
         width: 100%;
         position: relative;
     }
-    
+
     .instruccions .animation:before, .instruccions .animation:after{
         display: block;
         font-size: 18px;
     }
-    
+
     .instruccions .animation:before {
         content: "Sección 1";
         background-color: cadetblue;
         height: 35%;
         padding-top: 18%;
     }
-    
+
     .instruccions .animation:after {
         content: "Sección 2";
         background-color: crimson;
         height: 65%;
         padding-top: 33%;
     }
-    
+
     .instruccions .animation.horizontal:after, .instruccions .animation.horizontal:before {
         height: 100%;
         padding-top: 50%;
         float: left;
     }
-    
+
     .instruccions .animation.horizontal:before {
         width: 35%;
         content: "Sección 1.1";
     }
-    
+
     .instruccions .animation.horizontal:after {
         width: 65%;
         content: "Sección 1.2";
     }
-    
+
     .instruccions .animation img.hand-vertical {
         position: absolute;
         top: 15vh;
         left: 52%;
     }
-    
+
     .instruccions .animation img.hand-horizontal {
         position: absolute;
         top: 7vh;
         left: 22%;
         display: none;
     }
-    
+
     .instruccions .animation.horizontal img.hand-vertical {
         display: none;
     }
-    
+
     .instruccions .animation.horizontal img.hand-horizontal {
         display: block;
     }
-
 
     .button-instruccions{
         background: transparent;
@@ -953,3 +938,35 @@
     .container-button{
         margin-top: 40vh;
     }
+
+	@media (orientation: landscape) {
+
+		#slides .container {
+			padding-bottom: 22%;
+		}
+
+		#menu-xs {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-around;
+			height: 20%;
+			width: 100%;
+			list-style: none;
+			padding: 0px;
+			margin: 0px;
+			z-index: 3;
+		}
+
+		#menu-xs li {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 20%;
+			height: 80%;
+			line-height: normal;
+			margin: 0px;
+			font-size: 16px;
+		}
+	}
+}

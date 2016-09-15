@@ -6,43 +6,52 @@
 	'use strict';
 
 /*----------- global constants -----------*/
-	var REGEX_NAME     = /^[a-zA-Z0-9 ñáéíóú]*$/,
-		REGEX_MAIL     = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-		FORM_CONTROL   = '.form-control',
-		BTN_SEND       = '#send',
-		MAIN           = '#main-wrapper',
-		MOBILE_TITLE   = '.xs-title',
-		MOBILE_BODY    = '.xs-body',
-		FORM_XS        = '#contact-form',
-		FORM_FOCUSOUT  = "contact-form",
-		FORM_FOCUSIN   = "contact-form-focus",
-		FORM_HIDE      = "hidden",
-		URL_DESKTOP    = "partials/desktop.html",
-		URL_MOBILE     = "partials/mobile.html",
-		$htmlBody      = $('html, body'),
-		$main          = $(MAIN),
-		fullpageConfig = {
-			//
+	var REGEX_NAME      = /^[a-zA-Z0-9 ñáéíóú]*$/,
+		REGEX_MAIL      = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+		FORM_CONTROL    = '.form-control',
+		BTN_SEND        = '#send',
+		MAIN            = '#main-wrapper',
+		MOBILE_TITLE    = '.xs-title',
+		MOBILE_BODY     = '.xs-body',
+		FORM_XS         = '#contact-form',
+		FORM_FOCUSOUT   = "contact-form",
+		FORM_FOCUSIN    = "contact-form-focus",
+		FORM_HIDE       = "hidden",
+		URL_DESKTOP     = "partials/desktop.html",
+		URL_MOBILE      = "partials/mobile.html",
+		FULLPAGE_CONFIG = {
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
 			navigationPosition: 'right',
-			continuousVertical: false,
+			continuousVertical: true,
 			slidesNavigation: true,
 			controlArrows: false,
 			onLeave: function (index, nextIndex, direction) {
-				if (direction === "down" && !$('.instruccions').hasClass("fadeOut"))
+				if (direction === "down" && !$('.instruccions').hasClass("fadeOut")) {
 					return false;
+				}
+
+				if (index === 1) {
+					$('#slides').superslides('stop');
+				}
+
+				if (nextIndex === 1) {
+					$('#slides').superslides('start');
+				}
 			},
 			afterLoad: function (k, index) {
 				var $nav = $('#fp-nav');
 
-				if (index === 1)
+				if (index === 1) {
 					$nav.hide();
-				else
+				} else {
 					$nav.show();
+				}
 			}
-		};
+		},
+		$htmlBody = $('html, body'),
+		$main     = $(MAIN);
 
 /*---- document ready & window resize ----*/
 
@@ -52,7 +61,6 @@
 	});
 
 	$(window).resize(function () {
-		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
 	});
 
@@ -286,7 +294,7 @@
                 $('.instruccions').addClass(ANIMATION_FADE_OUT);
                 $('#menu-xs').removeClass(FORM_HIDE);
                 $nav.show();
-                $('#slides').superslides({'play':7000});
+
             }, 200);
         });
 
@@ -405,22 +413,43 @@
 
 /*--------- Controller templates ----------*/
 	function mobileCtrl() {
-		/*-- initialize fullpage --*/
-		$(MAIN).fullpage(fullpageConfig);
 
-		/*-- asign the class "hyphenate" to all elements "p" into the ".xs-body" elements --*/
+//		$(window).on("orientationchange", function(event) {
+//			console.log(event.orientation)
+//		});
+
+		/*-- initialize fullpage --*/
+		$(MAIN).fullpage(FULLPAGE_CONFIG);
+
+		/*-- hyphenate the text of all "p" elements into the ".xs-body" elements --*/
         $(MOBILE_BODY).find('p').hyphenate('es');
 
+		/*--  short the text excess of the long paragraphs and create a new slide with the text cutted --*/
 		createEllipsis(MOBILE_BODY);
 
         /*-- destroy fullpage instance --*/
         $.fn.fullpage.destroy('all');
 
-        /*-- crate a new fullpage instance & config --*/
-        $(MAIN).fullpage(fullpageConfig);
+        /*-- crate a new fullpage instance with the new slides --*/
+        $(MAIN).fullpage(FULLPAGE_CONFIG);
 
-		/*-- execute "intructions" animation --*/
+		/*-- execute intructions --*/
         runIntructions();
+
+		/*-- superslides --*/
+		$('#slides').superslides({'play': 3000});
+
+		$('#slides').on('swipeleft', function () {
+			$('#slides').superslides('stop');
+			$('#slides').superslides('animate', 'next');
+			$('#slides').superslides('start');
+		});
+
+		$('#slides').on('swiperight', function () {
+			$('#slides').superslides('stop');
+			$('#slides').superslides('animate', 'prev');
+			$('#slides').superslides('start');
+		});
 
 		/*-- move to slide selected onclick header nav tag --*/
 		$('li', '#menu-xs').click(function () {
@@ -474,7 +503,7 @@
 
 	function tabAndDesktopCtrl() {
         
-    /*-- asign the class "hyphenate" to all elements "p" --*/
+    /*-- hyphenate the text of all "p" elements --*/
 		$('p').hyphenate('es');
         
 	/*--------- activate animations ---------*/
@@ -533,7 +562,7 @@
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
 	/*----- button.backTop onclick event -----*/
-		$('.backTop').click(function () {$htmlBody.animate({ scrollTop: 0 }, $(this).offset().top*0.97); });
+		$('.backTop').click(function () { $htmlBody.animate({ scrollTop: 0 }, $(this).offset().top*0.97); });
 	}
 
 /*--------------- builder -----------------*/
