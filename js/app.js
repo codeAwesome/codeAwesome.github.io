@@ -291,10 +291,13 @@
         /** Evento llamado para cerrar las instrucciones **/
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
             setTimeout(function () {
-                $('.instruccions').addClass(ANIMATION_FADE_OUT);
+                $('.instruccions')
+                    .addClass(ANIMATION_FADE_OUT)
+                    .css('z-index', '0');
                 $('#menu-xs').removeClass(FORM_HIDE);
                 $nav.show();
-
+                /*-- superslides --*/
+		        $('#slides').superslides({'play': 6000});
             }, 200);
         });
 
@@ -435,9 +438,6 @@
 
 		/*-- execute intructions --*/
         runIntructions();
-
-		/*-- superslides --*/
-		$('#slides').superslides({'play': 3000});
 
 		$('#slides').on('swipeleft', function () {
 			$('#slides').superslides('stop');
