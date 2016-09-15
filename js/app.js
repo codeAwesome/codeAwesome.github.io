@@ -281,7 +281,7 @@
         $nav.hide();
 
         /** Evento llamado para cerrar las instrucciones **/
-        $('.close-instruccions, .button-ingore-instruccions').touchend(function () {
+        $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
             setTimeout(function () {
                 $('.instruccions').addClass(ANIMATION_FADE_OUT);
                 $('#menu-xs').removeClass(FORM_HIDE);
