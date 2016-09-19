@@ -28,9 +28,7 @@
 			slidesNavigation: true,
 			controlArrows: false,
 			onLeave: function (index, nextIndex, direction) {
-                var a=123
 				if ($('.instruccions').css('display') != 'none') {
-                    alert("hola")
 					return false;
 				}
 
@@ -50,7 +48,15 @@
 				} else {
 					$nav.show();
 				}
-			}
+			},
+            onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
+                if(index === 3 && nextSlideIndex === 2){
+                    $('.flex-img img:eq(1)').addClass('bounceInfinite');
+                    infiniteAnimation('callout.bounce', '.flex-img img:eq(1)', 1000, 'bounceInfinite');
+                } else if (index === 3 && slideIndex === 2){
+                    $('.flex-img img:eq(1)').removeClass('bounceInfinite');
+                }
+            }
 		},
 		$htmlBody = $('html, body'),
 		$main     = $(MAIN);
@@ -97,10 +103,14 @@
         });
     }
     
-    function infiniteAnimation(animation, element, duration) {
-        $(element).velocity(animation, {duration : duration, complete : function(){
-            infiniteAnimation(animation, element, duration);
-        }});
+    function infiniteAnimation(animation, element, duration, classSwitch) {
+        if ($(element).hasClass(classSwitch) || classSwitch == undefined){
+            $(element).velocity(animation, {duration : duration, complete : function(){
+                infiniteAnimation(animation, element, duration, classSwitch);
+            }});
+        } else {
+            $(element).velocity('stop');
+        }
     }
 
 	function activateAnimations() {
