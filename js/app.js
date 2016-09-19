@@ -279,6 +279,9 @@
 	}
 
 	function runIntructions() {
+        /** creation of cookie **/
+        Cookies.set('instruccions', true);
+
         /** elements of DOM **/
         var $nav = $('#fp-nav'),
             $buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
@@ -288,7 +291,9 @@
         /** class **/
             HORIZONTAL_CLASS="horizontal"
 
+        $('instruccions').show();
         $nav.hide();
+        $('#menu-xs').addClass(FORM_HIDE);
 
         /** Evento llamado para cerrar las instrucciones **/
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
@@ -403,7 +408,12 @@
         $(MAIN).fullpage(FULLPAGE_CONFIG);
 
 		/*-- execute intructions --*/
-        runIntructions();
+        if (!Cookies.get('instruccions')){
+            $('.instruccions').show();
+            runIntructions();
+        } else {
+            $('#slides').superslides({'play': 6000});
+        }
 
 		$('#slides').on('swipeleft', function () {
 			$('#slides').superslides('stop');
