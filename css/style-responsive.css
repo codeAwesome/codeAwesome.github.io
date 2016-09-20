@@ -894,7 +894,7 @@
         position: absolute;
         top: 9vh;
         left: 50%;
-        width: 50%;
+        width: 130px;
     }
 
     .instruccions .animation img.hand-horizontal {
@@ -902,7 +902,7 @@
         top: 27vh;
         left: 19%;
         display: none;
-        width: 50%
+        width: 130px;
     }
 
     .instruccions .animation.horizontal img.hand-vertical {
