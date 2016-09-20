@@ -832,6 +832,7 @@
         padding-left: 10%;
         padding-right: 10%;
         z-index: 3;
+        display: none;
     }
 
     .instruccions h2 {
@@ -884,15 +885,17 @@
 
     .instruccions .animation img.hand-vertical {
         position: absolute;
-        top: 15vh;
-        left: 52%;
+        top: 9vh;
+        left: 50%;
+        width: 110px;
     }
 
     .instruccions .animation img.hand-horizontal {
         position: absolute;
-        top: 7vh;
-        left: 22%;
+        top: 27vh;
+        left: 19%;
         display: none;
+        width: 110px;
     }
 
     .instruccions .animation.horizontal img.hand-vertical {

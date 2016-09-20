@@ -29,29 +29,35 @@
 			slidesNavigation: true,
 			controlArrows: false,
 			onLeave: function (index, nextIndex, direction) {
-//              var a = 123
-//				if ($('.instruccions').css('display') !== 'none') {
-//                  alert("hola")
-//					return false;
-//				}
-//
-//				if (index === 1) {
-//					$('#slides').superslides('stop');
-//				}
-//
-//				if (nextIndex === 1) {
-//					$('#slides').superslides('start');
-//				}
+				if ($('.instruccions').css('display') != 'none') {
+					return false;
+				}
+
+				if (index === 1) {
+					$('#slides').superslides('stop');
+				}
+
+				if (nextIndex === 1) {
+					$('#slides').superslides('start');
+				}
 			},
 			afterLoad: function (k, index) {
-//				var $nav = $('#fp-nav');
-//
-//				if (index === 1) {
-//					$nav.hide();
-//				} else {
-//					$nav.show();
-//				}
-			}
+				var $nav = $('#fp-nav');
+
+				if (index === 1) {
+					$nav.hide();
+				} else {
+					$nav.show();
+				}
+			},
+            onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
+                if (index === 3 && nextSlideIndex === 2) {
+                    $('.flex-img img:eq(1)').addClass('bounceInfinite');
+                    infiniteAnimation('callout.bounce', '.flex-img img:eq(1)', 1000, 'bounceInfinite');
+                } else if (index === 3 && slideIndex === 2) {
+                    $('.flex-img img:eq(1)').removeClass('bounceInfinite');
+                }
+            }
 		},
 		$htmlBody = $('html, body'),
 		$main     = $(MAIN);
@@ -98,10 +104,14 @@
         });
     }
     
-    function infiniteAnimation(animation, element, duration) {
-        $(element).velocity(animation, {duration : duration, complete : function(){
-            infiniteAnimation(animation, element, duration);
-        }});
+    function infiniteAnimation(animation, element, duration, classSwitch) {
+        if ($(element).hasClass(classSwitch) || classSwitch == undefined){
+            $(element).velocity(animation, {duration : duration, complete : function(){
+                infiniteAnimation(animation, element, duration, classSwitch);
+            }});
+        } else {
+            $(element).velocity('stop');
+        }
     }
 
 	function activateAnimations() {
@@ -270,6 +280,9 @@
 	}
 
 	function runIntructions() {
+        /** creation of cookie **/
+        Cookies.set('instruccions', true);
+
         /** elements of DOM **/
         var $nav = $('#fp-nav'),
             $buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
@@ -279,7 +292,9 @@
         /** class **/
             HORIZONTAL_CLASS="horizontal"
 
+        $('instruccions').show();
         $nav.hide();
+        $('#menu-xs').addClass(FORM_HIDE);
 
         /** Evento llamado para cerrar las instrucciones **/
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
@@ -394,8 +409,14 @@
         $(MAIN).fullpage(FULLPAGE_CONFIG);
 
 		/*-- execute intructions --*/
-//        runIntructions();
+        if (!Cookies.get('instruccions')){
+            $('.instruccions').show();
+            runIntructions();
+        } else {
+            $('#slides').superslides({'play': 6000});
+        }
 
+		/*-- add swipe function to superslides --*/
 		$('#slides').on('swipeleft', function () {
 			$('#slides').superslides('stop');
 			$('#slides').superslides('animate', 'next');
@@ -455,7 +476,6 @@
 
 			return false;
 		}
-
 	}
 
 	function tabAndDesktopCtrl() {
