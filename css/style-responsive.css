@@ -235,7 +235,7 @@
 	}
 
 /*--------------- global styles ---------------*/
-	span, div, h1, h3, h4 {
+	span, div, h1, h3, h4, p {
 		margin: 0px;
 		padding: 0px;
 	}
@@ -364,6 +364,32 @@
         font-size: 18px;
     }
 
+	@media (max-height: 480px) {
+		#menu-xs {
+			height: 25%;
+		}
+
+		#slides .container {
+			height: 75%;
+		}
+
+		#menu-xs li {
+			width: 40%;
+			height: 30px;
+			line-height: 30px;
+			font-size: 14px;
+		}
+
+		.slides-container h1 {
+			font-size: 28px;
+			font-weight: 300;
+		}
+
+		.slides-container > li > div.container > .contrast > p {
+			font-size: 14px;
+		}
+	}
+
 /*--------------- whoAreWe ---------------*/
 
     .waw-main-title, .waw-dev-title {
@@ -455,6 +481,10 @@
 	}
 
 	@media(max-height: 480px) {
+		p {
+			font-size: 1.1em;
+		}
+
 		.waw-dev-title > h3 {
 			font-size: 22px;
 		}
@@ -595,6 +625,15 @@
 	}
 
 	@media(max-height: 480px) {
+		.s-main-title h3 {
+			font-size: 30px;
+		}
+
+		.s-main-title img {
+			max-height: 60%;
+		}
+
+
 		.flip-carousel .controls .arrow {
 			width: 40px;
 			height: 40px;
@@ -813,6 +852,7 @@
 		font-size: 14px;
 		text-indent: 0px;
 		color: #fff;
+		width: 100%;
 	}
 
 	img.social-icon {
@@ -937,6 +977,7 @@
         margin-top: 40vh;
     }
 
+/*-------------------- landscape --------------------*/
 	@media (orientation: landscape) {
 
 		/*--------- global ----------*/
@@ -956,6 +997,7 @@
 			padding: 8%;
 			padding-top: 15px;
 		}
+
 		/*--------- end global ----------*/
 
 		/*--------- header ----------*/
@@ -995,10 +1037,13 @@
 		}
 
 		.waw-title, .waw-body {
-			display: inline-block;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
 			width: 49.5%;
 			height: 100%;
 			vertical-align: top;
+			flex-direction: column;
 		}
 
 		.waw-dev-ficha {
@@ -1037,7 +1082,10 @@
 		}
 
 		.service-title, .service-body {
-			display: inline-block;
+			display: inline-flex;
+			flex-flow: column-reverse wrap;
+			align-items: center;
+			justify-content: center;
 			width: 49.5%;
 			height: 100%;
 			vertical-align: top;
@@ -1087,94 +1135,93 @@
 		}
 		/*--------- end services ----------*/
 
-		/*--------- end services ----------*/
+		/*--------- end contactUs ----------*/
 		#contactUs-xs {
-			background-size: 30%, 50%;
+			background-size: 22%, 50%;
 		}
-
-/*
-		.contact-title {
-			height: 15%;
-		}
-
-		.contact-title > h3 {
-			display: flex;
-			align-items: top;
-			justify-content: flex-start;
-			height: 100%;
-			font-size: 35px;
-		}
-
-		.contact-body {
-			height: 85%;
-		}
-*/
 
 		.contact-data, .contact-form {
 			display: inline-flex;
-			flex-direction: column;
+			flex-flow: column wrap;
+			justify-content: center;
 			vertical-align: top;
 			height: 100%;
 			width: 49.5%;
-
 		}
 
-/*
+		.contact-title > h3 {
+			font-size: 30px;
+		}
+
 		.contact-data {
-			height: 50%;
-			list-style: none;
-			font-size: 20px;
-			padding: 0px;
-			margin: 0px;
-			width: 100%;
-		}
-*/
-
-/*
-		.contact-data > li {
-			display: flex;
-			height: 30%;
-			align-items: center;
-			justify-content: center;
-		}
-*/
-
-		.contact-data > li.email {
-			word-break: break-all;
-		}
-
-/*
-		.contact-data > li > a {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			text-decoration: none;
-			color: #000;
-			height: 30px;
-		}
-
-		.contact-data > li.email > a {
-			height: 100%;
-			flex-direction: column;
 			font-size: 16px;
 		}
 
-		.contact-data > li i {
-			font-size: 40px;
-			padding-right: 10px;
-			color: #09589b;
+		.contact-data > li {
+			height: 20%;
 		}
-*/
+
+		.contact-data > li > a {
+			justify-content: flex-start;
+		}
+
+		.contact-data > li.email {
+			height: 30%;
+			word-break: break-all;
+		}
+
+		.contact-data > li.email > a {
+			flex-direction: row;
+		}
+
+		.contact-data > li i {
+			font-size: 30px;
+			padding-right: 10px;
+		}
+
+		.contact-form {
+			padding: 5px;
+		}
 
 		.contact-form > h3 {
-			font-size: 20px;
+			font-size: 18px;
+			padding: 8px;
 		}
 
 		.group-input {
-			margin: 5px 0px;
+			margin: 4px 0px;
 		}
-		/*--------- end services ----------*/
+
+		.contact-form-focus .group-input {
+			margin: 10px 0px;
+		}
+		/*--------- end contactUs ----------*/
+
+		/*--------- end footer ----------*/
+
+		.ft-title {
+			height: 30%;
+			margin-bottom: 8%;
+		}
+
+		.ft-body {
+			height: 62%;
+			text-align: center;
+		}
+
+		.ft-body a {
+			display: inline-block;
+			width: 20%;
+			margin: 15px 5px;
+			height: 15vh;
+			padding: 2vh 0px;
+    		border-radius: 0px;
+		}
+
+		.ft-body a > i {
+			font-size: 10vh;
+		}
+		/*--------- end footer ----------*/
 
 	}
 }

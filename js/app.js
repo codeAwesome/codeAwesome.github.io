@@ -20,8 +20,8 @@
 		URL_DESKTOP     = "partials/desktop.html",
 		URL_MOBILE      = "partials/mobile.html",
 		FULLPAGE_CONFIG = {
-			//'#1e6f63',
-			sectionsColor: ['#fff', '#FFA042', '#f5f5f5', '#2e3031'],
+			//
+			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
 			navigationPosition: 'right',
@@ -29,16 +29,18 @@
 			slidesNavigation: true,
 			controlArrows: false,
 			onLeave: function (index, nextIndex, direction) {
-				if ($('.instruccions').css('display') != 'none') {
+				var $superslides = $('#slides');
+
+				if ($('.instruccions').css('display') !== 'none') {
 					return false;
 				}
 
 				if (index === 1) {
-					$('#slides').superslides('stop');
+					$superslides.superslides('stop');
 				}
 
 				if (nextIndex === 1) {
-					$('#slides').superslides('start');
+					$superslides.superslides('start');
 				}
 			},
 			afterLoad: function (k, index) {
@@ -51,11 +53,18 @@
 				}
 			},
             onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
-                if (index === 3 && nextSlideIndex === 2) {
-                    $('.flex-img img:eq(1)').addClass('bounceInfinite');
-                    infiniteAnimation('callout.bounce', '.flex-img img:eq(1)', 1000, 'bounceInfinite');
-                } else if (index === 3 && slideIndex === 2) {
-                    $('.flex-img img:eq(1)').removeClass('bounceInfinite');
+				var $slidePgAnimated = $('.pg-animated').index(),
+					$imgBounce = $('.flex-img img:eq(1)');
+
+                if (index === 3 && nextSlideIndex === $slidePgAnimated) {
+
+                    $imgBounce.addClass('bounceInfinite');
+                    infiniteAnimation('callout.bounce', $('.flex-img img:eq(1)'), 1000, 'bounceInfinite');
+
+                } else if (index === 3 && slideIndex === $slidePgAnimated) {
+
+                    $imgBounce.removeClass('bounceInfinite');
+
                 }
             }
 		},
@@ -85,9 +94,10 @@
 			$target = ($target.length && $target) || $('[name=' + this.hash.slice(1) + ']');
 			if ($target.length) {
 				targetOffset = $target.offset().top;
-                $('#'+$target[0].id).velocity('scroll', {
+                $('#' + $target[0].id).velocity('scroll', {
                     container : $("body"),
-                    duration : targetOffset * 1.63});
+                    duration : targetOffset * 1.63
+				});
 			} else {
                 return false;
             }
@@ -96,7 +106,7 @@
 
 	function animationIn(element, animation, offset) {
         $(element).waypoint(function () {
-            $(element).velocity(animation, {duration:1000});
+            $(element).velocity(animation, {duration: 1000});
             this.destroy();
         }, {
             offset: offset,
@@ -105,23 +115,24 @@
     }
     
     function infiniteAnimation(animation, element, duration, classSwitch) {
-        if ($(element).hasClass(classSwitch) || classSwitch == undefined){
-            $(element).velocity(animation, {duration : duration, complete : function(){
+        if (element.hasClass(classSwitch) || classSwitch === undefined) {
+            element.velocity(animation, {duration : duration, complete : function () {
                 infiniteAnimation(animation, element, duration, classSwitch);
             }});
         } else {
-            $(element).velocity('stop');
+            element.velocity('stop');
         }
     }
 
 	function activateAnimations() {
+		var $backTop  = $('.backTop');
 
 		/*-- backTop --*/
 		$('header .main-container').waypoint(function (direction) {
 			if (direction === "down") {
-                $('.backTop').velocity('transition.slideUpIn');
+                $backTop.velocity('transition.slideUpIn');
 			} else {
-                $('.backTop').velocity('transition.slideDownOut');
+                $backTop.velocity('transition.slideDownOut');
 			}
 		}, {
 			offset: function () {
@@ -131,11 +142,11 @@
 
 		$('footer:eq(0)').waypoint(function (direction) {
 			if (direction === "down") {
-				$('.backTop').css('bottom', $('footer').outerHeight() + 5);
-                $('.backTop').velocity('transition.slideDownIn');
+				$backTop.css('bottom', $('footer').outerHeight() + 5);
+                $backTop.velocity('transition.slideDownIn');
 			} else {
-                $('.backTop').css('bottom', '15px');
-				$('.backTop').velocity('transition.slideDownIn');
+                $backTop.css('bottom', '15px');
+				$backTop.velocity('transition.slideDownIn');
 			}
 		}, {
 			offset: '95%'
@@ -156,7 +167,7 @@
 		animationIn('.service-item:eq(1)', "transition.expandIn", '40%');
 		animationIn('.service-item:eq(2)', "transition.bounceRightIn", '40%');
 		animationIn('#flip-carousel', "fadeIn", '70%');
-        infiniteAnimation('callout.bounce', '.service-item img.second', 1000);
+        infiniteAnimation('callout.bounce', $('.service-item img.second'), 1000);
 
 		/* contactUs */
 		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
@@ -166,21 +177,24 @@
 
 	function activateSmForm(vw) {
 		var contactWrapper = '.contact-method',
-			pleaceholder = $(FORM_CONTROL, contactWrapper).attr('placeholder');
+			pleaceholder = $(FORM_CONTROL, contactWrapper).attr('placeholder'),
+			$formElements = $(FORM_CONTROL, contactWrapper),
+			$contactData = $('ul.contact', contactWrapper),
+			$contactDataChildren = $('ul.contact li', contactWrapper);
 
 		if ((vw >= 768 && vw <= 991) && typeof pleaceholder === 'undefined') {
 
-            $(FORM_CONTROL, contactWrapper).eq(0).attr('placeholder', "Nombre");
-            $(FORM_CONTROL, contactWrapper).eq(1).attr('placeholder', "Correo");
-            $(FORM_CONTROL, contactWrapper).eq(2).attr('placeholder', "Mensaje");
-            $('ul.contact', contactWrapper).addClass("row");
-            $('ul.contact li', contactWrapper).addClass("col-sm-3");
+            $formElements.eq(0).attr('placeholder', "Nombre");
+            $formElements.eq(1).attr('placeholder', "Correo");
+            $formElements.eq(2).attr('placeholder', "Mensaje");
+            $contactData.addClass("row");
+            $contactDataChildren.addClass("col-sm-3");
 
         } else if (vw > 991 && typeof pleaceholder !== 'undefined') {
 
             $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
-            $('ul.contact', contactWrapper).removeClass("row");
-            $('ul.contact li', contactWrapper).removeClass();
+            $contactData.removeClass("row");
+            $contactDataChildren.removeClass();
 
 		}
 	}
@@ -290,7 +304,7 @@
             $divAnimation = $('.animation'),
             $elementsAnimated = $('.animation, .instruccions h2'),
         /** class **/
-            HORIZONTAL_CLASS="horizontal"
+            HORIZONTAL_CLASS = "horizontal"
 
         $('instruccions').show();
         $nav.hide();
@@ -299,7 +313,7 @@
         /** Evento llamado para cerrar las instrucciones **/
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
             setTimeout(function () {
-                $('.instruccions').velocity('transition.fadeOut', {complete : function() {
+                $('.instruccions').velocity('transition.fadeOut', {complete : function () {
                     $(this).css('display', 'none');
                 }});
                 $('#menu-xs').removeClass(FORM_HIDE);
@@ -311,12 +325,12 @@
         
         
         /** cambio de instrucciones **/
-        $buttonIgnoreSeccond.touchend(function() {
-            setTimeout(function() {
-                if(!$divAnimation.hasClass(HORIZONTAL_CLASS)) {
+        $buttonIgnoreSeccond.touchend(function () {
+            setTimeout(function () {
+                if (!$divAnimation.hasClass(HORIZONTAL_CLASS)) {
                     $buttonIgnoreSeccond.html('Anterior');
                     $elementsAnimated
-                        .velocity('transition.fadeOut', {complete : function() {
+                        .velocity('transition.fadeOut', {complete : function () {
                             $divAnimation.addClass(HORIZONTAL_CLASS);
                             $description.html("Delice horizontalmente para moverse dentro de una sección");
                         }})
@@ -324,7 +338,7 @@
                 } else {
                     $buttonIgnoreSeccond.html('Siguiente');
                     $elementsAnimated
-                        .velocity('transition.fadeOut', {complete : function() {
+                        .velocity('transition.fadeOut', {complete : function () {
                             $divAnimation.removeClass(HORIZONTAL_CLASS);
                             $description.html("Deslice verticalmente para cambiar de sección");
                         }})
@@ -355,7 +369,7 @@
 
 				if (text.length > newText.length) {
 					text = text.substring(newText.length - 3);
-					$parent.parent().parent().after(
+					$parent.parent().parent().parent().after(
 						'<div class="slide">\
 							<div class="container">\
 								<div class="xs-body">\
@@ -389,9 +403,9 @@
 /*--------- Controller templates ----------*/
 	function mobileCtrl() {
 
-//		$(window).bind("orientationchange", function(event) {
-//			console.log(event.orientation)
-//		});
+		$(window).on("orientationchange", function (event) {
+			console.log(event.orientation);
+		});
 
 		/*-- initialize fullpage --*/
 		$(MAIN).fullpage(FULLPAGE_CONFIG);
@@ -409,7 +423,7 @@
         $(MAIN).fullpage(FULLPAGE_CONFIG);
 
 		/*-- execute intructions --*/
-        if (!Cookies.get('instruccions')){
+        if (!Cookies.get('instruccions')) {
             $('.instruccions').show();
             runIntructions();
         } else {
@@ -540,7 +554,7 @@
 
 	/*----- button.backTop onclick event -----*/
 		$('.backTop').click(function () {
-            $htmlBody.velocity('scroll',{ offset : 0, duration : $(this).offset().top*0.97});
+            $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.97 });
         });
 	}
 
@@ -550,6 +564,7 @@
 
 		/*-- loading mobile template & controller --*/
 		if (vw < 768 && !hasClass) {
+			location.hash = "";
 			$main.load(URL_MOBILE, mobileCtrl);
 		}
 
