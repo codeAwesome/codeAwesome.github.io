@@ -20,7 +20,8 @@
 		URL_DESKTOP     = "partials/desktop.html",
 		URL_MOBILE      = "partials/mobile.html",
 		FULLPAGE_CONFIG = {
-			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
+			//'#1e6f63',
+			sectionsColor: ['#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
 			navigationPosition: 'right',
@@ -28,28 +29,28 @@
 			slidesNavigation: true,
 			controlArrows: false,
 			onLeave: function (index, nextIndex, direction) {
-                var a=123
-				if ($('.instruccions').css('display') != 'none') {
-                    alert("hola")
-					return false;
-				}
-
-				if (index === 1) {
-					$('#slides').superslides('stop');
-				}
-
-				if (nextIndex === 1) {
-					$('#slides').superslides('start');
-				}
+//              var a = 123
+//				if ($('.instruccions').css('display') !== 'none') {
+//                  alert("hola")
+//					return false;
+//				}
+//
+//				if (index === 1) {
+//					$('#slides').superslides('stop');
+//				}
+//
+//				if (nextIndex === 1) {
+//					$('#slides').superslides('start');
+//				}
 			},
 			afterLoad: function (k, index) {
-				var $nav = $('#fp-nav');
-
-				if (index === 1) {
-					$nav.hide();
-				} else {
-					$nav.show();
-				}
+//				var $nav = $('#fp-nav');
+//
+//				if (index === 1) {
+//					$nav.hide();
+//				} else {
+//					$nav.show();
+//				}
 			}
 		},
 		$htmlBody = $('html, body'),
@@ -80,7 +81,7 @@
 				targetOffset = $target.offset().top;
                 $('#'+$target[0].id).velocity('scroll', {
                     container : $("body"),
-                    duration : targetOffset*1.63});
+                    duration : targetOffset * 1.63});
 			} else {
                 return false;
             }
@@ -342,7 +343,7 @@
 					$parent.parent().parent().after(
 						'<div class="slide">\
 							<div class="container">\
-								<div class="xs-body service-body">\
+								<div class="xs-body">\
 									<p class="next-text">' + text + '</p>\
 								</div>\
 							</div>\
@@ -373,7 +374,7 @@
 /*--------- Controller templates ----------*/
 	function mobileCtrl() {
 
-//		$(window).on("orientationchange", function(event) {
+//		$(window).bind("orientationchange", function(event) {
 //			console.log(event.orientation)
 //		});
 
@@ -393,7 +394,7 @@
         $(MAIN).fullpage(FULLPAGE_CONFIG);
 
 		/*-- execute intructions --*/
-        runIntructions();
+//        runIntructions();
 
 		$('#slides').on('swipeleft', function () {
 			$('#slides').superslides('stop');

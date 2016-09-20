@@ -292,58 +292,12 @@
 		overflow: hidden;
 	}
 
-    .slides-pagination a {
-        width: 15px;
-        height: 15px;
-        margin: 5px 2px;
-        border-color: white;
-        -webkit-box-shadow: 0 1px 2px black;
-        -moz-box-shadow: 0 1px 2px black;
-        box-shadow: 0 1px 1px black;
-    }
-
-    .slides-pagination a.current {
-        background-color: white;
-    }
-
-    .slides-container > li > div.container{
-        padding: 5px 20px;
-    }
-
-
-    .slides-container > li > div.container > h1, .slides-container > li > div.container > .contrast > p {
-        text-align: left;
-        color: white;
-    }
-
-    .slides-container > li > div.container > h1{
-        font-size: 36px;
-        margin-top: 15vh;
-        font-weight: 300;
-    }
-
-    .slides-container > li > div.container > .contrast{
-        margin-top: 3vh;
-        background: rgba(0, 0, 0, 0.3);
-        padding: 1px 10px;
-        -webkit-box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
-        box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
-        border-radius: 3px;
-    }
-
-    .slides-container > li > div.container > .contrast > p{
-        text-shadow: 0 1px 1px #555;
-        text-indent: 0;
-        font-size: 18px;
-    }
-
 	#menu-xs {
 		display: block;
 		position: absolute;
 		bottom: 0px;
 		left: 0px;
-		height: 22vh;
+		height: 20%;
 		width: 100%;
 		list-style: none;
 		padding: 0px;
@@ -370,6 +324,45 @@
 		-moz-box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 		box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 	}
+
+	#slides .container {
+		height: 80%;
+		padding: 14% 5% 4% 5%;
+	}
+
+    .slides-pagination a {
+        border-color: white;
+    }
+
+    .slides-pagination a.current {
+        background-color: white;
+    }
+
+    .slides-container h1, .slides-container .contrast > p {
+        text-align: left;
+        color: white;
+    }
+
+    .slides-container h1 {
+        font-size: 36px;
+        font-weight: 300;
+    }
+
+    .slides-container .contrast {
+        margin-top: 8%;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 0px 10px;
+        -webkit-box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0 23px 5px rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+    }
+
+    .slides-container > li > div.container > .contrast > p {
+        text-indent: 0;
+		text-align: justify;
+        font-size: 18px;
+    }
 
 /*--------------- whoAreWe ---------------*/
 
@@ -763,7 +756,7 @@
 		padding-top: 15px;
 	}
 
-	@media(max-height:480px) {
+	@media(max-height: 480px) {
 		#contactUs-xs {
 			background-position: right 5%, center 95%;
 			background-size: 50%, contain;
@@ -943,8 +936,29 @@
 
 	@media (orientation: landscape) {
 
+		/*--------- global ----------*/
+		@media(max-width: 480px) {
+			p {
+				font-size: 1.1em;
+			}
+		}
+
+		span {
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+
+		.container {
+			padding: 8%;
+			padding-top: 15px;
+		}
+		/*--------- end global ----------*/
+
+		/*--------- header ----------*/
 		#slides .container {
-			padding-bottom: 22%;
+			padding-top: 6%;
+			padding-bottom: 2%;
 		}
 
 		#menu-xs {
@@ -970,5 +984,194 @@
 			margin: 0px;
 			font-size: 16px;
 		}
+		/*--------- end header ----------*/
+
+		/*--------- whoAreWe ----------*/
+		.waw-main-title {
+			font-size: 22px;
+		}
+
+		.waw-title, .waw-body {
+			display: inline-block;
+			width: 49.5%;
+			height: 100%;
+			vertical-align: top;
+		}
+
+		.waw-dev-ficha {
+			display: inline-block;
+			height: 100%;
+			width: 49.5%;
+		}
+
+		.waw-dev-ficha > :nth-child(2) {
+			font-size: 22px;
+			font-weight: bold;
+		}
+		/*--------- end whoAreWe ----------*/
+
+		/*--------- services ----------*/
+		.s-main-title {
+			flex-direction: row;
+		}
+
+		.s-main-title img {
+			max-width: 50%;
+			max-height: 100%;
+		}
+
+		.s-main-title h3 {
+			width: 50%;
+			font-size: 40px;
+		}
+
+		.service-title {
+			font-size: 20px;
+		}
+
+		.service-body p {
+			padding: 0px;
+		}
+
+		.service-title, .service-body {
+			display: inline-block;
+			width: 49.5%;
+			height: 100%;
+			vertical-align: top;
+		}
+
+		.flex-img {
+			display: flex;
+			height: 80%;
+			padding: 10px;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.flex-img > img {
+			max-height: 100%;
+			max-width: 100%;
+		}
+
+		.service-title > h3, .s-carousel-title {
+			display: flex;
+			height: 20%;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.service-title, .s-carousel-title, .s-main-title {
+			font-weight: bold;
+			color: #a33200;
+		}
+
+		/*-- flip carousel --*/
+		.flip-carousel > ul {
+			top: 0px;
+			left: 0px;
+			margin: 0;
+			height: 100%;
+		}
+
+		.flip-carousel > ul > li {
+			padding: 5% 15%;
+		}
+
+		@media(max-width: 480px) {
+			.service-body p {
+				font-size: 15px;
+			}
+		}
+		/*--------- end services ----------*/
+
+		/*--------- end services ----------*/
+		#contactUs-xs {
+			background-size: 30%, 50%;
+		}
+
+/*
+		.contact-title {
+			height: 15%;
+		}
+
+		.contact-title > h3 {
+			display: flex;
+			align-items: top;
+			justify-content: flex-start;
+			height: 100%;
+			font-size: 35px;
+		}
+
+		.contact-body {
+			height: 85%;
+		}
+*/
+
+		.contact-data, .contact-form {
+			display: inline-flex;
+			flex-direction: column;
+			vertical-align: top;
+			height: 100%;
+			width: 49.5%;
+
+		}
+
+/*
+		.contact-data {
+			height: 50%;
+			list-style: none;
+			font-size: 20px;
+			padding: 0px;
+			margin: 0px;
+			width: 100%;
+		}
+*/
+
+/*
+		.contact-data > li {
+			display: flex;
+			height: 30%;
+			align-items: center;
+			justify-content: center;
+		}
+*/
+
+		.contact-data > li.email {
+			word-break: break-all;
+		}
+
+/*
+		.contact-data > li > a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			text-decoration: none;
+			color: #000;
+			height: 30px;
+		}
+
+		.contact-data > li.email > a {
+			height: 100%;
+			flex-direction: column;
+			font-size: 16px;
+		}
+
+		.contact-data > li i {
+			font-size: 40px;
+			padding-right: 10px;
+			color: #09589b;
+		}
+*/
+
+		.contact-form > h3 {
+			font-size: 20px;
+		}
+
+		.group-input {
+			margin: 5px 0px;
+		}
+		/*--------- end services ----------*/
+
 	}
 }
