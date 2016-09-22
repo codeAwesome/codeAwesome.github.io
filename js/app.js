@@ -412,6 +412,7 @@
 
 		/*-- hyphenate the text of all "p" elements into the ".xs-body" elements --*/
         $(MOBILE_BODY).find('p').hyphenate('es');
+        $('.contrast p').hyphenate('es');
 
 		/*--  short the text excess of the long paragraphs and create a new slide with the text cutted --*/
 		createEllipsis(MOBILE_BODY);
