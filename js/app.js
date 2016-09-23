@@ -319,7 +319,7 @@
                 $('#menu-xs').removeClass(FORM_HIDE);
                 $nav.show();
                 /*-- superslides --*/
-		        $('#slides').superslides({'play': 6000});
+		        $('#slides').superslides({'play': 15000});
             }, 200);
         });
         
@@ -430,6 +430,7 @@
 
 		/*-- hyphenate the text of all "p" elements into the ".xs-body" elements --*/
         $(MOBILE_BODY).find('p').hyphenate('es');
+        $('.contrast p').hyphenate('es');
 
 		/*--  short the text excess of the long paragraphs and create a new slide with the text cutted --*/
 		createEllipsis(MOBILE_BODY);
@@ -448,7 +449,7 @@
             $('.instruccions').show();
             runIntructions();
         } else {
-            $('#slides').superslides({'play': 6000});
+            $('#slides').superslides({'play': 15000});
         }
 
 		/*-- add swipe function to superslides --*/
