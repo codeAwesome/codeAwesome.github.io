@@ -20,7 +20,6 @@
 		URL_DESKTOP     = "partials/desktop.html",
 		URL_MOBILE      = "partials/mobile.html",
 		FULLPAGE_CONFIG = {
-			//
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
@@ -593,16 +592,19 @@
 		/*-- re-build fullpage onWindowResize event --*/
 		if (vw < 768 && hasClass) {
 			var $active = $('.section.active'),
-				$childActive = $('.section.active .slide.active');
+				$childActive = $('.section.active .slide.active'),
+				formFocus = $('#send').hasClass(FORM_HIDE);
 
-			$.fn.fullpage.reBuild();
-			createEllipsis(MOBILE_BODY);
-			$.fn.fullpage.destroy('all');
-			$(MAIN).fullpage(FULLPAGE_CONFIG);
-			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
+			if (formFocus) {
+				$.fn.fullpage.reBuild();
+				createEllipsis(MOBILE_BODY);
+				$.fn.fullpage.destroy('all');
+				$(MAIN).fullpage(FULLPAGE_CONFIG);
+				$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
 
-			/*-- center the '.fp-slidesNav' elements --*/
-			centerSlidesNav()
+				/*-- center the '.fp-slidesNav' elements --*/
+				centerSlidesNav()
+			}
 		}
 
 		/*-- loading tabAndDesktop template & controller --*/

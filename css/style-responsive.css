@@ -1246,10 +1246,8 @@
 			margin: 10px 0px;
 		}
 
-		@media (max-height: 320px) {
-			.contact-form .group-input > textarea {
-				height: 40px;
-			}
+		.contact-form .group-input > textarea {
+			height: 40px;
 		}
 
 		/*--------- end contactUs ----------*/
