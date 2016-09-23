@@ -17,8 +17,8 @@
 		FORM_FOCUSOUT   = "contact-form",
 		FORM_FOCUSIN    = "contact-form-focus",
 		FORM_HIDE       = "hidden",
-		URL_DESKTOP     = "partials/desktop.html",
-		URL_MOBILE      = "partials/mobile.html",
+		URL_DESKTOP     = "partials/desktop.tpl.html",
+		URL_MOBILE      = "partials/mobile.tpl.html",
 		FULLPAGE_CONFIG = {
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
