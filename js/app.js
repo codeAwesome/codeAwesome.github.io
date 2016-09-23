@@ -382,6 +382,19 @@
             }
         }
 
+		$.each($('.container > .xs-body:first-child'), function (k, element) {
+			var content = element.childNodes[1].textContent,
+				removeNode = element.parentNode.parentNode.parentNode,
+				sibling = removeNode.previousSibling;
+
+			$(removeNode).detach();
+
+			$(sibling).children().children().children('.xs-body').children().text(function (i, text) {
+				text = text.substr(0, text.length - 3);
+				return text + content;
+			});
+		});
+
         if ($container.length > 1) {
             $container.each(function () {
                 var $this = $(this);
@@ -400,13 +413,18 @@
 
     }
 
+	function centerSlidesNav(){
+		var $slidesNav = "";
+
+		/*-- center the '.fp-slidesNav' elements --*/
+		$slidesNav = $('.fp-slidesNav');
+		$.each($slidesNav, function (i, element) {
+			element.style.marginLeft = (-1 * (element.clientWidth/2)) + "px";
+		});
+	}
+
 /*--------- Controller templates ----------*/
 	function mobileCtrl() {
-
-		$(window).on("orientationchange", function (event) {
-			console.log(event.orientation);
-		});
-
 		/*-- initialize fullpage --*/
 		$(MAIN).fullpage(FULLPAGE_CONFIG);
 
@@ -421,6 +439,9 @@
 
         /*-- crate a new fullpage instance with the new slides --*/
         $(MAIN).fullpage(FULLPAGE_CONFIG);
+
+		/*-- center the '.fp-slidesNav' elements --*/
+		centerSlidesNav()
 
 		/*-- execute intructions --*/
         if (!Cookies.get('instruccions')) {
@@ -570,7 +591,17 @@
 
 		/*-- re-build fullpage onWindowResize event --*/
 		if (vw < 768 && hasClass) {
+			var $active = $('.section.active'),
+				$childActive = $('.section.active .slide.active');
+
 			$.fn.fullpage.reBuild();
+			createEllipsis(MOBILE_BODY);
+			$.fn.fullpage.destroy('all');
+			$(MAIN).fullpage(FULLPAGE_CONFIG);
+			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
+
+			/*-- center the '.fp-slidesNav' elements --*/
+			centerSlidesNav()
 		}
 
 		/*-- loading tabAndDesktop template & controller --*/
