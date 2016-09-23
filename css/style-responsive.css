@@ -1239,11 +1239,15 @@
 		}
 
 		.group-input {
-			margin: 3px 0px;
+			margin: 2px 0px;
 		}
 
 		.contact-form-focus .group-input {
 			margin: 10px 0px;
+		}
+
+		.contact-form .group-input > input {
+			height: 25px;
 		}
 
 		.contact-form .group-input > textarea {
