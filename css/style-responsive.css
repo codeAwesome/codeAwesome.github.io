@@ -1285,7 +1285,13 @@
         /*--------- instruccions --------*/
         
         .instruccions h2 {
-            margin-top: 10px;
+            margin-top: 13px;
+            font-size: 13px;
+            margin-bottom: 13px;
+        }
+        
+        .instruccions .animation {
+            height: 58vh;
         }
         
         .instruccions .animation:before {
@@ -1301,18 +1307,19 @@
         }
         
         .instruccions .animation img.hand-vertical {
-            left: 60%;
-            width: 100px;
+            left: 65%;
+            width: 70px;
         }
         
         .instruccions .animation img.hand-horizontal {
             left: 30%;
-            width: 80px;
+            width: 70px;
             top: 24vh;
         }
         
         .button-ingore-instruccions {
             width: 49%;
+            margin-top: 5vh;
         }
         
         /*--------- end instruccions-----*/
