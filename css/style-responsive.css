@@ -959,7 +959,7 @@
 
     .instruccions .animation.horizontal:after, .instruccions .animation.horizontal:before {
         height: 100%;
-        padding-top: 50%;
+        padding-top: 40%;
         float: left;
     }
 
@@ -1281,6 +1281,41 @@
 			font-size: 10vh;
 		}
 		/*--------- end footer ----------*/
+        
+        /*--------- instruccions --------*/
+        
+        .instruccions h2 {
+            margin-top: 10px;
+        }
+        
+        .instruccions .animation:before {
+            padding-top: 3%;
+        }
+        
+        .instruccions .animation:after {
+            padding-top: 10%;
+        }
+        
+        .instruccions .animation.horizontal:before, .instruccions .animation.horizontal:after {
+            padding-top: 13%;
+        }
+        
+        .instruccions .animation img.hand-vertical {
+            left: 60%;
+            width: 100px;
+        }
+        
+        .instruccions .animation img.hand-horizontal {
+            left: 30%;
+            width: 80px;
+            top: 24vh;
+        }
+        
+        .button-ingore-instruccions {
+            width: 49%;
+        }
+        
+        /*--------- end instruccions-----*/
 
 	}
 }
