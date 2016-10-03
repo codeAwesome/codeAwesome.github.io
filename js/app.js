@@ -1,4 +1,4 @@
-/** codeAwesome.com.ve scripts by codeAwesome
+/** codeAmazing.com.ve scripts by codeAmazing
 *	v1.0
 */
 
@@ -249,13 +249,13 @@
 		if (valid && validateForm(form)) {
 
 			$.ajax({
-				url: "https://formspree.io/codeawesomepro@gmail.com",
+				url: "https://formspree.io/codeamazinginc@gmail.com",
 				method: "POST",
 				data: {
 					message: $elements.eq(2).val(),
 					_replyto: $elements.eq(1).val(),
 					name: $elements.eq(0).val(),
-					_subject: "correo de usuario de codeawesome.com.ve"
+					_subject: "correo de usuario de codeamazing.com.ve"
 				},
 				dataType: "json",
 				beforeSend: function () {
