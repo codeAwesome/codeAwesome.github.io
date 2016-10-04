@@ -397,7 +397,7 @@ blockquote {
     background: transparent;
     box-shadow: none;
     outline: none;
-    padding: 15px;
+    padding: 6px 12px;
 }
 
 .contact-method .form-control.active {
