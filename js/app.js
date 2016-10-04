@@ -1,5 +1,5 @@
-/** codeAmazing.com.ve scripts by codeAmazing
-*	v1.0
+/** codeamazing.com.ve scripts by codeamazing developers
+*	v1.2
 */
 
 (function ($, window) {
@@ -115,9 +115,12 @@
     
     function infiniteAnimation(animation, element, duration, classSwitch) {
         if (element.hasClass(classSwitch) || classSwitch === undefined) {
-            element.velocity(animation, {duration : duration, complete : function () {
-                infiniteAnimation(animation, element, duration, classSwitch);
-            }});
+            element.velocity(animation, {
+				duration : duration,
+				complete : function () {
+                	infiniteAnimation(animation, element, duration, classSwitch);
+            	}
+			});
         } else {
             element.velocity('stop');
         }
@@ -136,7 +139,7 @@
 			}
 		}, {
 			offset: function () {
-				return -1 * $(NAV_WRAP).height();
+				return -$(NAV_WRAP).height();
 			}
 		});
 
@@ -197,7 +200,6 @@
             $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
             $contactData.removeClass("row");
             $contactDataChildren.removeClass();
-
 		}
 	}
 
