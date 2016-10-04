@@ -1,4 +1,4 @@
-/** codeAwesome.com.ve scripts by codeAwesome
+/** codeAmazing.com.ve scripts by codeAmazing
 *	v1.0
 */
 
@@ -95,7 +95,7 @@
 				targetOffset = $target.offset().top;
                 $('#' + $target[0].id).velocity('scroll', {
                     container : $("body"),
-                    duration : targetOffset * 1.63
+                    duration : targetOffset * 0.7
 				});
 			} else {
                 return false;
@@ -124,10 +124,11 @@
     }
 
 	function activateAnimations() {
-		var $backTop  = $('.backTop');
+		var $backTop  = $('.backTop'),
+			NAV_WRAP = 'header .nav-wrap';
 
 		/*-- backTop --*/
-		$('header .main-container').waypoint(function (direction) {
+		$(NAV_WRAP).waypoint(function (direction) {
 			if (direction === "down") {
                 $backTop.velocity('transition.slideUpIn');
 			} else {
@@ -135,7 +136,7 @@
 			}
 		}, {
 			offset: function () {
-				return -$('header .main-container').height();
+				return -1 * $(NAV_WRAP).height();
 			}
 		});
 
@@ -154,24 +155,26 @@
 		/* whoAreWe */
 		animationIn('.vision', "transition.slideLeftBigIn", '60%');
 		animationIn('.mision', "transition.slideRightBigIn", '60%');
-		animationIn('.our-developers .section-subtitle', "transition.fadeIn", '60%');
+		animationIn('.our-developers h3', "transition.fadeIn", '60%');
 		animationIn('.our-developers .img-circle:eq(0)', "transition.whirlIn", '60%');
 		animationIn('.our-developers .img-circle:eq(1)', "transition.whirlIn", '60%');
 		animationIn('.our-developers .img-description:eq(0)', "transition.flipXIn", '80%');
 		animationIn('.our-developers .img-description:eq(1)', "transition.flipXIn", '80%');
 
 		/* services */
-		animationIn('.title-services', "transition.bounceLeftIn", '85%');
-		animationIn('.service-item:eq(0)', "transition.bounceLeftIn", '40%');
-		animationIn('.service-item:eq(1)', "transition.expandIn", '40%');
-		animationIn('.service-item:eq(2)', "transition.bounceRightIn", '40%');
+		animationIn('.services-title', "transition.bounceLeftIn", '85%');
+		animationIn('.services-item:eq(0)', "transition.bounceLeftIn", '40%');
+		animationIn('.services-item:eq(1)', "transition.expandIn", '40%');
+		animationIn('.services-item:eq(2)', "transition.bounceRightIn", '40%');
 		animationIn('#flip-carousel', "fadeIn", '70%');
-        infiniteAnimation('callout.bounce', $('.service-item img.second'), 1000);
+        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
 
 		/* contactUs */
 		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
 		animationIn('.contact-method:eq(0)', "transition.slideLeftBigIn", '80%');
 		animationIn('.contact-method:eq(1)', "transition.slideRightBigIn", '80%');
+
+		alignImagesSm(window.innerWidth);
 	}
 
 	function activateSmForm(vw) {
@@ -195,6 +198,35 @@
             $contactData.removeClass("row");
             $contactDataChildren.removeClass();
 
+		}
+	}
+
+	function alignImagesSm(vw) {
+		var $svItems = $('.services-item');
+
+		if (vw >= 768 && vw <= 991) {
+			/* align middle service images */
+			$.each($svItems, function (k, element) {
+				var child = $(element).children(),
+					imgHeight = 0,
+					containerHeight = 0;
+
+				child.eq(0).css('height', child.eq(1).height() + 'px');
+
+				containerHeight = child.eq(0).height();
+				imgHeight = child.eq(0).children().height();
+
+				child.eq(0).children().css('marginTop', ((containerHeight - imgHeight)/2) + 'px');
+			});
+
+        } else if (vw > 991) {
+
+			$.each($svItems, function (k, element) {
+				var child = $(element).children();
+
+				child.eq(0).css('height', "");
+				child.eq(0).children().css('marginTop', "");
+			});
 		}
 	}
 
@@ -249,13 +281,13 @@
 		if (valid && validateForm(form)) {
 
 			$.ajax({
-				url: "https://formspree.io/codeawesomepro@gmail.com",
+				url: "https://formspree.io/codeamazinginc@gmail.com",
 				method: "POST",
 				data: {
 					message: $elements.eq(2).val(),
 					_replyto: $elements.eq(1).val(),
 					name: $elements.eq(0).val(),
-					_subject: "correo de usuario de codeawesome.com.ve"
+					_subject: "correo de usuario de codeamazing.com.ve"
 				},
 				dataType: "json",
 				beforeSend: function () {
@@ -514,7 +546,7 @@
 	}
 
 	function tabAndDesktopCtrl() {
-        
+
     /*-- hyphenate the text of all "p" elements --*/
 		$('p').hyphenate('es');
         
@@ -530,7 +562,8 @@
 		$('.camera_wrap').camera({
 			height: '40%',
 			thumbnails: true,
-            fx: 'simpleFade'
+            fx: 'simpleFade',
+			pagination: true
 		});
 
 		/*-- remove the focus to the "a" tags --*/
@@ -575,7 +608,7 @@
 
 	/*----- button.backTop onclick event -----*/
 		$('.backTop').click(function () {
-            $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.97 });
+            $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
         });
 	}
 
@@ -583,9 +616,10 @@
 	function loadingView(vw) {
 		var hasClass = $htmlBody.attr('class');
 
+		location.hash = "";
+
 		/*-- loading mobile template & controller --*/
 		if (vw < 768 && !hasClass) {
-			location.hash = "";
 			$main.load(URL_MOBILE, mobileCtrl);
 		}
 
@@ -622,6 +656,7 @@
 
 		/*-- activate tablet styles for contactUS --*/
 		activateSmForm(vw);
+		alignImagesSm(vw);
 	}
 
 })(jQuery, window);

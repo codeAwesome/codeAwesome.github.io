@@ -1,12 +1,12 @@
 <!-- template for desctop and tablets -->
 
 <header>
-	<div class="main-container">
-		<div class="logo-box">
-			<img id="logo" src="pic/logo.png" alt="codeAwesome developers">
+	<div class="nav-wrap">
+		<div id="logo">
+			<img src="pic/logo.png" alt="codeAmaing desarrolladores">
 		</div>
 
-		<div class="nav-box">
+		<nav class="nav-bar">
 			<ul class="nav nav-pills">
 				<li>
 					<a href="#whoAreWe"><span>Quiénes somos</span></a>
@@ -18,86 +18,90 @@
 					<a href="#contactUs"><span>Contáctenos</span></a>
 				</li>
 			</ul>
-		</div>
+		</nav>
 	</div>
 
 	<div class="camera_wrap">
-		<div data-src="pic/jumbotron.jpg"></div>
-		<div data-src="pic/pic1.jpg"></div>
-		<div data-src="pic/pic2.jpg"></div>
+		<div data-src="pic/camera/logo.jpg" data-thumb="pic/camera/logo-min.jpg"></div>
+		<div data-src="pic/camera/seo.jpg" data-thumb="pic/camera/seo-min.jpg"></div>
+		<div data-src="pic/camera/alcance.jpg" data-thumb="pic/camera/alcance-min.jpg"></div>
 	</div>
 </header>
 
 <section id="whoAreWe">
 	<div class="container">
 		<div class="row">
-			<div class="whoAreWe">
-				<div class="col-md-12">
-					<h2 class="section-title">Quiénes somos</h2><img class="img-title" src="pic/question.png" alt="question">
-				</div>
-				<div class="col-md-12">
-					<p class="section-desciption">Somos un grupo de desarrolladores emprendedores. Cada día nos esforzamos por mantenernos a la vanguardia con las últimas tecnologías del mercado, brindando así el mejor servicio a nuestros clientes. Garantizamos la funcionalidad, estabilidad y seguridad de nuestros proyectos y cumplimos en todo momento con las espicificaciones técnicas que nos exigen. Nuestro objetivo es la satisfacción del cliente.</p>
-				</div>
-
+			<!-- whoAreWe title -->
+			<div class="col-md-12">
+				<h2>Quiénes somos</h2><img src="pic/question.png" alt="question">
 			</div>
 
-
-			<div class="col-sm-6 col-md-12 vision">
-				<div class="hidden-sm col-md-12 col-sm-12 text-center">
-					<h3 class="section-subtitle">Visión</h3>
-				</div>
-				<div class="clearfix"></div>
-				<div class="sub-description">
-					<div class="hidden-sm container-description width-img-description left">
-						<img class="img-subtitle" src="pic/vision.png" alt="Visión" />
-					</div>
-					<div class="container-description width-block-description left">
-						<blockquote class="block-description">
-							<div class="visible-sm container-description width-img-description left">
-								<img class="img-subtitle" src="pic/vision.png" alt="Visión" />
-							</div>
-							<div class="visible-sm col-sm-12 text-center">
-								<h3 class="section-subtitle">Visión</h3>
-							</div>
-							Contribuir a facilitar la vida de nuestros clientes, por medio de soluciones tecnológicas que automaticen sus tareas y así ser la elección preferida para el desarrollo de software.</blockquote>
-					</div>
-				</div>
+			<!-- whoAreWe description -->
+			<div class="col-md-12">
+				<p class="waw-desciption">Somos un grupo de desarrolladores emprendedores. Cada día nos esforzamos por mantenernos a la vanguardia con las últimas tecnologías del mercado, brindando así el mejor servicio a nuestros clientes. Garantizamos la funcionalidad, estabilidad y seguridad de nuestros proyectos y cumplimos en todo momento con las espicificaciones técnicas que se nos exigen. <strong><em>¡Nuestro objetivo es su satisfacción!</em></strong></p>
 			</div>
 
-			<div class="col-sm-6 col-md-12 mision">
-				<div class="hidden-sm col-md-12 col-sm-12 text-center">
-					<h3 class="section-subtitle">Misión</h3>
+			<!-- vision -->
+			<div class="vision col-sm-6 col-md-12">
+				<div class="col-md-12 hidden-sm">
+					<h3>Visión</h3>
 				</div>
 
 				<div class="clearfix"></div>
 
-				<div class="sub-description">
-					<div class="hidden-sm container-description width-img-description right">
-						<img class="img-subtitle" src="pic/mision.png" alt="Misión" />
+				<div class="vision-wrap">
+					<div class="vision-img hidden-sm">
+						<img src="pic/vision.png" alt="Visión" />
 					</div>
-					<div class="container-description width-block-description right">
-						<blockquote class="block-description">
-							<div class="visible-sm container-description width-img-description right">
-								<img class="img-subtitle" src="pic/mision.png" alt="Misión" />
-							</div>
-							<div class="visible-sm col-md-12 col-sm-12 text-center">
-								<h3 class="section-subtitle">Misión</h3>
-							</div>
-							Desarrollar software de calidad con el propósito de solucionar muchas de las necesidades tecnológicas que presenta la sociedad actual.</blockquote>
+					<blockquote>
+						<div class="visible-sm vision-img-sm">
+							<img class="adaptable" src="pic/vision.png" alt="Visión" />
+						</div>
+						<div class="visible-sm col-sm-12">
+							<h3>Visión</h3>
+						</div>
+
+						<p>Contribuir a facilitar la vida de nuestros clientes, por medio de soluciones tecnológicas que automaticen sus tareas y así ser la elección preferida para el desarrollo de software.</p>
+					</blockquote>
+				</div>
+			</div>
+
+			<!-- mision -->
+			<div class="mision col-sm-6 col-md-12">
+				<div class="col-md-12 col-sm-12 hidden-sm">
+					<h3>Misión</h3>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div class="mision-wrap">
+					<blockquote>
+						<div class="visible-sm mision-img-sm">
+							<img class="adaptable" src="pic/mision.png" alt="Misión" />
+						</div>
+						<div class="visible-sm col-md-12 col-sm-12 text-center">
+							<h3>Misión</h3>
+						</div>
+
+						<p>Desarrollar software de calidad con el propósito de solucionar muchas de las necesidades tecnológicas que presenta la sociedad actual.</p>
+					</blockquote>
+					<div class="mision-img hidden-sm">
+						<img src="pic/mision.png" alt="Misión" />
 					</div>
 				</div>
 			</div>
 		</div>
 
+		<!-- our developers -->
 		<div class="row our-developers">
 
-			<div class="col-md-12 text-center">
-				<h3 class="section-subtitle">Nuestros Desarrolladores</h3>
+			<div class="col-md-12">
+				<h3>Nuestros Desarrolladores</h3>
 			</div>
 
 			<div class="clearfix"></div>
 
-			<div class="col-md-3 col-md-offset-3 col-sm-5 col-sm-offset-1">
+			<div class="col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-3">
 				<div class="photo-developer center-block">
 					<img class="img-circle " src="pic/otniel.jpg" alt="Otniel Acevedo">
 					<div class="img-description">
@@ -107,11 +111,11 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 col-sm-5">
+			<div class="col-sm-5 col-md-3">
 				<div class="photo-developer center-block">
 					<img class="img-circle" src="pic/jose.jpg" alt="José Parra">
 					<div class="img-description">
-						<h4 class="text-center">José Parra</h4>
+						<h4>José Parra</h4>
 						<p>Back-End developer</p>
 					</div>
 				</div>
@@ -122,55 +126,60 @@
 
 <section id="services">
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-right title-services">
-				<h2 class="section-title ws2">Nuestros servicios</h2><img class="img-title" src="pic/servicios.png" alt="Nuestros Servicios">
+		<div class="row services-title">
+			<div class="col-md-12">
+				<h2>Nuestros servicios</h2><img class="img-title" src="pic/services.png" alt="Nuestros Servicios">
 			</div>
 		</div>
 
 		<div class="row services-body">
 
-			<div class="col-md-4 col-sm-12">
-				<div class="service-item row container-fluid">
-					<div class="col-md-12 col-sm-4">
-						<img class="first" src="pic/service-first.png" alt="páginas web adaptables">
+			<!-- service 1 - responsive design -->
+			<div class="col-sm-12 col-md-4">
+				<div class="row services-item">
+					<div class="col-sm-4 col-md-12">
+						<img class="adaptable" src="pic/service-first-xs.png" alt="páginas web adaptables">
 					</div>
-					<div class="col-md-12 col-sm-8">
+					<div class="col-sm-8 col-md-12">
 						<h3>Dise&ntilde;o de páginas adaptables</h3>
-						<p>Un diseño fluido y adaptable a múltiples pantallas brinda la oportunidad a los usuarios de acceder al web site desde cualquier dispositivo, lo que es muy importante debido a la gran cantidad de personas que acceden desde dispositivos móviles.</p>
+						<p>Un diseño fluido y adaptable a múltiples pantallas brinda la oportunidad a los usuarios de acceder a su sitio web desde cualquier dispositivo. Esto es muy importante debido al gran auge que tienen hoy dia los dispositivos móviles, por lo cual suelen ser la opcion de preferencia de los usuarios para acceder a la web.</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-4 col-sm-12">
-				<div class="service-item row container-fluid">
-					<div class="col-md-12 col-sm-4">
-						<img class="second" src="pic/service-second.png" alt="páginas web animadas">
+			<!-- service 2 - animated pages -->
+			<div class="col-sm-12 col-md-4">
+				<div class="row services-item">
+					<div class="col-sm-4 col-md-12">
+						<img class="adaptable" src="pic/service-second.png" alt="páginas web animadas">
 					</div>
-					<div class="col-md-12 col-sm-8">
+					<div class="col-sm-8 col-md-12">
 						<h3>Páginas web animadas</h3>
 						<p>Nuestros dise&ntilde;os alegres con divertidas animaciones ofrecen una mejor experiencia a los usuarios que visiten su página. Hacemos uso de CSS3 y JavaScript para realizar dichas animaciones, de esta forma obtenemos páginas divertidas con un buen rendimiento.</p>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-4 col-sm-12">
-				<div class="service-item row container-fluid">
-					<div class="col-md-12 col-sm-4">
-						<img class="third" src="pic/service-third.png" alt="Aplicaciones web empresariales">
+			<!-- service 3 - enterprice web system -->
+			<div class="col-sm-12 col-md-4">
+				<div class="row services-item">
+					<div class="col-sm-4 col-md-12">
+						<img class="adaptable" src="pic/service-third-xs.png" alt="Aplicaciones web empresariales">
 					</div>
-					<div class="col-md-12 col-sm-8">
+
+					<div class="col-sm-8 col-md-12">
 						<h3>Aplicaciones web empresariales</h3>
 
-						<p>Nuestros sistemas administrativos desarrollados con tecnologías web permiten a los usuarios realizar tareas mas eficientemente, mejoran la transmición de informacion entre departamentos y el respaldo de la misma, permiten imprimir y descargar resportes de la informacion deseada, Además son mas fáciles de administrar y realizar mantenimiento frecuente.</p>
+						<p>Nuestros sistemas administrativos desarrollados con tecnologías web mejoran el desempeño de sus trabajadores facilitando sus tareas y minificando el tiempo en que las realizan. Mejoran la transmición de datos entre departamentos. Mantienen la informacion actualizada, respaldada y protegida. Permiten imprimir o descargar resportes en distintos formatos inlcuido PDF. Son fáciles de utilizar y de realizar mantenimiento frecuente.</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="clearfix"></div>
 
+			<!-- flipcarousel -->
 			<div id="flip-carousel">
-				<h3 class="flip-title">Lenguajes y FrameWorks que utilizamos</h3>
+				<h3 class="flip-title">Lenguajes, Frameworks y Bases de datos que utilizamos</h3>
 
 				<div class="flip-img"><img src="pic/languages/html5.png" alt="HTML5"></div>
 				<div class="flip-img"><img src="pic/languages/css3.png" alt="CSS3"></div>
@@ -209,7 +218,7 @@
 						<a href="tel:+584160560620"><i class="fa fa-mobile"></i><strong class="text-contact">+58-416-056-0620</strong></a>
 					</li>
 					<li>
-						<a href="mailto:codeawesomepro@gmail.com"><i class="fa fa-envelope-o"></i><strong class="text-contact">codeawesomepro@gmail.com</strong></a>
+						<a href="mailto:codeamazinginc@gmail.com"><i class="fa fa-envelope-o"></i><strong class="text-contact">codeamazinginc@gmail.com</strong></a>
 					</li>
 				</ul>
 			</div>
@@ -239,20 +248,21 @@
 <footer>
 	<div class="container-fluid">
 		<div class="row">
-			<p><span id="we">&#60;<span class="code-word">code</span><span class="awesome-word">Awesome</span>/&#62;</span> developers, Venezuela, Carabobo, Puerto Cabello. </p>
+			<p><span id="we">&#60;<span class="code-word">code</span><span class="amazing-word">Amazing</span>/&#62;</span> desarolladores, Venezuela, Carabobo, Puerto Cabello. </p>
+
 			<ul class="list-icon">
 
 				<li class="icon">
-					<a href="https://www.facebook.com/codeawesomegroup" target="_blank"><i class="fa fa-facebook-official"></i></a>
+					<a href="https://www.facebook.com/codeAmazingInc" target="_blank"><i class="fa fa-facebook-official"></i></a>
 				</li>
 				<li class="icon">
-					<a href="https://twitter.com/codeawesome_pro" target="_blank"><i class="fa fa-twitter"></i></a>
+					<a href="https://twitter.com/code_amazing" target="_blank"><i class="fa fa-twitter"></i></a>
 				</li>
 				<li class="icon">
-					<a href="https://plus.google.com/111983470848815593808" target="_blank"><i class="fa fa-google-plus-circle"></i></a>
+					<a href="https://plus.google.com/110217866311359367386" target="_blank"><i class="fa fa-google-plus-circle"></i></a>
 				</li>
 				<li class="icon">
-					<a href="https://github.com/codeAwesome" target="_blank"><i class="fa fa-github"></i></a>
+					<a href="https://github.com/codeamazinginc" target="_blank"><i class="fa fa-github"></i></a>
 				</li>
 			</ul>
 		</div>

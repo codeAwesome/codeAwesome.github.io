@@ -5,123 +5,118 @@
 /*---------------- media querys ----------------*/
 
 @media (max-width: 1280px){
-    .nav-box{
-        margin-right:3%;
+    .nav-bar {
+        margin-right: 3%;
     }
 }
 
 @media (min-width: 851px) and (max-width: 1150px){
-    .nav-box .nav.nav-pills li a{
+    .nav-bar .nav.nav-pills li a {
         font-size: 20px;
         padding-top: 38px;
     }
 }
 
 @media (min-width: 1100px){
-    .container{
+    .container {
         width: 1070px;
     }
 }
 
+/* arreglar */
 @media (min-width: 992px) and (max-width: 1099px){
-    .text-contact{
+    .text-contact {
         font-size: 18px;
     }
     
-    .right blockquote{
+    .right blockquote {
         padding-top: 10px;
     }
 }
+/*-------------*/
 
 @media (max-width: 1050px){
-    .nav-box .nav.nav-pills li a{
+    .nav-bar .nav.nav-pills li a {
         padding-left: 20px;
         padding-right: 20px;
     }
     
-    @media (min-width:992px){
-        .logo-box{
+    @media (min-width: 992px){
+        #logo > img {
             width: 310px;
         }
     }
 }
 
 @media (max-width: 991px){
-    #logo{
-        width: 230px;
-    }
-    .logo-box{
+    #logo {
         width: 240px;
     }
+
+    #logo > img {
+        width: 230px;
+    }
     
-    @media (min-width:768px){
+    @media (min-width: 768px){
 /*------- responsive sm whoAreWe ----------*/
-        .width-img-description{
-            width: 100%;
-            float: none;
-            text-indent: 0px;
-            margin-bottom: 20px;
-        }
-        .right.width-img-description{
-            margin-right: 0px;
-        }
-        .sub-description{
-            margin-left: 0px;
-        }
-        .width-block-description{
-            width: 100%;
-        }
-        .block-description{
-            text-indent: 0px;
-            height: 430px;
-            border-left: none;
-            border-right: none !important;
-            border-top: solid 7px #a5dbdd;
-            border-bottom: solid 7px #a5dbdd;
-            -webkit-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
-            -moz-box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
-            box-shadow: 13px 12px 26px -6px rgba(0,0,0,0.59) !important;
-            padding: 20px !important;
-            padding-top: 0px !important;
-        }
-        .img-subtitle{
-            width: 50%;
-            margin-left: 25%;
-        }
-        h3.section-subtitle{
-            text-indent: 0px;
-            font-style: normal;
-            font-size: 22px;
-            display: inline;
-        }
-        .block-description .text-center{
-            margin-bottom: 15px;
-        }
+		.vision-img-sm, .mision-img-sm {
+			margin-bottom: 20px;
+			text-align: center;
+			width: 100%;
+			height: 150px;
+		}
+
+		blockquote h3 {
+			text-indent: 0px;
+			padding: 10px 0px;
+		}
+
+		blockquote {
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+			height: 500px;
+		}
+
+		.vision-wrap, .mision-wrap {
+			padding: 15px;
+		}
+
+		.vision-wrap > blockquote {
+			border: none;
+			border-top-style: solid;
+			border-top-width: 7px;
+			border-top-color: #a5dbdd;
+			border-bottom-style: solid;
+			border-bottom-width: 7px;
+			border-bottom-color: #a5dbdd;
+		}
+
+		.mision-wrap > blockquote {
+			border: none;
+			border-top-style: solid;
+			border-top-width: 7px;
+			border-top-color: #a5dbdd;
+			border-bottom-style: solid;
+			border-bottom-width: 7px;
+			border-bottom-color: #a5dbdd;
+		}
 /*--------- responsive sm services ----------*/
-        .service-item img{
-            width: 100% !important;
-            height: auto !important;
-        }
-        
-        .service-item .col-sm-8{
-            text-align:justify;
-        }
-        
-        .service-item .col-sm-4{
-            margin-top: 30px;
+
+		.services-item > div:nth-child(1) {
+    		height: auto;
+    		line-height: 100%;
+    		vertical-align: top;
+            margin-top: 0px;
         }
 
-        .service-item > div > p{
+		.services-item > div:nth-child(2) > h3 {
+			margin-top: 0px;
+		}
+
+        .services-item > div:nth-child(2) > p {
             font-size: 14px;
-            line-height: 1.42857143;
-        }
-        
-        .service-item img.first {
-	        width: 80% !important;
-        }
-
-        .service-item img.third {
-	        margin-top: 50px;
+            line-height: 1.5;
         }
 
 /*--------- responsive sm contactUs --------*/
@@ -153,55 +148,55 @@
         }
 
         .contact-method .group-input {
-	        margin-top:0px;
+	        margin-top: 0px;
             margin-bottom: 20px;
         }
 
-        .contact .text-contact{
+        .contact .text-contact {
             margin-left: 5px;
         }
 
-        .contact{
+        .contact {
             font-size: 16px;
         }
 
-        .contact li{
+        .contact li {
             margin-bottom: 0px;
         }
 
-        .contact li i{
+        .contact li i {
             font-size: 46px;
         }
 /*--------- responsive sm footer ----------*/
         
-        footer p{
+        footer p {
             text-align: center;
             display: block;
             position: inherit;
         }
         
-        footer ul.list-icon{
+        footer ul.list-icon {
             display: block;
             margin-top: 15px;
             text-align: center;
             margin-bottom: 0px;
         }
         
-        footer li.icon{
+        footer li.icon {
             float: none !important;
         }
     }
 }
 
 @media (min-width: 810px) and (max-width: 850px){
-    .nav-box .nav.nav-pills li a{
+    .nav-bar .nav.nav-pills li a {
         font-size: 18px;
         padding-top: 41px;
     }
 }
 
 @media (max-width: 809px){
-    .nav-box .nav.nav-pills li a{
+    .nav-bar .nav.nav-pills li a{
         font-size: 16px;
         padding-top: 44px;
     }
@@ -959,7 +954,7 @@
 
     .instruccions .animation.horizontal:after, .instruccions .animation.horizontal:before {
         height: 100%;
-        padding-top: 50%;
+        padding-top: 40%;
         float: left;
     }
 
@@ -1281,6 +1276,48 @@
 			font-size: 10vh;
 		}
 		/*--------- end footer ----------*/
+
+        /*--------- instruccions --------*/
+
+        .instruccions h2 {
+            margin-top: 13px;
+            font-size: 13px;
+            margin-bottom: 13px;
+        }
+
+        .instruccions .animation {
+            height: 58vh;
+        }
+
+        .instruccions .animation:before {
+            padding-top: 3%;
+        }
+
+        .instruccions .animation:after {
+            padding-top: 10%;
+        }
+
+        .instruccions .animation.horizontal:before, .instruccions .animation.horizontal:after {
+            padding-top: 13%;
+        }
+
+        .instruccions .animation img.hand-vertical {
+            left: 65%;
+            width: 70px;
+        }
+
+        .instruccions .animation img.hand-horizontal {
+            left: 30%;
+            width: 70px;
+            top: 24vh;
+        }
+
+        .button-ingore-instruccions {
+            width: 49%;
+            margin-top: 5vh;
+        }
+
+        /*--------- end instruccions-----*/
 
 	}
 }
