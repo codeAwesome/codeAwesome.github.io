@@ -92,9 +92,9 @@
 
 			$target = ($target.length && $target) || $('[name=' + this.hash.slice(1) + ']');
 			if ($target.length) {
+                console.log($target);
 				targetOffset = $target.offset().top;
                 $('#' + $target[0].id).velocity('scroll', {
-                    container : $("body"),
                     duration : targetOffset * 0.7
 				});
 			} else {
