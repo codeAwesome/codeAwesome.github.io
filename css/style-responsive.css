@@ -1319,5 +1319,47 @@
 
         /*--------- end instruccions-----*/
 
+        /*--------- instruccions --------*/
+
+        .instruccions h2 {
+            margin-top: 13px;
+            font-size: 13px;
+            margin-bottom: 13px;
+        }
+
+        .instruccions .animation {
+            height: 58vh;
+        }
+
+        .instruccions .animation:before {
+            padding-top: 3%;
+        }
+
+        .instruccions .animation:after {
+            padding-top: 10%;
+        }
+
+        .instruccions .animation.horizontal:before, .instruccions .animation.horizontal:after {
+            padding-top: 13%;
+        }
+
+        .instruccions .animation img.hand-vertical {
+            left: 65%;
+            width: 70px;
+        }
+
+        .instruccions .animation img.hand-horizontal {
+            left: 30%;
+            width: 70px;
+            top: 24vh;
+        }
+
+        .button-ingore-instruccions {
+            width: 49%;
+            margin-top: 5vh;
+        }
+
+        /*--------- end instruccions-----*/
+
 	}
 }
