@@ -301,6 +301,10 @@ blockquote {
 	height: 150px;
 }
 
+.flip-carousel .face.front{
+    transform: rotate(0deg);
+}
+
 .flip-img {
 	line-height: 148px;
 }
