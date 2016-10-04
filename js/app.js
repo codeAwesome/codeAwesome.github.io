@@ -569,7 +569,7 @@
 		});
 
 		/*-- remove the focus to the "a" tags --*/
-		$('.nav-pills > li > a').focus(function () { $(this).blur(); });
+		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
 
 		/*-- slide scroll toward workshop selected --*/
 		$('a[href*="#"]').click(slideScrollAnimation);

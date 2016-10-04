@@ -2,207 +2,233 @@
 *	v1.2
 */
 
-/*---------------- media querys ----------------*/
+/*------------ desktop media querys -------------*/
 
-@media (max-width: 1280px){
+@media (max-width: 1280px) {
     .nav-bar {
         margin-right: 3%;
     }
 }
 
-@media (min-width: 851px) and (max-width: 1150px){
-    .nav-bar .nav.nav-pills li a {
+@media (max-width: 1050px) {
+    .nav-pills > li > a {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (min-width: 851px) and (max-width: 1150px) {
+    .nav-pills > li > a {
         font-size: 20px;
         padding-top: 38px;
     }
 }
 
-@media (min-width: 1100px){
-    .container {
-        width: 1070px;
-    }
+@media (min-width: 992px) and (max-width: 1199px) {
+	.contact-data-md {
+		font-size: 1.4em;
+	}
+
+	.contact-data-md > li > a > i {
+		font-size: 50px;
+		color: #09589b;
+	}
 }
 
-/* arreglar */
-@media (min-width: 992px) and (max-width: 1099px){
-    .text-contact {
-        font-size: 18px;
-    }
-    
-    .right blockquote {
-        padding-top: 10px;
-    }
-}
-/*-------------*/
+/*------- end desktop media querys ------------*/
 
-@media (max-width: 1050px){
-    .nav-bar .nav.nav-pills li a {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    
-    @media (min-width: 992px){
-        #logo > img {
-            width: 310px;
-        }
-    }
-}
+/*--------------- tab styles ------------------*/
 
-@media (max-width: 991px){
-    #logo {
+@media (min-width: 768px) and (max-width: 991px) {
+
+/*--------- header ----------*/
+
+	#logo {
         width: 240px;
     }
 
     #logo > img {
         width: 230px;
     }
-    
-    @media (min-width: 768px){
-/*------- responsive sm whoAreWe ----------*/
-		.vision-img-sm, .mision-img-sm {
-			margin-bottom: 20px;
-			text-align: center;
-			width: 100%;
-			height: 150px;
+
+	@media (min-width: 810px) and (max-width: 850px) {
+		.nav-pills > li > a {
+			font-size: 18px;
+			padding-top: 41px;
 		}
+	}
 
-		blockquote h3 {
-			text-indent: 0px;
-			padding: 10px 0px;
+	@media (max-width: 809px) {
+		.nav-pills > li > a {
+			font-size: 16px;
+			padding-top: 44px;
 		}
+	}
 
-		blockquote {
-			display: inline-block;
-			vertical-align: top;
-			width: 100%;
-			height: 500px;
-		}
+	.nav-pills > li > a:hover {
+		background-color: #1e6f63;
+		animation-duration: none;
+		animation-name: none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
 
-		.vision-wrap, .mision-wrap {
-			padding: 15px;
-		}
+/*------- end header --------*/
 
-		.vision-wrap > blockquote {
-			border: none;
-			border-top-style: solid;
-			border-top-width: 7px;
-			border-top-color: #a5dbdd;
-			border-bottom-style: solid;
-			border-bottom-width: 7px;
-			border-bottom-color: #a5dbdd;
-		}
+/*--------- whoAreWe ------------*/
 
-		.mision-wrap > blockquote {
-			border: none;
-			border-top-style: solid;
-			border-top-width: 7px;
-			border-top-color: #a5dbdd;
-			border-bottom-style: solid;
-			border-bottom-width: 7px;
-			border-bottom-color: #a5dbdd;
-		}
-/*--------- responsive sm services ----------*/
+	.vision-img-sm, .mision-img-sm {
+		margin-bottom: 20px;
+		text-align: center;
+		width: 100%;
+		height: 150px;
+	}
 
-		.services-item > div:nth-child(1) {
-    		height: auto;
-    		line-height: 100%;
-    		vertical-align: top;
-            margin-top: 0px;
-        }
+	blockquote h3 {
+		text-indent: 0px;
+		padding: 10px 0px;
+	}
 
-		.services-item > div:nth-child(2) > h3 {
-			margin-top: 0px;
-		}
+	blockquote {
+		display: inline-block;
+		vertical-align: top;
+		width: 100%;
+		height: 500px;
+	}
 
-        .services-item > div:nth-child(2) > p {
-            font-size: 14px;
-            line-height: 1.5;
-        }
+	.vision-wrap, .mision-wrap {
+		padding: 15px;
+	}
 
-/*--------- responsive sm contactUs --------*/
-        .contact-method {
-	        background: transparent;
-            -webkit-box-shadow: none;
-            -moz-box-shadow: none;
-            box-shadow: none;
-            height: auto;
-            padding-top: 10px;
-        }
+	.vision-wrap > blockquote {
+		border: none;
+		border-top-style: solid;
+		border-top-width: 7px;
+		border-top-color: #a5dbdd;
+		border-bottom-style: solid;
+		border-bottom-width: 7px;
+		border-bottom-color: #a5dbdd;
+	}
 
-        .contact-method .form-control {
-            border: solid 1px;
-            background: #fff;
-        }
+	.mision-wrap > blockquote {
+		border: none;
+		border-top-style: solid;
+		border-top-width: 7px;
+		border-top-color: #a5dbdd;
+		border-bottom-style: solid;
+		border-bottom-width: 7px;
+		border-bottom-color: #a5dbdd;
+	}
 
-        .contact-method .form-control.active {
-            outline: 0px;
-            border: solid 1px #09589b;
-        }
+/*------- end whoAreWe ----------*/
 
-        .contact-method .form-control.error {
-            border-color: #b41313;
-        }
+/*---------- services -----------*/
 
-        .contact-method .form-control.valid {
-            border-color: #20811c;
-        }
+	.services-item > div:nth-child(1) {
+		height: auto;
+		line-height: 100%;
+		vertical-align: top;
+		margin-top: 0px;
+	}
 
-        .contact-method .group-input {
-	        margin-top: 0px;
-            margin-bottom: 20px;
-        }
+	.services-item > div:nth-child(2) > h3 {
+		margin-top: 0px;
+	}
 
-        .contact .text-contact {
-            margin-left: 5px;
-        }
+/*--------- end services --------*/
 
-        .contact {
-            font-size: 16px;
-        }
+/*------------ contactUs -----------*/
 
-        .contact li {
-            margin-bottom: 0px;
-        }
+	.contact-method {
+		background: transparent;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		height: auto;
+		padding-top: 10px;
+	}
 
-        .contact li i {
-            font-size: 46px;
-        }
-/*--------- responsive sm footer ----------*/
-        
-        footer p {
-            text-align: center;
-            display: block;
-            position: inherit;
-        }
-        
-        footer ul.list-icon {
-            display: block;
-            margin-top: 15px;
-            text-align: center;
-            margin-bottom: 0px;
-        }
-        
-        footer li.icon {
-            float: none !important;
-        }
-    }
+	.contactUs-body {
+		margin: 30px;
+		padding: 50px;
+	    background-color: #fff;
+		padding-top: 30px;
+		-webkit-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+		-moz-box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+		box-shadow: 5px 9px 26px 4px rgba(113,116,122,1);
+	}
+
+	.group-input {
+		margin: 0 0 20px 0;
+	}
+
+	.contact-method .form-control {
+		border: 1px solid #ccc;
+		background: #fff;
+		font-style: normal;
+		padding: 6px 12px;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+		-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+		-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	}
+
+	.contact-method .form-control.error {
+		border-color: #b41313;
+		color: #b41313;
+	}
+
+	.contact-method .form-control.valid {
+		border-color: #20811c;
+		color: #20811c;
+	}
+
+	.contact-data-md {
+		padding: 0px;
+	}
+
+	.contact-data-md > li {
+		display: inline-block;
+	}
+
+	.contact-data-md > li:nth-child(1) {
+		margin-right: 30px;
+	}
+
+	.contact-data-md li > a > i.fa-envelope-o {
+		margin-left: 0px;
+	}
+
+/*--------- end contactUs ----------*/
+
+/*--------- footer ----------*/
+
+	footer > p {
+		display: block;
+		text-align: center;
+	}
+
+	.social-list {
+		position: relative;
+		display: block;
+		height: 80px;
+		text-align: center;
+	}
+
+	.social-list > li {
+		margin: 20px;
+	}
 }
 
-@media (min-width: 810px) and (max-width: 850px){
-    .nav-bar .nav.nav-pills li a {
-        font-size: 18px;
-        padding-top: 41px;
-    }
-}
+/*--------- end footer ----------*/
 
-@media (max-width: 809px){
-    .nav-bar .nav.nav-pills li a{
-        font-size: 16px;
-        padding-top: 44px;
-    }
-}
+/*-------------- end tab styles --------------*/
 
-@media (max-width: 767px){
+/*---------- mobile template styles ----------*/
+
+@media (max-width: 767px) {
 
 /*---------- re-write styles ----------*/
 	/*----- fullpage -----*/
@@ -1363,3 +1389,5 @@
 
 	}
 }
+
+/*---------- end mobile template styles ----------*/
