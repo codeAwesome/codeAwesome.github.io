@@ -560,6 +560,10 @@
 		height: 60%;
 	}
 
+	.service-body > p {
+		color: #7a3f00;
+	}
+
 	.service-title, .s-carousel-title, .s-main-title {
 		font-weight: bold;
 		color: #a33200;
