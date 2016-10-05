@@ -92,7 +92,6 @@
 
 			$target = ($target.length && $target) || $('[name=' + this.hash.slice(1) + ']');
 			if ($target.length) {
-                console.log($target);
 				targetOffset = $target.offset().top;
                 $('#' + $target[0].id).velocity('scroll', {
                     duration : targetOffset * 0.7
@@ -214,11 +213,8 @@
 					containerHeight = 0;
 
 				child.eq(0).css('height', child.eq(1).height() + 'px');
-
-				containerHeight = child.eq(0).height();
-				imgHeight = child.eq(0).children().height();
-
-				child.eq(0).children().css('marginTop', ((containerHeight - imgHeight)/2) + 'px');
+                
+                alignImageVertically(child);
 			});
 
         } else if (vw > 991) {
@@ -231,6 +227,20 @@
 			});
 		}
 	}
+    
+    function alignImageVertically(containerElement) {
+        
+        var containerHeight = containerElement.eq(0).height()
+        var imgHeight = containerElement.eq(0).children().height();
+        
+        containerElement.eq(0).children().css('marginTop', ((containerHeight - imgHeight)/2) + 'px');
+    }
+    
+    function alignSocialIcons() {
+        $.each($('.social-list').children().children(), function (k, element) {
+            alignImageVertically($(element));
+        });
+    }
 
 	function validateForm(form) {
 		var valid = true;
@@ -612,6 +622,9 @@
 		$('.backTop').click(function () {
             $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
         });
+    
+        /*-- centrate social icon vertically --*/
+        alignSocialIcons();
 	}
 
 /*--------------- builder -----------------*/
@@ -659,6 +672,9 @@
 		/*-- activate tablet styles for contactUS --*/
 		activateSmForm(vw);
 		alignImagesSm(vw);
+        
+        /*-- centrate social icon vertically --*/
+        alignSocialIcons();
 	}
 
 })(jQuery, window);

@@ -498,7 +498,7 @@ footer > p {
 }
 
 .social-list > li > a {
-	display: flex;
+	display: block;
 	align-items: center;
 	height: 100%;
     color: #fff;
