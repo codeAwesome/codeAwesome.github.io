@@ -560,7 +560,7 @@
 		height: 60%;
 	}
 
-	.service-body > p {
+	#services-xs .xs-body p {
 		color: #7a3f00;
 	}
 
