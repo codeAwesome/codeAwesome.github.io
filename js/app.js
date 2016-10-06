@@ -396,12 +396,16 @@
             $text = "",
             containerHeight = 0,
 			text = "",
-			newText = "";
+			newText = "",
+            regex = new RegExp("[ ]+[.]");
 
         function replaceText($parent) {
+            console.log($parent);
             if ($text.length > 0) {
-				text = $text.text();
-
+                console.log(regex.test($text.text()));
+				text = $text.text().replace(regex, ".");
+                console.log($text);
+                
                 while ($text[0].scrollHeight > containerHeight) {
                     $text.text(function (index, text) {
                         return text.replace(/\W*\s(\S)*$/, "...");
@@ -411,12 +415,24 @@
 				newText = $text.text();
 
 				if (text.length > newText.length) {
+                    var textHidden = ""
 					text = text.substring(newText.length - 3);
+                    if(text[0] === "." || text[0] === " ") {
+                        textHidden=text.substring(0,2).replace(/[. ]/g, "");
+                        if (textHidden.length === 0) {
+                            textHidden=text.substring(0,2);
+                            text = text.substring(2);
+                        } else {
+                            textHidden=text.substring(0,1);
+                            text = text.substring(1);
+                        }
+                    }
+                    
 					$parent.parent().parent().parent().after(
 						'<div class="slide">\
 							<div class="container">\
 								<div class="xs-body">\
-									<p class="next-text">' + text + '</p>\
+									<p class="next-text"> <span class="hidden">' + textHidden + '</span>' + text + '</p>\
 								</div>\
 							</div>\
 						</div>'
@@ -431,9 +447,8 @@
 				sibling = removeNode.previousSibling;
 
 			$(removeNode).detach();
-
 			$(sibling).children().children().children('.xs-body').children().text(function (i, text) {
-				text = text.substr(0, text.length - 3);
+				text = text.substr(0, text.length - 3).replace(regex, ".");
 				return text + content;
 			});
 		});
@@ -443,14 +458,12 @@
                 var $this = $(this);
                 containerHeight = $this.height();
                 $text = $this.find("p");
-
                 replaceText($this);
             });
 
         } else {
             containerHeight = $container.height();
             $text = $container.find("p");
-
             replaceText($container);
         }
 

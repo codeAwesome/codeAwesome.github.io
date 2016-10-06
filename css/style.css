@@ -375,7 +375,7 @@ blockquote {
     margin: 20px 0 60px 0;
 }
 
-.group-input textarea {
+.contact-method .group-input textarea {
     height: 150px;
 }
 
