@@ -6,20 +6,21 @@
 	'use strict';
 
 /*----------- global constants -----------*/
-	var REGEX_NAME      = /^[a-zA-Z0-9 ñáéíóú]*$/,
-		REGEX_MAIL      = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-		FORM_CONTROL    = '.form-control',
-		BTN_SEND        = '#send',
-		MAIN            = '#main-wrapper',
-		MOBILE_TITLE    = '.xs-title',
-		MOBILE_BODY     = '.xs-body',
-		FORM_XS         = '#contact-form',
-		FORM_FOCUSOUT   = "contact-form",
-		FORM_FOCUSIN    = "contact-form-focus",
-		FORM_HIDE       = "hidden",
-		URL_DESKTOP     = "partials/desktop.tpl.html",
-		URL_MOBILE      = "partials/mobile.tpl.html",
-		FULLPAGE_CONFIG = {
+	var REGEX_NAME       = /^[a-zA-Z0-9 ñáéíóú]*$/,
+		REGEX_MAIL       = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+		FORM_CONTROL     = '.form-control',
+		BTN_SEND         = '#send',
+		MAIN             = '#main-wrapper',
+		MOBILE_TITLE     = '.xs-title',
+		MOBILE_BODY      = '.xs-body',
+		FORM_XS          = '#contact-form',
+		FORM_FOCUSOUT    = "contact-form",
+		FORM_FOCUSIN     = "contact-form-focus",
+		FORM_HIDE        = "hidden",
+		HORIZONTAL_CLASS = "horizontal",
+		URL_DESKTOP      = "partials/desktop.tpl.html",
+		URL_MOBILE       = "partials/mobile.tpl.html",
+		FULLPAGE_CONFIG  = {
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
@@ -71,9 +72,7 @@
 		$main     = $(MAIN);
 
 /*---- document ready & window resize ----*/
-
 	$(document).ready(function () {
-		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
 	});
 
@@ -82,6 +81,10 @@
 	});
 
 /*-------------- functions ----------------*/
+	/**
+	 * move page toward the section selected.
+	 * @returns {boolean} if don't find the section selected.
+	 */
 	function slideScrollAnimation() {
 
 		if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") &&
@@ -102,6 +105,12 @@
 		}
 	}
 
+	/**
+	 * [[Description]]
+	 * @param {[[Type]]} element,   [[Description]]
+	 * @param {[[Type]]} animation, [[Description]]
+	 * @param {[[Type]]} offset,    [[Description]]
+	 */
 	function animationIn(element, animation, offset) {
         $(element).waypoint(function () {
             $(element).velocity(animation, {duration: 1000});
@@ -112,19 +121,30 @@
         });
     }
     
+    /**
+     * [[Description]]
+     * @param {[[Type]]} animation   [[Description]]
+     * @param {[[Type]]} element     [[Description]]
+     * @param {[[Type]]} duration    [[Description]]
+     * @param {[[Type]]} classSwitch [[Description]]
+     */
     function infiniteAnimation(animation, element, duration, classSwitch) {
         if (element.hasClass(classSwitch) || classSwitch === undefined) {
             element.velocity(animation, {
 				duration : duration,
 				complete : function () {
-                	infiniteAnimation(animation, element, duration, classSwitch);
-            	}
+					infiniteAnimation(animation, element, duration, classSwitch);
+				}
 			});
         } else {
             element.velocity('stop');
         }
     }
 
+	/**
+	 * [[Description]]
+	 * @returns {[[Type]]} [[Description]]
+	 */
 	function activateAnimations() {
 		var $backTop  = $('.backTop'),
 			NAV_WRAP = 'header .nav-wrap';
@@ -179,6 +199,10 @@
 		alignImagesSm(window.innerWidth);
 	}
 
+	/**
+	 * activate tablet styles for contactUS
+	 * @param {[[Type]]} vw [[Description]]
+	 */
 	function activateSmForm(vw) {
 		var contactWrapper = '.contact-method',
 			pleaceholder = $(FORM_CONTROL, contactWrapper).attr('placeholder'),
@@ -202,6 +226,10 @@
 		}
 	}
 
+	/**
+	 * [[Description]]
+	 * @param {[[Type]]} vw [[Description]]
+	 */
 	function alignImagesSm(vw) {
 		var $svItems = $('.services-item');
 
@@ -228,20 +256,31 @@
 		}
 	}
     
+    /**
+     * align centraly the elements of the container.
+     * @param {object} containerElement - container of the images.
+     */
     function alignImageVertically(containerElement) {
+        var containerHeight = containerElement.eq(0).height(),
+			imgHeight = containerElement.eq(0).children().height();
         
-        var containerHeight = containerElement.eq(0).height()
-        var imgHeight = containerElement.eq(0).children().height();
-        
-        containerElement.eq(0).children().css('marginTop', ((containerHeight - imgHeight)/2) + 'px');
+        containerElement.eq(0).children().css('marginTop', ((containerHeight - imgHeight) / 2) + 'px');
     }
     
+    /**
+     * align social icons vertically
+     */
     function alignSocialIcons() {
         $.each($('.social-list').children().children(), function (k, element) {
             alignImageVertically($(element));
         });
     }
 
+	/**
+	 * check that all inputs have the class "valid".
+	 * @param   {object} form - form node to test.
+	 * @returns {boolean} true if all okay else false.
+	 */
 	function validateForm(form) {
 		var valid = true;
 
@@ -252,6 +291,11 @@
 		return valid;
 	}
 
+	/**
+	 * validate the form inputs and asign the class "valid" or "error".
+	 * @param   {object} $nodo - the element to test.
+	 * @returns {boolean} true if all okay else false.
+	 */
 	function validateInput($nodo) {
 		$nodo = $nodo instanceof jQuery ? $nodo : $(this);
 		var $label = $nodo.siblings('label'),
@@ -274,12 +318,17 @@
 		$nodo.addClass("valid");
 		$label.addClass("valid");
 
-		if (validateForm(form))
+		if (validateForm(form)) {
 			$(BTN_SEND, form).prop('disabled', false);
+		}
 
 		return true;
 	}
 
+	/**
+	 * send the user mail.
+	 * @returns {boolean} false, avoid the page reload.
+	 */
 	function sendEmail() {
 		var valid = true,
 			form = $(this)[0].form,
@@ -297,9 +346,9 @@
 				method: "POST",
 				data: {
 					message: $elements.eq(2).val(),
-					_replyto: $elements.eq(1).val(),
+					'_replyto': $elements.eq(1).val(),
 					name: $elements.eq(0).val(),
-					_subject: "correo de usuario de codeamazing.com.ve"
+					'_subject': "correo de usuario de codeamazing.com.ve"
 				},
 				dataType: "json",
 				beforeSend: function () {
@@ -336,18 +385,18 @@
 		return false;
 	}
 
+	/**
+	 * activate the usage instuctions for mobile devices.
+	 */
 	function runIntructions() {
-        /** creation of cookie **/
-        Cookies.set('instruccions', true);
-
-        /** elements of DOM **/
         var $nav = $('#fp-nav'),
             $buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
             $description = $('.instruccions h2'),
             $divAnimation = $('.animation'),
-            $elementsAnimated = $('.animation, .instruccions h2'),
-        /** class **/
-            HORIZONTAL_CLASS = "horizontal"
+            $elementsAnimated = $('.animation, .instruccions h2');
+
+		/** creation of cookie **/
+        Cookies.set('instruccions', true);
 
         $('instruccions').show();
         $nav.hide();
@@ -391,6 +440,10 @@
         });
 	}
 
+    /**
+     * short the text excess of the long paragraphs and create a new slide with the text cutted.
+     * @param {object} container - container parent of <p> which determines the maximum high of paragraph.
+     */
     function createEllipsis(container) {
         var $container = $(container),
             $text = "",
@@ -400,11 +453,10 @@
             regex = new RegExp("[ ]+[.]");
 
         function replaceText($parent) {
-            console.log($parent);
+			var textHidden = "";
+
             if ($text.length > 0) {
-                console.log(regex.test($text.text()));
 				text = $text.text().replace(regex, ".");
-                console.log($text);
                 
                 while ($text[0].scrollHeight > containerHeight) {
                     $text.text(function (index, text) {
@@ -415,15 +467,16 @@
 				newText = $text.text();
 
 				if (text.length > newText.length) {
-                    var textHidden = ""
 					text = text.substring(newText.length - 3);
-                    if(text[0] === "." || text[0] === " ") {
-                        textHidden=text.substring(0,2).replace(/[. ]/g, "");
+
+                    if (text[0] === "." || text[0] === " ") {
+                        textHidden = text.substring(0, 2).replace(/[. ]/g, "");
+
                         if (textHidden.length === 0) {
-                            textHidden=text.substring(0,2);
+                            textHidden = text.substring(0, 2);
                             text = text.substring(2);
                         } else {
-                            textHidden=text.substring(0,1);
+                            textHidden = text.substring(0, 1);
                             text = text.substring(1);
                         }
                     }
@@ -460,7 +513,6 @@
                 $text = $this.find("p");
                 replaceText($this);
             });
-
         } else {
             containerHeight = $container.height();
             $text = $container.find("p");
@@ -469,17 +521,22 @@
 
     }
 
-	function centerSlidesNav(){
+	/**
+	 * center the '.fp-slidesNav' elements.
+	 */
+	function centerSlidesNav() {
 		var $slidesNav = "";
 
-		/*-- center the '.fp-slidesNav' elements --*/
 		$slidesNav = $('.fp-slidesNav');
 		$.each($slidesNav, function (i, element) {
-			element.style.marginLeft = (-1 * (element.clientWidth/2)) + "px";
+			element.style.marginLeft = (-1 * (element.clientWidth / 2)) + "px";
 		});
 	}
 
 /*--------- Controller templates ----------*/
+	/**
+	 * mobile controller.
+	 */
 	function mobileCtrl() {
 		/*-- initialize fullpage --*/
 		$(MAIN).fullpage(FULLPAGE_CONFIG);
@@ -488,7 +545,6 @@
         $(MOBILE_BODY).find('p').hyphenate('es');
         $('.contrast p').hyphenate('es');
 
-		/*--  short the text excess of the long paragraphs and create a new slide with the text cutted --*/
 		createEllipsis(MOBILE_BODY);
 
         /*-- destroy fullpage instance --*/
@@ -497,8 +553,7 @@
         /*-- crate a new fullpage instance with the new slides --*/
         $(MAIN).fullpage(FULLPAGE_CONFIG);
 
-		/*-- center the '.fp-slidesNav' elements --*/
-		centerSlidesNav()
+		centerSlidesNav();
 
 		/*-- execute intructions --*/
         if (!Cookies.get('instruccions')) {
@@ -546,16 +601,7 @@
 		});
 
 		/*-- deactivate form --*/
-		$(FORM_CONTROL, FORM_XS).focusout(onFocusOut);
-
-		/*-- validate form --*/
-		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
-
-		/*-- send form --*/
-		$(BTN_SEND, FORM_XS).touchend(sendEmail);
-
-		/*-- deactivate form function --*/
-		function onFocusOut() {
+		$(FORM_CONTROL, FORM_XS).focusout(function () {
 			$(FORM_XS)
 				.removeClass(FORM_FOCUSIN)
 				.addClass(FORM_FOCUSOUT)
@@ -565,21 +611,29 @@
 					.addClass(FORM_HIDE);
 
 			$.fn.fullpage.setAllowScrolling(true);
+		});
 
-			return false;
-		}
+		/*-- validate form --*/
+		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
+
+		/*-- send form --*/
+		$(BTN_SEND, FORM_XS).touchend(sendEmail);
 	}
 
+	/**
+	 * tablet and descktop controller.
+	 */
 	function tabAndDesktopCtrl() {
 
-    /*-- hyphenate the text of all "p" elements --*/
+    	/*-- hyphenate the text of all "p" elements --*/
 		$('p').hyphenate('es');
         
-	/*--------- activate animations ---------*/
+		/*-- activate animations after 2000ms --*/
 		setTimeout(activateAnimations, 2000);
 
-	/*-- activate tablet styles for contactUS --*/
 		activateSmForm(window.innerWidth);
+
+		alignSocialIcons();
 
 	/*---------- header controller ----------*/
 
@@ -594,7 +648,6 @@
 		/*-- remove the focus to the "a" tags --*/
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
 
-		/*-- slide scroll toward workshop selected --*/
 		$('a[href*="#"]').click(slideScrollAnimation);
 
 	/*--------- services controller ---------*/
@@ -631,18 +684,21 @@
 		/*-- validate inputs onkeyUp event --*/
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
-	/*----- button.backTop onclick event -----*/
+	/*------------ button.backTop -----------*/
 		$('.backTop').click(function () {
             $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
         });
-    
-        /*-- centrate social icon vertically --*/
-        alignSocialIcons();
 	}
 
 /*--------------- builder -----------------*/
+	/** load the template appropriate.
+	* @param {integer} vw - viewport.width.
+	*/
 	function loadingView(vw) {
-		var hasClass = $htmlBody.attr('class');
+		var hasClass = $htmlBody.attr('class'),
+			$active = $('.section.active'),
+			$childActive = $('.section.active .slide.active'),
+			formFocus = $('#send').hasClass(FORM_HIDE);
 
 		location.hash = "";
 
@@ -652,21 +708,15 @@
 		}
 
 		/*-- re-build fullpage onWindowResize event --*/
-		if (vw < 768 && hasClass) {
-			var $active = $('.section.active'),
-				$childActive = $('.section.active .slide.active'),
-				formFocus = $('#send').hasClass(FORM_HIDE);
+		if (vw < 768 && hasClass && formFocus) {
+			$.fn.fullpage.reBuild();
+			createEllipsis(MOBILE_BODY);
+			$.fn.fullpage.destroy('all');
+			$(MAIN).fullpage(FULLPAGE_CONFIG);
+			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
 
-			if (formFocus) {
-				$.fn.fullpage.reBuild();
-				createEllipsis(MOBILE_BODY);
-				$.fn.fullpage.destroy('all');
-				$(MAIN).fullpage(FULLPAGE_CONFIG);
-				$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
-
-				/*-- center the '.fp-slidesNav' elements --*/
-				centerSlidesNav()
-			}
+			/*-- center the '.fp-slidesNav' elements --*/
+			centerSlidesNav();
 		}
 
 		/*-- loading tabAndDesktop template & controller --*/
@@ -686,7 +736,7 @@
 		activateSmForm(vw);
 		alignImagesSm(vw);
         
-        /*-- centrate social icon vertically --*/
+        /*-- align social icons vertically --*/
         alignSocialIcons();
 	}
 
