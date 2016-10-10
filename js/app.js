@@ -6,20 +6,23 @@
 	'use strict';
 
 /*----------- global constants -----------*/
-	var REGEX_NAME      = /^[a-zA-Z0-9 ñáéíóú]*$/,
-		REGEX_MAIL      = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-		FORM_CONTROL    = '.form-control',
-		BTN_SEND        = '#send',
-		MAIN            = '#main-wrapper',
-		MOBILE_TITLE    = '.xs-title',
-		MOBILE_BODY     = '.xs-body',
-		FORM_XS         = '#contact-form',
-		FORM_FOCUSOUT   = "contact-form",
-		FORM_FOCUSIN    = "contact-form-focus",
-		FORM_HIDE       = "hidden",
-		URL_DESKTOP     = "partials/desktop.tpl.html",
-		URL_MOBILE      = "partials/mobile.tpl.html",
-		FULLPAGE_CONFIG = {
+	var REGEX_NAME       = /^[a-zA-Z0-9 ñáéíóú]*$/,
+		REGEX_MAIL       = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+		FORM_CONTROL     = '.form-control',
+		BTN_SEND         = '#send',
+		MAIN             = '#main-wrapper',
+		MOBILE_TITLE     = '.xs-title',
+		MOBILE_BODY      = '.xs-body',
+		FORM_XS          = '#contact-form',
+		FORM_FOCUSOUT    = "contact-form",
+		FORM_FOCUSIN     = "contact-form-focus",
+		FORM_HIDE        = "hidden",
+		HORIZONTAL_CLASS = "horizontal",
+		URL_DESKTOP      = "partials/desktop.tpl.html",
+		URL_MOBILE       = "partials/mobile.tpl.html",
+		$htmlBody        = $('html, body'),
+		$main            = $(MAIN),
+		FULLPAGE_CONFIG  = {
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
 			navigation: true,
@@ -27,30 +30,36 @@
 			continuousVertical: true,
 			slidesNavigation: true,
 			controlArrows: false,
-			onLeave: function (index, nextIndex, direction) {
-				var $superslides = $('#slides');
-
+			/**
+			 * event listener when it leave a section.
+			 * @param   {integer} index - section that left.
+			 * @param   {integer} nextIndex - next section.
+			 * @returns {boolean}  false, when the instructions are activated.
+			 */
+			onLeave: function (index, nextIndex) {
 				if ($('.instruccions').css('display') !== 'none') {
 					return false;
 				}
 
-				if (index === 1) {
-					$superslides.superslides('stop');
-				}
-
 				if (nextIndex === 1) {
-					$superslides.superslides('start');
-				}
-			},
-			afterLoad: function (k, index) {
-				var $nav = $('#fp-nav');
-
-				if (index === 1) {
-					$nav.hide();
+					$('#fp-nav').hide();
+					$('#slides').superslides('start');
 				} else {
-					$nav.show();
+					$('#slides').superslides('stop');
+					if (nextIndex !== 5) {
+						$('#fp-nav').show();
+					} else {
+						$('#fp-nav').hide();
+					}
 				}
 			},
+            /**
+             * event listener when it leave a slide.
+             * @param {integer} index - section active.
+             * @param {integer} slideIndex - slide that left.
+             * @param {string} direction - scroll direction.
+             * @param {integer} nextSlideIndex - next slide.
+             */
             onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
 				var $slidePgAnimated = $('.pg-animated').index(),
 					$imgBounce = $('.flex-img img:eq(1)');
@@ -66,14 +75,10 @@
 
                 }
             }
-		},
-		$htmlBody = $('html, body'),
-		$main     = $(MAIN);
+		};
 
 /*---- document ready & window resize ----*/
-
 	$(document).ready(function () {
-		/*-- load the template appropriate for the window width --*/
 		loadingView(window.innerWidth);
 	});
 
@@ -82,6 +87,10 @@
 	});
 
 /*-------------- functions ----------------*/
+	/**
+	 * move page toward the section selected.
+	 * @returns {boolean} false, if don't find the section selected.
+	 */
 	function slideScrollAnimation() {
 
 		if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") &&
@@ -102,9 +111,16 @@
 		}
 	}
 
+	/**
+	 * activate animation with velocity.js and waypoints.js
+	 * @param {string} element - CSS selector for the element to be animated
+	 * @param {string} animation - animation name
+	 * @param {string} offset - scroll position
+	 */
 	function animationIn(element, animation, offset) {
         $(element).waypoint(function () {
             $(element).velocity(animation, {duration: 1000});
+            //It is destroyed to operate only once
             this.destroy();
         }, {
             offset: offset,
@@ -112,41 +128,65 @@
         });
     }
     
+    /**
+     * infinite animation using recursion
+     * @param {string} animation - animation name 
+     * @param {object} element - jquery object to which the animation is applied
+     * @param {integer} duration - animation duration
+     * @param {string} classSwitch - class that allows stop animation, when this is eliminated
+     */
     function infiniteAnimation(animation, element, duration, classSwitch) {
         if (element.hasClass(classSwitch) || classSwitch === undefined) {
             element.velocity(animation, {
 				duration : duration,
+                //when the animation ends, is called again to the same function
 				complete : function () {
-                	infiniteAnimation(animation, element, duration, classSwitch);
-            	}
+					infiniteAnimation(animation, element, duration, classSwitch);
+				}
 			});
         } else {
+            // if classSwitch is removed, the animation is stopped
             element.velocity('stop');
         }
     }
 
+	/**
+	 * active all animations
+	 */
 	function activateAnimations() {
 		var $backTop  = $('.backTop'),
 			NAV_WRAP = 'header .nav-wrap';
 
-		/*-- backTop --*/
+        /**
+         * animation of button backTop when the lower edge of the header is hidden or is visible
+         * @param {string} direction - scroll direction
+         */
 		$(NAV_WRAP).waypoint(function (direction) {
 			if (direction === "down") {
+            //if the direction is down, the button backTop is displayed
                 $backTop.velocity('transition.slideUpIn');
 			} else {
+                //if the direction is up, the button backTop is hidden
                 $backTop.velocity('transition.slideDownOut');
 			}
 		}, {
+            //returns the position of the lower edge of the header
 			offset: function () {
 				return -$(NAV_WRAP).height();
 			}
 		});
-
+        
+        /**
+         * animation of button backTop when the upper edge of the footer is hidden or is visible
+         * @param {string} direction - scroll direction
+         */
 		$('footer:eq(0)').waypoint(function (direction) {
 			if (direction === "down") {
+                //if the direction is down, obtains a higher bottom position than footer height
 				$backTop.css('bottom', $('footer').outerHeight() + 5);
                 $backTop.velocity('transition.slideDownIn');
 			} else {
+                //if the direction is up, obtains a bottom position equal to 15px
                 $backTop.css('bottom', '15px');
 				$backTop.velocity('transition.slideDownIn');
 			}
@@ -179,69 +219,82 @@
 		alignImagesSm(window.innerWidth);
 	}
 
+	/**
+	 * activate tablet styles for contactUS when the viewport width be equivalent to sm.
+	 * @param {integer} vw - viewport.width.
+	 */
 	function activateSmForm(vw) {
 		var contactWrapper = '.contact-method',
 			pleaceholder = $(FORM_CONTROL, contactWrapper).attr('placeholder'),
-			$formElements = $(FORM_CONTROL, contactWrapper),
-			$contactData = $('ul.contact', contactWrapper),
-			$contactDataChildren = $('ul.contact li', contactWrapper);
+			$formElements = $(FORM_CONTROL, contactWrapper);
 
 		if ((vw >= 768 && vw <= 991) && typeof pleaceholder === 'undefined') {
 
             $formElements.eq(0).attr('placeholder', "Nombre");
             $formElements.eq(1).attr('placeholder', "Correo");
             $formElements.eq(2).attr('placeholder', "Mensaje");
-            $contactData.addClass("row");
-            $contactDataChildren.addClass("col-sm-3");
 
         } else if (vw > 991 && typeof pleaceholder !== 'undefined') {
 
             $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
-            $contactData.removeClass("row");
-            $contactDataChildren.removeClass();
 		}
 	}
 
+	/**
+	 * align vertically the images of services section when the viewport width be equivalent to sm.
+	 * @param {integer} vw - viewport.width.
+	 */
 	function alignImagesSm(vw) {
 		var $svItems = $('.services-item');
 
 		if (vw >= 768 && vw <= 991) {
-			/* align middle service images */
 			$.each($svItems, function (k, element) {
-				var child = $(element).children(),
+				var children = $(element).children(),
 					imgHeight = 0,
 					containerHeight = 0;
 
-				child.eq(0).css('height', child.eq(1).height() + 'px');
+				/*-- asign the height of the child 2 to the child 1 --*/
+				children.eq(0).css('height', children.eq(1).height() + 'px');
                 
-                alignImageVertically(child);
+				/*-- align vertically the child 1 --*/
+                alignImageVertically(children.eq(0));
 			});
 
         } else if (vw > 991) {
-
 			$.each($svItems, function (k, element) {
-				var child = $(element).children();
+				var child = $(element).children(':eq(0)');
 
-				child.eq(0).css('height', "");
-				child.eq(0).children().css('marginTop', "");
+				child.css('height', "");
+				child.children().css('marginTop', "");
 			});
 		}
 	}
     
-    function alignImageVertically(containerElement) {
+    /**
+     * align vertically the elements of a container.
+     * @param {object} container - father container of the elements to be aligned.
+     */
+    function alignImageVertically(container) {
+        var containerHeight = container.height(),
+			imgHeight = container.children().height();
         
-        var containerHeight = containerElement.eq(0).height()
-        var imgHeight = containerElement.eq(0).children().height();
-        
-        containerElement.eq(0).children().css('marginTop', ((containerHeight - imgHeight)/2) + 'px');
+        container.children().css('marginTop', ((containerHeight - imgHeight) / 2) + 'px');
     }
     
+    /**
+     * align vertically the elements children of 'ul.social-list'.
+     */
     function alignSocialIcons() {
         $.each($('.social-list').children().children(), function (k, element) {
             alignImageVertically($(element));
         });
     }
 
+	/**
+	 * check that all inputs have the class "valid".
+	 * @param   {object} form - <form> to test.
+	 * @returns {boolean} true if all okay else false.
+	 */
 	function validateForm(form) {
 		var valid = true;
 
@@ -252,6 +305,11 @@
 		return valid;
 	}
 
+	/**
+	 * validate the form inputs and asign the class "valid" or "error".
+	 * @param   {object} $nodo - the element to test.
+	 * @returns {boolean} true if all okay else false.
+	 */
 	function validateInput($nodo) {
 		$nodo = $nodo instanceof jQuery ? $nodo : $(this);
 		var $label = $nodo.siblings('label'),
@@ -274,12 +332,17 @@
 		$nodo.addClass("valid");
 		$label.addClass("valid");
 
-		if (validateForm(form))
+		if (validateForm(form)) {
 			$(BTN_SEND, form).prop('disabled', false);
+		}
 
 		return true;
 	}
 
+	/**
+	 * send the user mail.
+	 * @returns {boolean} false, avoid the page reload.
+	 */
 	function sendEmail() {
 		var valid = true,
 			form = $(this)[0].form,
@@ -297,9 +360,9 @@
 				method: "POST",
 				data: {
 					message: $elements.eq(2).val(),
-					_replyto: $elements.eq(1).val(),
+					'_replyto': $elements.eq(1).val(),
 					name: $elements.eq(0).val(),
-					_subject: "correo de usuario de codeamazing.com.ve"
+					'_subject': "correo de usuario de codeamazing.com.ve"
 				},
 				dataType: "json",
 				beforeSend: function () {
@@ -318,6 +381,7 @@
 						timer: 7000
 					});
 
+					/*-- reset the form --*/
 					$elements.val("").removeClass("active valid");
 					$('label', form).removeClass("active valid");
 					$(BTN_SEND, form).prop('disabled', true);
@@ -336,24 +400,24 @@
 		return false;
 	}
 
+	/**
+	 * activate the usage instuctions for mobile devices.
+	 */
 	function runIntructions() {
-        /** creation of cookie **/
-        Cookies.set('instruccions', true);
-
-        /** elements of DOM **/
-        var $nav = $('#fp-nav'),
-            $buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
+		var $nav = $('#fp-nav'),
+        	$buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
             $description = $('.instruccions h2'),
             $divAnimation = $('.animation'),
-            $elementsAnimated = $('.animation, .instruccions h2'),
-        /** class **/
-            HORIZONTAL_CLASS = "horizontal"
+            $elementsAnimated = $('.animation, .instruccions h2');
+
+		/** creation of cookie **/
+        Cookies.set('instruccions', true);
 
         $('instruccions').show();
         $nav.hide();
         $('#menu-xs').addClass(FORM_HIDE);
 
-        /** Evento llamado para cerrar las instrucciones **/
+        /** event to close the instructions **/
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
             setTimeout(function () {
                 $('.instruccions').velocity('transition.fadeOut', {complete : function () {
@@ -367,7 +431,7 @@
         });
         
         
-        /** cambio de instrucciones **/
+        /** change instruction **/
         $buttonIgnoreSeccond.touchend(function () {
             setTimeout(function () {
                 if (!$divAnimation.hasClass(HORIZONTAL_CLASS)) {
@@ -391,6 +455,10 @@
         });
 	}
 
+    /**
+     * short the text excess of the long paragraphs and create a new slide with the text cutted.
+     * @param {object} container - container parent of <p> which determines the maximum high of paragraph.
+     */
     function createEllipsis(container) {
         var $container = $(container),
             $text = "",
@@ -399,12 +467,17 @@
 			newText = "",
             regex = new RegExp("[ ]+[.]");
 
+        /**
+         * [[Description]]
+         * @param   {[[Type]]} $parent [[Description]]
+         * @returns {[[Type]]} [[Description]]
+         */
         function replaceText($parent) {
-            console.log($parent);
+			var textHidden = "";
+
             if ($text.length > 0) {
-                console.log(regex.test($text.text()));
+                //replace any space with a "." for "."
 				text = $text.text().replace(regex, ".");
-                console.log($text);
                 
                 while ($text[0].scrollHeight > containerHeight) {
                     $text.text(function (index, text) {
@@ -415,15 +488,21 @@
 				newText = $text.text();
 
 				if (text.length > newText.length) {
-                    var textHidden = ""
 					text = text.substring(newText.length - 3);
-                    if(text[0] === "." || text[0] === " ") {
-                        textHidden=text.substring(0,2).replace(/[. ]/g, "");
+                    //verify that text[0] start with "." or space
+                    if (text[0] === "." || text[0] === " ") {
+                        //remove any "." or space that is in the first two letters of text
+                        textHidden = text.substring(0, 2).replace(/[. ]/g, "");
+                        //verify that textHidden is empty,if so is because the first two letters of text are "." or space
                         if (textHidden.length === 0) {
-                            textHidden=text.substring(0,2);
+                            //textHidden is equal to the first two letters of text
+                            textHidden = text.substring(0, 2);
+                            //text is equal to the same without the first two letters
                             text = text.substring(2);
                         } else {
-                            textHidden=text.substring(0,1);
+                            //textHidden is equal to the first letters of text
+                            textHidden = text.substring(0, 1);
+                            //text is equal to the same without the first letters
                             text = text.substring(1);
                         }
                     }
@@ -448,6 +527,7 @@
 
 			$(removeNode).detach();
 			$(sibling).children().children().children('.xs-body').children().text(function (i, text) {
+                //replace any space with a "." for "."
 				text = text.substr(0, text.length - 3).replace(regex, ".");
 				return text + content;
 			});
@@ -460,7 +540,6 @@
                 $text = $this.find("p");
                 replaceText($this);
             });
-
         } else {
             containerHeight = $container.height();
             $text = $container.find("p");
@@ -469,26 +548,32 @@
 
     }
 
-	function centerSlidesNav(){
+	/**
+	 * center the elements with the class "fp-slidesNav".
+	 */
+	function centerSlidesNav() {
 		var $slidesNav = "";
 
-		/*-- center the '.fp-slidesNav' elements --*/
 		$slidesNav = $('.fp-slidesNav');
 		$.each($slidesNav, function (i, element) {
-			element.style.marginLeft = (-1 * (element.clientWidth/2)) + "px";
+			element.style.marginLeft = (-1 * (element.clientWidth / 2)) + "px";
 		});
 	}
 
-/*--------- Controller templates ----------*/
+/*--------- template controllers  ----------*/
+	/**
+	 * mobile controller.
+	 */
 	function mobileCtrl() {
-		/*-- initialize fullpage --*/
+		var $superslides = $('#slides');
+
+		/*-- create fullpage instance --*/
 		$(MAIN).fullpage(FULLPAGE_CONFIG);
 
-		/*-- hyphenate the text of all "p" elements into the ".xs-body" elements --*/
+		/*-- hyphenate the text of all <p> into the elements with the class "xs-body" --*/
         $(MOBILE_BODY).find('p').hyphenate('es');
         $('.contrast p').hyphenate('es');
 
-		/*--  short the text excess of the long paragraphs and create a new slide with the text cutted --*/
 		createEllipsis(MOBILE_BODY);
 
         /*-- destroy fullpage instance --*/
@@ -497,41 +582,47 @@
         /*-- crate a new fullpage instance with the new slides --*/
         $(MAIN).fullpage(FULLPAGE_CONFIG);
 
-		/*-- center the '.fp-slidesNav' elements --*/
-		centerSlidesNav()
+		centerSlidesNav();
+
+	/*---------- header controller ----------*/
+		$('#fp-nav').hide();
 
 		/*-- execute intructions --*/
         if (!Cookies.get('instruccions')) {
             $('.instruccions').show();
             runIntructions();
         } else {
-            $('#slides').superslides({'play': 15000});
+            $superslides.superslides({'play': 15000});
         }
 
 		/*-- add swipe function to superslides --*/
-		$('#slides').on('swipeleft', function () {
-			$('#slides').superslides('stop');
-			$('#slides').superslides('animate', 'next');
-			$('#slides').superslides('start');
+		$superslides.on('swipeleft', function () {
+			$superslides.superslides('stop');
+			$superslides.superslides('animate', 'next');
+			$superslides.superslides('start');
 		});
 
-		$('#slides').on('swiperight', function () {
-			$('#slides').superslides('stop');
-			$('#slides').superslides('animate', 'prev');
-			$('#slides').superslides('start');
+		$superslides.on('swiperight', function () {
+			$superslides.superslides('stop');
+			$superslides.superslides('animate', 'prev');
+			$superslides.superslides('start');
 		});
 
-		/*-- move to slide selected onclick header nav tag --*/
+		/*-- move page toward the section selected --*/
 		$('li', '#menu-xs').click(function () {
 			var index = $(this).index() + 2;
 
 			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
 		});
 
-		/*-- flipCarousel instance & config --*/
+	/*--------- services controller ---------*/
+
+		/*-- create flipCarousel instance --*/
 		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
 
-		/*-- disable #send button --*/
+	/*--------- contactUS controller --------*/
+
+		/*-- disable 'button#send' --*/
 		$(BTN_SEND, FORM_XS).prop('disabled', true);
 
 		/*-- activate form --*/
@@ -546,16 +637,7 @@
 		});
 
 		/*-- deactivate form --*/
-		$(FORM_CONTROL, FORM_XS).focusout(onFocusOut);
-
-		/*-- validate form --*/
-		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
-
-		/*-- send form --*/
-		$(BTN_SEND, FORM_XS).touchend(sendEmail);
-
-		/*-- deactivate form function --*/
-		function onFocusOut() {
+		$(FORM_CONTROL, FORM_XS).focusout(function () {
 			$(FORM_XS)
 				.removeClass(FORM_FOCUSIN)
 				.addClass(FORM_FOCUSOUT)
@@ -565,25 +647,33 @@
 					.addClass(FORM_HIDE);
 
 			$.fn.fullpage.setAllowScrolling(true);
+		});
 
-			return false;
-		}
+		/*-- validate form --*/
+		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
+
+		/*-- send form --*/
+		$(BTN_SEND, FORM_XS).touchend(sendEmail);
 	}
 
+	/**
+	 * tablet and desktop controller.
+	 */
 	function tabAndDesktopCtrl() {
 
-    /*-- hyphenate the text of all "p" elements --*/
+    	/*-- hyphenate the text of all <p> --*/
 		$('p').hyphenate('es');
         
-	/*--------- activate animations ---------*/
+		/*-- activate animations after 2s --*/
 		setTimeout(activateAnimations, 2000);
 
-	/*-- activate tablet styles for contactUS --*/
 		activateSmForm(window.innerWidth);
+
+		alignSocialIcons();
 
 	/*---------- header controller ----------*/
 
-		/*-- camera instance & config --*/
+		/*-- create camera instance --*/
 		$('.camera_wrap').camera({
 			height: '40%',
 			thumbnails: true,
@@ -591,26 +681,26 @@
 			pagination: true
 		});
 
-		/*-- remove the focus to the "a" tags --*/
+		/*-- remove the focus to the <a> --*/
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
 
-		/*-- slide scroll toward workshop selected --*/
+		/*-- move page toward the section selected --*/
 		$('a[href*="#"]').click(slideScrollAnimation);
 
 	/*--------- services controller ---------*/
 
-		/*-- flipCarousel instance & config --*/
+		/*-- create flipCarousel instance --*/
 		$('.flip-img').flipcarousel();
 
 	/*--------- contactUS controller --------*/
 
-		/*-- disable #send button --*/
+		/*-- disable 'button#send' --*/
 		$(BTN_SEND).prop('disabled', true);
 
-		/* send mail onclick event */
+		/*-- send form --*/
 		$(BTN_SEND).click(sendEmail);
 
-		/*-- activate input animation onfocusIn event --*/
+		/*-- activate input --*/
 		$(FORM_CONTROL).focusin(function () {
 			var $this = $(this);
 
@@ -618,7 +708,7 @@
 			$this.siblings('label').addClass("active");
 		});
 
-		/*-- activate input animation onfocusOut event --*/
+		/*-- diactivate input --*/
 		$(FORM_CONTROL).focusout(function () {
 			var $this = $(this);
 
@@ -628,65 +718,74 @@
 			}
 		});
 
-		/*-- validate inputs onkeyUp event --*/
+		/*-- validate input --*/
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
-	/*----- button.backTop onclick event -----*/
+	/*------------ button.backTop -----------*/
 		$('.backTop').click(function () {
             $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
         });
-    
-        /*-- centrate social icon vertically --*/
-        alignSocialIcons();
 	}
 
 /*--------------- builder -----------------*/
+	/**
+	* load the appropriate template.
+	* @param {integer} vw - viewport.width.
+	*/
 	function loadingView(vw) {
-		var hasClass = $htmlBody.attr('class');
+		var hasClass = $htmlBody.attr('class'),
+			$active = $('.section.active'),
+			$childActive = $('.section.active .slide.active'),
+			formFocus = $('#send').hasClass(FORM_HIDE);
 
-		location.hash = "";
-
-		/*-- loading mobile template & controller --*/
+		/**
+		* loading mobile template & controller.
+		*/
 		if (vw < 768 && !hasClass) {
+			location.hash = "";
 			$main.load(URL_MOBILE, mobileCtrl);
 		}
 
-		/*-- re-build fullpage onWindowResize event --*/
-		if (vw < 768 && hasClass) {
-			var $active = $('.section.active'),
-				$childActive = $('.section.active .slide.active'),
-				formFocus = $('#send').hasClass(FORM_HIDE);
+		/**
+		* re-build fullpage onWindowResize event.
+		*/
+		if (vw < 768 && hasClass && formFocus) {
+			/*-- lap 1 | re-build fullpage instance with the new viewport width and create the new necessary slides --*/
+			$.fn.fullpage.reBuild();
+			createEllipsis(MOBILE_BODY);
 
-			if (formFocus) {
-				$.fn.fullpage.reBuild();
-				createEllipsis(MOBILE_BODY);
-				$.fn.fullpage.destroy('all');
-				$(MAIN).fullpage(FULLPAGE_CONFIG);
-				$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
+			/*-- lap 2 | destroy fullpage instance and create a new instance --*/
+			$.fn.fullpage.destroy('all');
+			$(MAIN).fullpage(FULLPAGE_CONFIG);
 
-				/*-- center the '.fp-slidesNav' elements --*/
-				centerSlidesNav()
-			}
+			/*-- lap 3 | move to the section active previously --*/
+			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
+			centerSlidesNav();
 		}
 
-		/*-- loading tabAndDesktop template & controller --*/
+		/**
+		* loading tabAndDesktop template & controller.
+		*/
 		if (vw >= 768 && !hasClass && !$main.html()) {
+			location.hash = "";
 			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
 		}
 
-		/*-- destroy mobile tamplate and loading tabAndDesktop template onWindowResize event --*/
+		/**
+		* destroy mobile tamplate and loading tabAndDesktop template onWindowResize event.
+		*/
 		if (vw >= 768 && hasClass) {
+			/*-- lap 1 | delete the content of the 'div.#main-wrapper' and destroy the fullpage instance --*/
 			$main.html("");
 			$.fn.fullpage.destroy("all");
 			$htmlBody.removeAttr('style class');
+
+			/*-- lap 2 | loading tabAndDesktop template & controller --*/
 			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
 		}
 
-		/*-- activate tablet styles for contactUS --*/
 		activateSmForm(vw);
 		alignImagesSm(vw);
-        
-        /*-- centrate social icon vertically --*/
         alignSocialIcons();
 	}
 
