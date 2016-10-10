@@ -112,14 +112,15 @@
 	}
 
 	/**
-	 * [[Description]]
-	 * @param {[[Type]]} element,   [[Description]]
-	 * @param {[[Type]]} animation, [[Description]]
-	 * @param {[[Type]]} offset,    [[Description]]
+	 * activate animation with velocity.js and waypoints.js
+	 * @param {string} element - CSS selector for the element to be animated
+	 * @param {string} animation - animation name
+	 * @param {string} offset - scroll position
 	 */
 	function animationIn(element, animation, offset) {
         $(element).waypoint(function () {
             $(element).velocity(animation, {duration: 1000});
+            //It is destroyed to operate only once
             this.destroy();
         }, {
             offset: offset,
@@ -128,51 +129,64 @@
     }
     
     /**
-     * [[Description]]
-     * @param {[[Type]]} animation   [[Description]]
-     * @param {[[Type]]} element     [[Description]]
-     * @param {[[Type]]} duration    [[Description]]
-     * @param {[[Type]]} classSwitch [[Description]]
+     * infinite animation using recursion
+     * @param {string} animation - animation name 
+     * @param {object} element - jquery object to which the animation is applied
+     * @param {integer} duration - animation duration
+     * @param {string} classSwitch - class that allows stop animation, when this is eliminated
      */
     function infiniteAnimation(animation, element, duration, classSwitch) {
         if (element.hasClass(classSwitch) || classSwitch === undefined) {
             element.velocity(animation, {
 				duration : duration,
+                //when the animation ends, is called again to the same function
 				complete : function () {
 					infiniteAnimation(animation, element, duration, classSwitch);
 				}
 			});
         } else {
+            // if classSwitch is removed, the animation is stopped
             element.velocity('stop');
         }
     }
 
 	/**
-	 * [[Description]]
-	 * @returns {[[Type]]} [[Description]]
+	 * active all animations
 	 */
 	function activateAnimations() {
 		var $backTop  = $('.backTop'),
 			NAV_WRAP = 'header .nav-wrap';
 
-		/*-- backTop --*/
+        /**
+         * animation of button backTop when the lower edge of the header is hidden or is visible
+         * @param {string} direction - scroll direction
+         */
 		$(NAV_WRAP).waypoint(function (direction) {
 			if (direction === "down") {
+            //if the direction is down, the button backTop is displayed
                 $backTop.velocity('transition.slideUpIn');
 			} else {
+                //if the direction is up, the button backTop is hidden
                 $backTop.velocity('transition.slideDownOut');
 			}
 		}, {
+            //returns the position of the lower edge of the header
 			offset: function () {
 				return -$(NAV_WRAP).height();
 			}
 		});
-
+        
+        /**
+         * animation of button backTop when the upper edge of the footer is hidden or is visible
+         * @param {string} direction - scroll direction
+         */
 		$('footer:eq(0)').waypoint(function (direction) {
 			if (direction === "down") {
+                //if the direction is down, obtains a higher bottom position than footer height
 				$backTop.css('bottom', $('footer').outerHeight() + 5);
                 $backTop.velocity('transition.slideDownIn');
 			} else {
+                //if the direction is up, obtains a bottom position equal to 15px
                 $backTop.css('bottom', '15px');
 				$backTop.velocity('transition.slideDownIn');
 			}
@@ -403,7 +417,7 @@
         $nav.hide();
         $('#menu-xs').addClass(FORM_HIDE);
 
-        /** Evento llamado para cerrar las instrucciones **/
+        /** event to close the instructions **/
         $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
             setTimeout(function () {
                 $('.instruccions').velocity('transition.fadeOut', {complete : function () {
@@ -417,7 +431,7 @@
         });
         
         
-        /** cambio de instrucciones **/
+        /** change instruction **/
         $buttonIgnoreSeccond.touchend(function () {
             setTimeout(function () {
                 if (!$divAnimation.hasClass(HORIZONTAL_CLASS)) {
@@ -462,6 +476,7 @@
 			var textHidden = "";
 
             if ($text.length > 0) {
+                //replace any space with a "." for "."
 				text = $text.text().replace(regex, ".");
                 
                 while ($text[0].scrollHeight > containerHeight) {
@@ -474,15 +489,20 @@
 
 				if (text.length > newText.length) {
 					text = text.substring(newText.length - 3);
-
+                    //verify that text[0] start with "." or space
                     if (text[0] === "." || text[0] === " ") {
+                        //remove any "." or space that is in the first two letters of text
                         textHidden = text.substring(0, 2).replace(/[. ]/g, "");
-
+                        //verify that textHidden is empty,if so is because the first two letters of text are "." or space
                         if (textHidden.length === 0) {
+                            //textHidden is equal to the first two letters of text
                             textHidden = text.substring(0, 2);
+                            //text is equal to the same without the first two letters
                             text = text.substring(2);
                         } else {
+                            //textHidden is equal to the first letters of text
                             textHidden = text.substring(0, 1);
+                            //text is equal to the same without the first letters
                             text = text.substring(1);
                         }
                     }
@@ -507,6 +527,7 @@
 
 			$(removeNode).detach();
 			$(sibling).children().children().children('.xs-body').children().text(function (i, text) {
+                //replace any space with a "." for "."
 				text = text.substr(0, text.length - 3).replace(regex, ".");
 				return text + content;
 			});
