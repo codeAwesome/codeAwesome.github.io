@@ -20,6 +20,8 @@
 		HORIZONTAL_CLASS = "horizontal",
 		URL_DESKTOP      = "partials/desktop.tpl.html",
 		URL_MOBILE       = "partials/mobile.tpl.html",
+		$htmlBody        = $('html, body'),
+		$main            = $(MAIN),
 		FULLPAGE_CONFIG  = {
 			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
 			scrollingSpeed: 1000,
@@ -28,30 +30,36 @@
 			continuousVertical: true,
 			slidesNavigation: true,
 			controlArrows: false,
-			onLeave: function (index, nextIndex, direction) {
-				var $superslides = $('#slides');
-
+			/**
+			 * event listener when it leave a section.
+			 * @param   {integer} index - section that left.
+			 * @param   {integer} nextIndex - next section.
+			 * @returns {boolean}  false, when the instructions are activated.
+			 */
+			onLeave: function (index, nextIndex) {
 				if ($('.instruccions').css('display') !== 'none') {
 					return false;
 				}
 
-				if (index === 1) {
-					$superslides.superslides('stop');
-				}
-
 				if (nextIndex === 1) {
-					$superslides.superslides('start');
-				}
-			},
-			afterLoad: function (k, index) {
-				var $nav = $('#fp-nav');
-
-				if (index === 1) {
-					$nav.hide();
+					$('#fp-nav').hide();
+					$('#slides').superslides('start');
 				} else {
-					$nav.show();
+					$('#slides').superslides('stop');
+					if (nextIndex !== 5) {
+						$('#fp-nav').show();
+					} else {
+						$('#fp-nav').hide();
+					}
 				}
 			},
+            /**
+             * event listener when it leave a slide.
+             * @param {integer} index - section active.
+             * @param {integer} slideIndex - slide that left.
+             * @param {string} direction - scroll direction.
+             * @param {integer} nextSlideIndex - next slide.
+             */
             onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
 				var $slidePgAnimated = $('.pg-animated').index(),
 					$imgBounce = $('.flex-img img:eq(1)');
@@ -67,9 +75,7 @@
 
                 }
             }
-		},
-		$htmlBody = $('html, body'),
-		$main     = $(MAIN);
+		};
 
 /*---- document ready & window resize ----*/
 	$(document).ready(function () {
@@ -83,7 +89,7 @@
 /*-------------- functions ----------------*/
 	/**
 	 * move page toward the section selected.
-	 * @returns {boolean} if don't find the section selected.
+	 * @returns {boolean} false, if don't find the section selected.
 	 */
 	function slideScrollAnimation() {
 
@@ -200,75 +206,69 @@
 	}
 
 	/**
-	 * activate tablet styles for contactUS
-	 * @param {[[Type]]} vw [[Description]]
+	 * activate tablet styles for contactUS when the viewport width be equivalent to sm.
+	 * @param {integer} vw - viewport.width.
 	 */
 	function activateSmForm(vw) {
 		var contactWrapper = '.contact-method',
 			pleaceholder = $(FORM_CONTROL, contactWrapper).attr('placeholder'),
-			$formElements = $(FORM_CONTROL, contactWrapper),
-			$contactData = $('ul.contact', contactWrapper),
-			$contactDataChildren = $('ul.contact li', contactWrapper);
+			$formElements = $(FORM_CONTROL, contactWrapper);
 
 		if ((vw >= 768 && vw <= 991) && typeof pleaceholder === 'undefined') {
 
             $formElements.eq(0).attr('placeholder', "Nombre");
             $formElements.eq(1).attr('placeholder', "Correo");
             $formElements.eq(2).attr('placeholder', "Mensaje");
-            $contactData.addClass("row");
-            $contactDataChildren.addClass("col-sm-3");
 
         } else if (vw > 991 && typeof pleaceholder !== 'undefined') {
 
             $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
-            $contactData.removeClass("row");
-            $contactDataChildren.removeClass();
 		}
 	}
 
 	/**
-	 * [[Description]]
-	 * @param {[[Type]]} vw [[Description]]
+	 * align vertically the images of services section when the viewport width be equivalent to sm.
+	 * @param {integer} vw - viewport.width.
 	 */
 	function alignImagesSm(vw) {
 		var $svItems = $('.services-item');
 
 		if (vw >= 768 && vw <= 991) {
-			/* align middle service images */
 			$.each($svItems, function (k, element) {
-				var child = $(element).children(),
+				var children = $(element).children(),
 					imgHeight = 0,
 					containerHeight = 0;
 
-				child.eq(0).css('height', child.eq(1).height() + 'px');
+				/*-- asign the height of the child 2 to the child 1 --*/
+				children.eq(0).css('height', children.eq(1).height() + 'px');
                 
-                alignImageVertically(child);
+				/*-- align vertically the child 1 --*/
+                alignImageVertically(children.eq(0));
 			});
 
         } else if (vw > 991) {
-
 			$.each($svItems, function (k, element) {
-				var child = $(element).children();
+				var child = $(element).children(':eq(0)');
 
-				child.eq(0).css('height', "");
-				child.eq(0).children().css('marginTop', "");
+				child.css('height', "");
+				child.children().css('marginTop', "");
 			});
 		}
 	}
     
     /**
-     * align centraly the elements of the container.
-     * @param {object} containerElement - container of the images.
+     * align vertically the elements of a container.
+     * @param {object} container - father container of the elements to be aligned.
      */
-    function alignImageVertically(containerElement) {
-        var containerHeight = containerElement.eq(0).height(),
-			imgHeight = containerElement.eq(0).children().height();
+    function alignImageVertically(container) {
+        var containerHeight = container.height(),
+			imgHeight = container.children().height();
         
-        containerElement.eq(0).children().css('marginTop', ((containerHeight - imgHeight) / 2) + 'px');
+        container.children().css('marginTop', ((containerHeight - imgHeight) / 2) + 'px');
     }
     
     /**
-     * align social icons vertically
+     * align vertically the elements children of 'ul.social-list'.
      */
     function alignSocialIcons() {
         $.each($('.social-list').children().children(), function (k, element) {
@@ -278,7 +278,7 @@
 
 	/**
 	 * check that all inputs have the class "valid".
-	 * @param   {object} form - form node to test.
+	 * @param   {object} form - <form> to test.
 	 * @returns {boolean} true if all okay else false.
 	 */
 	function validateForm(form) {
@@ -367,6 +367,7 @@
 						timer: 7000
 					});
 
+					/*-- reset the form --*/
 					$elements.val("").removeClass("active valid");
 					$('label', form).removeClass("active valid");
 					$(BTN_SEND, form).prop('disabled', true);
@@ -389,8 +390,8 @@
 	 * activate the usage instuctions for mobile devices.
 	 */
 	function runIntructions() {
-        var $nav = $('#fp-nav'),
-            $buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
+		var $nav = $('#fp-nav'),
+        	$buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
             $description = $('.instruccions h2'),
             $divAnimation = $('.animation'),
             $elementsAnimated = $('.animation, .instruccions h2');
@@ -452,6 +453,11 @@
 			newText = "",
             regex = new RegExp("[ ]+[.]");
 
+        /**
+         * [[Description]]
+         * @param   {[[Type]]} $parent [[Description]]
+         * @returns {[[Type]]} [[Description]]
+         */
         function replaceText($parent) {
 			var textHidden = "";
 
@@ -522,7 +528,7 @@
     }
 
 	/**
-	 * center the '.fp-slidesNav' elements.
+	 * center the elements with the class "fp-slidesNav".
 	 */
 	function centerSlidesNav() {
 		var $slidesNav = "";
@@ -533,15 +539,17 @@
 		});
 	}
 
-/*--------- Controller templates ----------*/
+/*--------- template controllers  ----------*/
 	/**
 	 * mobile controller.
 	 */
 	function mobileCtrl() {
-		/*-- initialize fullpage --*/
+		var $superslides = $('#slides');
+
+		/*-- create fullpage instance --*/
 		$(MAIN).fullpage(FULLPAGE_CONFIG);
 
-		/*-- hyphenate the text of all "p" elements into the ".xs-body" elements --*/
+		/*-- hyphenate the text of all <p> into the elements with the class "xs-body" --*/
         $(MOBILE_BODY).find('p').hyphenate('es');
         $('.contrast p').hyphenate('es');
 
@@ -555,38 +563,45 @@
 
 		centerSlidesNav();
 
+	/*---------- header controller ----------*/
+		$('#fp-nav').hide();
+
 		/*-- execute intructions --*/
         if (!Cookies.get('instruccions')) {
             $('.instruccions').show();
             runIntructions();
         } else {
-            $('#slides').superslides({'play': 15000});
+            $superslides.superslides({'play': 15000});
         }
 
 		/*-- add swipe function to superslides --*/
-		$('#slides').on('swipeleft', function () {
-			$('#slides').superslides('stop');
-			$('#slides').superslides('animate', 'next');
-			$('#slides').superslides('start');
+		$superslides.on('swipeleft', function () {
+			$superslides.superslides('stop');
+			$superslides.superslides('animate', 'next');
+			$superslides.superslides('start');
 		});
 
-		$('#slides').on('swiperight', function () {
-			$('#slides').superslides('stop');
-			$('#slides').superslides('animate', 'prev');
-			$('#slides').superslides('start');
+		$superslides.on('swiperight', function () {
+			$superslides.superslides('stop');
+			$superslides.superslides('animate', 'prev');
+			$superslides.superslides('start');
 		});
 
-		/*-- move to slide selected onclick header nav tag --*/
+		/*-- move page toward the section selected --*/
 		$('li', '#menu-xs').click(function () {
 			var index = $(this).index() + 2;
 
 			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
 		});
 
-		/*-- flipCarousel instance & config --*/
+	/*--------- services controller ---------*/
+
+		/*-- create flipCarousel instance --*/
 		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
 
-		/*-- disable #send button --*/
+	/*--------- contactUS controller --------*/
+
+		/*-- disable 'button#send' --*/
 		$(BTN_SEND, FORM_XS).prop('disabled', true);
 
 		/*-- activate form --*/
@@ -621,14 +636,14 @@
 	}
 
 	/**
-	 * tablet and descktop controller.
+	 * tablet and desktop controller.
 	 */
 	function tabAndDesktopCtrl() {
 
-    	/*-- hyphenate the text of all "p" elements --*/
+    	/*-- hyphenate the text of all <p> --*/
 		$('p').hyphenate('es');
         
-		/*-- activate animations after 2000ms --*/
+		/*-- activate animations after 2s --*/
 		setTimeout(activateAnimations, 2000);
 
 		activateSmForm(window.innerWidth);
@@ -637,7 +652,7 @@
 
 	/*---------- header controller ----------*/
 
-		/*-- camera instance & config --*/
+		/*-- create camera instance --*/
 		$('.camera_wrap').camera({
 			height: '40%',
 			thumbnails: true,
@@ -645,25 +660,26 @@
 			pagination: true
 		});
 
-		/*-- remove the focus to the "a" tags --*/
+		/*-- remove the focus to the <a> --*/
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
 
+		/*-- move page toward the section selected --*/
 		$('a[href*="#"]').click(slideScrollAnimation);
 
 	/*--------- services controller ---------*/
 
-		/*-- flipCarousel instance & config --*/
+		/*-- create flipCarousel instance --*/
 		$('.flip-img').flipcarousel();
 
 	/*--------- contactUS controller --------*/
 
-		/*-- disable #send button --*/
+		/*-- disable 'button#send' --*/
 		$(BTN_SEND).prop('disabled', true);
 
-		/* send mail onclick event */
+		/*-- send form --*/
 		$(BTN_SEND).click(sendEmail);
 
-		/*-- activate input animation onfocusIn event --*/
+		/*-- activate input --*/
 		$(FORM_CONTROL).focusin(function () {
 			var $this = $(this);
 
@@ -671,7 +687,7 @@
 			$this.siblings('label').addClass("active");
 		});
 
-		/*-- activate input animation onfocusOut event --*/
+		/*-- diactivate input --*/
 		$(FORM_CONTROL).focusout(function () {
 			var $this = $(this);
 
@@ -681,7 +697,7 @@
 			}
 		});
 
-		/*-- validate inputs onkeyUp event --*/
+		/*-- validate input --*/
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
 	/*------------ button.backTop -----------*/
@@ -691,7 +707,8 @@
 	}
 
 /*--------------- builder -----------------*/
-	/** load the template appropriate.
+	/**
+	* load the appropriate template.
 	* @param {integer} vw - viewport.width.
 	*/
 	function loadingView(vw) {
@@ -700,43 +717,54 @@
 			$childActive = $('.section.active .slide.active'),
 			formFocus = $('#send').hasClass(FORM_HIDE);
 
-		location.hash = "";
-
-		/*-- loading mobile template & controller --*/
+		/**
+		* loading mobile template & controller.
+		*/
 		if (vw < 768 && !hasClass) {
+			location.hash = "";
 			$main.load(URL_MOBILE, mobileCtrl);
 		}
 
-		/*-- re-build fullpage onWindowResize event --*/
+		/**
+		* re-build fullpage onWindowResize event.
+		*/
 		if (vw < 768 && hasClass && formFocus) {
+			/*-- lap 1 | re-build fullpage instance with the new viewport width and create the new necessary slides --*/
 			$.fn.fullpage.reBuild();
 			createEllipsis(MOBILE_BODY);
+
+			/*-- lap 2 | destroy fullpage instance and create a new instance --*/
 			$.fn.fullpage.destroy('all');
 			$(MAIN).fullpage(FULLPAGE_CONFIG);
-			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
 
-			/*-- center the '.fp-slidesNav' elements --*/
+			/*-- lap 3 | move to the section active previously --*/
+			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
 			centerSlidesNav();
 		}
 
-		/*-- loading tabAndDesktop template & controller --*/
+		/**
+		* loading tabAndDesktop template & controller.
+		*/
 		if (vw >= 768 && !hasClass && !$main.html()) {
+			location.hash = "";
 			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
 		}
 
-		/*-- destroy mobile tamplate and loading tabAndDesktop template onWindowResize event --*/
+		/**
+		* destroy mobile tamplate and loading tabAndDesktop template onWindowResize event.
+		*/
 		if (vw >= 768 && hasClass) {
+			/*-- lap 1 | delete the content of the 'div.#main-wrapper' and destroy the fullpage instance --*/
 			$main.html("");
 			$.fn.fullpage.destroy("all");
 			$htmlBody.removeAttr('style class');
+
+			/*-- lap 2 | loading tabAndDesktop template & controller --*/
 			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
 		}
 
-		/*-- activate tablet styles for contactUS --*/
 		activateSmForm(vw);
 		alignImagesSm(vw);
-        
-        /*-- align social icons vertically --*/
         alignSocialIcons();
 	}
 
