@@ -9,7 +9,7 @@ body {
     font-weight: 300;
 }
 
-.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .text-left, .contact-method, .backTop {
+.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop {
 	opacity: 0;
 }
 
