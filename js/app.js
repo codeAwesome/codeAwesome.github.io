@@ -439,7 +439,7 @@
                     $elementsAnimated
                         .velocity('transition.fadeOut', {complete : function () {
                             $divAnimation.addClass(HORIZONTAL_CLASS);
-                            $description.html("Delice horizontalmente para moverse dentro de una sección");
+                            $description.html("Deslice horizontalmente para moverse dentro de una sección");
                         }})
                         .velocity('transition.fadeIn');
                 } else {
