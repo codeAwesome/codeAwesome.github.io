@@ -113,9 +113,9 @@
 
 	/**
 	 * activate animation with velocity.js and waypoints.js
-	 * @param {string} element - CSS selector for the element to be animated.
-	 * @param {string} animation - animation name.
-	 * @param {string} offset - scroll position.
+	 * @param {string} element - CSS selector for the element to be animated
+	 * @param {string} animation - animation name
+	 * @param {string} offset - scroll position
 	 */
 	function animationIn(element, animation, offset) {
         $(element).waypoint(function () {
@@ -129,11 +129,11 @@
     }
     
     /**
-     * infinite animation using recursion.
-     * @param {string} animation - animation name.
-     * @param {object} element - jquery object to which the animation is applied.
-     * @param {integer} duration - animation duration.
-     * @param {string} classSwitch - class that allows stop animation, when this is eliminated.
+     * infinite animation using recursion
+     * @param {string} animation - animation name
+     * @param {object} element - jquery object to which the animation is applied
+     * @param {integer} duration - animation duration
+     * @param {string} classSwitch - class that allows stop animation, when this is eliminated
      */
     function infiniteAnimation(animation, element, duration, classSwitch) {
         if (element.hasClass(classSwitch) || classSwitch === undefined) {
@@ -151,7 +151,7 @@
     }
 
 	/**
-	 * active all animations.
+	 * active all animations
 	 */
 	function activateAnimations() {
 		var $backTop  = $('.backTop'),
@@ -212,7 +212,7 @@
         infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
 
 		/* contactUs */
-		animationIn('#contactUs .row:first-child', "transition.slideUpIn", '75%');
+		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
 		animationIn('.contact-method:eq(0)', "transition.slideLeftBigIn", '80%');
 		animationIn('.contact-method:eq(1)', "transition.slideRightBigIn", '80%');
 
@@ -439,7 +439,7 @@
                     $elementsAnimated
                         .velocity('transition.fadeOut', {complete : function () {
                             $divAnimation.addClass(HORIZONTAL_CLASS);
-                            $description.html("Deslice horizontalmente para moverse dentro de una sección");
+                            $description.html("Delice horizontalmente para moverse dentro de una sección");
                         }})
                         .velocity('transition.fadeIn');
                 } else {
@@ -461,67 +461,52 @@
      */
     function createEllipsis(container) {
         var $container = $(container),
+            $text = "",
+            containerHeight = 0,
+			text = "",
+			newText = "",
             regex = new RegExp("[ ]+[.]");
 
         /**
-         * short the text excess of the long paragraphs and create a new slide with the text cutted.
-         * @param   {object} $parent - container parent of <p> which determines the maximum high of paragraph.
-         * @returns {string} the maximum text that can be contained with ellipsis to the end of the string.
+         * [[Description]]
+         * @param   {[[Type]]} $parent [[Description]]
+         * @returns {[[Type]]} [[Description]]
          */
         function replaceText($parent) {
-			var $text = "",
-				textHidden = "",
-				text = "",
-				newText = "",
-            	containerHeight = 0;
-
-			containerHeight = $parent.height();
-            $text = $parent.find("p");
+			var textHidden = "";
 
             if ($text.length > 0) {
                 //replace any space with a "." for "."
 				text = $text.text().replace(regex, ".");
-                
-				//cut words until the string text can to fit into the container.
-                while ($text[0].scrollHeight > containerHeight) {
 
-                    $text.text(function (i, text) {
+                while ($text[0].scrollHeight > containerHeight) {
+                    $text.text(function (index, text) {
                         return text.replace(/\W*\s(\S)*$/, "...");
                     });
                 }
 
-				//the text that fit to the container.
 				newText = $text.text();
 
 				if (text.length > newText.length) {
-
-					//the text that don't fit into the container.
 					text = text.substring(newText.length - 3);
-
                     //verify that text[0] start with "." or space
                     if (text[0] === "." || text[0] === " ") {
-
                         //remove any "." or space that is in the first two letters of text
                         textHidden = text.substring(0, 2).replace(/[. ]/g, "");
-
                         //verify that textHidden is empty,if so is because the first two letters of text are "." or space
                         if (textHidden.length === 0) {
-
                             //textHidden is equal to the first two letters of text
                             textHidden = text.substring(0, 2);
                             //text is equal to the same without the first two letters
                             text = text.substring(2);
-
                         } else {
-
                             //textHidden is equal to the first letters of text
                             textHidden = text.substring(0, 1);
                             //text is equal to the same without the first letters
                             text = text.substring(1);
                         }
                     }
-                    
-					//create a new slide with the excedent text.
+
 					$parent.parent().parent().parent().after(
 						'<div class="slide">\
 							<div class="container">\
@@ -535,26 +520,32 @@
             }
         }
 
-		//delete all slides created previously with the excedent text and returns it his brother.
 		$.each($('.container > .xs-body:first-child'), function (k, element) {
 			var content = element.childNodes[1].textContent,
 				removeNode = element.parentNode.parentNode.parentNode,
 				sibling = removeNode.previousSibling;
 
 			$(removeNode).detach();
-
 			$(sibling).children().children().children('.xs-body').children().text(function (i, text) {
-
                 //replace any space with a "." for "."
 				text = text.substr(0, text.length - 3).replace(regex, ".");
 				return text + content;
 			});
 		});
 
-		//apply hyphenation for each of the container of the collection.
-		$container.each(function () {
-			replaceText($(this));
-		});
+        if ($container.length > 1) {
+            $container.each(function () {
+                var $this = $(this);
+                containerHeight = $this.height();
+                $text = $this.find("p");
+                replaceText($this);
+            });
+        } else {
+            containerHeight = $container.height();
+            $text = $container.find("p");
+            replaceText($container);
+        }
+
     }
 
 	/**
@@ -670,6 +661,25 @@
 	 */
 	function tabAndDesktopCtrl() {
 
+		/*-- swiper carousel instance --*/
+		var mySwiper = new Swiper('.swiper-container', {
+			autoHeight: true,
+			loop: true,
+			speed: 800,
+			autoplay: 5000,
+			paginationClickable: true,
+			lazyLoading: true,
+			pagination: '.swiper-pagination',
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			effect: 'coverflow',
+			grabCursor: true,
+			centeredSlides: true,
+			slidesPerView: 'auto',
+		});
+
+		$('.swiper-wrapper').height($('html').width() * 0.4);
+
     	/*-- hyphenate the text of all <p> --*/
 		$('p').hyphenate('es');
         
@@ -681,14 +691,6 @@
 		alignSocialIcons();
 
 	/*---------- header controller ----------*/
-
-		/*-- create camera instance --*/
-		$('.camera_wrap').camera({
-			height: '40%',
-			thumbnails: true,
-            fx: 'curtainSliceLeft',
-			pagination: true
-		});
 
 		/*-- remove the focus to the <a> --*/
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
