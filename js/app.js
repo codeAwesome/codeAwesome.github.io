@@ -661,6 +661,25 @@
 	 */
 	function tabAndDesktopCtrl() {
 
+		/*-- swiper carousel instance --*/
+		var mySwiper = new Swiper('.swiper-container', {
+			autoHeight: true,
+			loop: true,
+			speed: 800,
+			autoplay: 3000,
+			paginationClickable: true,
+			lazyLoading: true,
+			pagination: '.swiper-pagination',
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			effect: 'coverflow',
+			grabCursor: true,
+			centeredSlides: true,
+			slidesPerView: 'auto',
+		});
+
+		$('.swiper-wrapper').height($('html').width() * 0.4);
+
     	/*-- hyphenate the text of all <p> --*/
 		$('p').hyphenate('es');
         
@@ -672,14 +691,6 @@
 		alignSocialIcons();
 
 	/*---------- header controller ----------*/
-
-		/*-- create camera instance --*/
-		$('.camera_wrap').camera({
-			height: '40%',
-			thumbnails: true,
-            fx: 'simpleFade',
-			pagination: true
-		});
 
 		/*-- remove the focus to the <a> --*/
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
