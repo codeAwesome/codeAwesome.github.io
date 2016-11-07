@@ -130,7 +130,7 @@
     
     /**
      * infinite animation using recursion
-     * @param {string} animation - animation name 
+     * @param {string} animation - animation name
      * @param {object} element - jquery object to which the animation is applied
      * @param {integer} duration - animation duration
      * @param {string} classSwitch - class that allows stop animation, when this is eliminated
@@ -478,7 +478,7 @@
             if ($text.length > 0) {
                 //replace any space with a "." for "."
 				text = $text.text().replace(regex, ".");
-                
+
                 while ($text[0].scrollHeight > containerHeight) {
                     $text.text(function (index, text) {
                         return text.replace(/\W*\s(\S)*$/, "...");
@@ -506,7 +506,7 @@
                             text = text.substring(1);
                         }
                     }
-                    
+
 					$parent.parent().parent().parent().after(
 						'<div class="slide">\
 							<div class="container">\
@@ -666,7 +666,7 @@
 			autoHeight: true,
 			loop: true,
 			speed: 800,
-			autoplay: 3000,
+			autoplay: 5000,
 			paginationClickable: true,
 			lazyLoading: true,
 			pagination: '.swiper-pagination',

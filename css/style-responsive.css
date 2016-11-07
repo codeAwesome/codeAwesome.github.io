@@ -10,6 +10,29 @@
     }
 }
 
+@media (min-width: 1200px) {
+    .vision-img, .mision-img {
+		display: inline-block;
+		vertical-align: top;
+		width: 12%;
+		height: 92px;
+	}
+
+	.vision-img {
+		padding: 0 3% 0 0;
+	}
+
+	.mision-img {
+		padding: 0 0 0 3%;
+	}
+
+	.vision-img > img, .mision-img > img {
+		max-height: 100%;
+		max-width: 100%;
+		width: auto;
+	}
+}
+
 @media (max-width: 1050px) {
     .nav-pills > li > a {
         padding-left: 20px;
