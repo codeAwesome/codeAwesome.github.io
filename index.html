@@ -5,10 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Cache-Control" content="max-age=432000">
 	<meta name="msvalidate.01" content="4233377C72B2A11CE9341E3A364E69B6" /> <!-- validacion de bing -->
-	<meta name="title" content="codeAmazing - Creación de paginas web" />
+	<meta name="keywords" content="codeamazing, paginas web en venezuela, sistemas para empresas, desarrolladores en Puerto Cabello, paginas web animadas, aplicaciones web, empresa de desarrollo de software venezuela, aplicaciones empresariales, diseño web venezuela, diseño web Puerto Cabello" />
+	<meta name="title" content="Creación de páginas web | codeAmazing" />
 	<meta name="description" content="Empresa de desarrollo de páginas web y sistemas empresariales ¡Somos la solución que buscabas!" />
-	<meta name="keywords" content="codeAmazing, paginas web en venezuela, sistemas para empresas, desarrolladores en Puerto Cabello, paginas web animadas, aplicaciones web, empresa de desarrollo de software venezuela, aplicaciones empresariales, diseño web venezuela, diseño web Puerto Cabello" />
-	<title>codeAmazing - Creación de páginas web</title>
+	<title>Creación de páginas web | codeAmazing</title>
 
 	<!-- favicon -->
 	<link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
@@ -17,24 +17,19 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 
 	<!-- font-awesome icons -->
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+	<link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
 
-	<!-- bootstrap -->
+	<!-- bootstrap v3.3.7 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- CDN style libs -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.4/jquery.fullPage.min.css" />
-
-	<!-- style libs -->
-	<link rel="stylesheet" href="lib/superslides/superslides.min.css" />
-	<link rel="stylesheet" href="lib/flip-carousel/flip-carousel.min.css" />
-	<link rel="stylesheet" href="lib/materialize-wave/wave.min.css" />
 		
 	<!-- own styles -->
-	<link rel="stylesheet" href="css/style.min.css" />
-	<link rel="stylesheet" href="css/style-responsive.min.css" />
+	<link rel="stylesheet" href="lib/materialize-wave/wave.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/style-responsive.css" />
 
 	<!-- googleAnalytics -->
 	<script type="text/javascript">
@@ -49,50 +44,330 @@
 </head>
 
 <body>	
-	<div id="main-wrapper"></div>
+	<header>
+		<div class="nav-wrap">
+			<div id="logo">
+				<img src="pic/codeAmazing-logo.png" alt="codeAmaing desarrolladores">
+			</div>
+
+			<nav class="nav-bar">
+				<ul class="nav nav-pills">
+					<li>
+						<a href="#whoAreWe"><span>Quiénes somos</span></a>
+					</li>
+					<li>
+						<a href="#services"><span>Nuestros servicios</span></a>
+					</li>
+					<li>
+						<a href="#contactUs"><span>Contáctenos</span></a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="swiper-container swiper-main">
+
+			<div class="swiper-wrapper swiper-wrapper-main">
+				<!-- Slides -->
+				<div class="swiper-slide">
+					<img src="pic/carousel/codeAmazing-carousel-logo.jpg" class="adaptable" alt="codeAmazing wallpapper">
+				</div>
+				<div class="swiper-slide">
+					<img src="pic/carousel/codeAmazing-carousel-seo.jpg" class="adaptable" alt="estrategias seo">
+				</div>
+				<div class="swiper-slide">
+					<img src="pic/carousel/codeAmazing-carousel-alcance.jpg" class="adaptable" alt="aumenta tu clientela">
+				</div>
+			</div>
+
+			<!-- pagination -->
+			<div class="swiper-pagination"></div>
+
+			<!-- navigation buttons -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		</div>
+	</header>
+
+	<section id="whoAreWe">
+		<div class="container">
+			<div class="row">
+				<!-- whoAreWe title -->
+				<div class="col-md-12">
+					<h2>Quiénes somos</h2><img src="pic/question.png" alt="question">
+				</div>
+
+				<!-- whoAreWe description -->
+				<div class="col-md-12">
+					<p class="waw-desciption">Somos un grupo de desarrolladores emprendedores. Cada día nos esforzamos por mantenernos a la vanguardia con las últimas tecnologías del mercado, brindando así el mejor servicio a nuestros clientes. Garantizamos la funcionalidad, estabilidad y seguridad de nuestros proyectos y cumplimos en todo momento con las especificaciones técnicas que se nos exigen. <strong><em>¡Nuestro objetivo es su satisfacción!</em></strong></p>
+				</div>
+
+				<!-- vision -->
+				<div class="vision col-sm-6 col-md-12">
+					<div class="col-md-12 hidden-sm">
+						<h3>Visión</h3>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="vision-wrap">
+						<div class="vision-img hidden-sm">
+							<img src="pic/vision.png" alt="Visión" />
+						</div>
+						<blockquote>
+							<div class="visible-sm vision-img-sm">
+								<img class="adaptable" src="pic/vision.png" alt="Visión" />
+							</div>
+							<div class="visible-sm col-sm-12">
+								<h3>Visión</h3>
+							</div>
+
+							<p>Contribuir a facilitar la vida de nuestros clientes, por medio de soluciones tecnológicas que automaticen sus tareas y así ser la elección preferida para el desarrollo de software.</p>
+						</blockquote>
+					</div>
+				</div>
+
+				<!-- mision -->
+				<div class="mision col-sm-6 col-md-12">
+					<div class="col-md-12 col-sm-12 hidden-sm">
+						<h3>Misión</h3>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<div class="mision-wrap">
+						<blockquote>
+							<div class="visible-sm mision-img-sm">
+								<img class="adaptable" src="pic/mision.png" alt="Misión" />
+							</div>
+							<div class="visible-sm col-md-12 col-sm-12 text-center">
+								<h3>Misión</h3>
+							</div>
+
+							<p>Desarrollar software de calidad con el propósito de solucionar muchas de las necesidades tecnológicas que presenta la sociedad actual.</p>
+						</blockquote>
+						<div class="mision-img hidden-sm">
+							<img src="pic/mision.png" alt="Misión" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- our developers -->
+			<div class="row our-developers">
+
+				<div class="col-md-12">
+					<h3>Nuestros Desarrolladores</h3>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<div class="col-sm-5 col-md-3 col-sm-offset-1 col-md-offset-3">
+					<div class="photo-developer center-block">
+						<img class="img-circle adaptable" src="pic/otniel.jpg" alt="Otniel Acevedo">
+						<div class="img-description">
+							<h4>Otniel Acevedo</h4>
+							<p>Front-End developer</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-5 col-md-3">
+					<div class="photo-developer center-block">
+						<img class="img-circle adaptable" src="pic/jose.jpg" alt="José Parra">
+						<div class="img-description">
+							<h4>José Parra</h4>
+							<p>Back-End developer</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="services">
+		<div class="container">
+			<div class="row services-title">
+				<div class="col-md-12">
+					<h2>Nuestros servicios</h2><img src="pic/services.png" alt="Nuestros Servicios">
+				</div>
+			</div>
+
+			<div class="row services-body">
+
+				<!-- service 1 - responsive design -->
+				<div class="col-sm-12 col-md-4">
+					<div class="row services-item">
+						<div class="col-sm-4 col-md-12">
+							<img class="adaptable" src="pic/service-first-xs.png" alt="páginas web adaptables">
+						</div>
+						<div class="col-sm-8 col-md-12">
+							<h3>Dise&ntilde;o de páginas adaptables</h3>
+							<p>Un dise&ntilde;o fluido y adaptable a múltiples pantallas brinda la oportunidad a los usuarios de acceder a su sitio web desde cualquier dispositivo. Esto es muy importante debido al gran auge que tienen hoy dia los dispositivos móviles, por lo cual suelen ser la opcion de preferencia de los usuarios para acceder a la web.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- service 2 - animated pages -->
+				<div class="col-sm-12 col-md-4">
+					<div class="row services-item">
+						<div class="col-sm-4 col-md-12">
+							<img class="adaptable" src="pic/service-second.png" alt="páginas web animadas">
+						</div>
+						<div class="col-sm-8 col-md-12">
+							<h3>Páginas web animadas</h3>
+							<p>Nuestros dise&ntilde;os alegres con divertidas animaciones ofrecen una mejor experiencia a los usuarios que visiten su página. Hacemos uso de CSS3 y JavaScript para realizar dichas animaciones, de esta forma obtenemos páginas divertidas con un buen rendimiento.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- service 3 - enterprice web system -->
+				<div class="col-sm-12 col-md-4">
+					<div class="row services-item">
+						<div class="col-sm-4 col-md-12">
+							<img class="adaptable" src="pic/service-third-xs.png" alt="Aplicaciones web empresariales">
+						</div>
+
+						<div class="col-sm-8 col-md-12">
+							<h3>Aplicaciones web empresariales</h3>
+							<p>Nuestros sistemas administrativos desarrollados con tecnologías web mejoran el desempeño de sus trabajadores facilitando sus tareas y minificando el tiempo en que las realizan. Mejoran la transmición de datos entre departamentos. Mantienen la informacion actualizada, respaldada y protegida. Permiten imprimir o descargar resportes en distintos formatos inlcuido PDF. Son fáciles de utilizar y de realizar mantenimiento frecuente.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+
+				<h3 class="flip-title">Lenguajes, Frameworks y Bases de datos que utilizamos</h3>
+				<div class="swiper-container swiper-lang-container">
+					<div class="swiper-wrapper">
+						<!-- languages -->
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/html5.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/css3.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/JavaScript.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/php.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/python.png)"></div>
+
+						<!-- frameworks -->
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/bootstrap.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/jquery.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/angularjs.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/laravel.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/django.png)"></div>
+
+						<!-- data bases -->
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/mysql.png)"></div>
+						<div class="swiper-slide swiper-lang" style="background-image:url(pic/languages/postgre.png)"></div>
+					</div>
+
+					<!-- navigation buttons -->
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contactUs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Contáctenos</h2><img src="pic/contacto.png" alt="Contáctenos" />
+				</div>
+			</div>
+
+			<div class="row contactUs-body">
+				<div class="col-sm-12 col-md-5 contact-method">
+					<ul class="contact-data-md">
+						<li>
+							<a href="tel:+584125097261"><i class="fa fa-mobile"></i><strong>+58 412-509-7261</strong></a>
+						</li>
+						<li>
+							<a href="tel:+584160560620"><i class="fa fa-mobile"></i><strong>+58 416-056-0620</strong></a>
+						</li>
+						<li>
+							<a href="mailto:codeamazinginc@gmail.com"><i class="fa fa-envelope-o"></i><strong>codeamazinginc@gmail.com</strong></a>
+						</li>
+					</ul>
+				</div>
+
+				<form class="col-sm-12 col-md-5 col-md-offset-2 contact-method" autocomplete="off">
+
+					<div class="group-input">
+						<label class="hidden-sm" for="name">Nombre</label>
+						<input id="name" type="text" class="form-control" />
+					</div>
+
+					<div class="group-input">
+						<label class="hidden-sm" for="correo">Correo</label>
+						<input id="correo" type="email" class="form-control" />
+					</div>
+
+					<div class="group-input">
+						<label class="hidden-sm" for="message">Mensaje</label>
+						<textarea id="message" class="form-control"></textarea>
+					</div>
+
+					<button id="send">Enviar</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<p><span id="we">&#60;<span class="code-word">code</span><span class="amazing-word">Amazing</span>/&#62;</span> desarolladores, Venezuela, Carabobo, Puerto Cabello. </p>
+
+		<ul class="social-list">
+			<li>
+				<a href="https://www.facebook.com/codeAmazingInc" target="_blank"><i class="fa fa-facebook-official"></i></a>
+			</li>
+			<li>
+				<a href="https://twitter.com/code_amazing" target="_blank"><i class="fa fa-twitter"></i></a>
+			</li>
+			<li>
+				<a href="https://plus.google.com/110217866311359367386" target="_blank"><i class="fa fa-google-plus-circle"></i></a>
+			</li>
+			<li>
+				<a href="https://github.com/codeamazinginc" target="_blank"><i class="fa fa-github"></i></a>
+			</li>
+		</ul>
+	</footer>
+
+	<div class="backTop waves-effect waves-light">
+		<i class="fa fa-chevron-up fa-2x"></i>
+	</div>
 
 	<!----------- scripts for this page ----------->
 
 	<!-- jquery v2.2.2 -->
 	<script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
 
-	<!-- jquery mobile -->
-	<script src="lib/jquery.mobile.customized.min.js"></script>
+	<!-- jquery.mobile-events v1.0.5 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/1.0.5/jquery.mobile-events.js"></script>
 
-	<!-- fullpage -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.4/vendors/scrolloverflow.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.4/jquery.fullPage.min.js"></script>
-
-	<!-- swiper carousel -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/js/swiper.jquery.min.js"></script>
-
-	<!-- flip carousel -->
-	<script type="text/javascript" src="lib/flip-carousel/flip-carousel.min.js"></script>
-
-	<!-- superslides carousel -->
-    <script type="text/javascript" src="lib/superslides/jquery.superslides.min.js"></script>
-
-	<!-- notify -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-	
-	<!-- Materialize Wave effect -->
-	<script type="text/javascript" src="lib/materialize-wave/wave.min.js"></script>
-
-	<!-- jquery waypoints -->
+	<!-- jquery-waypoints -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
 
-    <!-- hyphenate -->
-    <script type="text/javascript" src="lib/hypher/jquery.hypher.min.js"></script>
-    <script type="text/javascript" src="lib/hypher/es.js"></script>
-    
-    <!-- velocity -->
+	<!-- swiper v3.4.0 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/js/swiper.jquery.min.js"></script>
+
+	<!-- sweetalert v1.1.3 -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+	<!-- velocity -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.0/velocity.min.js" integrity="sha256-khZL1yTAqyaZ3acOSTbpcbGN8jrOCdtnVGx6H2bJzfw=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.0/velocity.ui.min.js" integrity="sha256-9yGiqlOIbuzRSMLopnijaVInWyMErJE+k6qmzsPzaoo=" crossorigin="anonymous"></script>
-    
+
+    <!-- hyphenate -->
+    <script type="text/javascript" src="lib/hypher/jquery.hypher.js"></script>
+    <script type="text/javascript" src="lib/hypher/es.js"></script>
+
     <!-- cookies -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.3/js.cookie.min.js" integrity="sha256-S20kSlaai+/AuQHj3KjoLxmxiOLT5298YvzpaTXtYxE=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="lib/js.cookie.js"></script>
+
+	<!-- Materialize Wave effect -->
+	<script type="text/javascript" src="lib/materialize-wave/wave.js"></script>
 
 	<!-- app -->
-	<script type="text/javascript" src="js/app.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

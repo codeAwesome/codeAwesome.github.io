@@ -10,7 +10,6 @@
 		REGEX_MAIL       = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
 		FORM_CONTROL     = '.form-control',
 		BTN_SEND         = '#send',
-		MAIN             = '#main-wrapper',
 		MOBILE_TITLE     = '.xs-title',
 		MOBILE_BODY      = '.xs-body',
 		FORM_XS          = '#contact-form',
@@ -18,73 +17,7 @@
 		FORM_FOCUSIN     = "contact-form-focus",
 		FORM_HIDE        = "hidden",
 		HORIZONTAL_CLASS = "horizontal",
-		URL_DESKTOP      = "partials/desktop.tpl.html",
-		URL_MOBILE       = "partials/mobile.tpl.html",
-		$htmlBody        = $('html, body'),
-		$main            = $(MAIN),
-		FULLPAGE_CONFIG  = {
-			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
-			scrollingSpeed: 1000,
-			navigation: true,
-			navigationPosition: 'right',
-			continuousVertical: true,
-			slidesNavigation: true,
-			controlArrows: false,
-			/**
-			 * event listener when it leave a section.
-			 * @param   {integer} index - section that left.
-			 * @param   {integer} nextIndex - next section.
-			 * @returns {boolean}  false, when the instructions are activated.
-			 */
-			onLeave: function (index, nextIndex) {
-				if ($('.instruccions').css('display') !== 'none') {
-					return false;
-				}
-
-				if (nextIndex === 1) {
-					$('#fp-nav').hide();
-					$('#slides').superslides('start');
-				} else {
-					$('#slides').superslides('stop');
-					if (nextIndex !== 5) {
-						$('#fp-nav').show();
-					} else {
-						$('#fp-nav').hide();
-					}
-				}
-			},
-            /**
-             * event listener when it leave a slide.
-             * @param {integer} index - section active.
-             * @param {integer} slideIndex - slide that left.
-             * @param {string} direction - scroll direction.
-             * @param {integer} nextSlideIndex - next slide.
-             */
-            onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
-				var $slidePgAnimated = $('.pg-animated').index(),
-					$imgBounce = $('.flex-img img:eq(1)');
-
-                if (index === 3 && nextSlideIndex === $slidePgAnimated) {
-
-                    $imgBounce.addClass('bounceInfinite');
-                    infiniteAnimation('callout.bounce', $('.flex-img img:eq(1)'), 1000, 'bounceInfinite');
-
-                } else if (index === 3 && slideIndex === $slidePgAnimated) {
-
-                    $imgBounce.removeClass('bounceInfinite');
-
-                }
-            }
-		};
-
-/*---- document ready & window resize ----*/
-	$(document).ready(function () {
-		loadingView(window.innerWidth);
-	});
-
-	$(window).resize(function () {
-		loadingView(window.innerWidth);
-	});
+		$htmlBody        = $('html, body');
 
 /*-------------- functions ----------------*/
 	/**
@@ -400,285 +333,91 @@
 		return false;
 	}
 
-	/**
-	 * activate the usage instuctions for mobile devices.
-	 */
-	function runIntructions() {
-		var $nav = $('#fp-nav'),
-        	$buttonIgnoreSeccond = $('.button-ingore-instruccions:eq(1)'),
-            $description = $('.instruccions h2'),
-            $divAnimation = $('.animation'),
-            $elementsAnimated = $('.animation, .instruccions h2');
-
-		/** creation of cookie **/
-        Cookies.set('instruccions', true);
-
-        $('instruccions').show();
-        $nav.hide();
-        $('#menu-xs').addClass(FORM_HIDE);
-
-        /** event to close the instructions **/
-        $('.close-instruccions, .button-ingore-instruccions:eq(0)').touchend(function () {
-            setTimeout(function () {
-                $('.instruccions').velocity('transition.fadeOut', {complete : function () {
-                    $(this).css('display', 'none');
-                }});
-                $('#menu-xs').removeClass(FORM_HIDE);
-                $nav.show();
-                /*-- superslides --*/
-		        $('#slides').superslides({'play': 15000});
-            }, 200);
-        });
-        
-        
-        /** change instruction **/
-        $buttonIgnoreSeccond.touchend(function () {
-            setTimeout(function () {
-                if (!$divAnimation.hasClass(HORIZONTAL_CLASS)) {
-                    $buttonIgnoreSeccond.html('Anterior');
-                    $elementsAnimated
-                        .velocity('transition.fadeOut', {complete : function () {
-                            $divAnimation.addClass(HORIZONTAL_CLASS);
-                            $description.html("Delice horizontalmente para moverse dentro de una sección");
-                        }})
-                        .velocity('transition.fadeIn');
-                } else {
-                    $buttonIgnoreSeccond.html('Siguiente');
-                    $elementsAnimated
-                        .velocity('transition.fadeOut', {complete : function () {
-                            $divAnimation.removeClass(HORIZONTAL_CLASS);
-                            $description.html("Deslice verticalmente para cambiar de sección");
-                        }})
-                        .velocity('transition.fadeIn');
-                }
-            }, 200);
-        });
-	}
-
-    /**
-     * short the text excess of the long paragraphs and create a new slide with the text cutted.
-     * @param {object} container - container parent of <p> which determines the maximum high of paragraph.
-     */
-    function createEllipsis(container) {
-        var $container = $(container),
-            $text = "",
-            containerHeight = 0,
-			text = "",
-			newText = "",
-            regex = new RegExp("[ ]+[.]");
-
-        /**
-         * [[Description]]
-         * @param   {[[Type]]} $parent [[Description]]
-         * @returns {[[Type]]} [[Description]]
-         */
-        function replaceText($parent) {
-			var textHidden = "";
-
-            if ($text.length > 0) {
-                //replace any space with a "." for "."
-				text = $text.text().replace(regex, ".");
-
-                while ($text[0].scrollHeight > containerHeight) {
-                    $text.text(function (index, text) {
-                        return text.replace(/\W*\s(\S)*$/, "...");
-                    });
-                }
-
-				newText = $text.text();
-
-				if (text.length > newText.length) {
-					text = text.substring(newText.length - 3);
-                    //verify that text[0] start with "." or space
-                    if (text[0] === "." || text[0] === " ") {
-                        //remove any "." or space that is in the first two letters of text
-                        textHidden = text.substring(0, 2).replace(/[. ]/g, "");
-                        //verify that textHidden is empty,if so is because the first two letters of text are "." or space
-                        if (textHidden.length === 0) {
-                            //textHidden is equal to the first two letters of text
-                            textHidden = text.substring(0, 2);
-                            //text is equal to the same without the first two letters
-                            text = text.substring(2);
-                        } else {
-                            //textHidden is equal to the first letters of text
-                            textHidden = text.substring(0, 1);
-                            //text is equal to the same without the first letters
-                            text = text.substring(1);
-                        }
-                    }
-
-					$parent.parent().parent().parent().after(
-						'<div class="slide">\
-							<div class="container">\
-								<div class="xs-body">\
-									<p class="next-text"> <span class="hidden">' + textHidden + '</span>' + text + '</p>\
-								</div>\
-							</div>\
-						</div>'
-					);
-				}
-            }
-        }
-
-		$.each($('.container > .xs-body:first-child'), function (k, element) {
-			var content = element.childNodes[1].textContent,
-				removeNode = element.parentNode.parentNode.parentNode,
-				sibling = removeNode.previousSibling;
-
-			$(removeNode).detach();
-			$(sibling).children().children().children('.xs-body').children().text(function (i, text) {
-                //replace any space with a "." for "."
-				text = text.substr(0, text.length - 3).replace(regex, ".");
-				return text + content;
-			});
-		});
-
-        if ($container.length > 1) {
-            $container.each(function () {
-                var $this = $(this);
-                containerHeight = $this.height();
-                $text = $this.find("p");
-                replaceText($this);
-            });
-        } else {
-            containerHeight = $container.height();
-            $text = $container.find("p");
-            replaceText($container);
-        }
-
-    }
-
-	/**
-	 * center the elements with the class "fp-slidesNav".
-	 */
-	function centerSlidesNav() {
-		var $slidesNav = "";
-
-		$slidesNav = $('.fp-slidesNav');
-		$.each($slidesNav, function (i, element) {
-			element.style.marginLeft = (-1 * (element.clientWidth / 2)) + "px";
-		});
-	}
-
 /*--------- template controllers  ----------*/
 	/**
 	 * mobile controller.
 	 */
-	function mobileCtrl() {
-		var $superslides = $('#slides');
-
-		/*-- create fullpage instance --*/
-		$(MAIN).fullpage(FULLPAGE_CONFIG);
-
-		/*-- hyphenate the text of all <p> into the elements with the class "xs-body" --*/
-        $(MOBILE_BODY).find('p').hyphenate('es');
-        $('.contrast p').hyphenate('es');
-
-		createEllipsis(MOBILE_BODY);
-
-        /*-- destroy fullpage instance --*/
-        $.fn.fullpage.destroy('all');
-
-        /*-- crate a new fullpage instance with the new slides --*/
-        $(MAIN).fullpage(FULLPAGE_CONFIG);
-
-		centerSlidesNav();
-
-	/*---------- header controller ----------*/
-		$('#fp-nav').hide();
-
-		/*-- execute intructions --*/
-        if (!Cookies.get('instruccions')) {
-            $('.instruccions').show();
-            runIntructions();
-        } else {
-            $superslides.superslides({'play': 15000});
-        }
-
-		/*-- add swipe function to superslides --*/
-		$superslides.on('swipeleft', function () {
-			$superslides.superslides('stop');
-			$superslides.superslides('animate', 'next');
-			$superslides.superslides('start');
-		});
-
-		$superslides.on('swiperight', function () {
-			$superslides.superslides('stop');
-			$superslides.superslides('animate', 'prev');
-			$superslides.superslides('start');
-		});
-
-		/*-- move page toward the section selected --*/
-		$('li', '#menu-xs').click(function () {
-			var index = $(this).index() + 2;
-
-			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
-		});
-
-	/*--------- services controller ---------*/
-
-		/*-- create flipCarousel instance --*/
-		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
-
-	/*--------- contactUS controller --------*/
-
-		/*-- disable 'button#send' --*/
-		$(BTN_SEND, FORM_XS).prop('disabled', true);
-
-		/*-- activate form --*/
-		$(FORM_CONTROL, FORM_XS).focusin(function () {
-			$(FORM_XS)
-				.removeClass(FORM_FOCUSOUT)
-				.addClass(FORM_FOCUSIN)
-				.find('.' + FORM_HIDE)
-					.removeClass(FORM_HIDE);
-
-			$.fn.fullpage.setAllowScrolling(false);
-		});
-
-		/*-- deactivate form --*/
-		$(FORM_CONTROL, FORM_XS).focusout(function () {
-			$(FORM_XS)
-				.removeClass(FORM_FOCUSIN)
-				.addClass(FORM_FOCUSOUT)
-				.find(BTN_SEND)
-					.addClass(FORM_HIDE)
-				.siblings('#back')
-					.addClass(FORM_HIDE);
-
-			$.fn.fullpage.setAllowScrolling(true);
-		});
-
-		/*-- validate form --*/
-		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
-
-		/*-- send form --*/
-		$(BTN_SEND, FORM_XS).touchend(sendEmail);
-	}
+//	function mobileCtrl() {
+//
+//	/*---------- header controller ----------*/
+//
+//	/*--------- services controller ---------*/
+//
+//	/*--------- contactUS controller --------*/
+//
+//		/*-- disable 'button#send' --*/
+//		$(BTN_SEND, FORM_XS).prop('disabled', true);
+//
+//		/*-- activate form --*/
+//		$(FORM_CONTROL, FORM_XS).focusin(function () {
+//			$(FORM_XS)
+//				.removeClass(FORM_FOCUSOUT)
+//				.addClass(FORM_FOCUSIN)
+//				.find('.' + FORM_HIDE)
+//					.removeClass(FORM_HIDE);
+//
+//			$.fn.fullpage.setAllowScrolling(false);
+//		});
+//
+//		/*-- deactivate form --*/
+//		$(FORM_CONTROL, FORM_XS).focusout(function () {
+//			$(FORM_XS)
+//				.removeClass(FORM_FOCUSIN)
+//				.addClass(FORM_FOCUSOUT)
+//				.find(BTN_SEND)
+//					.addClass(FORM_HIDE)
+//				.siblings('#back')
+//					.addClass(FORM_HIDE);
+//
+//			$.fn.fullpage.setAllowScrolling(true);
+//		});
+//
+//		/*-- validate form --*/
+//		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
+//
+//		/*-- send form --*/
+//		$(BTN_SEND, FORM_XS).touchend(sendEmail);
+//	}
 
 	/**
 	 * tablet and desktop controller.
 	 */
 	function tabAndDesktopCtrl() {
+		var mySwiper =  new Swiper('.swiper-main', {
+				autoHeight: true,
+				loop: true,
+				speed: 800,
+				autoplay: 5000,
+				paginationClickable: true,
+				lazyLoading: true,
+				pagination: '.swiper-pagination',
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+				effect: 'coverflow',
+				grabCursor: true,
+				centeredSlides: true,
+				slidesPerView: 'auto',
+			}),
+			swiperLang  = new Swiper('.swiper-lang-container', {
+				loop: true,
+				speed: 500,
+				autoplay: 1000,
+				pagination: '.swiper-pagination',
+				mousewheelControl: true,
+				effect: 'coverflow',
+				grabCursor: true,
+				centeredSlides: true,
+				slidesPerView: 'auto',
+				coverflow: {
+					rotate: 50,
+					stretch: 0,
+					depth: 100,
+					modifier: 1,
+					slideShadows : false
+				}
+			});
 
-		/*-- swiper carousel instance --*/
-		var mySwiper = new Swiper('.swiper-container', {
-			autoHeight: true,
-			loop: true,
-			speed: 800,
-			autoplay: 5000,
-			paginationClickable: true,
-			lazyLoading: true,
-			pagination: '.swiper-pagination',
-			nextButton: '.swiper-button-next',
-			prevButton: '.swiper-button-prev',
-			effect: 'coverflow',
-			grabCursor: true,
-			centeredSlides: true,
-			slidesPerView: 'auto',
-		});
-
-		$('.swiper-wrapper').height($('html').width() * 0.4);
+		$('.swiper-wrapper-main').height($('html').width() * 0.4);
 
     	/*-- hyphenate the text of all <p> --*/
 		$('p').hyphenate('es');
@@ -697,11 +436,6 @@
 
 		/*-- move page toward the section selected --*/
 		$('a[href*="#"]').click(slideScrollAnimation);
-
-	/*--------- services controller ---------*/
-
-		/*-- create flipCarousel instance --*/
-		$('.flip-img').flipcarousel();
 
 	/*--------- contactUS controller --------*/
 
@@ -738,66 +472,28 @@
         });
 	}
 
-/*--------------- builder -----------------*/
-	/**
-	* load the appropriate template.
-	* @param {integer} vw - viewport.width.
-	*/
-	function loadingView(vw) {
-		var hasClass = $htmlBody.attr('class'),
-			$active = $('.section.active'),
-			$childActive = $('.section.active .slide.active'),
-			formFocus = $('#send').hasClass(FORM_HIDE);
+/*---- document ready & window resize ----*/
+	$(document).ready(function () {
+		var vw = window.innerWidth;
 
-		/**
-		* loading mobile template & controller.
-		*/
-		if (vw < 768 && !hasClass) {
+		if (vw >= 768) {
 			location.hash = "";
-			$main.load(URL_MOBILE, mobileCtrl);
+			tabAndDesktopCtrl();
 		}
 
-		/**
-		* re-build fullpage onWindowResize event.
-		*/
-		if (vw < 768 && hasClass && formFocus) {
-			/*-- lap 1 | re-build fullpage instance with the new viewport width and create the new necessary slides --*/
-			$.fn.fullpage.reBuild();
-			createEllipsis(MOBILE_BODY);
+//		centerSlidesNav();
+//		createEllipsis(MOBILE_BODY);
+		activateSmForm(vw);
+		alignImagesSm(vw);
+        alignSocialIcons();
+	});
 
-			/*-- lap 2 | destroy fullpage instance and create a new instance --*/
-			$.fn.fullpage.destroy('all');
-			$(MAIN).fullpage(FULLPAGE_CONFIG);
-
-			/*-- lap 3 | move to the section active previously --*/
-			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
-			centerSlidesNav();
-		}
-
-		/**
-		* loading tabAndDesktop template & controller.
-		*/
-		if (vw >= 768 && !hasClass && !$main.html()) {
-			location.hash = "";
-			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
-		}
-
-		/**
-		* destroy mobile tamplate and loading tabAndDesktop template onWindowResize event.
-		*/
-		if (vw >= 768 && hasClass) {
-			/*-- lap 1 | delete the content of the 'div.#main-wrapper' and destroy the fullpage instance --*/
-			$main.html("");
-			$.fn.fullpage.destroy("all");
-			$htmlBody.removeAttr('style class');
-
-			/*-- lap 2 | loading tabAndDesktop template & controller --*/
-			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
-		}
+	$(window).resize(function () {
+		var vw = window.innerWidth;
 
 		activateSmForm(vw);
 		alignImagesSm(vw);
         alignSocialIcons();
-	}
+	});
 
 })(jQuery, window);
