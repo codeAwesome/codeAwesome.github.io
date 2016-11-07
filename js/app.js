@@ -10,7 +10,6 @@
 		REGEX_MAIL       = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
 		FORM_CONTROL     = '.form-control',
 		BTN_SEND         = '#send',
-		MAIN             = '#main-wrapper',
 		MOBILE_TITLE     = '.xs-title',
 		MOBILE_BODY      = '.xs-body',
 		FORM_XS          = '#contact-form',
@@ -18,73 +17,7 @@
 		FORM_FOCUSIN     = "contact-form-focus",
 		FORM_HIDE        = "hidden",
 		HORIZONTAL_CLASS = "horizontal",
-		URL_DESKTOP      = "partials/desktop.tpl.html",
-		URL_MOBILE       = "partials/mobile.tpl.html",
-		$htmlBody        = $('html, body'),
-		$main            = $(MAIN),
-		FULLPAGE_CONFIG  = {
-			sectionsColor: ['#1e6f63', '#fff', '#FFA042', '#f5f5f5', '#2e3031'],
-			scrollingSpeed: 1000,
-			navigation: true,
-			navigationPosition: 'right',
-			continuousVertical: true,
-			slidesNavigation: true,
-			controlArrows: false,
-			/**
-			 * event listener when it leave a section.
-			 * @param   {integer} index - section that left.
-			 * @param   {integer} nextIndex - next section.
-			 * @returns {boolean}  false, when the instructions are activated.
-			 */
-			onLeave: function (index, nextIndex) {
-				if ($('.instruccions').css('display') !== 'none') {
-					return false;
-				}
-
-				if (nextIndex === 1) {
-					$('#fp-nav').hide();
-					$('#slides').superslides('start');
-				} else {
-					$('#slides').superslides('stop');
-					if (nextIndex !== 5) {
-						$('#fp-nav').show();
-					} else {
-						$('#fp-nav').hide();
-					}
-				}
-			},
-            /**
-             * event listener when it leave a slide.
-             * @param {integer} index - section active.
-             * @param {integer} slideIndex - slide that left.
-             * @param {string} direction - scroll direction.
-             * @param {integer} nextSlideIndex - next slide.
-             */
-            onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
-				var $slidePgAnimated = $('.pg-animated').index(),
-					$imgBounce = $('.flex-img img:eq(1)');
-
-                if (index === 3 && nextSlideIndex === $slidePgAnimated) {
-
-                    $imgBounce.addClass('bounceInfinite');
-                    infiniteAnimation('callout.bounce', $('.flex-img img:eq(1)'), 1000, 'bounceInfinite');
-
-                } else if (index === 3 && slideIndex === $slidePgAnimated) {
-
-                    $imgBounce.removeClass('bounceInfinite');
-
-                }
-            }
-		};
-
-/*---- document ready & window resize ----*/
-	$(document).ready(function () {
-		loadingView(window.innerWidth);
-	});
-
-	$(window).resize(function () {
-		loadingView(window.innerWidth);
-	});
+		$htmlBody        = $('html, body');
 
 /*-------------- functions ----------------*/
 	/**
@@ -548,113 +481,70 @@
 
     }
 
-	/**
-	 * center the elements with the class "fp-slidesNav".
-	 */
-	function centerSlidesNav() {
-		var $slidesNav = "";
-
-		$slidesNav = $('.fp-slidesNav');
-		$.each($slidesNav, function (i, element) {
-			element.style.marginLeft = (-1 * (element.clientWidth / 2)) + "px";
-		});
-	}
-
 /*--------- template controllers  ----------*/
 	/**
 	 * mobile controller.
 	 */
-	function mobileCtrl() {
-		var $superslides = $('#slides');
-
-		/*-- create fullpage instance --*/
-		$(MAIN).fullpage(FULLPAGE_CONFIG);
-
-		/*-- hyphenate the text of all <p> into the elements with the class "xs-body" --*/
-        $(MOBILE_BODY).find('p').hyphenate('es');
-        $('.contrast p').hyphenate('es');
-
-		createEllipsis(MOBILE_BODY);
-
-        /*-- destroy fullpage instance --*/
-        $.fn.fullpage.destroy('all');
-
-        /*-- crate a new fullpage instance with the new slides --*/
-        $(MAIN).fullpage(FULLPAGE_CONFIG);
-
-		centerSlidesNav();
-
-	/*---------- header controller ----------*/
-		$('#fp-nav').hide();
-
-		/*-- execute intructions --*/
-        if (!Cookies.get('instruccions')) {
-            $('.instruccions').show();
-            runIntructions();
-        } else {
-            $superslides.superslides({'play': 15000});
-        }
-
-		/*-- add swipe function to superslides --*/
-		$superslides.on('swipeleft', function () {
-			$superslides.superslides('stop');
-			$superslides.superslides('animate', 'next');
-			$superslides.superslides('start');
-		});
-
-		$superslides.on('swiperight', function () {
-			$superslides.superslides('stop');
-			$superslides.superslides('animate', 'prev');
-			$superslides.superslides('start');
-		});
-
-		/*-- move page toward the section selected --*/
-		$('li', '#menu-xs').click(function () {
-			var index = $(this).index() + 2;
-
-			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
-		});
-
-	/*--------- services controller ---------*/
-
-		/*-- create flipCarousel instance --*/
-		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
-
-	/*--------- contactUS controller --------*/
-
-		/*-- disable 'button#send' --*/
-		$(BTN_SEND, FORM_XS).prop('disabled', true);
-
-		/*-- activate form --*/
-		$(FORM_CONTROL, FORM_XS).focusin(function () {
-			$(FORM_XS)
-				.removeClass(FORM_FOCUSOUT)
-				.addClass(FORM_FOCUSIN)
-				.find('.' + FORM_HIDE)
-					.removeClass(FORM_HIDE);
-
-			$.fn.fullpage.setAllowScrolling(false);
-		});
-
-		/*-- deactivate form --*/
-		$(FORM_CONTROL, FORM_XS).focusout(function () {
-			$(FORM_XS)
-				.removeClass(FORM_FOCUSIN)
-				.addClass(FORM_FOCUSOUT)
-				.find(BTN_SEND)
-					.addClass(FORM_HIDE)
-				.siblings('#back')
-					.addClass(FORM_HIDE);
-
-			$.fn.fullpage.setAllowScrolling(true);
-		});
-
-		/*-- validate form --*/
-		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
-
-		/*-- send form --*/
-		$(BTN_SEND, FORM_XS).touchend(sendEmail);
-	}
+//	function mobileCtrl() {
+//
+//	/*---------- header controller ----------*/
+//		$('#fp-nav').hide();
+//
+//		/*-- execute intructions --*/
+//        if (!Cookies.get('instruccions')) {
+//            $('.instruccions').show();
+//            runIntructions();
+//        } else {
+//            $superslides.superslides({'play': 15000});
+//        }
+//
+//		/*-- move page toward the section selected --*/
+//		$('li', '#menu-xs').click(function () {
+//			var index = $(this).index() + 2;
+//
+//			setTimeout(function () { $.fn.fullpage.moveTo(index); }, 200);
+//		});
+//
+//	/*--------- services controller ---------*/
+//
+//		/*-- create flipCarousel instance --*/
+//		$('.flip-img-xs').flipcarousel({itemsperpage: 1});
+//
+//	/*--------- contactUS controller --------*/
+//
+//		/*-- disable 'button#send' --*/
+//		$(BTN_SEND, FORM_XS).prop('disabled', true);
+//
+//		/*-- activate form --*/
+//		$(FORM_CONTROL, FORM_XS).focusin(function () {
+//			$(FORM_XS)
+//				.removeClass(FORM_FOCUSOUT)
+//				.addClass(FORM_FOCUSIN)
+//				.find('.' + FORM_HIDE)
+//					.removeClass(FORM_HIDE);
+//
+//			$.fn.fullpage.setAllowScrolling(false);
+//		});
+//
+//		/*-- deactivate form --*/
+//		$(FORM_CONTROL, FORM_XS).focusout(function () {
+//			$(FORM_XS)
+//				.removeClass(FORM_FOCUSIN)
+//				.addClass(FORM_FOCUSOUT)
+//				.find(BTN_SEND)
+//					.addClass(FORM_HIDE)
+//				.siblings('#back')
+//					.addClass(FORM_HIDE);
+//
+//			$.fn.fullpage.setAllowScrolling(true);
+//		});
+//
+//		/*-- validate form --*/
+//		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
+//
+//		/*-- send form --*/
+//		$(BTN_SEND, FORM_XS).touchend(sendEmail);
+//	}
 
 	/**
 	 * tablet and desktop controller.
@@ -738,66 +628,26 @@
         });
 	}
 
-/*--------------- builder -----------------*/
-	/**
-	* load the appropriate template.
-	* @param {integer} vw - viewport.width.
-	*/
-	function loadingView(vw) {
-		var hasClass = $htmlBody.attr('class'),
-			$active = $('.section.active'),
-			$childActive = $('.section.active .slide.active'),
-			formFocus = $('#send').hasClass(FORM_HIDE);
+/*---- document ready & window resize ----*/
+	$(document).ready(function () {
+		var vw = window.innerWidth;
 
-		/**
-		* loading mobile template & controller.
-		*/
-		if (vw < 768 && !hasClass) {
+		if (vw >= 768) {
 			location.hash = "";
-			$main.load(URL_MOBILE, mobileCtrl);
+			tabAndDesktopCtrl();
 		}
 
-		/**
-		* re-build fullpage onWindowResize event.
-		*/
-		if (vw < 768 && hasClass && formFocus) {
-			/*-- lap 1 | re-build fullpage instance with the new viewport width and create the new necessary slides --*/
-			$.fn.fullpage.reBuild();
-			createEllipsis(MOBILE_BODY);
-
-			/*-- lap 2 | destroy fullpage instance and create a new instance --*/
-			$.fn.fullpage.destroy('all');
-			$(MAIN).fullpage(FULLPAGE_CONFIG);
-
-			/*-- lap 3 | move to the section active previously --*/
-			$.fn.fullpage.silentMoveTo($active.index() + 1, $childActive.index());
-			centerSlidesNav();
-		}
-
-		/**
-		* loading tabAndDesktop template & controller.
-		*/
-		if (vw >= 768 && !hasClass && !$main.html()) {
-			location.hash = "";
-			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
-		}
-
-		/**
-		* destroy mobile tamplate and loading tabAndDesktop template onWindowResize event.
-		*/
-		if (vw >= 768 && hasClass) {
-			/*-- lap 1 | delete the content of the 'div.#main-wrapper' and destroy the fullpage instance --*/
-			$main.html("");
-			$.fn.fullpage.destroy("all");
-			$htmlBody.removeAttr('style class');
-
-			/*-- lap 2 | loading tabAndDesktop template & controller --*/
-			$main.load(URL_DESKTOP, tabAndDesktopCtrl);
-		}
-
+//		centerSlidesNav();
+//		createEllipsis(MOBILE_BODY);
 		activateSmForm(vw);
 		alignImagesSm(vw);
         alignSocialIcons();
-	}
+	});
+
+	$(window).resize(function () {
+		activateSmForm(vw);
+		alignImagesSm(vw);
+        alignSocialIcons();
+	});
 
 })(jQuery, window);
