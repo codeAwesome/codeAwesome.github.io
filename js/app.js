@@ -333,7 +333,7 @@
 		return false;
 	}
 
-/*--------- template controllers  ----------*/
+/*---------------------- template controllers  -----------------------*/
 	/**
 	 * mobile controller.
 	 */
@@ -390,7 +390,7 @@
 				autoplay: 5000,
 				paginationClickable: true,
 				lazyLoading: true,
-				pagination: '.swiper-pagination',
+				pagination: '.swiper-pag-main',
 				nextButton: '.swiper-button-next',
 				prevButton: '.swiper-button-prev',
 				effect: 'coverflow',
@@ -402,7 +402,6 @@
 				loop: true,
 				speed: 500,
 				autoplay: 1000,
-				pagination: '.swiper-pagination',
 				mousewheelControl: true,
 				effect: 'coverflow',
 				grabCursor: true,
@@ -435,7 +434,7 @@
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
 
 		/*-- move page toward the section selected --*/
-		$('a[href*="#"]').click(slideScrollAnimation);
+		$('.nav-pills > li > a[href*="#"], #slide-out li > a[href*="#"]').click(slideScrollAnimation);
 
 	/*--------- contactUS controller --------*/
 
@@ -470,30 +469,46 @@
 		$('.backTop').click(function () {
             $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
         });
+
+		return mySwiper;
 	}
 
-/*---- document ready & window resize ----*/
+/*------------------ document ready & window resize ------------------*/
+
 	$(document).ready(function () {
 		var vw = window.innerWidth;
 
-		if (vw >= 768) {
-			location.hash = "";
-			tabAndDesktopCtrl();
-		}
+		location.hash = "";
+		var xf = tabAndDesktopCtrl();
 
-//		centerSlidesNav();
-//		createEllipsis(MOBILE_BODY);
 		activateSmForm(vw);
 		alignImagesSm(vw);
         alignSocialIcons();
+
+		$('.button-collapse').sideNav({
+			menuWidth: 300, // Default is 240
+			edge: 'left', // Choose the horizontal origin
+			closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+			draggable: true // Choose whether you can drag to open on touch screens
+		});
+
+		if (vw < 768) {
+			$('a.button-collapse').removeClass("hidden")
+			$('ul.nav-pills').addClass("hidden")
+
+			$('.swiper-wrapper-main, .swiper-slide').height(document.getElementsByTagName('html')[0].clientHeight - 100)
+
+
+		}
 	});
 
 	$(window).resize(function () {
 		var vw = window.innerWidth;
 
-		activateSmForm(vw);
-		alignImagesSm(vw);
-        alignSocialIcons();
+		if (vw < 768) {
+			$('a.button-collapse').removeClass("hidden")
+			$('ul.nav-pills').addClass("hidden")
+		}
 	});
 
 })(jQuery, window);

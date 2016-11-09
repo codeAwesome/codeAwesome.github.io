@@ -70,10 +70,6 @@
         width: 240px;
     }
 
-    #logo > img {
-        width: 230px;
-    }
-
 	@media (min-width: 810px) and (max-width: 850px) {
 		.nav-pills > li > a {
 			font-size: 18px;
@@ -243,3 +239,40 @@
 /*--------- end footer ----------*/
 
 /*-------------- end tab styles --------------*/
+
+/*-------------- mobile styles --------------*/
+
+@media (max-width: 767px) {
+	#logo {
+		width: 75%;
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	.button-collapse {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #fff;
+		font-size: 30px;
+	}
+
+	.nav-wrap {
+		position: fixed;
+		background-color: #1e6f63;
+		z-index: 999;
+	}
+
+	.side-nav i {
+		font-size: 25px;
+		text-align: center;
+	}
+
+	.side-nav .userView .name {
+		font-size: 12px;
+	}
+
+	.swiper-main {
+		margin-top: 100px;
+	}
+}
