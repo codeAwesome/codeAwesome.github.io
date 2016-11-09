@@ -142,14 +142,13 @@
 		animationIn('.services-item:eq(1)', "transition.expandIn", '40%');
 		animationIn('.services-item:eq(2)', "transition.bounceRightIn", '40%');
 		animationIn('#flip-carousel', "fadeIn", '70%');
-        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
 
 		/* contactUs */
 		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
 		animationIn('.contact-method:eq(0)', "transition.slideLeftBigIn", '80%');
 		animationIn('.contact-method:eq(1)', "transition.slideRightBigIn", '80%');
 
-		alignImagesSm(window.innerWidth);
+		//alignImagesSm(window.innerWidth);
 	}
 
 	/**
@@ -178,6 +177,7 @@
 	 * @param {integer} vw - viewport.width.
 	 */
 	function alignImagesSm(vw) {
+        console.log("hola");
 		var $svItems = $('.services-item');
 
 		if (vw >= 768 && vw <= 991) {
@@ -423,6 +423,9 @@
 
     	/*-- hyphenate the text of all <p> --*/
 		$('p').hyphenate('es');
+        
+        /*-- activate animations after 2s --*/
+		setTimeout(activateAnimations, 2000);
 
 		activateSmForm(window.innerWidth);
 
@@ -436,7 +439,31 @@
 		/*-- move page toward the section selected --*/
 		$('a[href*="#"]').click(slideScrollAnimation);
 
-	/*--------- contactUS controller --------*/
+	/*------------ button.backTop -----------*/
+		$('.backTop').click(function () {
+            $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
+        });
+	}
+
+/*---- document ready & window resize ----*/
+	$(document).ready(function () {
+		var vw = window.innerWidth;
+
+		if (vw >= 768) {
+			location.hash = "";
+			tabAndDesktopCtrl();
+		}
+
+//		centerSlidesNav();
+//		createEllipsis(MOBILE_BODY);
+		activateSmForm(vw);
+		//alignImagesSm(vw);
+        alignSocialIcons();
+        
+        //animation of service "paginas web animadas"
+        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
+        
+        /*--------- contactUS controller --------*/
 
 		/*-- disable 'button#send' --*/
 		$(BTN_SEND).prop('disabled', true);
@@ -464,37 +491,13 @@
 
 		/*-- validate input --*/
 		$(FORM_CONTROL).on('keyup change', validateInput);
-
-	/*------------ button.backTop -----------*/
-		$('.backTop').click(function () {
-            $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
-        });
-	}
-
-/*---- document ready & window resize ----*/
-	$(document).ready(function () {
-		var vw = window.innerWidth;
-
-		if (vw >= 768) {
-			location.hash = "";
-			tabAndDesktopCtrl();
-		}
-
-//		centerSlidesNav();
-//		createEllipsis(MOBILE_BODY);
-		activateSmForm(vw);
-		alignImagesSm(vw);
-        alignSocialIcons();
-        
-        /*-- activate animations after 2s --*/
-		setTimeout(activateAnimations, 2000);
 	});
 
 	$(window).resize(function () {
 		var vw = window.innerWidth;
 
 		activateSmForm(vw);
-		alignImagesSm(vw);
+		//alignImagesSm(vw);
         alignSocialIcons();
 	});
 

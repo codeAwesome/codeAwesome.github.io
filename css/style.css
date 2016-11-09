@@ -249,15 +249,26 @@ blockquote {
 	vertical-align: middle;
 }
 
-.services-item > div:nth-child(2) > h3, .flip-title {
+.services-item > h3, .flip-title {
 	margin-top: 40px;
 	color: #a33200;
+}
+
+.services-item > div:nth-child(3) > p {
+	margin-top: 20px;
+	font-size: 1.3em;
+	color: #7a3f00;
 }
 
 .services-item > div:nth-child(2) > p {
 	margin-top: 20px;
 	font-size: 1.3em;
 	color: #7a3f00;
+}
+
+.services-item > div:nth-child(2) > h3 {
+	margin-top: 40px;
+	color: #a33200;
 }
 
 .flip-title {

@@ -149,7 +149,6 @@
 /*---------- services -----------*/
 
 	.services-item > div:nth-child(1) {
-		height: auto;
 		line-height: 100%;
 		vertical-align: top;
 		margin-top: 0px;
@@ -158,6 +157,38 @@
 	.services-item > div:nth-child(2) > h3 {
 		margin-top: 0px;
 	}
+    
+    .services-item > h3 {
+		margin-top: 0px;
+	}
+    
+    .services-item > div:nth-child(3) {
+        float: right;
+    }
+    
+    .services-body > div:nth-child(1) > .services-item > div:nth-child(1) {
+        height: 222px;
+    }
+
+    .services-body > div:nth-child(1) > .services-item > div:nth-child(1) > img {
+        margin-top: 50.5px;
+    }
+    
+    .services-body > div:nth-child(2) >.services-item > div:nth-child(1) {
+        height: 195px;
+    }
+
+    .services-body > div:nth-child(2) >.services-item > div:nth-child(1) > img {
+        margin-top: 58px;
+    }
+    
+    .services-body > div:nth-child(3) >.services-item > div:nth-child(1) {
+        height: 276px;
+    }
+
+    .services-body > div:nth-child(3) >.services-item > div:nth-child(1) > img {
+        margin-top: 80px;
+    }
 
 /*--------- end services --------*/
 
@@ -243,3 +274,120 @@
 /*--------- end footer ----------*/
 
 /*-------------- end tab styles --------------*/
+
+/*------------- mobile styles --------------*/
+
+@media (max-width: 767px) {
+    .vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop {
+	   opacity: 1;
+    }
+/*------------- services ------------*/
+    #services {
+        padding: 20px 0px;
+    }
+    
+    .services-body {
+        margin-top: 0px;
+    }
+    
+    #services h2, #contactUs h2 {
+        font-size: 2em;
+        display: inherit;
+        text-align: center;
+    }
+    
+    .services-item {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .services-item > h3 {
+        order:-1;
+    }
+    
+    .services-item > div:nth-child(1){
+        text-align: center;
+    }
+/*------------- end services ------------*/
+
+/*------------ contactUs ---------------*/
+    #contactUs {
+        padding-bottom: 20px;
+    }
+    .contactUs-body {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0px;
+    }
+    .contactUs-body > form.contact-method {
+        order: -1;
+        background: transparent;
+        box-shadow: none;
+        margin-bottom: 20px;
+    }
+    
+    div.contact-method {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0 15px;
+        box-shadow: 5px 9px 26px 0px rgba(113,116,122,100);
+    }
+    
+    .contact-method h3 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    
+    .contact-data-md {
+        padding-left: 0px;
+    }
+    
+    .contact-data-md > li {
+        margin-left: 30px;
+        margin-bottom: 0px;
+    }
+    
+    .contact-data-md li > a > i {
+        margin-left: 0px;
+        margin-right: 5px;
+        font-size: 40px;
+        margin-top: 8px;
+    }
+    
+    .contact-data-md > li > a > strong {
+        margin-left: 0px;
+        font-size: 0.7em;
+    }
+/*------------ end contactUs ---------------*/
+    
+/*----------- footer -----------*/
+    footer > p {
+        display: block;
+        text-align: center;
+        margin-left: 0;
+        padding: 0 5px;
+    }
+    
+    footer > p > #we {
+        display: block;
+    }
+    
+    footer .social-list {
+        position: relative;
+        display: block;
+        padding-left: 0;
+        text-align: center;
+    }
+    
+    footer > ul.social-list > li {
+        margin-right: 20px;
+    }
+    
+    footer > ul.social-list > li:nth-child(4) {
+        margin-right: 0px;
+    }
+/*----------- end footer -----------*/
+
+}
+
+/*---------end mobile styles ---------------*/
