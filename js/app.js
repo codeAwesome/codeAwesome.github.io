@@ -423,9 +423,6 @@
 
     	/*-- hyphenate the text of all <p> --*/
 		$('p').hyphenate('es');
-        
-		/*-- activate animations after 2s --*/
-		setTimeout(activateAnimations, 2000);
 
 		activateSmForm(window.innerWidth);
 
@@ -488,6 +485,9 @@
 		activateSmForm(vw);
 		alignImagesSm(vw);
         alignSocialIcons();
+        
+        /*-- activate animations after 2s --*/
+		setTimeout(activateAnimations, 2000);
 	});
 
 	$(window).resize(function () {
