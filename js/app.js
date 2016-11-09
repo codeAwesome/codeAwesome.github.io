@@ -383,8 +383,6 @@
 	 * tablet and desktop controller.
 	 */
 	function tabAndDesktopCtrl() {
-
-		/*-- swiper carousel instance --*/
 		var mySwiper =  new Swiper('.swiper-main', {
 				autoHeight: true,
 				loop: true,
