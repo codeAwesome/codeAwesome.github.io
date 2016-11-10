@@ -97,11 +97,19 @@
 
 /*--------- whoAreWe ------------*/
 
-	.vision-img-sm, .mision-img-sm {
-		margin-bottom: 20px;
-		text-align: center;
+	.vision-img, .mision-img {
+		display: block;
 		width: 100%;
-		height: 150px;
+		height: 200px;
+		margin-bottom: 20px;
+		padding: 0px;
+	}
+
+	.vision-img > img, .mision-img > img {
+		height: 100%;
+		width: auto;
+		display: block;
+    	margin: auto;
 	}
 
 	blockquote h3 {
@@ -274,9 +282,156 @@
 /*------------- mobile styles --------------*/
 
 @media (max-width: 767px) {
+
+/*---------- global styles ----------*/
     .vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop {
 	   opacity: 1;
     }
+
+	h2 {
+		font-size: 32px;
+	}
+
+	h2 ~ img {
+		height: 50px;
+	}
+/*
+
+	h3 {
+		text-align: center;
+		font-size: 2em;
+	}
+
+	p {
+		text-indent: 1.5em;
+		line-height: 1.5;
+	}
+
+	section {
+		padding: 40px 0px;
+	}
+*/
+
+/*-------- end global styles ---------*/
+
+/*------------- header --------------*/
+
+	.nav-wrap {
+		height: 60px;
+	}
+
+	#logo {
+		margin-left: 7px;
+		width: 200px;
+		height: 60px;
+		line-height: 60px;
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	.button-collapse {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		color: #fff;
+		font-size: 30px;
+	}
+
+	.nav-wrap {
+		position: fixed;
+		background-color: #1e6f63;
+		z-index: 999;
+	}
+
+	.side-nav i {
+		font-size: 25px;
+		text-align: center;
+	}
+
+	.side-nav .userView .name {
+		font-size: 12px;
+	}
+
+	.swiper-main {
+		margin-top: 60px;
+	}
+
+	.swiper-wrapper-main > .swiper-slide {
+		background-color: burlywood;
+	}
+
+	/*----------- end  header ------------*/
+
+/*---------- whoAreWe section ----------*/
+
+	.vision, .mision {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	.vision h3, .mision h3 {
+		align-self: center;
+		width: 200px;
+		order: 1;
+	}
+
+	.vision-wrap, .mision-wrap {
+		margin-top: 20px;
+	}
+
+	.vision-img, .mision-img {
+		padding: 0;
+		width: 84px;
+		order: 0;
+	}
+
+	blockquote {
+		margin-top: 15px;
+		order: 2;
+		width: 100%;
+	}
+
+	.vision-wrap > blockquote {
+		border-left-color: #a5dbdd;
+		border-left-width: 7px;
+		border-left-style: solid;
+		-webkit-box-shadow: 1px 3px 8px -1px rgba(0,0,0,0.59);
+		-moz-box-shadow: 1px 3px 8px -1px rgba(0,0,0,0.59);
+		box-shadow: 1px 3px 8px -1px rgba(0,0,0,0.59);
+	}
+
+	.mision-wrap > blockquote {
+		border-right-color: #a5dbdd;
+		border-right-width: 7px;
+		border-right-style: solid;
+		-webkit-box-shadow: 1px 3px 8px -1px rgba(0,0,0,0.59);
+		-moz-box-shadow: 1px 3px 8px -1px rgba(0,0,0,0.59);
+		box-shadow: 1px 3px 8px -1px rgba(0,0,0,0.59);
+	}
+
+	.our-developers {
+		margin-top: 15px;
+	}
+
+	.photo-developer {
+		max-width: 200px;
+		text-align: center;
+		margin-top: 20px;
+	}
+
+	.img-description > h4 {
+		font-size: 24px;
+		margin-top: 20px;
+	}
+
+	.img-description > p {
+		font-size: 16px;
+		text-indent: 0px;
+		text-align: center;
+	}
+
+/*---------- end whoAreWe section ----------*/
+
 /*------------- services ------------*/
     #services {
         padding: 20px 0px;
@@ -383,37 +538,4 @@
         margin-right: 0px;
     }
 /*----------- end footer -----------*/
-
-	#logo {
-		width: 75%;
-		background-color: transparent;
-		box-shadow: none;
-	}
-
-	.button-collapse {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		color: #fff;
-		font-size: 30px;
-	}
-
-	.nav-wrap {
-		position: fixed;
-		background-color: #1e6f63;
-		z-index: 999;
-	}
-
-	.side-nav i {
-		font-size: 25px;
-		text-align: center;
-	}
-
-	.side-nav .userView .name {
-		font-size: 12px;
-	}
-
-	.swiper-main {
-		margin-top: 100px;
-	}
 }
