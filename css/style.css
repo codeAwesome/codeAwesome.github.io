@@ -82,15 +82,16 @@ header {
 	box-shadow: 0px -2px 12px 2px rgba(0, 0, 0, 0.6);
 }
 
-#logo > img {
-	width: 300px;
-	height: auto;
+#slide-out {
+	list-style: none;
+	padding-left: 0;
 }
 
 .nav-bar {
     float: right;
 	vertical-align: top;
     margin-right: 5%;
+	box-shadow: none;
 }
 
 .nav-pills > li {

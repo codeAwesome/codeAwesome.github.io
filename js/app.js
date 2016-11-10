@@ -142,6 +142,7 @@
 		animationIn('.services-item:eq(1)', "transition.expandIn", '40%');
 		animationIn('.services-item:eq(2)', "transition.bounceRightIn", '40%');
 		animationIn('#flip-carousel', "fadeIn", '70%');
+        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
 
 		/* contactUs */
 		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
@@ -333,7 +334,7 @@
 		return false;
 	}
 
-/*--------- template controllers  ----------*/
+/*---------------------- template controllers  -----------------------*/
 	/**
 	 * mobile controller.
 	 */
@@ -390,7 +391,7 @@
 				autoplay: 5000,
 				paginationClickable: true,
 				lazyLoading: true,
-				pagination: '.swiper-pagination',
+				pagination: '.swiper-pag-main',
 				nextButton: '.swiper-button-next',
 				prevButton: '.swiper-button-prev',
 				effect: 'coverflow',
@@ -402,7 +403,6 @@
 				loop: true,
 				speed: 500,
 				autoplay: 1000,
-				pagination: '.swiper-pagination',
 				mousewheelControl: true,
 				effect: 'coverflow',
 				grabCursor: true,
@@ -435,31 +435,12 @@
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
 
 		/*-- move page toward the section selected --*/
-		$('a[href*="#"]').click(slideScrollAnimation);
+		$('.nav-pills > li > a[href*="#"], #slide-out li > a[href*="#"]').click(slideScrollAnimation);
 
 	/*------------ button.backTop -----------*/
 		$('.backTop').click(function () {
             $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
         });
-	}
-
-/*---- document ready & window resize ----*/
-	$(document).ready(function () {
-		var vw = window.innerWidth;
-
-		if (vw >= 768) {
-			location.hash = "";
-			tabAndDesktopCtrl();
-		}
-
-//		centerSlidesNav();
-//		createEllipsis(MOBILE_BODY);
-		activateSmForm(vw);
-		//alignImagesSm(vw);
-        alignSocialIcons();
-        
-        //animation of service "paginas web animadas"
-        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
         
         /*--------- contactUS controller --------*/
 
@@ -489,14 +470,44 @@
 
 		/*-- validate input --*/
 		$(FORM_CONTROL).on('keyup change', validateInput);
+
+        return mySwiper;
+	}
+
+/*------------------ document ready & window resize ------------------*/
+
+	$(document).ready(function () {
+		var vw = window.innerWidth;
+
+		location.hash = "";
+		var xf = tabAndDesktopCtrl();
+
+		activateSmForm(vw);
+        alignSocialIcons();
+
+		$('.button-collapse').sideNav({
+			menuWidth: 300, // Default is 240
+			edge: 'left', // Choose the horizontal origin
+			closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+			draggable: true // Choose whether you can drag to open on touch screens
+		});
+
+		if (vw < 768) {
+			$('a.button-collapse').removeClass("hidden")
+			$('ul.nav-pills').addClass("hidden")
+
+			$('.swiper-wrapper-main, .swiper-slide').height(document.getElementsByTagName('html')[0].clientHeight - 100);
+		}
 	});
 
 	$(window).resize(function () {
 		var vw = window.innerWidth;
-
 		activateSmForm(vw);
-		//alignImagesSm(vw);
         alignSocialIcons();
+		if (vw < 768) {
+			$('a.button-collapse').removeClass("hidden")
+			$('ul.nav-pills').addClass("hidden")
+		}
 	});
 
 })(jQuery, window);
