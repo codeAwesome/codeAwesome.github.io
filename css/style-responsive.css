@@ -464,6 +464,7 @@
 /*------------ contactUs ---------------*/
     #contactUs {
         padding-bottom: 20px;
+        background: #ffffff;
     }
     .contactUs-body {
         display: flex;
@@ -482,6 +483,7 @@
         padding-right: 0;
         margin: 0 15px;
         box-shadow: 5px 9px 26px 0px rgba(113,116,122,100);
+        background: #f1f1f1;
     }
     
     .contact-method h3 {

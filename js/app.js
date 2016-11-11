@@ -86,12 +86,12 @@
             element.velocity('stop');
         }
     }
-
-	/**
-	 * active all animations
-	 */
-	function activateAnimations() {
-		var $backTop  = $('.backTop'),
+    
+    /*
+     * active animation of btnBackTop
+    */
+    function animationBtnBackTop() {
+        var $backTop  = $('.backTop'),
 			NAV_WRAP = 'header .nav-wrap';
 
         /**
@@ -130,6 +130,14 @@
 		}, {
 			offset: '95%'
 		});
+    }
+
+	/**
+	 * active all animations
+	 */
+	function activateAnimations() {
+        
+        animationBtnBackTop();
 
 		/* whoAreWe */
 		animationIn('.vision', "transition.slideLeftBigIn", '60%');
@@ -183,6 +191,7 @@
 			$('.vision-img, .mision-img').removeAttr('style');
 			$('.vision blockquote').children(':eq(0)').detach();
 			$('.mision blockquote').children(':eq(0)').detach();
+            $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
 		}
 	}
 
@@ -520,15 +529,19 @@
 
 	$(window).resize(function () {
 		var vw = window.innerWidth;
+        var $navPilss = $('ul.nav-pills')
 		activateSmForm(vw);
         alignSocialIcons();
 		if (vw < 768) {
 			$('a.button-collapse').removeClass("hidden")
-			$('ul.nav-pills').addClass("hidden")
+			$navPilss.addClass("hidden")
 			$('.vision, .mision').removeAttr('style');
 		} else {
+            if ($navPilss.hasClass("hidden")) {
+                animationBtnBackTop();
+            }
 			$('a.button-collapse').addClass("hidden");
-			$('ul.nav-pills').removeClass("hidden");
+			$navPilss.removeClass("hidden");
             $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
 		}
 	});
