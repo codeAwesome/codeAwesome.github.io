@@ -359,8 +359,16 @@
 	.swiper-wrapper-main > .swiper-slide {
 		background-color: burlywood;
 	}
+    
+    a.button-collapse {
+        display: block;
+    }
+    
+    .nav-pills {
+        display: none;
+    }
 
-	/*----------- end  header ------------*/
+/*----------- end  header ------------*/
 
 /*---------- whoAreWe section ----------*/
 

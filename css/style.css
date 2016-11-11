@@ -129,8 +129,22 @@ header {
 	}
 }
 
-.camera_wrap .camera_pag .camera_pag_ul {
-	text-align: center;
+a.button-collapse  {
+    display: none;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    width: 45px;
+    height: 70px;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff;
+}
+.swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
 }
 
 /*---------- end header ----------*/

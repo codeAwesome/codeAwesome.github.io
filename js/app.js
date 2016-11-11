@@ -351,32 +351,6 @@
 
 /*---------------------- template controllers  -----------------------*/
 	/**
-	 * mobile controller.
-	 */
-	function mobileCtrl() {
-    /*-------------------------- temporal -------------------------*/
-        //update the height of MAIN_SW. 
-        $('.swiper-wrapper-main, .swiper-wrapper-main > .swiper-slide')
-            .height(document.getElementsByTagName('html')[0].clientHeight - 60);
-    /*-------------------------- temporal -------------------------*/
-
-        //activate mobile menu.
-        $('a.button-collapse').removeClass("hidden");
-        $('ul.nav-pills').addClass("hidden");
-
-        //animation service image "paginas web animadas".
-        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
-
-        //activate side-nav menu.
-        $('.button-collapse').sideNav({
-            menuWidth: 300,
-            edge: 'right',
-            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-            draggable: true // Choose whether you can drag to open on touch screens
-        });
-	}
-
-	/**
 	 * page controller.
 	 */
 	function init() {
@@ -412,9 +386,9 @@
 					slideShadows : false
 				}
 			}),
-            vw = window.innerWidth,
-            btnSend = new Hammer($(BTN_SEND)[0]);
+            vw = window.innerWidth;
         
+        //activate scripts according to the viewport width.
 		if (vw >= 768) {
             //update the height of MAIN_SW. 
             $('.swiper-wrapper-main').height($('html').width() * 0.4);
@@ -423,47 +397,62 @@
             tabletCtrl(vw);
             
 		} else if (vw < 768) {
-            mobileCtrl();
+            /*-------------------------- temporal -------------------------*/
+            //update the height of MAIN_SW. 
+            $('.swiper-wrapper-main, .swiper-wrapper-main > .swiper-slide')
+                .height(document.getElementsByTagName('html')[0].clientHeight - 60);
+            /*-------------------------- temporal -------------------------*/
+
+            //animation service image "paginas web animadas".
+            infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
+
+            //activate side-nav menu.
+            $('.button-collapse').sideNav({
+                menuWidth: 300,
+                edge: 'right',
+                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: true // Choose whether you can drag to open on touch screens
+            });
         }
         
-        //clean the url hash.
-        location.hash = "";
+        $('.swiper-main').mouseover(function(){
+            
+            if ($(this).children(':hidden').length > 1){
+                $(this).children(':hidden').removeClass(HIDE);
+            }
+        });
+        
+        $('.swiper-main').mouseout(function(){
+            
+            if ($(this).children(':visible').length > 2){
+                $(this).children('.swiper-main-pager').addClass(HIDE);
+            }
+        });
         
     	//hyphenate the text of all <p>.
 		$('p').hyphenate('es');
 
         alignSocialIcons();
-
-	/*---------- header controller ----------*/
-
-		/*-- remove the focus to the <a> --*/
+        
+		//remove the focus to the <a>.
 		$('.nav-pills > li > a').focusin(function () { $(this).blur(); });
 
-		/*-- move page toward the section selected --*/
+		//move page toward the section selected.
 		$('.nav-pills > li > a[href*="#"], #slide-out li > a[href*="#"]').click(slideScrollAnimation);
 
-	/*------------ button.backTop -----------*/
+        //.backTop button.
 		$('.backTop').click(function () {
             $htmlBody.velocity('scroll', { offset : 0, duration : $(this).offset().top * 0.7 });
         });
         
-        /*--------- contactUS controller --------*/
-        
-		/*-- disable 'button#send' --*/
+		//disable 'button#send'.
 		$(BTN_SEND).prop('disabled', true);
 
-		/*-- send form --*/
+		//form submit function.
         document.querySelectorAll('form')[0]
             .addEventListener('submit', sendEmail, false);
-        
-//        function pedro(evt) {
-//            alert("me voy a volver LOKO")
-//            evt.preventDefault();
-//            
-//            return false;
-//        }
 
-		/*-- activate input --*/
+		//activate focusin styles.
 		$(FORM_CONTROL).focusin(function () {
 			var $this = $(this);
 
@@ -471,7 +460,7 @@
 			$this.siblings('label').addClass("active");
 		});
 
-		/*-- diactivate input --*/
+		//diactivate focusin styles.
 		$(FORM_CONTROL).focusout(function () {
 			var $this = $(this);
 
@@ -481,9 +470,8 @@
 			}
 		});
 
-		/*-- validate input --*/
+		//validate input.
 		$(FORM_CONTROL).on('keyup change', validateInput);
-
 	}
 
 /*------------------ document ready & window resize ------------------*/
