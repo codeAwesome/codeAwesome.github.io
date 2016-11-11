@@ -1,5 +1,5 @@
 /** codeamazing.com.ve scripts by codeamazing developers
-*	v1.2
+*	v2.0
 */
 
 (function ($, window) {
@@ -9,13 +9,9 @@
 	var REGEX_NAME       = /^[a-zA-Z0-9 ñáéíóú]*$/,
 		REGEX_MAIL       = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
 		FORM_CONTROL     = '.form-control',
+		HIDE             = "hidden",
+		HIDE_CLASS       = "." + HIDE,
 		BTN_SEND         = '#send',
-		MOBILE_TITLE     = '.xs-title',
-		MOBILE_BODY      = '.xs-body',
-		FORM_XS          = '#contact-form',
-		FORM_FOCUSOUT    = "contact-form",
-		FORM_FOCUSIN     = "contact-form-focus",
-		FORM_HIDE        = "hidden",
 		HORIZONTAL_CLASS = "horizontal",
 		$htmlBody        = $('html, body');
 
@@ -167,7 +163,7 @@
 	 * activate tablet styles for contactUS when the viewport width be equivalent to sm.
 	 * @param {integer} vw - viewport.width.
 	 */
-	function activateSmForm(vw) {
+	function tabletCtrl(vw) {
 		var contactWrapper = '.contact-method',
 			pleaceholder = $(FORM_CONTROL, contactWrapper).attr('placeholder'),
 			$formElements = $(FORM_CONTROL, contactWrapper);
@@ -248,13 +244,12 @@
 
 	/**
 	 * check that all inputs have the class "valid".
-	 * @param   {object} form - <form> to test.
 	 * @returns {boolean} true if all okay else false.
 	 */
-	function validateForm(form) {
+	function validateForm() {
 		var valid = true;
 
-		$(FORM_CONTROL, form).each(function () {
+		$(FORM_CONTROL).each(function () {
 			valid = valid && $(this).hasClass("valid");
 		});
 
@@ -269,7 +264,6 @@
 	function validateInput($nodo) {
 		$nodo = $nodo instanceof jQuery ? $nodo : $(this);
 		var $label = $nodo.siblings('label'),
-			form = $nodo[0].form,
 			value = $nodo.val();
 
 		$nodo.removeClass("error valid");
@@ -280,7 +274,7 @@
 
 			$nodo.addClass("error");
 			$label.addClass("invalid");
-			$(BTN_SEND, form).prop('disabled', true);
+			$(BTN_SEND).prop('disabled', true);
 
 			return false;
 		}
@@ -288,8 +282,8 @@
 		$nodo.addClass("valid");
 		$label.addClass("valid");
 
-		if (validateForm(form)) {
-			$(BTN_SEND, form).prop('disabled', false);
+		if (validateForm()) {
+			$(BTN_SEND).prop('disabled', false);
 		}
 
 		return true;
@@ -299,17 +293,18 @@
 	 * send the user mail.
 	 * @returns {boolean} false, avoid the page reload.
 	 */
-	function sendEmail() {
+	function sendEmail(e) {
 		var valid = true,
-			form = $(this)[0].form,
-			$elements = $(FORM_CONTROL, form);
+			$elements = $(FORM_CONTROL);
 
+        e.preventDefault();
+        
 		$elements.each(function (k, nodo) {
 			valid = valid && validateInput($(nodo));
 			$(nodo).blur();
 		});
 
-		if (valid && validateForm(form)) {
+		if (valid && validateForm()) {
 
 			$.ajax({
 				url: "https://formspree.io/codeamazinginc@gmail.com",
@@ -339,8 +334,8 @@
 
 					/*-- reset the form --*/
 					$elements.val("").removeClass("active valid");
-					$('label', form).removeClass("active valid");
-					$(BTN_SEND, form).prop('disabled', true);
+					$('label').removeClass("active valid");
+					$(BTN_SEND).prop('disabled', true);
 				},
 				error: function () {
 					swal({
@@ -352,61 +347,40 @@
 				}
 			});
 		}
-
-		return false;
 	}
 
 /*---------------------- template controllers  -----------------------*/
 	/**
 	 * mobile controller.
 	 */
-//	function mobileCtrl() {
-//
-//	/*---------- header controller ----------*/
-//
-//	/*--------- services controller ---------*/
-//
-//	/*--------- contactUS controller --------*/
-//
-//		/*-- disable 'button#send' --*/
-//		$(BTN_SEND, FORM_XS).prop('disabled', true);
-//
-//		/*-- activate form --*/
-//		$(FORM_CONTROL, FORM_XS).focusin(function () {
-//			$(FORM_XS)
-//				.removeClass(FORM_FOCUSOUT)
-//				.addClass(FORM_FOCUSIN)
-//				.find('.' + FORM_HIDE)
-//					.removeClass(FORM_HIDE);
-//
-//			$.fn.fullpage.setAllowScrolling(false);
-//		});
-//
-//		/*-- deactivate form --*/
-//		$(FORM_CONTROL, FORM_XS).focusout(function () {
-//			$(FORM_XS)
-//				.removeClass(FORM_FOCUSIN)
-//				.addClass(FORM_FOCUSOUT)
-//				.find(BTN_SEND)
-//					.addClass(FORM_HIDE)
-//				.siblings('#back')
-//					.addClass(FORM_HIDE);
-//
-//			$.fn.fullpage.setAllowScrolling(true);
-//		});
-//
-//		/*-- validate form --*/
-//		$(FORM_CONTROL, FORM_XS).on('keyup change', validateInput);
-//
-//		/*-- send form --*/
-//		$(BTN_SEND, FORM_XS).touchend(sendEmail);
-//	}
+	function mobileCtrl() {
+    /*-------------------------- temporal -------------------------*/
+        //update the height of MAIN_SW. 
+        $('.swiper-wrapper-main, .swiper-wrapper-main > .swiper-slide')
+            .height(document.getElementsByTagName('html')[0].clientHeight - 60);
+    /*-------------------------- temporal -------------------------*/
+
+        //activate mobile menu.
+        $('a.button-collapse').removeClass("hidden");
+        $('ul.nav-pills').addClass("hidden");
+
+        //animation service image "paginas web animadas".
+        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
+
+        //activate side-nav menu.
+        $('.button-collapse').sideNav({
+            menuWidth: 300,
+            edge: 'right',
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        });
+	}
 
 	/**
-	 * tablet and desktop controller.
+	 * page controller.
 	 */
-	function tabAndDesktopCtrl() {
-		var mySwiper =  new Swiper('.swiper-main', {
+	function init() {
+		var MAIN_SW = new Swiper('.swiper-main', {
 				autoHeight: true,
 				loop: true,
 				speed: 800,
@@ -421,7 +395,7 @@
 				centeredSlides: true,
 				slidesPerView: 'auto',
 			}),
-			swiperLang  = new Swiper('.swiper-lang-container', {
+			SERVICES_SW = new Swiper('.swiper-lang-container', {
 				loop: true,
 				speed: 500,
 				autoplay: 1000,
@@ -437,21 +411,28 @@
 					modifier: 1,
 					slideShadows : false
 				}
-			});
-
-		$('.swiper-wrapper-main').height($('html').width() * 0.4);
-
-    	/*-- hyphenate the text of all <p> --*/
-		$('p').hyphenate('es');
+			}),
+            vw = window.innerWidth,
+            btnSend = new Hammer($(BTN_SEND)[0]);
         
-        /*-- activate animations after 2s --*/
-		if(window.innerWidth >= 768){
-			setTimeout(activateAnimations, 2000);
-		}
+		if (vw >= 768) {
+            //update the height of MAIN_SW. 
+            $('.swiper-wrapper-main').height($('html').width() * 0.4);
+			
+            activateAnimations();
+            tabletCtrl(vw);
+            
+		} else if (vw < 768) {
+            mobileCtrl();
+        }
+        
+        //clean the url hash.
+        location.hash = "";
+        
+    	//hyphenate the text of all <p>.
+		$('p').hyphenate('es');
 
-		activateSmForm(window.innerWidth);
-
-		alignSocialIcons();
+        alignSocialIcons();
 
 	/*---------- header controller ----------*/
 
@@ -467,12 +448,20 @@
         });
         
         /*--------- contactUS controller --------*/
-
+        
 		/*-- disable 'button#send' --*/
 		$(BTN_SEND).prop('disabled', true);
 
 		/*-- send form --*/
-		$(BTN_SEND).click(sendEmail);
+        document.querySelectorAll('form')[0]
+            .addEventListener('submit', sendEmail, false);
+        
+//        function pedro(evt) {
+//            alert("me voy a volver LOKO")
+//            evt.preventDefault();
+//            
+//            return false;
+//        }
 
 		/*-- activate input --*/
 		$(FORM_CONTROL).focusin(function () {
@@ -495,55 +484,31 @@
 		/*-- validate input --*/
 		$(FORM_CONTROL).on('keyup change', validateInput);
 
-        return mySwiper;
 	}
 
 /*------------------ document ready & window resize ------------------*/
 
 	$(document).ready(function () {
-		var vw = window.innerWidth;
-
-		location.hash = "";
-		var xf = tabAndDesktopCtrl();
-
-		activateSmForm(vw);
-        alignSocialIcons();
-        
-        //animation of image of service "paginas web animadas"
-        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
-
-		$('.button-collapse').sideNav({
-			menuWidth: 300, // Default is 240
-			edge: 'left', // Choose the horizontal origin
-			closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-			draggable: true // Choose whether you can drag to open on touch screens
-		});
-
-		if (vw < 768) {
-			$('a.button-collapse').removeClass("hidden")
-			$('ul.nav-pills').addClass("hidden")
-
-			$('.swiper-wrapper-main, .swiper-wrapper-main > .swiper-slide').height(document.getElementsByTagName('html')[0].clientHeight - 60);
-		}
+		init();
 	});
 
 	$(window).resize(function () {
-		var vw = window.innerWidth;
-        var $navPilss = $('ul.nav-pills')
-		activateSmForm(vw);
-        alignSocialIcons();
-		if (vw < 768) {
-			$('a.button-collapse').removeClass("hidden")
-			$navPilss.addClass("hidden")
-			$('.vision, .mision').removeAttr('style');
-		} else {
-            if ($navPilss.hasClass("hidden")) {
-                animationBtnBackTop();
-            }
-			$('a.button-collapse').addClass("hidden");
-			$navPilss.removeClass("hidden");
-            $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
-		}
+//		var vw = window.innerWidth;
+//        var $navPilss = $('ul.nav-pills')
+////		activateSmForm(vw);
+//        alignSocialIcons();
+//		if (vw < 768) {
+//			$('a.button-collapse').removeClass("hidden")
+//			$navPilss.addClass("hidden")
+//			$('.vision, .mision').removeAttr('style');
+//		} else {
+//            if ($navPilss.hasClass("hidden")) {
+//                animationBtnBackTop();
+//            }
+//			$('a.button-collapse').addClass("hidden");
+//			$navPilss.removeClass("hidden");
+//            $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
+//		}
 	});
 
 })(jQuery, window);
