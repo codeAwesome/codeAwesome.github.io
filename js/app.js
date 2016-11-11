@@ -30,13 +30,17 @@
 			location.hostname === this.hostname) {
 
 			var $target = $(this.hash),
-				targetOffset = "";
+				targetOffset = "",
+                headerHeight = 0;
 
 			$target = ($target.length && $target) || $('[name=' + this.hash.slice(1) + ']');
 			if ($target.length) {
 				targetOffset = $target.offset().top;
-                $('#' + $target[0].id).velocity('scroll', {
-                    duration : targetOffset * 0.7
+                if (window.innerWidth < 768) {
+                    headerHeight = 60
+                }
+                $('html').velocity('scroll', {
+                    duration : targetOffset * 0.7, offset: targetOffset - headerHeight
 				});
 			} else {
                 return false;
@@ -142,7 +146,6 @@
 		animationIn('.services-item:eq(1)', "transition.expandIn", '40%');
 		animationIn('.services-item:eq(2)', "transition.bounceRightIn", '40%');
 		animationIn('#flip-carousel', "fadeIn", '70%');
-        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
 
 		/* contactUs */
 		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
@@ -496,6 +499,9 @@
 
 		activateSmForm(vw);
         alignSocialIcons();
+        
+        //animation of image of service "paginas web animadas"
+        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
 
 		$('.button-collapse').sideNav({
 			menuWidth: 300, // Default is 240
@@ -521,8 +527,9 @@
 			$('ul.nav-pills').addClass("hidden")
 			$('.vision, .mision').removeAttr('style');
 		} else {
-			$('a.button-collapse').addClass("hidden")
-			$('ul.nav-pills').removeClass("hidden")
+			$('a.button-collapse').addClass("hidden");
+			$('ul.nav-pills').removeClass("hidden");
+            $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
 		}
 	});
 
