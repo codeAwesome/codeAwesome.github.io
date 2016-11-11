@@ -167,9 +167,19 @@
             $formElements.eq(1).attr('placeholder', "Correo");
             $formElements.eq(2).attr('placeholder', "Mensaje");
 
+			$('.vision-img').siblings('blockquote').children(':eq(0)').before($('.vision-img').clone());
+			$('.mision-img').siblings('blockquote').children(':eq(0)').before($('.mision-img').clone());
+			$('.vision > .vision-img, .mision > .mision-img').hide();
+
         } else if (vw > 991 && typeof pleaceholder !== 'undefined') {
 
             $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
+		}
+
+		if ((vw < 768 || vw > 991) && $('.vision-img, .mision-img').is(':hidden')) {
+			$('.vision-img, .mision-img').removeAttr('style');
+			$('.vision blockquote').children(':eq(0)').detach();
+			$('.mision blockquote').children(':eq(0)').detach();
 		}
 	}
 
@@ -423,7 +433,9 @@
 		$('p').hyphenate('es');
         
         /*-- activate animations after 2s --*/
-		setTimeout(activateAnimations, 2000);
+		if(window.innerWidth >= 768){
+			setTimeout(activateAnimations, 2000);
+		}
 
 		activateSmForm(window.innerWidth);
 
@@ -496,7 +508,7 @@
 			$('a.button-collapse').removeClass("hidden")
 			$('ul.nav-pills').addClass("hidden")
 
-			$('.swiper-wrapper-main, .swiper-slide').height(document.getElementsByTagName('html')[0].clientHeight - 100);
+			$('.swiper-wrapper-main, .swiper-wrapper-main > .swiper-slide').height(document.getElementsByTagName('html')[0].clientHeight - 60);
 		}
 	});
 
@@ -507,6 +519,10 @@
 		if (vw < 768) {
 			$('a.button-collapse').removeClass("hidden")
 			$('ul.nav-pills').addClass("hidden")
+			$('.vision, .mision').removeAttr('style');
+		} else {
+			$('a.button-collapse').addClass("hidden")
+			$('ul.nav-pills').removeClass("hidden")
 		}
 	});
 
