@@ -13,7 +13,41 @@
 		HIDE_CLASS       = "." + HIDE,
 		BTN_SEND         = '#send',
 		HORIZONTAL_CLASS = "horizontal",
-		$htmlBody        = $('html, body');
+		$htmlBody        = $('html, body'),
+        MAIN_SW = new Swiper('.swiper-main', {
+            autoHeight: true,
+            loop: true,
+            speed: 800,
+            autoplay: 5000,
+            paginationClickable: true,
+            lazyLoading: true,
+            pagination: '.swiper-pag-main',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            autoplayDisableOnInteraction: false,
+        }),
+        SERVICES_SW = new Swiper('.swiper-lang-container', {
+            loop: true,
+            speed: 500,
+            autoplay: 1000,
+            mousewheelControl: true,
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            autoplayDisableOnInteraction: false,
+            coverflow: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows : false
+            }
+        });
 
 /*-------------- functions ----------------*/
 	/**
@@ -354,39 +388,7 @@
 	 * page controller.
 	 */
 	function init() {
-		var MAIN_SW = new Swiper('.swiper-main', {
-				autoHeight: true,
-				loop: true,
-				speed: 800,
-				autoplay: 5000,
-				paginationClickable: true,
-				lazyLoading: true,
-				pagination: '.swiper-pag-main',
-				nextButton: '.swiper-button-next',
-				prevButton: '.swiper-button-prev',
-				effect: 'coverflow',
-				grabCursor: true,
-				centeredSlides: true,
-				slidesPerView: 'auto',
-			}),
-			SERVICES_SW = new Swiper('.swiper-lang-container', {
-				loop: true,
-				speed: 500,
-				autoplay: 1000,
-				mousewheelControl: true,
-				effect: 'coverflow',
-				grabCursor: true,
-				centeredSlides: true,
-				slidesPerView: 'auto',
-				coverflow: {
-					rotate: 50,
-					stretch: 0,
-					depth: 100,
-					modifier: 1,
-					slideShadows : false
-				}
-			}),
-            vw = window.innerWidth;
+		var vw = window.innerWidth;
         
         //activate scripts according to the viewport width.
 		if (vw >= 768) {
@@ -481,22 +483,17 @@
 	});
 
 	$(window).resize(function () {
-//		var vw = window.innerWidth;
-//        var $navPilss = $('ul.nav-pills')
-////		activateSmForm(vw);
-//        alignSocialIcons();
-//		if (vw < 768) {
-//			$('a.button-collapse').removeClass("hidden")
-//			$navPilss.addClass("hidden")
-//			$('.vision, .mision').removeAttr('style');
-//		} else {
-//            if ($navPilss.hasClass("hidden")) {
-//                animationBtnBackTop();
-//            }
-//			$('a.button-collapse').addClass("hidden");
-//			$navPilss.removeClass("hidden");
-//            $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
-//		}
+		var vw = window.innerWidth;
+        
+		activateSmForm(vw);
+        alignSocialIcons();
+		
+        if (vw < 768) {
+			$('.vision, .mision').removeAttr('style');
+		} else {
+            animationBtnBackTop();
+            $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
+		}   
 	});
 
 })(jQuery, window);
