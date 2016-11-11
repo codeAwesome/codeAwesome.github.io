@@ -191,6 +191,7 @@
 			$('.vision-img, .mision-img').removeAttr('style');
 			$('.vision blockquote').children(':eq(0)').detach();
 			$('.mision blockquote').children(':eq(0)').detach();
+            $(FORM_CONTROL, contactWrapper).removeAttr('placeholder');
 		}
 	}
 
