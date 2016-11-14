@@ -507,7 +507,7 @@
             $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
             
             //update the height of MAIN_SW. 
-            $('.swiper-wrapper-main').height($('html').width() * 0.4);
+            $('.swiper-wrapper-main, .swiper-wrapper-main > div').height($('html').width() * 0.4);
 		}   
 	});
 
