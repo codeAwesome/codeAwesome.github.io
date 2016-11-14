@@ -85,14 +85,14 @@
 	 * @param {string} offset - scroll position
 	 */
 	function animationIn(element, animation, offset) {
-        $(element).waypoint(function () {
-            $(element).velocity(animation, {duration: 1000});
-            //It is destroyed to operate only once
-            this.destroy();
-        }, {
-            offset: offset,
-            triggerOnce: true
-        });
+            $(element).waypoint(function () {
+                $(element).velocity(animation, {duration: 1000});
+                //It is destroyed to operate only once
+                this.destroy();
+            }, {
+                offset: offset,
+                triggerOnce: true
+            });
     }
     
     /**
@@ -189,8 +189,6 @@
 		animationIn('#contactUs .text-left', "transition.slideUpIn", '75%');
 		animationIn('.contact-method:eq(0)', "transition.slideLeftBigIn", '80%');
 		animationIn('.contact-method:eq(1)', "transition.slideRightBigIn", '80%');
-
-		//alignImagesSm(window.innerWidth);
 	}
 
 	/**
@@ -390,6 +388,9 @@
 	function init() {
 		var vw = window.innerWidth;
         
+        //animation service image "paginas web animadas".
+        infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
+        
         //activate scripts according to the viewport width.
 		if (vw >= 768) {
             //update the height of MAIN_SW. 
@@ -404,9 +405,6 @@
             $('.swiper-wrapper-main, .swiper-wrapper-main > .swiper-slide')
                 .height(document.getElementsByTagName('html')[0].clientHeight - 60);
             /*-------------------------- temporal -------------------------*/
-
-            //animation service image "paginas web animadas".
-            infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
 
             //activate side-nav menu.
             $('.button-collapse').sideNav({
@@ -485,14 +483,31 @@
 	$(window).resize(function () {
 		var vw = window.innerWidth;
         
-		activateSmForm(vw);
+		tabletCtrl(vw);
         alignSocialIcons();
 		
         if (vw < 768) {
-			$('.vision, .mision').removeAttr('style');
+			$('.vision, .mision, .services-item').removeAttr('style');
+            
+            /*-------------------------- temporal -------------------------*/
+            //update the height of MAIN_SW. 
+            $('.swiper-wrapper-main, .swiper-wrapper-main > .swiper-slide')
+                .height(document.getElementsByTagName('html')[0].clientHeight - 60);
+            /*-------------------------- temporal -------------------------*/
+
+            //activate side-nav menu.
+            $('.button-collapse').sideNav({
+                menuWidth: 300,
+                edge: 'right',
+                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                draggable: true // Choose whether you can drag to open on touch screens
+            });
 		} else {
             animationBtnBackTop();
             $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);
+            
+            //update the height of MAIN_SW. 
+            $('.swiper-wrapper-main').height($('html').width() * 0.4);
 		}   
 	});
 
