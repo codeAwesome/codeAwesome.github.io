@@ -485,7 +485,7 @@
 	$(window).resize(function () {
 		var vw = window.innerWidth;
         
-		activateSmForm(vw);
+		tabletCtrl(vw);
         alignSocialIcons();
 		
         if (vw < 768) {
