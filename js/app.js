@@ -420,6 +420,29 @@
 		});
     }
 
+	function createSideNav() {
+		if ($('.drag-target').length === 0) {
+
+			//activate side-nav menu.
+			$('.button-collapse').sideNav({
+				menuWidth: 300,
+				edge: 'right',
+				closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+				draggable: true // Choose whether you can drag to open on touch screens
+			});
+
+			$('.drag-target').hammer({
+			  prevent_default: false
+			}).bind('panend', function(e) {
+				var $overlay = $('#sidenav-overlay');
+
+				if ($overlay.css('opacity') > 0 && $('.drag-target').width() === 10 ) {
+					$overlay.detach();
+				}
+			});
+		}
+	}
+
 /*---------------------- template controllers  -----------------------*/
 	/**
 	 * page controller.
@@ -450,25 +473,19 @@
                 .height(document.getElementsByTagName('html')[0].clientHeight - 60);
             /*-------------------------- temporal -------------------------*/
 
-            //activate side-nav menu.
-            $('.button-collapse').sideNav({
-                menuWidth: 300,
-                edge: 'right',
-                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                draggable: true // Choose whether you can drag to open on touch screens
-            });
+			createSideNav();
         }
         
         $('.swiper-main').mouseover(function(){
             
-            if ($(this).children(':hidden').length > 1){
+            if ($(this).children(':hidden').length > 1) {
                 $(this).children(':hidden').removeClass(HIDE);
             }
         });
         
         $('.swiper-main').mouseout(function(){
             
-            if ($(this).children(':visible').length > 2){
+            if ($(this).children(':visible').length > 2) {
                 $(this).children('.swiper-main-pager').addClass(HIDE);
             }
         });
@@ -539,13 +556,8 @@
                 .height(document.getElementsByTagName('html')[0].clientHeight - 60);
             /*-------------------------- temporal -------------------------*/
 
-            //activate side-nav menu.
-            $('.button-collapse').sideNav({
-                menuWidth: 300,
-                edge: 'right',
-                closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-                draggable: true // Choose whether you can drag to open on touch screens
-            });
+			createSideNav();
+
 		} else {
             animationBtnBackTop();
             $('.vision, .mision, .our-developers h3, .our-developers .img-circle, .our-developers .img-description, .services-title, .services-item, #flip-carousel, #contactUs .row:first-child, .contact-method, .backTop').css('opacity', 1);

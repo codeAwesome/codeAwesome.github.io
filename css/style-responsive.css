@@ -329,12 +329,24 @@
 		box-shadow: none;
 	}
 
+	a.button-collapse {
+        display: block;
+    }
+
 	.button-collapse {
+		height: 100%;
+    	width: 50px;
 		position: absolute;
-		top: 10px;
-		right: 10px;
+		top: 0;
+		right: 18px;
 		color: #fff;
 		font-size: 30px;
+	}
+
+	a.button-collapse > i {
+	    position: absolute;
+    	top: 15px;
+		right: 12px;
 	}
 
 	.nav-wrap {
@@ -359,11 +371,7 @@
 	.swiper-wrapper-main > .swiper-slide {
 		background-color: burlywood;
 	}
-    
-    a.button-collapse {
-        display: block;
-    }
-    
+
     .nav-pills {
         display: none;
     }
