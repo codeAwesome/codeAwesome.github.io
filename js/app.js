@@ -28,7 +28,6 @@
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: 'auto',
-            autoplayDisableOnInteraction: false,
         }),
         SERVICES_SW = new Swiper('.swiper-lang-container', {
             loop: true,
@@ -46,7 +45,7 @@
                 depth: 100,
                 modifier: 1,
                 slideShadows : false
-            }
+            },
         });
 
 /*-------------- functions ----------------*/
@@ -86,15 +85,16 @@
 	 */
 	function animationIn(element, animation, offset) {
             $(element).waypoint(function () {
-                $(element).velocity(animation, {duration: 1000});
-                //It is destroyed to operate only once
-                this.destroy();
+                if (window.innerWidth > 767){
+                    $(element).velocity(animation, {duration: 1000});
+                    //It is destroyed to operate only once
+                    this.destroy();
+                }
             }, {
                 offset: offset,
                 triggerOnce: true
             });
     }
-    
     /**
      * infinite animation using recursion
      * @param {string} animation - animation name
@@ -380,6 +380,45 @@
 			});
 		}
 	}
+    
+    /**
+    * enable and disable autoplay of swiper
+    */
+    function enableSwiper(element, swiper) {
+        
+         /**
+         * activation or desactivation of autoplay when the lower edge of .swiper-main is hidden or is visible
+         */
+		$(element).waypoint(function (direction) {
+			if (direction === "down") {
+            //if the direction is down, desactivate autoplay
+                swiper.stopAutoplay();
+			} else {
+                //if the direction is up, activate autoplay
+                swiper.startAutoplay();
+			}
+		}, {
+            //returns the position of the lower edge of the .swiper-main
+			offset: function () {
+				return -$(element).height();
+			}
+		});
+        
+        $(element).waypoint(function (direction) {
+			if (direction === "down") {
+            //if the direction is down, desactivate autoplay
+                swiper.startAutoplay();
+			} else {
+                //if the direction is up, activate autoplay
+                swiper.stopAutoplay();
+			}
+		}, {
+            //returns the position of the lower edge of the .swiper-main
+			offset: function () {
+				return 100;
+			}
+		});
+    }
 
 /*---------------------- template controllers  -----------------------*/
 	/**
@@ -387,6 +426,11 @@
 	 */
 	function init() {
 		var vw = window.innerWidth;
+        
+        SERVICES_SW.stopAutoplay();
+        
+        enableSwiper('.swiper-main', MAIN_SW);
+        enableSwiper('.swiper-lang-container', SERVICES_SW);
         
         //animation service image "paginas web animadas".
         infiniteAnimation('callout.bounce', $('.services-item:eq(1) img'), 1000);
